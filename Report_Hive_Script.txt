@@ -1,0 +1,25 @@
+select count(*) from video_log_05 where err = '208000';
+
+select count(*) from video_log_05 where err in ('301010', '301020', '301040', '601000', '602000');
+
+
+
+select count(*) from video_log_06 where err = '208000';
+select count(*) from video_log_06 where err in ('301010', '301020', '301040', '601000', '602000');
+
+
+select count(*) from video_log_07 where err = '208000';
+
+
+select count(*) from video_log_08 where err = '208000';
+select count(*) from video_log_09 where err = '208000';
+select count(*) from video_log_10 where err = '208000';
+select count(*) from video_log_11 where err = '208000';
+select count(*) from video_log_12 where err = '208000';
+select count(*) from video_log_13 where err = '208000';
+select count(*) from video_log_14 where err = '208000';
+select count(*) from video_log_15 where err = '208000';
+select count(*) from video_log_16 where err = '208000';
+select count(*) from video_log_17 where err = '208000';
+select count(*) from video_log_18 where err = '208000';
+

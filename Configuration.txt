@@ -1,0 +1,22 @@
+
+#To configure local storage directories for use by HDFS:
+sudo mkdir -p /data/1/dfs/nn /nfsmount/dfs/nn
+sudo mkdir -p /data/1/dfs/dn /data/2/dfs/dn /data/3/dfs/dn /data/4/dfs/dn
+
+sudo chown -R hdfs:hdfs /data/1/dfs/nn /nfsmount/dfs/nn /data/1/dfs/dn /data/2/dfs/dn /data/3/dfs/dn /data/4/dfs/dn
+
+sudo chmod 700 /data/1/dfs/nn /nfsmount/dfs/nn
+
+
+sudo -u hdfs hadoop namenode -format
+
+
+#mapred
+
+sudo mkdir -p /data/1/mapred/local /data/2/mapred/local /data/3/mapred/local /data/4/mapred/local
+
+sudo chown -R mapred:hadoop /data/1/mapred/local /data/2/mapred/local /data/3/mapred/local /data/4/mapred/local
+sudo chmod 777 /data/1/mapred/local /data/2/mapred/local /data/3/mapred/local /data/4/mapred/local
+
+
+sudo -u hdfs hdfs haadmin  -DFSHAadmin -transitionToActive namenode337

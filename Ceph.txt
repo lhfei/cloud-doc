@@ -1,0 +1,32 @@
+
+   http://blog.csdn.net/eric_sunah/article/details/41248889
+   
+   http://www.oschina.net/news/56149/ceph-0-80-7
+   
+   http://news.chinaunix.net/opensource/2014/0911/3208856.shtml?
+   
+   http://docs.openfans.org/ceph
+   
+   echo deb http://ceph.com/debian-emperor/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+   
+			http://ceph.com/debian-firefly/dists/utopic/main/binary-amd64/Packages
+			
+
+	http://www.tuicool.com/articles/Rruaem
+   
+Source Tree Highlights
+  .auth — authentication infrastructure
+  .common / include — random bits and pieces shared by everything (atomics, link lists, library headers, etc)
+  .crush — crush algorithm for data placement
+  .gtest — google’s unit test framework used for ceph unit tests
+  .java — java bindings for libcephfs (used for hadoop binding)
+  .osdc — client side code for object storage daemon
+  .os — object store (internal abstraction used for storing data on the local node)
+  .msg / messages — used for messaging across the wire
+  .mon — code for the monitor daemon
+  .mds — code for the metadata server daemon
+  .rgw — code for the rados gateway daemon
+  .osd — server side code for object storage daemon
+  .osdc — client side code for object storage daemon
+  .- See more at: http://ceph.com/community/contribute/#sthash.quq5kPlu.dpuf
+  .   

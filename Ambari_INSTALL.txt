@@ -1,0 +1,55 @@
+#Step1: Download the Ambari repository on the Ambari Server host
+	
+	cd /etc/apt/sources.list.d
+	sudo wget "http://public-repo-1.hortonworks.com/ambari/ubuntu12/2.x/updates/2.0.0/ambari.list"
+	
+	#sudo wget "http://public-repo-1.hortonworks.com/ambari/ubuntu12/2.x/updates/2.0.0/ambari.list " -O /etc/apt/sources.list.d/ambari.list
+	
+	sudo wget "http://public-repo-1.hortonworks.com/ambari/ubuntu12/1.x/updates/1.7.0/ambari.list"
+	
+	sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
+	sudo apt-get update
+	sudo apt-get install ambari-server
+	
+#Step 2: Install, Setup, and Start Ambari Server
+
+	sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
+	sudo apt-get update
+	sudo apt-get install ambari-server
+	
+
+	sudo pg_createcluster 9.3 main --start
+	
+	sudo ambari-server setup
+	sudo ambari-server start
+	
+#Step 3: Deploy Cluster using Ambari Web UI
+	Open up a web browser and go to http://<ambari-server-host>:8080.
+	Log in with username admin and password admin and follow on-screen instructions.
+	
+	
+	## check log
+	
+	/var/log/ambari-server/ambari-server.pid
+	/var/log/ambari-server/ambari-server.out
+	/var/log/ambari-server/ambari-server.log
+	
+	
+-------------------------------------------------------------------------------------------------
+# FQDNs
+127.0.0.1    thinker.ifeng.com
+
+																									
+sudo wget -nv http://public-repo-1.hortonworks.com/ambari/ubuntu12/2.x/updates/2.0.0/ambari.list -O /etc/apt/sources/list.d/ambari.list
+
+sudo wget -nv "http://public-repo-1.hortonworks.com/ambari/ubuntu12/2.x/updates/2.0.0/ambari.list" -O /etc/apt/sources/list.d/ambari.list
+
+sudo apt-get install ambari-server ambari-log4j
+
+
+
+
+
+
+
+

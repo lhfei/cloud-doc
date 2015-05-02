@@ -1,0 +1,56 @@
+114.80.177.124
+114.80.177.125
+114.80.177.126
+114.80.177.127
+
+114.80.177.132		//验证未通过
+114.80.177.133		//验证未通过
+
+114.80.177.134
+114.80.177.135
+114.80.177.136
+114.80.177.137
+114.80.177.144
+114.80.177.145
+
+114.80.177.146		//验证未通过
+114.80.177.147		//验证未通过
+
+J1x&X0d7
+account: test/KmgfPeDHp9lgJmrNvQ90
+
+nameserver 114.114.114.114
+
+114.80.177.124     ubuntu124
+114.80.177.125     ubuntu125
+114.80.177.126     ubuntu126
+114.80.177.127     ubuntu127 
+
+114.80.177.132     ubuntu132
+114.80.177.133     ubuntu133 
+114.80.177.134     ubuntu134 
+114.80.177.135     ubuntu135 
+114.80.177.136     ubuntu136 
+114.80.177.137     ubuntu137 
+
+114.80.177.144     ubuntu144
+114.80.177.145     ubuntu145
+114.80.177.146     ubuntu146
+114.80.177.147     ubuntu147
+
+
+
+/home/cloudland/app_tmp/2015-03-05.log.gz
+/home/cloudland/app_tmp/2015-03-06.log.gz
+/home/cloudland/app_tmp/2015-03-07.log.gz
+/home/cloudland/app_tmp/2015-03-08.log.gz
+/home/cloudland/app_tmp/2015-03-09.log.gz
+/home/cloudland/app_tmp/2015-03-10.log.gz
+/home/cloudland/app_tmp/2015-03-11.log.gz
+/home/cloudland/app_tmp/2015-03-12.log.gz
+/home/cloudland/app_tmp/2015-03-13.log.gz
+/home/cloudland/app_tmp/2015-03-14.log.gz
+/home/cloudland/app_tmp/2015-03-15.log.gz
+/home/cloudland/app_tmp/2015-03-16.log.gz
+/home/cloudland/app_tmp/2015-03-17.log.gz
+/home/cloudland/app_tmp/2015-03-18.log.gz

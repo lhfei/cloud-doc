@@ -1,0 +1,43 @@
+CREATE TABLE VIDEO_LOG (id string, systemInfo  string, ip string, ref string, sid string, uid string, provider string, from_v string, loc string, cat string, snapid string, tm int, url string, rate string, dur int, err string, bt int, bl int, lt int, se string, vid string, ptype string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ';
+
+LOAD DATA LOCAL INPATH '/home/lhfei/app_data/0001.sta' OVERWRITE INTO TABLE VIDEO_LOG;
+
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/05/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_05;
+
+CREATE TABLE VIDEO_LOG_05  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_06  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_07  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_08  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_09  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_10 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_11 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_12 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_13 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_14 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_15 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_16 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_17 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_18 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/05/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_05; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/06/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_06; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/07/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_07; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/08/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_08; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/09/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_09; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/10/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_10; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/11/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_11; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/12/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_12; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/13/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_13; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/14/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_14; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/15/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_15; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/16/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_16; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/17/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_17; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/18/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_18; 
+
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/IP_LIST.TXT' OVERWRITE INTO TABLE IP_TABLES PARTITION (ds = '2015-04-07');
+
+## output
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/group_by_err_18.txt' select err from video_log_18 group by err;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/NewVPlayer_nsvp1.0.18' select * from video_log_18 where vid='NewVPlayer_nsvp1.0.18' limit 100;
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/NewVPlayer_zhvp1.0.16' select * from video_log_18 where vid='NewVPlayer_zhvp1.0.16' limit 100;

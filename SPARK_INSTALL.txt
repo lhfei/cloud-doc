@@ -1,0 +1,6 @@
+build/mvn -Pyarn -Phadoop-2.6.0 -Dhadoop.version=2.6.0 -DskipTests clean package
+
+
+export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
+
+mvn -Dhadoop.version=2.6.0 -DskipTests clean package

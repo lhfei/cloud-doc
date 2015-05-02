@@ -1,0 +1,369 @@
+/home/cloudland/app_tmp/2015-03-05.log.gz /home/cloudland/app_tmp/out
+/home/cloudland/app_tmp/2015-03-06.log.gz
+/home/cloudland/app_tmp/2015-03-07.log.gz
+/home/cloudland/app_tmp/2015-03-08.log.gz
+/home/cloudland/app_tmp/2015-03-09.log.gz
+/home/cloudland/app_tmp/2015-03-10.log.gz
+/home/cloudland/app_tmp/2015-03-11.log.gz
+/home/cloudland/app_tmp/2015-03-12.log.gz
+/home/cloudland/app_tmp/2015-03-13.log.gz
+/home/cloudland/app_tmp/2015-03-14.log.gz
+/home/cloudland/app_tmp/2015-03-15.log.gz
+/home/cloudland/app_tmp/2015-03-16.log.gz
+/home/cloudland/app_tmp/2015-03-17.log.gz
+/home/cloudland/app_tmp/2015-03-18.log.gz
+
+/home/cloudland/app_tmp
+
+bin/hadoop jar share/hadoop/mapreduce/log-parser.jar com.ifeng.vdn.loggroup.mapper.VideologGroupDriver /home/cloudland/app_tmp/2015-03-05.log.gz /home/cloudland/app_tmp/out
+
+
+
+
+
+bin/hadoop jar log-parser.jar com.ifeng.vdn.loggroup.mapper.VideologGroupDriver input/2015-03-07.log.gz output
+
+bin/yarn jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar pi 32 10000
+
+
+file:///home/cloudland/app_tmp/2015-03-07.log.gz file:///home/cloudland/app_tmp/output
+
+bin/hadoop jar log-parser.jar com.ifeng.vdn.loggroup.mapper.VideologGroupDriver
+
+
+bin/hdfs dfs -mkdir -p /user/cloudland/input  /tmp/hive/warehouse
+bin/hdfs dfs -chown -R cloudland:cloudland /user /tmp/hive/warehouse
+bin/hdfs dfs -chmod g+w /user /tmp
+bin/hdfs dfs -chmod 777 /user /tmp
+
+
+CREATE TABLE VIDEO_LOG_05  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_06  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_07  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_08  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_09  (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_10 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_11 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_12 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_13 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_14 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_15 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_16 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_17 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_18 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+
+===== 商业CDN 数据分布
+CREATE TABLE EXTERNALE_15 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE EXTERNALE_16 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE EXTERNALE_17 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE EXTERNALE_18 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+
+
+CREATE TABLE IP_TABLES (loc STRING) PARTITIONED BY (ds STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+
+CREATE TABLE VIDEO_LOG_18_TRACKER (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+-- 丢失记录表
+CREATE TABLE VIDEO_LOG_17_MISS (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE VIDEO_LOG_18_MISS (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+
+CREATE TABLE EXTERNAL_15 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE EXTERNAL_16 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE EXTERNAL_17 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE EXTERNAL_18 (key_ string, ip string, ref string, sid string, uid string, loc string, tm int, dur int, err string, bt int, bl int, lt int, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-05.log /user/cloudland/input
+
+hdfs://ubuntu144:9000/user/cloudland/input/2015-03-05.log.gz 
+
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-05.log output/05
+
+bin/hdfs dfs -get output/05 /home/cloudland/app_data/video_log
+
+bin/hadoop jar nginx-log-parser.jar NginxLogDriver2 -libjars ./nginx-log-parser.jar /home/cloudland/app_tmp/wxlive-log/ /home/cloudland/app_tmp/log_output/
+
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-05.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-06.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-07.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-08.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-09.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-10.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-11.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-12.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-13.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-14.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-15.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-16.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-17.log /user/cloudland/input
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_backup/log_data_201503/2015-03-18.log /user/cloudland/input
+
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-05.log output/05 
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-06.log output/06 
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-07.log output/07 
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-08.log output/08 
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-09.log output/09 
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-10.log output/10
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-11.log output/11
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-12.log output/12
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-13.log output/13
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-14.log output/14
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-15.log output/15
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-16.log output/16
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-17.log output/17
+bin/hadoop jar log-count.jar VideologGroupDriver -libjars ./log-count.jar input/2015-03-18.log output/18
+
+bin/hdfs dfs -get output/05 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/06 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/07 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/08 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/09 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/10 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/11 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/12 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/13 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/14 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/15 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/16 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/17 /home/cloudland/app_data/video_log
+bin/hdfs dfs -get output/18 /home/cloudland/app_data/video_log
+
+
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/05/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_05; 
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/06/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_06;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/07/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_07;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/08/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_08;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/09/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_09;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/10/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_10;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/11/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_11;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/12/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_12;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/13/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_13;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/14/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_14;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/15/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_15;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/16/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_16;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/17/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_17;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/video_log/18/part-r-00000' OVERWRITE INTO TABLE VIDEO_LOG_18;
+
+LOAD DATA LOCAL INPATH '/home/cloudland/app_data/IP_LIST.TXT' OVERWRITE INTO TABLE IP_TABLES PARTITION (ds = '2015-04-07');
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_data/18_group' SELECT uid,ref from video_log_18 where vid="VZHPlayer_zhvp1.0.16" group by uid,ref;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_data/18_tracker' SELECT UID, REF, TM , ERR, IP,  SID, LOC, CDNID, NETNAME FROM VIDEO_LOG_18_TRACKER ORDER BY UID, REF, ERR, TM;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_data/16_loc' SELECT LOC FROM VIDEO_LOG_16 GROUP BY LOC;
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_data/17_loc' SELECT LOC FROM VIDEO_LOG_17 GROUP BY LOC;
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_data/18_loc' SELECT LOC FROM VIDEO_LOG_18 GROUP BY LOC;
+
+select count(*) from video_log_15 where err = '100000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_16 where err = '100000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_17 where err = '100000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_18 where err = '100000' and vid='vNsPlayer_nsvp1.0.18';
+
+select count(*) from video_log_15 where err = '208000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_16 where err = '208000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_17 where err = '208000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_18 where err = '208000' and vid='vNsPlayer_nsvp1.0.18';
+
+select count(*) from video_log_15 where err = '302000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_16 where err = '302000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_17 where err = '302000' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_18 where err = '302000' and vid='vNsPlayer_nsvp1.0.18';
+
+select count(*) from video_log_15 where err = '304001' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_16 where err = '304001' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_17 where err = '304001' and vid='vNsPlayer_nsvp1.0.18';
+select count(*) from video_log_18 where err = '304001' and vid='vNsPlayer_nsvp1.0.18';
+                              
+
+select count(*) from video_log_15 where err = '303000' and vid='vNsPlayer_nsvp1.0.18';							  
+select count(*) from video_log_16 where err = '303000' and vid='vNsPlayer_nsvp1.0.18';							  
+select count(*) from video_log_17 where err = '303000' and vid='vNsPlayer_nsvp1.0.18';							  
+select count(*) from video_log_18 where err = '303000' and vid='vNsPlayer_nsvp1.0.18';
+
+============================================
+== 组合播放器统计：
+============================================
+select count(*) from video_log_15 where err = '100000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_16 where err = '100000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_17 where err = '100000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_18 where err = '100000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+                                                                                      
+select count(*) from video_log_15 where err = '208000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_16 where err = '208000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_17 where err = '208000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_18 where err = '208000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+                                                                                     
+select count(*) from video_log_15 where err = '302000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_16 where err = '302000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_17 where err = '302000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_18 where err = '302000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+                                                                                      
+select count(*) from video_log_15 where err = '304001' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_16 where err = '304001' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_17 where err = '304001' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+select count(*) from video_log_18 where err = '304001' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+                                                                                   
+select count(*) from video_log_15 where err = '303000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_16 where err = '303000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_17 where err = '303000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_18 where err = '303000' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+
+select count(*) from video_log_15 where err = '301020' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_16 where err = '301020' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_17 where err = '301020' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_18 where err = '301020' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+
+select count(*) from video_log_15 where err = '301040' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_16 where err = '301040' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_17 where err = '301040' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';							  
+select count(*) from video_log_18 where err = '301040' and vid='VZHPlayer_zhvp1.0.16' and ref like '%http://v.ifeng.com%';
+
+
+-- 组合播放器丢失率：
+INSERT OVERWRITE TABLE VIDEO_LOG_17_MISS SELECT t.* FROM VIDEO_LOG_17 t WHERE t.ERR = '208000' AND t.VID='VZHPlayer_zhvp1.0.16' AND t.REF LIKE '%http://v.ifeng.com%' AND t.UID NOT IN (SELECT v.UID FROM VIDEO_LOG_17 v WHERE v.ERR = '303000' AND v.VID='VZHPlayer_zhvp1.0.16' AND v.REF LIKE '%http://v.ifeng.com%');
+INSERT OVERWRITE TABLE VIDEO_LOG_18_MISS SELECT t.* FROM VIDEO_LOG_18 t WHERE t.ERR = '208000' AND t.VID='VZHPlayer_zhvp1.0.16' AND t.REF LIKE '%http://v.ifeng.com%' AND t.UID NOT IN (SELECT v.UID FROM VIDEO_LOG_18 v WHERE v.ERR = '303000' AND v.VID='VZHPlayer_zhvp1.0.16' AND v.REF LIKE '%http://v.ifeng.com%');
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_17' SELECT IP, UID, LOC, TM, VID FROM VIDEO_LOG_17_MISS;
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_18' SELECT IP, UID, LOC, TM, VID FROM VIDEO_LOG_18_MISS;
+
+============================================
+==
+============================================
+SELECT COUNT(*) FROM VIDEO_LOG_05 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_06 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_07 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_08 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_09 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_10 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_11 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_12 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_13 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_14 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_15 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_16 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_17 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+SELECT COUNT(*) FROM VIDEO_LOG_18 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+
+============================================
+== 商业CDN 数据分布
+============================================
+INSERT OVERWRITE TABLE EXTERNAL_15 SELECT * FROM VIDEO_LOG_15 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+INSERT OVERWRITE TABLE EXTERNAL_16 SELECT * FROM VIDEO_LOG_16 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+INSERT OVERWRITE TABLE EXTERNAL_17 SELECT * FROM VIDEO_LOG_17 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+INSERT OVERWRITE TABLE EXTERNAL_18 SELECT * FROM VIDEO_LOG_18 t WHERE t.ERR = '303000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+============================================
+== 商业CDN 可用性统计
+	-- 208000
+	SELECT COUNT(*) FROM  EXTERNAL_15 WHERE err = '303000';
+	SELECT COUNT(*) FROM  EXTERNAL_16 WHERE err = '303000';
+	SELECT COUNT(*) FROM  EXTERNAL_17 WHERE err = '303000';
+	SELECT COUNT(*) FROM  EXTERNAL_18 WHERE err = '303000';
+	
+	-- 303000
+	SELECT COUNT(*) FROM VIDEO_LOG_15 t WHERE t.ERR = '208000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	SELECT COUNT(*) FROM VIDEO_LOG_16 t WHERE t.ERR = '208000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	SELECT COUNT(*) FROM VIDEO_LOG_17 t WHERE t.ERR = '208000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	SELECT COUNT(*) FROM VIDEO_LOG_18 t WHERE t.ERR = '208000' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	
+	-- 流畅度K1
+	SELECT COUNT(*) FROM VIDEO_LOG_15 t WHERE t.ERR = '304001' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	SELECT COUNT(*) FROM VIDEO_LOG_16 t WHERE t.ERR = '304001' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	SELECT COUNT(*) FROM VIDEO_LOG_17 t WHERE t.ERR = '304001' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	SELECT COUNT(*) FROM VIDEO_LOG_18 t WHERE t.ERR = '304001' AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	
+	-- 商业 CDN 数据
+	INSERT OVERWRITE TABLE EXTERNAL_15 SELECT * FROM VIDEO_LOG_15 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	INSERT OVERWRITE TABLE EXTERNAL_16 SELECT * FROM VIDEO_LOG_16 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	INSERT OVERWRITE TABLE EXTERNAL_17 SELECT * FROM VIDEO_LOG_17 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+	INSERT OVERWRITE TABLE EXTERNAL_18 SELECT * FROM VIDEO_LOG_18 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC NOT IN (SELECT LOC FROM IP_TABLES);
+
+	INSERT OVERWRITE TABLE EXTERNAL_15 SELECT * FROM VIDEO_LOG_15 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP FROM CDN_BAD_IP);
+	INSERT OVERWRITE TABLE EXTERNAL_16 SELECT * FROM VIDEO_LOG_16 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP FROM CDN_BAD_IP);
+	INSERT OVERWRITE TABLE EXTERNAL_17 SELECT * FROM VIDEO_LOG_17 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP FROM CDN_BAD_IP);
+	INSERT OVERWRITE TABLE EXTERNAL_18 SELECT * FROM VIDEO_LOG_18 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP FROM CDN_BAD_IP);
+	
+	1> 按商业CDN节点分析
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external_16/group_cdn' SELECT CDNID,COUNT(CDNID) AS TOTAL FROM EXTERNAL_16 GROUP BY CDNID;
+	
+	-- 统计商业CDN 各节点(loc)数据流失情况
+	2>
+	CREATE TABLE EXT_GROUP_IP_LOC (IP STRING, LOC STRING, ERR STRING, TOTAL INT) PARTITIONED BY (ds STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+	
+	INSERT INTO TABLE EXT_GROUP_IP_LOC PARTITION (ds='0315') SELECT t.IP, t.LOC, t.ERR, COUNT(t.LOC) as Total FROM EXTERNAL_15 t GROUP BY t.IP, t.LOC, t.ERR;
+	INSERT INTO TABLE EXT_GROUP_IP_LOC PARTITION (ds='0316') SELECT t.IP, t.LOC, t.ERR, COUNT(t.LOC) as Total FROM EXTERNAL_16 t GROUP BY t.IP, t.LOC, t.ERR;
+	INSERT INTO TABLE EXT_GROUP_IP_LOC PARTITION (ds='0317') SELECT t.IP, t.LOC, t.ERR, COUNT(t.LOC) as Total FROM EXTERNAL_17 t GROUP BY t.IP, t.LOC, t.ERR;
+	INSERT INTO TABLE EXT_GROUP_IP_LOC PARTITION (ds='0318') SELECT t.IP, t.LOC, t.ERR, COUNT(t.LOC) as Total FROM EXTERNAL_18 t GROUP BY t.IP, t.LOC, t.ERR;	
+	
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/group_ip_loc_total' SELECT IP, LOC, COUNT(LOC) AS TOTAL FROM EXT_GROUP_IP_LOC GROUP BY IP, LOC ORDER BY TOTAL DESC ;
+	
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/group_err_loc_total' SELECT t.DS, t.ERR, t.LOC, COUNT(t.LOC) AS TOTAL FROM EXT_GROUP_IP_LOC t GROUP BY t.ERR, t.LOC, t.DS ORDER BY TOTAL DESC;
+	
+	# CDN 比较差的IP
+	CREATE TABLE CDN_BAD_IP(IP STRING) PARTITIONED BY (ds STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+	LOAD DATA LOCAL INPATH '/home/cloudland/app_data/CDN_BAD_IP.txt' OVERWRITE INTO TABLE CDN_BAD_IP PARTITION (ds = '2015-04-29');
+
+	# redirect to bad loc records
+	CREATE TABLE CDN_BAD (IP STRING, REF STRING, SID STRING, UID STRING, LOC STRING, TM INT, DUR INT, ERR STRING, BT INT, BL INT, LT INT, VID STRING, CDNID STRING, NETNAME STRING) PARTITIONED BY (ds STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+	
+	# vid = vNsPlayer_nsvp1.0.18
+	INSERT INTO TABLE CDN_BAD PARTITION (ds='0315') SELECT t.IP , t.REF , t.SID , t.UID , t.LOC , t.TM , t.DUR , t.ERR , t.BT , t.BL , t.LT , t.VID , t.CDNID , t.NETNAME FROM EXTERNAL_15 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP from CDN_BAD_IP);
+	INSERT INTO TABLE CDN_BAD PARTITION (ds='0316') SELECT t.IP , t.REF , t.SID , t.UID , t.LOC , t.TM , t.DUR , t.ERR , t.BT , t.BL , t.LT , t.VID , t.CDNID , t.NETNAME FROM EXTERNAL_16 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP from CDN_BAD_IP);
+	INSERT INTO TABLE CDN_BAD PARTITION (ds='0317') SELECT t.IP , t.REF , t.SID , t.UID , t.LOC , t.TM , t.DUR , t.ERR , t.BT , t.BL , t.LT , t.VID , t.CDNID , t.NETNAME FROM EXTERNAL_17 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP from CDN_BAD_IP);
+	INSERT INTO TABLE CDN_BAD PARTITION (ds='0318') SELECT t.IP , t.REF , t.SID , t.UID , t.LOC , t.TM , t.DUR , t.ERR , t.BT , t.BL , t.LT , t.VID , t.CDNID , t.NETNAME FROM EXTERNAL_18 t WHERE t.VID="vNsPlayer_nsvp1.0.18" AND t.LOC IN (SELECT IP from CDN_BAD_IP);
+	
+	
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/cdn_bad_group_err' SELECT t.ERR, COUNT(t.ERR) AS TOTAL, t.DS FROM CDN_BAD t GROUP BY t.ERR, t.DS;
+	
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/cdn_bad_group_loc_err2' SELECT t.LOC, t.ERR, COUNT(t.ERR) AS TOTAL, t.DS FROM CDN_BAD t where t.uid in (SELECT DISTINCT(c.UID) FROM CDN_BAD c WHERE c.err="208000") GROUP BY t.LOC, t.ERR, t.DS;
+	
+	
+	SELECT t.LOC, t.ERR, COUNT(t.ERR) AS TOTAL, t.DS FROM CDN_BAD t WHERE t.uid in (SELECT c.UID, c.REF FROM CDN_BAD c WHERE c.err="208000" GROUP BY c.UID, c.REF) GROUP BY t.LOC, t.ERR, t.DS;
+	
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/cdn_bad' SELECT * from cdn_bad limit 1000;
+
+	
+============================================
+
+
+/*********************************************************
+ * 跟踪流失数据
+ ********************************************************/
+-- 创建表
+  ----原始数据
+CREATE TABLE LOG_15 (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE LOG_16 (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE LOG_17 (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE LOG_18 (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+  ----丢失数据
+CREATE TABLE LOG_15_MISS (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE LOG_16_MISS (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE LOG_17_MISS (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE LOG_18_MISS (ip string, ref string, sid string, uid string, loc string, tm string, dur string, err string, bt string, bl string, lt string, vid string, cdnId string, netname string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+-- 加载数据
+LOAD DATA LOCAL INPATH '/home/cloudland/app_backup/log_data_201503/2015-03-15.log' OVERWRITE INTO TABLE LOG_15;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_backup/log_data_201503/2015-03-16.log' OVERWRITE INTO TABLE LOG_16;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_backup/log_data_201503/2015-03-17.log' OVERWRITE INTO TABLE LOG_17;
+LOAD DATA LOCAL INPATH '/home/cloudland/app_backup/log_data_201503/2015-03-18.log' OVERWRITE INTO TABLE LOG_18;
+
+-- 组合播放器丢失率：
+INSERT OVERWRITE TABLE LOG_15_MISS SELECT t.* FROM LOG_15 t WHERE t.ERR = '208000' AND t.VID='VZHPlayer_zhvp1.0.16' AND t.REF LIKE '%http://v.ifeng.com%' AND t.UID NOT IN (SELECT v.UID FROM LOG_15 v WHERE v.ERR = '303000' AND v.VID='VZHPlayer_zhvp1.0.16' AND v.REF LIKE '%http://v.ifeng.com%');
+INSERT OVERWRITE TABLE LOG_16_MISS SELECT t.* FROM LOG_16 t WHERE t.ERR = '208000' AND t.VID='VZHPlayer_zhvp1.0.16' AND t.REF LIKE '%http://v.ifeng.com%' AND t.UID NOT IN (SELECT v.UID FROM LOG_16 v WHERE v.ERR = '303000' AND v.VID='VZHPlayer_zhvp1.0.16' AND v.REF LIKE '%http://v.ifeng.com%');
+INSERT OVERWRITE TABLE LOG_17_MISS SELECT t.* FROM LOG_17 t WHERE t.ERR = '208000' AND t.VID='VZHPlayer_zhvp1.0.16' AND t.REF LIKE '%http://v.ifeng.com%' AND t.UID NOT IN (SELECT v.UID FROM LOG_17 v WHERE v.ERR = '303000' AND v.VID='VZHPlayer_zhvp1.0.16' AND v.REF LIKE '%http://v.ifeng.com%');
+INSERT OVERWRITE TABLE LOG_18_MISS SELECT t.* FROM LOG_18 t WHERE t.ERR = '208000' AND t.VID='VZHPlayer_zhvp1.0.16' AND t.REF LIKE '%http://v.ifeng.com%' AND t.UID NOT IN (SELECT v.UID FROM LOG_18 v WHERE v.ERR = '303000' AND v.VID='VZHPlayer_zhvp1.0.16' AND v.REF LIKE '%http://v.ifeng.com%');
+
+-- 输出丢失记录
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_16' SELECT UID, IP, LOC, TM, VID FROM LOG_16_MISS ORDER BY UID;
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_17' SELECT UID, IP, LOC, TM, VID FROM LOG_17_MISS ORDER BY UID;
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_18' SELECT UID, IP, LOC, TM, VID FROM LOG_18_MISS ORDER BY UID;
+
+-- 交集
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_18_17' SELECT t1.UID, t1.IP, t1.LOC, t1.TM, t2.IP, t2.LOC, t2.TM   FROM LOG_18_MISS t1 inner join LOG_17_MISS t2 on t1.UID = t2.UID ORDER BY t1.UID;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/miss_17_16' SELECT t1.UID, t1.IP, t1.LOC, t1.TM, t2.IP, t2.LOC, t2.TM   FROM LOG_17_MISS t1 inner join LOG_16_MISS t2 on t1.UID = t2.UID ORDER BY t1.UID;

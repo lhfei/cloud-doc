@@ -1,0 +1,42 @@
+--------------------------------------------------------------
+# beyond virtual memory limits
+--------------------------------------------------------------
+15/03/25 09:30:22 INFO mapreduce.Job: Task Id : attempt_1427246602072_0001_m_000006_2, Status : FAILED
+Container [pid=4420,containerID=container_1427246602072_0001_01_000097] is running beyond virtual memory limits. Current usage: 144.3 MB of 1 GB physical memory used; 22.3 GB of 2.1 GB virtual memory used. Killing container.
+Dump of the process-tree for container_1427246602072_0001_01_000097 :
+
+#mapred-site.xml
+    <property>
+        <name>mapreduce.map.memory.mb</name>
+		<value>4096</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.memory.mb</name>
+		<value>8192</value>
+    </property>
+	
+    <property>
+	<name>mapreduce.map.java.opts</name>
+	<value>-Xmx4096m</value>
+    </property>
+    <property>
+	<name>mapreduce.reduce.java.opts</name>
+	<value>-Xmx8192m</value>
+    </property>
+
+# yarn-site.xml
+	<property>
+	    <name>yarn.nodemanager.vmem-pmem-ratio</name>
+	    <value>2.1</value>	
+	</property>
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+# Dynamic add a new data node
+--------------------------------------------------------------
+	#in the new node:
+	>sbin/hadoop-daemon.sh --script hdfs start datanode
+	>sbin/yarn-daemon.sh start nodemanager
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------

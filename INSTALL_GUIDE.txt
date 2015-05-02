@@ -1,0 +1,189 @@
+##########################################################################################################
+##	GET SOFTWARE
+##########################################################################################################
+----------------------------------------------------------------------------------------------------------
+. Get Packages
+# 1 Add the release key
+	
+	wget -q -O- 'https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/release.asc' | sudo apt-key add -
+	wget -q -O- 'https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/autobuild.asc' | sudo apt-key add -
+	
+# 2 ADD CEPH EXTRAS
+	
+	echo deb http://ceph.com/packages/ceph-extras/debian $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph-extras.list
+	
+	
+# 3 ADD CEPH	
+
+	sudo apt-add-repository 'deb http://ceph.com/debian-giant/ {codename} main'
+	
+	echo deb http://ceph.com/debian-giant/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+	
+# 4 ADD CEPH DEVELOPMENT
+	
+	echo deb http://gitbuilder.ceph.com/ceph-deb-$(lsb_release -sc)-x86_64-basic/ref/master $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+	
+# 5 ADD APACHE/FASTCGI
+	echo deb http://gitbuilder.ceph.com/apache2-deb-$(lsb_release -sc)-x86_64-basic/ref/master $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph-apache.list
+	echo deb http://gitbuilder.ceph.com/libapache-mod-fastcgi-deb-$(lsb_release -sc)-x86_64-basic/ref/master $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph-fastcgi.list
+
+# 6 DOWNLOAD PACKAGES
+	
+	#wget -q http://ceph.com/debian-{release}/pool/main/c/ceph/ceph_{version}{distro}_{arch}.deb
+	wget -q http://ceph.com/debian-giant/pool/main/c/ceph/ceph_0.87-1precise_amd64.deb
+
+	
+---------------------------------------------------------------------------------------------
+. Get Tarballs
+	
+	wget -q http://ceph.com/download/ceph-0.88.tar.gz
+	
+---------------------------------------------------------------------------------------------	
+. Clone Source
+
+# 1 INSTALL GIT
+
+	sudo apt-get install git
+	
+# 2 ADD SSH KEYS (OPTIONAL)
+
+# 3 CLONE THE SOURCE
+	
+	git clone --recursive https://github.com/ceph/ceph.git
+	
+# 4 CHOOSE A BRANCH	
+
+	git checkout master
+---------------------------------------------------------------------------------------------
+. Build CEPH
+
+# 1 BUILD PREREQUISITES
+
+	cd ceph
+	./install-deps.sh
+	
+# 2 BUILD CEPH
+
+	cd ceph
+	./autogen.sh
+	./configure
+	make
+
+# 3 BUILD CEPH PACKAGES
+
+	sudo apt-get install debhelper
+	
+	sudo dpkg-buildpackage
+
+---------------------------------------------------------------------------------------------
+##########################################################################################################
+##	INSTALL SOFTWARE
+##########################################################################################################	
+----------------------------------------------------------------------------------------------------------
+. Install ceph-deploy
+
+	sudo apt-get update && sudo apt-get install ceph-deploy
+
+
+----------------------------------------------------------------------------------------------------------
+. Install Ceph Storage Cluster
+
+	sudo apt-get update && sudo apt-get install ceph ceph-mds
+	
+	sudo make install
+
+
+----------------------------------------------------------------------------------------------------------
+. Install Ceph Object Gateway
+	
+	--APACHE/FASTCGI W/OUT 100-CONTINUE
+	
+		sudo apt-get install apache2 libapache2-mod-fastcgi
+
+	--APACHE/FASTCGI W/ 100-CONTINUE
+		wget -q -O- https://raw.github.com/ceph/ceph/master/keys/autobuild.asc | sudo apt-key add -
+		echo deb http://gitbuilder.ceph.com/apache2-deb-$(lsb_release -sc)-x86_64-basic/ref/master $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph-apache.list
+		echo deb http://gitbuilder.ceph.com/libapache-mod-fastcgi-deb-$(lsb_release -sc)-x86_64-basic/ref/master $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph-fastcgi.list
+		sudo apt-get update && sudo apt-get install apache2 libapache2-mod-fastcgi
+		
+	--CONFIGURE APACHE/FASTCGI
+	
+		#Add a line for the ServerName in the Apache configuration file. Provide the fully qualified domain name of the server machine
+		#sudo vim /etc/apache2/apache2.conf -- ServerName {fqdn}
+		
+		sudo a2enmod rewrite
+		sudo a2enmod fastcgi
+		
+		sudo service apache2 restart
+		
+	--ENABLE SSL
+	
+		sudo apt-get install openssl ssl-cert
+		
+		sudo a2enmod ssl
+		
+		sudo mkdir /etc/apache2/ssl
+		
+		##fddn: lhfei
+		sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+		
+		sudo service apache2 restart
+		
+	--ADD WILDCARD TO DNS  ## Not be setting
+		address=/.{hostname-or-fqdn}/{host-ip-address}
+		address=/.ceph-node/192.168.0.1
+		
+	--INSTALL CEPH OBJECT GATEWAY
+
+		sudo apt-get install radosgw
+		
+		sudo apt-get install radosgw-agent
+		
+	--CONFIGURE THE GATEWAY
+	
+		--Simple Configurations
+		
+			#1 CREATE A USER AND KEYRING
+				
+					sudo ceph-authtool --create-keyring /etc/ceph/ceph.client.radosgw.keyring
+					sudo chmod +r /etc/ceph/ceph.client.radosgw.keyring
+					
+					
+					sudo ceph-authtool /etc/ceph/ceph.client.radosgw.keyring -n client.radosgw.gateway --gen-key
+					
+					sudo ceph-authtool -n client.radosgw.gateway --cap osd 'allow rwx' --cap mon 'allow rwx' /etc/ceph/ceph.client.radosgw.keyring
+					
+					## Error initializing cluster client: Error('error calling conf_read_file: errno EINVAL',)
+					sudo ceph -k /etc/ceph/ceph.client.admin.keyring auth add client.radosgw.gateway -i /etc/ceph/ceph.client.radosgw.keyring
+
+					
+					sudo scp /etc/ceph/ceph.client.radosgw.keyring  ceph@{hostname}:/home/ceph
+					ssh {hostname}
+					sudo mv ceph.client.radosgw.keyring /etc/ceph/ceph.client.radosgw.keyring
+		
+----------------------------------------------------------------------------------------------------------
+. Install Virtualization for Block	
+
+----------------------------------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+	
+	
+	
+# 3 Update your repository and install ceph-deploy	
+	sudo apt-get update && sudo apt-get install ceph-deploy
+
+#CREATE A CEPH USER
+
+sudo useradd -d /home/ceph -m ceph
+sudo passwd ceph
+
+echo "ceph ALL = (root) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ceph
+sudo chmod 0440 /etc/sudoers.d/ceph
