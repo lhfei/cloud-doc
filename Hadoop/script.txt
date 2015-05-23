@@ -322,7 +322,7 @@ INSERT OVERWRITE TABLE EXTERNAL_18 SELECT * FROM VIDEO_LOG_18 t WHERE t.ERR = '3
 	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/cdn_bad_group_loc_err2' SELECT t.LOC, t.ERR, COUNT(t.ERR) AS TOTAL, t.DS FROM CDN_BAD t where t.uid in (SELECT DISTINCT(c.UID) FROM CDN_BAD c WHERE c.err="208000") GROUP BY t.LOC, t.ERR, t.DS;
 	
 	
-	SELECT t.LOC, t.ERR, COUNT(t.ERR) AS TOTAL, t.DS FROM CDN_BAD t WHERE t.uid in (SELECT c.UID, c.REF FROM CDN_BAD c WHERE c.err="208000" GROUP BY c.UID, c.REF) GROUP BY t.LOC, t.ERR, t.DS;
+	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/cdn_bad_group_loc_err3' SELECT t.LOC, t.ERR, COUNT(t.ERR) AS TOTAL, t.DS FROM CDN_BAD t INNER JOIN (SELECT c.UID, c.REF FROM CDN_BAD c WHERE c.err="208000" GROUP BY c.UID, c.REF) p ON t.UID=p.UID AND t.REF = p.REF GROUP BY t.LOC, t.ERR, t.DS;
 	
 	INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudland/app_tmp/external/cdn_bad' SELECT * from cdn_bad limit 1000;
 

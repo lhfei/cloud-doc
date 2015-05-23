@@ -7,12 +7,15 @@
 -------------------------------------------------------------------------------------
 # Edit conf/hbase-env.sh
 -------------------------------------------------------------------------------------
-export JAVA_HOME=/usr/local/jdk1.6.0_25  
+export JAVA_HOME=/usr/local/java/jdk1.8.0_40
 export HBASE_CLASSPATH=/usr/local/hadoop/hadoop-2.6.0/etc/hadoop #Hadoop configuration directory
 export HBASE_OPTS="-ea -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode"
 export HBASE_MANAGES_ZK=true
 -------------------------------------------------------------------------------------
 # Edit conf/hbase-site.xml
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~	Pseudo-Distributed Local Install		~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <configuration>
 	<property>
 		<name>hbase.cluster.distributed</name>
@@ -20,11 +23,12 @@ export HBASE_MANAGES_ZK=true
 	</property>
 	<property>
 		<name>hbase.rootdir</name>
-		<value>file:///home/cloud/hbase</value>
+		<!-- <value>file:///home/cloudland/hbase</value> -->
+		<value>hdfs://ubuntu136.thinker.ifeng.com:9000/hbase</value>
 	</property>
 	<property>
 		<name>hbase.zookeeper.property.dataDir</name>
-		<value>/home/cloud/zookeeper</value>
+		<value>/home/cloudland/zookeeper</value>
 	</property>
     <property>
         <name>hbase.zookeeper.property.clientPort</name>
@@ -33,11 +37,11 @@ export HBASE_MANAGES_ZK=true
 	<!--
 	<property>
 		<name>zookeeper.znode.parent</name>
-		<value>/hbase</value>
+		<value>/cloudland</value>
     </property>-->
 	<property>
 		<name>hbase.zookeeper.quorum</name>
-		<value>ubuntu.thinker.cn</value>
+		<value>ubuntu136.thinker.ifeng.com</value>
     </property>
     <property>
 		<name>dfs.replication</name>
@@ -45,9 +49,49 @@ export HBASE_MANAGES_ZK=true
     </property>
     <property>
 		<name>hbase.master</name> 
-        <value>ubuntu:60000</value>
+        <value>ubuntu136.thinker.ifeng.com:60000</value>
 	</property>
 </configuration>
+-------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~	Pseudo-Distributed Local Install		~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<configuration>
+	<property>
+		<name>hbase.cluster.distributed</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>hbase.rootdir</name>
+		<value>hdfs://ubuntu136.thinker.ifeng.com:9000/hbase</value>
+	</property>
+	<property>
+		<name>hbase.zookeeper.property.dataDir</name>
+		<value>/home/cloudland/zookeeper</value>
+	</property>
+    <property>
+        <name>hbase.zookeeper.property.clientPort</name>
+        <value>2181</value>
+    </property>
+	<!--
+	<property>
+		<name>zookeeper.znode.parent</name>
+		<value>/cloudland</value>
+    </property>-->
+	<property>
+		<name>hbase.zookeeper.quorum</name>
+		<value>ubuntu136.thinker.ifeng.com</value>
+    </property>
+    <property>
+		<name>dfs.replication</name>
+		<value>1</value>
+    </property>
+    <property>
+		<name>hbase.master</name> 
+        <value>ubuntu136.thinker.ifeng.com:60000</value>
+	</property>
+</configuration>
+
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
 # copy {ZOOKEEPER_HOME}/conf/zoo.cfg to {HBASE_CLASSPATH}
@@ -58,7 +102,9 @@ hbase$bin/hbase-daemon.sh start zookeeper
 hbase#bin/hbase-daemon.sh stop zookeeper
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
-# check hbase status
+# Check hbase status,
+# before you start hbase daemon, must be sure the ${hbase.zookeeper.property.dataDir} 
+# directory is clean. Of not, hbase can not be used.
 >./start-hbase.sh
 >jps
 	~~~~~~~~~~~~~~~~~~~~~~~~~
