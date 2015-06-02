@@ -1,0 +1,27 @@
+scp /logs/ipserver.log.2015-05-26-09 cloudland@114.80.177.146:/home/cloudland/app_tmp/ipserver/10.32.26.94/
+scp /logs/ipserver.log.2015-05-26-09 cloudland@114.80.177.146:/home/cloudland/app_tmp/ipserver/10.32.26.95/
+scp /logs/ipserver.log.2015-05-26-09 cloudland@114.80.177.146:/home/cloudland/app_tmp/ipserver/10.32.22.164/
+scp /logs/ipserver.log.2015-05-26-09 cloudland@114.80.177.146:/home/cloudland/app_tmp/ipserver/10.32.22.165/
+
+---------------------------------------------------------------------
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_tmp/ipserver/10.32.26.94/* /user/cloudland/ipserver
+
+bin/hdfs dfs -get ipserver/output/* /home/cloudland/app_tmp/ipserver/output
+
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/94.2015-05-25-14 ipserver/output14/94
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/95.2015-05-25-14 ipserver/output14/95
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/164.2015-05-25-14 ipserver/output14/164
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/165.2015-05-25-14 ipserver/output14/165
+
+
+
+
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_tmp/ipserver/*/*.2015-05-26-09 /user/cloudland/ipserver/
+
+
+
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/94.2015-05-26-09 ipserver/output09/94
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/95.2015-05-26-09 ipserver/output09/95
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/164.2015-05-26-09 ipserver/output09/164
+bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/165.2015-05-26-09 ipserver/output09/165
+

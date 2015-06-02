@@ -1,0 +1,389 @@
+----------------------------------------------------------
+----------------------------------------------------------
+# controller
+114.80.177.126       controller
+
+# network
+114.80.177.125       network
+
+# compute1
+114.80.177.127       compute1
+----------------------------------------------------------
+----------------------------------------------------------
+>vi /etc/ntp.conf
+server ubuntu126.thinker.cn iburst
+
+>service ntp restart
+
+>ntpq -c peers
+----------------------------------------------------------
+
+echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu" "trusty-updates/kilo main" > /etc/apt/sources.list.d/cloudarchive-kilo.list
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+
+----------------------------------------------------------
+#### OpenStack packages
+----------------------------------------------------------
+# To enable the OpenStack repository
+
+>apt-get install ubuntu-cloud-keyring
+>echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu" \
+  "trusty-updates/kilo main" > /etc/apt/sources.list.d/cloudarchive-kilo.list
+----------------------------------------------------------
+# To finalize installation
+# Upgrade the packages on your system:
+>apt-get update && apt-get dist-upgrade
+----------------------------------------------------------
+
+----------------------------------------------------------
+## SQL database
+----------------------------------------------------------
+# To install and configure the database server
+
+# Install the packages:
+>apt-get install mariadb-server python-mysqldb
+
+# Choose a suitable password for the database root account.
+
+#Create and edit the /etc/mysql/conf.d/mysqld_openstack.cnf 
+	file and complete the following actions:
+
+	|-----------------------------------------------+
+	|[client]                                       +
+	|port            = 3306                         +
+	|socket          = /var/run/mysqld/mysqld.sock  +
+	|                                               +
+	|[mysqld]                                       +
+	|                                               +
+	|default-storage-engine = innodb                +
+	|innodb_file_per_table                          +
+	|collation-server = utf8_general_ci             +
+	|init-connect = 'SET NAMES utf8'                +
+	|character-set-server = utf8                    +
+	|-----------------------------------------------+
+----------------------------------------------------------
+# To finalize installation
+
+# Restart the database service:
+>service mysql restart
+
+# Secure the database service:
+>mysql_secure_installation
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+## RabbitMQ
+----------------------------------------------------------
+#Install the package:
+>apt-get install rabbitmq-server
+
+#To configure the message queue service
+
+# Add the openstack user:
+>rabbitmqctl add_user openstack Ifeng01
+
+# Permit configuration, write, and read access for the openstack user:
+>rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+
+----------------------------------------------------------
+----------------------------------------------------------
+
+##### Identity
+----------------------------------------------------------
+CREATE DATABASE keystone;
+
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' \
+  IDENTIFIED BY 'Ifeng01';
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' \
+  IDENTIFIED BY 'Ifeng01';
+----------------------------------------------------------
+#Generate a random value to use as the administration token during initial configuration:
+openssl rand -hex 10
+ #ADMIN_TOKEN
+ ----------------------+
+ ~fabb81e637d199edb217 |
+ ~---------------------+
+----------------------------------------------------------
+
+>echo "manual" > /etc/init/keystone.override
+>apt-get install keystone python-openstackclient apache2 libapache2-mod-wsgi memcached python-memcache
+
+>vi /etc/keystone/keystone.conf
+	
+	+-------------------------------------------------------------------+
+	|[DEFAULT]						  									+
+	|admin_token = fabb81e637d199edb217		  							+
+	|								  									+
+	|[database]						  									+
+	|connection = mysql://keystone:Ifeng01@ubuntu126/keystone
+	+
+	+[memcache]
+	+servers = localhost:11211
+	+
+	+[token]
+	+provider = keystone.token.providers.uuid.Provider
+	+driver = keystone.token.persistence.backends.memcache.Token
+	+
+	+[revoke]
+	+driver = keystone.contrib.revoke.backends.sql.Revoke
+	+
+	+[DEFAULT]
+	+verbose = True
+	+-------------------------------------------------------------------+
+	
+# Populate the Identity service database:
+>su -s /bin/sh -c "keystone-manage db_sync" keystone
+----------------------------------------------------------
+
+----------------------------------------------------------
+## To configure the Apache HTTP server
+----------------------------------------------------------
+>vi  /etc/apache2/apache2.conf
+	#ServerName {controller}
+	+----------------------------+
+	|                            +
+	|ServerName ubuntu126	 	 +
+	|							 +
+	+----------------------------+	
+	
+>vi /etc/apache2/sites-available/wsgi-keystone.conf
+
+	|---------------------------------------------------------------------------------------------------+
+	|Listen 5000                                                                                        +
+	|Listen 35357                                                                                       +
+	|                                                                                                   +
+	|<VirtualHost *:5000>                                                                               +
+	|    WSGIDaemonProcess keystone-public processes=5 threads=1 user=keystone display-name=%{GROUP}    +
+	|    WSGIProcessGroup keystone-public                                                               +
+	|    WSGIScriptAlias / /var/www/cgi-bin/keystone/main                                               +
+	|    WSGIApplicationGroup %{GLOBAL}                                                                 +
+	|    WSGIPassAuthorization On                                                                       +
+	|    <IfVersion >= 2.4>                                                                             +
+	|      ErrorLogFormat "%{cu}t %M"                                                                   +
+	|    </IfVersion>                                                                                   +
+	|    LogLevel info                                                                                  +
+	|    ErrorLog /var/log/apache2/keystone-error.log                                                   +
+	|    CustomLog /var/log/apache2/keystone-access.log combined                                        +
+	|</VirtualHost>                                                                                     +
+	|                                                                                                   +
+	|<VirtualHost *:35357>                                                                              +
+	|    WSGIDaemonProcess keystone-admin processes=5 threads=1 user=keystone display-name=%{GROUP}     +
+	|    WSGIProcessGroup keystone-admin                                                                +
+	|    WSGIScriptAlias / /var/www/cgi-bin/keystone/admin                                              +
+	|    WSGIApplicationGroup %{GLOBAL}                                                                 +
+	|    WSGIPassAuthorization On                                                                       +
+	|    <IfVersion >= 2.4>                                                                             +
+	|      ErrorLogFormat "%{cu}t %M"                                                                   +
+	|    </IfVersion>                                                                                   +
+	|    LogLevel info                                                                                  +
+	|    ErrorLog /var/log/apache2/keystone-error.log                                                   +
+	|    CustomLog /var/log/apache2/keystone-access.log combined                                        +
+	|</VirtualHost>                                                                                     +
+	|---------------------------------------------------------------------------------------------------+
+----------------------------------------------------------
+>ln -s /etc/apache2/sites-available/wsgi-keystone.conf /etc/apache2/sites-enabled
+
+>mkdir -p /var/www/cgi-bin/keystone
+
+>curl http://git.openstack.org/cgit/openstack/keystone/plain/httpd/keystone.py?h=stable/kilo \
+  | tee /var/www/cgi-bin/keystone/main /var/www/cgi-bin/keystone/admin
+  
+>chown -R keystone:keystone /var/www/cgi-bin/keystone
+>chmod 755 /var/www/cgi-bin/keystone/*
+
+>service apache2 restart
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+###  Create the service entity and API endpoint
+----------------------------------------------------------
+
+#Configure the authentication token:
+# ADMIN_TOKEN = fabb81e637d199edb217
+>export OS_TOKEN=fabb81e637d199edb217
+
+#Configure the endpoint URL:
+>export OS_URL=http://ubuntu126:35357/v2.0
+
+>openstack service create \
+  --name keystone --description "OpenStack Identity" identity
+  
+	+-------------+----------------------------------+
+	| Field       | Value                            |
+	+-------------+----------------------------------+
+	| description | OpenStack Identity               |
+	| enabled     | True                             |
+	| id          | 8c81d3b5049a4310b7f27a7588488512 |
+	| name        | keystone                         |
+	| type        | identity                         |
+	+-------------+----------------------------------+
+---------------------------------------------------------- 
+>openstack endpoint create \
+  --publicurl http://ubuntu126:5000/v2.0 \
+  --internalurl http://ubuntu126:5000/v2.0 \
+  --adminurl http://ubuntu126:35357/v2.0 \
+  --region RegionOne \
+  identity
+
+	+--------------+----------------------------------+
+	| Field        | Value                            |
+	+--------------+----------------------------------+
+	| adminurl     | http://ubuntu126:35357/v2.0      |
+	| id           | a57dceea7ca947e98fa305335750c99b |
+	| internalurl  | http://ubuntu126:5000/v2.0       |
+	| publicurl    | http://ubuntu126:5000/v2.0       |
+	| region       | RegionOne                        |
+	| service_id   | 862445be45ac4dd9857b92ad7ba367a2 |
+	| service_name | keystone                         |
+	| service_type | identity                         |
+	+--------------+----------------------------------+
+----------------------------------------------------------  
+>openstack endpoint create \
+  --publicurl http://ubuntu126:5000/v3.0 \
+  --internalurl http://ubuntu126:5000/v3.0 \
+  --adminurl http://ubuntu126:35357/v3.0 \
+  --region RegionOne \
+  identity
+
+	+--------------+----------------------------------+
+	| Field        | Value                            |
+	+--------------+----------------------------------+
+	| adminurl     | http://ubuntu126:35357/v3.0      |
+	| id           | 6bc125c4c96b4b9d9e6cf822534f4ad5 |
+	| internalurl  | http://ubuntu126:5000/v3.0       |
+	| publicurl    | http://ubuntu126:5000/v3.0       |
+	| region       | RegionOne                        |
+	| service_id   | 862445be45ac4dd9857b92ad7ba367a2 |
+	| service_name | keystone                         |
+	| service_type | identity                         |
+	+--------------+----------------------------------+
+----------------------------------------------------------
+
+----------------------------------------------------------
+#### Create projects, users, and roles
+----------------------------------------------------------
+#Create the admin project:
+>openstack project create --description "Admin Project" admin
+
+#Create the admin user: [password=Lhfei@**]
+>openstack user create --password-prompt admin
+
+#Create the admin role:
+>openstack role create admin
+
+#Add the admin role to the admin project and user:
+>openstack role add --project admin --user admin admin
+----------------------------------------------------------
+
+#Create the service project:
+>openstack project create --description "Service Project" service
+
+#Create the demo project:
+>openstack project create --description "Demo Project" demo
+
+#Create the demo user[password=Lhfei**]:
+>openstack user create --password-prompt demo
+
+#Create the user role:
+>openstack role create user
+
+#Add the user role to the demo project and user:
+>openstack role add --project demo --user demo user
+----------------------------------------------------------
+
+----------------------------------------------------------
+#### Verify operation
+----------------------------------------------------------
+#For security reasons, disable the temporary authentication token mechanism:
+#Edit the /etc/keystone/keystone-paste.ini file 
+#and remove admin_token_auth from the 
+#[pipeline:public_api], [pipeline:admin_api], and [pipeline:api_v3] sections.
+----------------------------------------------------------
+#Unset the temporary OS_TOKEN and OS_URL environment variables:
+>unset OS_TOKEN OS_URL
+----------------------------------------------------------
+#As the admin user, request an authentication token from the Identity version 2.0 API:
+>openstack --os-auth-url http://ubuntu126:35357 \
+  --os-project-name admin --os-username admin --os-auth-type password \
+  token issue
+----------------------------------------------------------
+#The Identity version 3 API adds support for domains that contain projects and users. Projects and users can use the same names in different domains. Therefore, in order to use the version 3 API, requests must also explicitly contain at least the default domain or use IDs. For simplicity, this guide explicitly uses the default domain so examples can use names instead of IDs.
+>openstack --os-auth-url http://ubuntu126:35357 \
+  --os-project-domain-id default --os-user-domain-id default \
+  --os-project-name admin --os-username admin --os-auth-type password \
+  token issue
+----------------------------------------------------------
+#As the admin user, list projects to verify that the admin user can execute admin-only CLI commands and that the Identity service contains the projects that you created in the section called “Create projects, users, and roles”:
+>openstack --os-auth-url http://ubuntu126:35357 \
+  --os-project-name admin --os-username admin --os-auth-type password \
+  project list
+----------------------------------------------------------
+#As the admin user, list users to verify that the Identity service contains the users that you created in the section called “Create projects, users, and roles”:
+>openstack --os-auth-url http://ubuntu126:35357 \
+  --os-project-name admin --os-username admin --os-auth-type password \
+  user list
+----------------------------------------------------------
+#As the admin user, list roles to verify that the Identity service contains the role that you created in the section called “Create projects, users, and roles”:
+>openstack --os-auth-url http://ubuntu126:35357 \
+  --os-project-name admin --os-username admin --os-auth-type password \
+  role list
+----------------------------------------------------------
+#As the demo user, request an authentication token from the Identity version 3 API:
+>openstack --os-auth-url http://ubuntu126:5000 \
+  --os-project-domain-id default --os-user-domain-id default \
+  --os-project-name demo --os-username demo --os-auth-type password \
+  token issue
+----------------------------------------------------------
+#As the demo user, attempt to list users to verify that it cannot execute admin-only CLI commands:
+>openstack --os-auth-url http://ubuntu126:5000 \
+  --os-project-domain-id default --os-user-domain-id default \
+  --os-project-name demo --os-username demo --os-auth-type password \
+  user list
+----------------------------------------------------------
+
+----------------------------------------------------------
+#### Create OpenStack client environment scripts
+----------------------------------------------------------
+#1 To create the scripts
+
+	#admin-openrc.sh
+	|-----------------------------------------------+
+	|export OS_PROJECT_DOMAIN_ID=default			+
+	|export OS_USER_DOMAIN_ID=default               +
+	|export OS_PROJECT_NAME=admin                   +
+	|export OS_TENANT_NAME=admin                    +
+	|export OS_USERNAME=admin                       +
+	|export OS_PASSWORD=Lhfei@01                    +
+	|export OS_AUTH_URL=http://ubuntu126:35357/v3   +
+	|-----------------------------------------------+
+	
+	#demo-openrc.sh 
+	|-----------------------------------------------+
+	|export OS_PROJECT_DOMAIN_ID=default            +
+	|export OS_USER_DOMAIN_ID=default               +
+	|export OS_PROJECT_NAME=demo                    +
+	|export OS_TENANT_NAME=demo                     +
+	|export OS_USERNAME=demo                        +
+	|export OS_PASSWORD=Lhfei01                     +
+	|export OS_AUTH_URL=http://ubuntu126:5000/v3    +
+	|-----------------------------------------------+	
+
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+
+

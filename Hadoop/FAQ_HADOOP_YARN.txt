@@ -1,4 +1,23 @@
 --------------------------------------------------------------
+Error: org.apache.hadoop.mapreduce.task.reduce.Shuffle$ShuffleError: error in shuffle in fetcher#1
+        at org.apache.hadoop.mapreduce.task.reduce.Shuffle.run(Shuffle.java:134)
+        at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:376)
+        at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at javax.security.auth.Subject.doAs(Subject.java:422)
+        at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1628)
+        at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+Caused by: java.io.IOException: Exceeded MAX_FAILED_UNIQUE_FETCHES; bailing-out.
+        at org.apache.hadoop.mapreduce.task.reduce.ShuffleSchedulerImpl.checkReducerHealth(ShuffleSchedulerImpl.java:357)
+        at org.apache.hadoop.mapreduce.task.reduce.ShuffleSchedulerImpl.copyFailed(ShuffleSchedulerImpl.java:279)
+        at org.apache.hadoop.mapreduce.task.reduce.Fetcher.copyFromHost(Fetcher.java:308)
+        at org.apache.hadoop.mapreduce.task.reduce.Fetcher.run(Fetcher.java:193)
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
 # beyond virtual memory limits
 --------------------------------------------------------------
 15/03/25 09:30:22 INFO mapreduce.Job: Task Id : attempt_1427246602072_0001_m_000006_2, Status : FAILED
@@ -29,6 +48,14 @@ Dump of the process-tree for container_1427246602072_0001_01_000097 :
 	    <name>yarn.nodemanager.vmem-pmem-ratio</name>
 	    <value>2.1</value>	
 	</property>
+--------------------------------------------------------------
+--------------------------------------------------------------
+# Job {job_id} running in uber mode : false
+  map 0% reduce 0%
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+--------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
 

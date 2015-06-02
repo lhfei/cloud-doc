@@ -1,0 +1,102 @@
+----------------------------------------------------------
+----------------------------------------------------------
+Uninstall OpenJDK
+----------------------------------------------------------
+#check current rpm version
+>rpm -qa | grep openjdk
+	|+---------------------------------------------------------+| 
+	|java-1.6.0-openjdk-javadoc-1.6.0.35-1.13.7.1.el6_6.x86_64  |
+	|java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.x86_64          |
+	|java-1.7.0-openjdk-1.7.0.79-2.5.5.3.el6_6.x86_64           |
+	|java-1.7.0-openjdk-devel-1.7.0.79-2.5.5.3.el6_6.x86_64     |
+	|java-1.6.0-openjdk-devel-1.6.0.35-1.13.7.1.el6_6.x86_64    |
+	|+---------------------------------------------------------+|
+
+>yum remove -y java-1.6.0-openjdk
+>yum remove -y java-1.7.0-openjdk
+>yum remove -y java-1.5.0-gcj-1.5.0.0-29.1.el6.x86_64
+----------------------------------------------------------
+----------------------------------------------------------
+#Install Sun JDK
+----------------------------------------------------------
+JAVA_HOME=/usr/local/java/jdk1.8.0_45
+JRE_HOME=/usr/local/java/jdk1.8.0_45/jre
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+export JAVA_HOME JRE_HOME PATH CLASSPATH 
+----------------------------------------------------------
+
+/sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+/sbin/iptables -I INPUT -p tcp --dport 8181 -j ACCEPT
+/sbin/iptables -I INPUT -p tcp --dport 8282 -j ACCEPT
+----------------------------------------------------------
+#Add User to sudoer
+----------------------------------------------------------
+#login as root, and edit the sudoers file using "visudo":
+	>visudo
+	#add the username you want to give sudo permissions to in the same format as root
+	-----------------------------------------------
+	|## Allow root to run any commands anywhere
+	|root	ALL=(ALL)	ALL
+	|{your_name}	ALL=(ALL)	ALL
+	-----------------------------------------------
+	
+http://blog.zwiegnet.com/linux-server/add-user-to-sudoers-group-centos/
+
+----------------------------------------------------------
+----------------------------------------------------------
+>ssh-keygen -t rsa -P '' -f ./id_rsa
+>cat ./id_rsa.pub >> authorized_keys
+# vi /etc/ssh/sshd_config
+RSAAuthentication yes 
+PubkeyAuthentication yes 
+PasswordAuthentication no
+
+>service sshd reload
+----------------------------------------------------------
+----------------------------------------------------------
+# Config DNS
+
+> vi /etc/resolv.conf
+#append: nameserver 114.114.114.114 
+----------------------------------------------------------
+----------------------------------------------------------
+
+# Set Up Password-less SSH
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+
+
+# vi /etc/ssh/sshd_config
+# Disable password authentication forcing use of keys. -- Hefei Li
+PasswordAuthentication yes
+
+
+#
+>vi /etc/hosts
+114.80.177.132 centos132.thinker.cn centos132
+114.80.177.133 centos133.thinker.cn centos133
+114.80.177.134 centos134.thinker.cn centos134
+114.80.177.135 centos135.thinker.cn centos135
+114.80.177.136 centos136.thinker.cn centos136
+114.80.177.137 centos137.thinker.cn centos137
+
+>vi /etc/sysconfig/network
+	NETWORKING=yes NETWORKING_IPV6=yes HOSTNAME=centos132.thinker.cn
+	NETWORKING=yes NETWORKING_IPV6=yes HOSTNAME=centos133.thinker.cn
+	NETWORKING=yes NETWORKING_IPV6=yes HOSTNAME=centos134.thinker.cn
+	NETWORKING=yes NETWORKING_IPV6=yes HOSTNAME=centos135.thinker.cn
+	NETWORKING=yes NETWORKING_IPV6=yes HOSTNAME=centos136.thinker.cn
+	NETWORKING=yes NETWORKING_IPV6=yes HOSTNAME=centos137.thinker.cn
+----------------------------------------------------------
+----------------------------------------------------------
+#### Install Ambari 2.0.1 from Public Repositories
+----------------------------------------------------------
+>cd /etc/yum.repos.d/
+>wget http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.0.1/ambari.repo
+
+>yum install ambari-server
+
+----------------------------------------------------------
+# Install MySQL Server
+----------------------------------------------------------
+----------------------------------------------------------
