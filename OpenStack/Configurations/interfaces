@@ -1,0 +1,27 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto em1
+iface em1 inet static
+address 10.98.0.126
+netmask 255.255.255.0
+
+# The primary network interface
+auto em2
+iface em2 inet manual
+up ip address add 0/0 dev $IFACE
+up ip link set $IFACE up
+down ip link set $IFACE down
+
+auto br-ex
+iface br-ex inet static
+address 114.80.177.126
+netmask 255.255.255.0
+network 114.80.177.0
+gateway 114.80.177.1
+# dns-* options are implemented by the resolvconf package, if installed
+dns-nameservers 144.80.177.1

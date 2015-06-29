@@ -1,3 +1,12 @@
+
+
+/home/cloudland/app_tmp
+
+bin/hadoop jar share/hadoop/mapreduce/log-parser.jar com.ifeng.vdn.loggroup.mapper.VideologGroupDriver /home/cloudland/app_tmp/2015-03-05.log.gz /home/cloudland/app_tmp/out
+
+
+
+
 /home/cloudland/app_tmp/2015-03-05.log.gz /home/cloudland/app_tmp/out
 /home/cloudland/app_tmp/2015-03-06.log.gz
 /home/cloudland/app_tmp/2015-03-07.log.gz
@@ -12,15 +21,6 @@
 /home/cloudland/app_tmp/2015-03-16.log.gz
 /home/cloudland/app_tmp/2015-03-17.log.gz
 /home/cloudland/app_tmp/2015-03-18.log.gz
-
-/home/cloudland/app_tmp
-
-bin/hadoop jar share/hadoop/mapreduce/log-parser.jar com.ifeng.vdn.loggroup.mapper.VideologGroupDriver /home/cloudland/app_tmp/2015-03-05.log.gz /home/cloudland/app_tmp/out
-
-
-
-
-
 bin/hadoop jar log-parser.jar com.ifeng.vdn.loggroup.mapper.VideologGroupDriver input/2015-03-07.log.gz output
 
 bin/yarn jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar pi 32 10000

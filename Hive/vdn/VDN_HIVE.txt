@@ -1,0 +1,37 @@
+#### HADOOP
+bin/hdfs dfs -rm -r vdnlogs/output
+bin/hadoop jar "${job_path}"/log-parser.jar \
+com.ifeng.vdn.parser.VideoLogParseDriver \
+-libjars "${job_path}"/log-parser.jar \
+vdnlogs/"${jod_stamp}"/*/*.gz  vdnlogs/output/"${jod_stamp}"/
+
+
+bin/hdfs dfs -copyFromLocal /home/cloudland/app_tmp/vdnlogs/ /user/cloudland/
+
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/*/*.gz  vdnlogs/output/20150529/
+
+
+
+--------------------------------------------------------------------------------------
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-21/*.gz  vdnlogs/output/2015-05-21/
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-22/*.gz  vdnlogs/output/2015-05-22/
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-23/*.gz  vdnlogs/output/2015-05-23/
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-24/*.gz  vdnlogs/output/2015-05-24/
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-27/*.gz  vdnlogs/output/2015-05-27/
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-28/*.gz  vdnlogs/output/2015-05-28/
+bin/hadoop jar /home/cloudland/app_job/log-parser.jar com.ifeng.vdn.parser.VideoLogParseDriver -libjars /home/cloudland/app_job/log-parser.jar vdnlogs/input/2015-05-29/*.gz  vdnlogs/output/2015-05-29/
+
+--------------------------------------------------------------------------------------
+
+
+#### Hive 
+
+
+CREATE TABLE VDN_LOG(ERR STRING, IP STRING, REF STRING, SID STRING, UID STRING, LOC STRING, TM INT, URL STRING, DUR INT, BT INT, BL INT, LT INT, VID STRING, CDNID STRING, NETNAME STRING) PARTITIONED BY (ds STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+LOAD DATA INPATH 'hdfs://114.80.177.136:8020/user/cloudland/vdnlogs/output/part-r-00000' OVERWRITE INTO TABLE VDN_LOG PARTITION(ds="20150529");
+
+
+-- Locad data from HDFS
+hdfs://114.80.177.136:8020/user/cloudland/vdnlogs/output/part-r-00000
+

@@ -1,0 +1,772 @@
+##########################################################################
+#######################	Add a networking component #######################
+##########################################################################
+
+--------------------------------------------------------------------------------------------------
+#### Install and configure controller node
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+##To configure prerequisites
+--------------------------------------------------------------------------------------------------
+1. To create the database, complete these steps:
+--------------------------------------------------------------------------------------------------
+>mysql -u root -p
+>CREATE DATABASE neutron;
+
+>GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' \
+  IDENTIFIED BY 'Ifeng01';
+>GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' \
+  IDENTIFIED BY 'Ifeng01';
+--------------------------------------------------------------------------------------------------
+2. Source the admin credentials to gain access to admin-only CLI commands:
+>source admin-openrc.sh
+--------------------------------------------------------------------------------------------------
+3. To create the service credentials, complete these steps:
+
+#Create the neutron user[password:Lhfei**]:
+>openstack user create --password-prompt neutron
+
+	+----------+----------------------------------+
+	| Field    | Value                            |
+	+----------+----------------------------------+
+	| email    | None                             |
+	| enabled  | True                             |
+	| id       | 501d6ae56a3b40dfb19d6ab806359c84 |
+	| name     | neutron                          |
+	| username | neutron                          |
+	+----------+----------------------------------+
+
+#Add the admin role to the neutron user:	
+>openstack role add --project service --user neutron admin
+
+	+-------+----------------------------------+
+	| Field | Value                            |
+	+-------+----------------------------------+
+	| id    | 4c96e41f9d8c4f8eb80c537045fd9b26 |
+	| name  | admin                            |
+	+-------+----------------------------------+
+	
+#Create the neutron service entity:
+>openstack service create --name neutron \
+  --description "OpenStack Networking" network
+  
+	+-------------+----------------------------------+
+	| Field       | Value                            |
+	+-------------+----------------------------------+
+	| description | OpenStack Networking             |
+	| enabled     | True                             |
+	| id          | 3dbfd210e4a446baa3df6bcac7b10f6b |
+	| name        | neutron                          |
+	| type        | network                          |
+	+-------------+----------------------------------+ 
+	
+--------------------------------------------------------------------------------------------------
+4. Create the Networking service API endpoint:
+>openstack endpoint create \
+  --publicurl http://ubuntu126.thinker.cn:9696 \
+  --adminurl http://ubuntu126.thinker.cn:9696 \
+  --internalurl http://ubuntu126.thinker.cn:9696 \
+  --region RegionOne \
+  network
+  
+	+--------------+----------------------------------+
+	| Field        | Value                            |
+	+--------------+----------------------------------+
+	| adminurl     | http://ubuntu126.thinker.cn:9696 |
+	| id           | 17e17c202b2c4eaf9993039d7b035be8 |
+	| internalurl  | http://ubuntu126.thinker.cn:9696 |
+	| publicurl    | http://ubuntu126.thinker.cn:9696 |
+	| region       | RegionOne                        |
+	| service_id   | 3dbfd210e4a446baa3df6bcac7b10f6b |
+	| service_name | neutron                          |
+	| service_type | network                          |
+	+--------------+----------------------------------+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+## To install the Networking components
+--------------------------------------------------------------------------------------------------
+>apt-get install neutron-server neutron-plugin-ml2 python-neutronclient
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+## To configure the Networking server component
+--------------------------------------------------------------------------------------------------
+Edit the /etc/neutron/neutron.conf file and complete the following actions:
+>vi /etc/neutron/neutron.conf
+
+	+-------------------------------------------------------------------+
+	|						  									        +
+	[DEFAULT]                                                          
+	rpc_backend = rabbit
+	auth_strategy = keystone
+	verbose = True		
+	core_plugin = ml2
+	service_plugins = router
+	allow_overlapping_ips = True	
+	notify_nova_on_port_status_changes = True
+	notify_nova_on_port_data_changes = True
+	nova_url = http://ubuntu126.thinker.cn:8774/v2
+	
+	[database]						  									
+	connection = mysql://neutron:Ifeng01@ubuntu126.thinker.cn/neutron    			
+	
+	[oslo_messaging_rabbit]
+	rabbit_host = ubuntu126.thinker.cn
+	rabbit_userid = openstack
+	rabbit_password = Ifeng01
+	
+	[keystone_authtoken]
+	auth_uri = http://ubuntu126.thinker.cn:5000
+	auth_url = http://ubuntu126.thinker.cn:35357
+	auth_plugin = password
+	project_domain_id = default
+	user_domain_id = default
+	project_name = service
+	username = neutron
+	password = Lhfei01	
+
+	[nova]
+	auth_url = http://ubuntu126.thinker.cn:35357
+	auth_plugin = password
+	project_domain_id = default
+	user_domain_id = default
+	region_name = RegionOne
+	project_name = service
+	username = nova
+	password = Lhfei01	
+	
+	+-------------------------------------------------------------------+
+--------------------------------------------------------------------------------------------------
+## To configure the Modular Layer 2 (ML2) plug-in
+--------------------------------------------------------------------------------------------------
+# Edit the /etc/neutron/plugins/ml2/ml2_conf.ini file and complete the following actions:
+
+>vi /etc/neutron/plugins/ml2/ml2_conf.ini
+
+	+-------------------------------------------------------------------+
+	|						  									        +
+	[ml2]                                                       
+	type_drivers = flat,vlan,gre,vxlan
+	tenant_network_types = gre
+	mechanism_drivers = openvswitch
+	
+	[ml2_type_gre]						  									
+	tunnel_id_ranges = 1:1000
+	
+	[securitygroup]
+	enable_security_group = True
+	enable_ipset = True
+	firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+
+	+-------------------------------------------------------------------+
+--------------------------------------------------------------------------------------------------
+## To configure Compute to use Networking
+--------------------------------------------------------------------------------------------------
+#Edit the /etc/nova/nova.conf file on the controller node and complete the following actions:
+>vi /etc/nova/nova.conf
+	+-------------------------------------------------------------------+
+	|						  									        +
+	[DEFAULT]
+	dhcpbridge_flagfile=/etc/nova/nova.conf
+	dhcpbridge=/usr/bin/nova-dhcpbridge
+	logdir=/var/log/nova
+	state_path=/var/lib/nova
+	force_dhcp_release=True
+	libvirt_use_virtio_for_bridges=True
+	ec2_private_dns_show_ip=True
+	api_paste_config=/etc/nova/api-paste.ini
+	enabled_apis=ec2,osapi_compute,metadata
+	rpc_backend = rabbit
+	auth_strategy = keystone
+	verbose = True		
+	my_ip = 114.80.177.126
+	vncserver_listen = 114.80.177.126
+	vncserver_proxyclient_address = 114.80.177.126
+	
+	network_api_class = nova.network.neutronv2.api.API
+	security_group_api = neutron
+	linuxnet_interface_driver = nova.network.linux_net.LinuxOVSInterfaceDriver
+	firewall_driver = nova.virt.firewall.NoopFirewallDriver
+
+	[database]						  									
+	connection = mysql://nova:Ifeng01@ubuntu126.thinker.cn/nova 
+
+	[oslo_messaging_rabbit]
+	rabbit_host = ubuntu126.thinker.cn
+	rabbit_userid = openstack
+	rabbit_password = Ifeng01
+
+	[keystone_authtoken]
+	auth_uri = http://ubuntu126.thinker.cn:5000
+	auth_url = http://ubuntu126.thinker.cn:35357
+	auth_plugin = password
+	project_domain_id = default
+	user_domain_id = default
+	project_name = service
+	username = nova
+	password = Lhfei01
+	
+	[neutron]
+	url = http://ubuntu126.thinker.cn:9696
+	auth_strategy = keystone
+	admin_auth_url = http://ubuntu126.thinker.cn:35357/v2.0
+	admin_tenant_name = service
+	admin_username = neutron
+	admin_password = Lhfei01
+	
+	[glance]
+	host = ubuntu126.thinker.cn
+
+	[oslo_concurrency]
+	lock_path = /var/lib/nova/tmp
+	
+	+-------------------------------------------------------------------+
+
+--------------------------------------------------------------------------------------------------
+## To finalize installation
+--------------------------------------------------------------------------------------------------
+1. Populate the database:
+>su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+--------------------------------------------------------------------------------------------------
+2. Restart the Compute services:
+>service nova-api restart
+--------------------------------------------------------------------------------------------------
+3. Restart the Networking service:
+>service neutron-server restart
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+## Verify operation
+--------------------------------------------------------------------------------------------------
+1. Source the admin credentials to gain access to admin-only CLI commands:
+>source admin-openrc.sh
+--------------------------------------------------------------------------------------------------
+2.List loaded extensions to verify successful launch of the neutron-server process:
+>neutron ext-list
+
+	+-----------------------+-----------------------------------------------+
+	| alias                 | name                                          |
+	+-----------------------+-----------------------------------------------+
+	| security-group        | security-group                                |
+	| l3_agent_scheduler    | L3 Agent Scheduler                            |
+	| net-mtu               | Network MTU                                   |
+	| ext-gw-mode           | Neutron L3 Configurable external gateway mode |
+	| binding               | Port Binding                                  |
+	| provider              | Provider Network                              |
+	| agent                 | agent                                         |
+	| quotas                | Quota management support                      |
+	| subnet_allocation     | Subnet Allocation                             |
+	| dhcp_agent_scheduler  | DHCP Agent Scheduler                          |
+	| l3-ha                 | HA Router extension                           |
+	| multi-provider        | Multi Provider Network                        |
+	| external-net          | Neutron external network                      |
+	| router                | Neutron L3 Router                             |
+	| allowed-address-pairs | Allowed Address Pairs                         |
+	| extraroute            | Neutron Extra Route                           |
+	| extra_dhcp_opt        | Neutron Extra DHCP opts                       |
+	| dvr                   | Distributed Virtual Router                    |
+	+-----------------------+-----------------------------------------------+
+	
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+
+##################################################################################################
+#### To install the Networking components. [114.80.177.125]
+##################################################################################################
+--------------------------------------------------------------------------------------------------
+# To configure prerequisites
+--------------------------------------------------------------------------------------------------
+1. Edit the /etc/sysctl.conf file to contain the following parameters:
+>vi /etc/sysctl.conf
+
+	+-------------------------------------------------------------------+
+	|						  									        +
+	net.ipv4.ip_forward=1
+	net.ipv4.conf.all.rp_filter=0
+	net.ipv4.conf.default.rp_filter=0
+	+-------------------------------------------------------------------+
+
+2. Implement the changes:
+>sysctl -p
+	
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+#### To install the Networking components
+--------------------------------------------------------------------------------------------------
+>apt-get install neutron-plugin-ml2 neutron-plugin-openvswitch-agent \
+  neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+#### To configure the Networking common components
+--------------------------------------------------------------------------------------------------
+1. Edit the /etc/neutron/neutron.conf file and complete the following actions:
+>vi /etc/neutron/neutron.conf 
+
+	+-------------------------------------------------------------------+
+	|						  									        +
+	[DEFAULT]                                                          
+	rpc_backend = rabbit
+	auth_strategy = keystone
+	verbose = True		
+	core_plugin = ml2
+	service_plugins = router
+	allow_overlapping_ips = True	
+			
+	[oslo_messaging_rabbit]
+	rabbit_host = ubuntu126.thinker.cn
+	rabbit_userid = openstack
+	rabbit_password = Ifeng01
+	
+	[keystone_authtoken]
+	auth_uri = http://ubuntu126.thinker.cn:5000
+	auth_url = http://ubuntu126.thinker.cn:35357
+	auth_plugin = password
+	project_domain_id = default
+	user_domain_id = default
+	project_name = service
+	username = neutron
+	password = Lhfei01	
+
+	+-------------------------------------------------------------------+
+
+2. Edit the /etc/neutron/plugins/ml2/ml2_conf.ini file and complete the following actions:
+
+>vi /etc/neutron/plugins/ml2/ml2_conf.in
+
+	+-------------------------------------------------------------------+
+	|						  									        +
+	[ml2]                                                       	
+	type_drivers = flat,vlan,gre,vxlan
+	tenant_network_types = gre
+	mechanism_drivers = openvswitch
+
+	[ml2_type_flat]
+	flat_networks = external	
+	
+	[ml2_type_gre]
+	tunnel_id_ranges = 1:1000
+	
+	[securitygroup]
+	enable_security_group = True
+	enable_ipset = True
+	firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+
+	[ovs]
+	local_ip = INSTANCE_TUNNELS_INTERFACE_IP_ADDRESS
+	bridge_mappings = external:br-ex
+	
+	[agent]
+	tunnel_types = gre
+	
+	+-------------------------------------------------------------------+	
+--------------------------------------------------------------------------------------------------
+## To configure the Layer-3 (L3) agent
+--------------------------------------------------------------------------------------------------
+# Edit the /etc/neutron/l3_agent.ini file and complete the following actions:
+>vi /etc/neutron/l3_agent.ini
+
+
+[DEFAULT]
+verbose = True
+interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver
+external_network_bridge = br-ex
+router_delete_namespaces = True
+--------------------------------------------------------------------------------------------------
+## To configure the DHCP agent
+
+1. Edit the /etc/neutron/dhcp_agent.ini file and complete the following actions:
+>vi /etc/neutron/dhcp_agent.ini
+
+[DEFAULT]
+verbose = True
+interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+dhcp_delete_namespaces = True
+dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf
+
+# Create and edit the /etc/neutron/dnsmasq-neutron.conf file and complete the following action:
+>touch dnsmasq-neutron.conf
+>vi dnsmasq-neutron.conf
+
+# Kill any existing dnsmasq processes:
+> pkill dnsmasq
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+## To configure the metadata agent
+--------------------------------------------------------------------------------------------------
+1.Edit the /etc/neutron/metadata_agent.ini file and complete the following actions:
+
+>vi /etc/neutron/metadata_agent.ini
+
+
+[DEFAULT]
+verbose = True
+auth_uri = http://ubuntu126.thinker.cn:5000
+auth_url = http://ubuntu126.thinker.cn:35357
+auth_region = RegionOne
+auth_plugin = password
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = neutron
+password = Lhfei01
+nova_metadata_ip = ubuntu126.thinker.cn
+metadata_proxy_shared_secret = seCr3t
+
+
+2.On the controller node, edit the /etc/nova/nova.conf file and complete the following action:
+
+>vi /etc/nova/nova.conf
+
+[neutron]
+service_metadata_proxy = True
+metadata_proxy_shared_secret = seCr3t
+--------------------------------------------------------------------------------------------------
+3. On the controller node, restart the Compute API service:
+
+>service nova-api restart
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+## To configure the Open vSwitch (OVS) service
+--------------------------------------------------------------------------------------------------
+1. Restart the OVS service:
+
+>service openvswitch-switch restart
+
+2. Add the external bridge:
+
+>ovs-vsctl add-br br-ex
+
+3. Add a port to the external bridge that connects to the physical external network interface:
+
+>ovs-vsctl add-port br-ex em2
+
+#Depending on your network interface driver, you may need to disable generic receive offload (GRO) to achieve suitable throughput between your instances and the external network.
+#To temporarily disable GRO on the external network interface while testing your environment:
+>ethtool -K em2 gro off
+--------------------------------------------------------------------------------------------------
+
+	============================================================================
+	~ /etc/network/interface
+	============================================================================
+	# This file describes the network interfaces available on your system
+	# and how to activate them. For more information, see interfaces(5).
+
+	# The loopback network interface
+	auto lo
+	iface lo inet loopback
+
+	auto em1
+	iface em1 inet static
+	address 10.98.0.125
+	netmask 255.255.255.0
+
+	# The primary network interface
+	auto em2
+	iface em2 inet manual
+	up ip address add 0/0 dev $IFACE
+	up ip link set $IFACE up
+	down ip link set $IFACE down
+
+	auto br-ex
+	iface br-ex inet static
+	address 114.80.177.125
+	netmask 255.255.255.0
+	network 114.80.177.0
+	gateway 114.80.177.1
+	# dns-* options are implemented by the resolvconf package, if installed
+	dns-nameservers 144.80.177.1
+	============================================================================
+	~ source networking restart
+	============================================================================
+
+--------------------------------------------------------------------------------------------------
+## To finalize the installation
+
+>service neutron-plugin-openvswitch-agent restart
+>service neutron-l3-agent restart
+>service neutron-dhcp-agent restart
+>service neutron-metadata-agent restart
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+## Verify operation [114.80.177.126]
+--------------------------------------------------------------------------------------------------
+1. Source the admin credentials to gain access to admin-only CLI commands:
+
+>source admin-openrc.sh
+--------------------------------------------------------------------------------------------------
+2. List agents to verify successful launch of the neutron agents:
+
+>neutron agent-list
+
++--------------------------------------+----------------+----------------------+-------+----------------+------------------------+
+| id                                   | agent_type     | host                 | alive | admin_state_up | binary                 |
++--------------------------------------+----------------+----------------------+-------+----------------+------------------------+
+| 5c935bbc-e97f-45be-aa3e-69b78a7eb54b | L3 agent       | ubuntu125.thinker.cn | :-)   | True           | neutron-l3-agent       |
+| b551059d-100d-427f-ad9f-e25eb8bc1e14 | DHCP agent     | ubuntu125.thinker.cn | :-)   | True           | neutron-dhcp-agent     |
+| c1a18ef4-cd38-4b2d-b95d-0d0993d7202e | Metadata agent | ubuntu125.thinker.cn | :-)   | True           | neutron-metadata-agent |
++--------------------------------------+----------------+----------------------+-------+----------------+------------------------+
+--------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------
+#### Create initial networks
+--------------------------------------------------------------------------------------------------
+
+## To create the external network
+--------------------------------------------------------------------------------------------------
+1. Source the admin credentials to gain access to admin-only CLI commands:
+
+>source admin-openrc.sh
+--------------------------------------------------------------------------------------------------
+
+2. Create the network:
+
+>neutron net-create ext-net --router:external \
+  --provider:physical_network external --provider:network_type flat
+
+	+---------------------------+--------------------------------------+
+	| Field                     | Value                                |
+	+---------------------------+--------------------------------------+
+	| admin_state_up            | True                                 |
+	| id                        | 680f8e03-f4cc-4765-baae-8b97e56db3de |
+	| mtu                       | 0                                    |
+	| name                      | ext-net                              |
+	| provider:network_type     | flat                                 |
+	| provider:physical_network | external                             |
+	| provider:segmentation_id  |                                      |
+	| router:external           | True                                 |
+	| shared                    | False                                |
+	| status                    | ACTIVE                               |
+	| subnets                   |                                      |
+	| tenant_id                 | 183a3941e4894767baa3b00fe4742fc8     |
+	+---------------------------+--------------------------------------+
+--------------------------------------------------------------------------------------------------
+## To create a subnet on the external network
+
+>neutron subnet-create ext-net 203.0.113.0/24 --name ext-subnet \
+  --allocation-pool start=203.0.113.101,end=203.0.113.200 \
+  --disable-dhcp --gateway 203.0.113.1
+  
+	+-------------------+----------------------------------------------------+
+	| Field             | Value                                              |
+	+-------------------+----------------------------------------------------+
+	| allocation_pools  | {"start": "203.0.113.101", "end": "203.0.113.200"} |
+	| cidr              | 203.0.113.0/24                                     |
+	| dns_nameservers   |                                                    |
+	| enable_dhcp       | False                                              |
+	| gateway_ip        | 203.0.113.1                                        |
+	| host_routes       |                                                    |
+	| id                | 77e39b2c-dcdd-4e5b-a3b7-24c635d82b67               |
+	| ip_version        | 4                                                  |
+	| ipv6_address_mode |                                                    |
+	| ipv6_ra_mode      |                                                    |
+	| name              | ext-subnet                                         |
+	| network_id        | 680f8e03-f4cc-4765-baae-8b97e56db3de               |
+	| subnetpool_id     |                                                    |
+	| tenant_id         | 183a3941e4894767baa3b00fe4742fc8                   |
+	+-------------------+----------------------------------------------------+  
+
+--------------------------------------------------------------------------------------------------
+
+## Tenant network
+--------------------------------------------------------------------------------------------------
+# To create the tenant network
+--------------------------------------------------------------------------------------------------
+1. Source the demo credentials to gain access to user-only CLI commands:
+
+>source demo-openrc.sh
+
+2. Create the network:
+
+>neutron net-create demo-net
+
+	+-----------------+--------------------------------------+
+	| Field           | Value                                |
+	+-----------------+--------------------------------------+
+	| admin_state_up  | True                                 |
+	| id              | a086d618-566c-4f3c-8d35-1e6d7570377e |
+	| mtu             | 0                                    |
+	| name            | demo-net                             |
+	| router:external | False                                |
+	| shared          | False                                |
+	| status          | ACTIVE                               |
+	| subnets         |                                      |
+	| tenant_id       | b8a5b3e6080645498ca0a540efef21d8     |
+	+-----------------+--------------------------------------+
+--------------------------------------------------------------------------------------------------
+#### To create a subnet on the tenant network
+--------------------------------------------------------------------------------------------------
+# Create the subnet:
+
+>neutron subnet-create demo-net 192.168.1.0/24 \
+  --name demo-subnet --gateway 192.168.1.1
+  
+	+-------------------+--------------------------------------------------+
+	| Field             | Value                                            |
+	+-------------------+--------------------------------------------------+
+	| allocation_pools  | {"start": "192.168.1.2", "end": "192.168.1.254"} |
+	| cidr              | 192.168.1.0/24                                   |
+	| dns_nameservers   |                                                  |
+	| enable_dhcp       | True                                             |
+	| gateway_ip        | 192.168.1.1                                      |
+	| host_routes       |                                                  |
+	| id                | 2f4edb6f-d953-4487-bd40-fdda1c388590             |
+	| ip_version        | 4                                                |
+	| ipv6_address_mode |                                                  |
+	| ipv6_ra_mode      |                                                  |
+	| name              | demo-subnet                                      |
+	| network_id        | a086d618-566c-4f3c-8d35-1e6d7570377e             |
+	| subnetpool_id     |                                                  |
+	| tenant_id         | b8a5b3e6080645498ca0a540efef21d8                 |
+	+-------------------+--------------------------------------------------+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+## To create a router on the tenant network and attach the external and tenant networks to it
+--------------------------------------------------------------------------------------------------
+1. Create the router:
+
+>neutron router-create demo-router
+
+	+-----------------------+--------------------------------------+
+	| Field                 | Value                                |
+	+-----------------------+--------------------------------------+
+	| admin_state_up        | True                                 |
+	| external_gateway_info |                                      |
+	| id                    | 81e683d0-34ae-4cf8-92b3-5115ebb15cab |
+	| name                  | demo-router                          |
+	| routes                |                                      |
+	| status                | ACTIVE                               |
+	| tenant_id             | b8a5b3e6080645498ca0a540efef21d8     |
+	+-----------------------+--------------------------------------+
+
+2. Attach the router to the demo tenant subnet:
+
+>neutron router-interface-add demo-router demo-subnet
+[Added interface 31bd9743-7402-4180-9589-1351666b1183 to router demo-router.]
+
+3.Attach the router to the external network by setting it as the gateway:
+
+>neutron router-gateway-set demo-router ext-net
+[Set gateway for router demo-router]
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+### Verify connectivity
+--------------------------------------------------------------------------------------------------
+# To verify network connectivity
+
+>ping -c 4 203.0.113.101
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------

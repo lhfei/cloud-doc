@@ -1,0 +1,409 @@
+18 五月 2015 23:13:02,375  INFO [main] Configuration:527 - Reading password from existing file
+18 五月 2015 23:13:02,397  INFO [main] Configuration:747 - Hosts Mapping File null
+18 五月 2015 23:13:02,397  INFO [main] HostsMap:60 - Using hostsmap file null
+18 五月 2015 23:13:02,931  INFO [main] ControllerModule:172 - Detected MYSQL as the database type from the JDBC URL
+18 五月 2015 23:13:02,938  INFO [main] ControllerModule:214 - Using c3p0 ComboPooledDataSource as the EclipsLink DataSource
+18 五月 2015 23:13:02,959  INFO [main] MLog:80 - MLog clients using log4j logging.
+18 五月 2015 23:13:03,086  INFO [main] C3P0Registry:204 - Initializing c3p0-0.9.1.1 [built 15-March-2007 01:32:31; debug? true; trace: 10]
+18 五月 2015 23:13:06,426  INFO [main] AmbariServer:678 - Getting the controller
+18 五月 2015 23:13:08,043  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.2/role_command_order.json
+18 五月 2015 23:13:08,077  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.0' doesn't contain an upgrade directory 
+18 五月 2015 23:13:08,096  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.0/role_command_order.json
+18 五月 2015 23:13:08,096  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.0.6' doesn't contain an upgrade directory 
+18 五月 2015 23:13:08,119  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.0.6/role_command_order.json
+18 五月 2015 23:13:08,122  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.1.GlusterFS' doesn't contain an upgrade directory 
+18 五月 2015 23:13:08,150  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.1.GlusterFS/role_command_order.json
+18 五月 2015 23:13:08,189  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.1' doesn't contain an upgrade directory 
+18 五月 2015 23:13:08,209  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.1/role_command_order.json
+18 五月 2015 23:13:08,215  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.0.6.GlusterFS' doesn't contain an upgrade directory 
+18 五月 2015 23:13:08,230  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.0.6.GlusterFS/role_command_order.json
+18 五月 2015 23:13:08,277  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.2.GlusterFS/role_command_order.json
+18 五月 2015 23:13:09,115  INFO [main] AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 5, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> vpv24o99sqonptn31kli|4cc451f2, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> vpv24o99sqonptn31kli|4cc451f2, idleConnectionTestPeriod -> 7200, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://114.80.177.132:3306/ambari, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 14400, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 32, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> SELECT 1, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+18 五月 2015 23:13:09,737  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:09,738  INFO [main] ActionDefinitionManager:124 - Added custom action definition for check_host
+18 五月 2015 23:13:09,739  INFO [main] ActionDefinitionManager:124 - Added custom action definition for validate_configs
+18 五月 2015 23:13:09,739  INFO [main] ActionDefinitionManager:124 - Added custom action definition for install_packages
+18 五月 2015 23:13:09,740  INFO [main] ActionDefinitionManager:124 - Added custom action definition for ru_execute_tasks
+18 五月 2015 23:13:09,742  INFO [main] CertificateManager:68 - Initialization of root certificate
+18 五月 2015 23:13:09,743  INFO [main] CertificateManager:70 - Certificate exists:true
+18 五月 2015 23:13:10,064  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://s3.amazonaws.com/dev.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:10,287  INFO [main] Configuration:603 - Credential provider creation failed. Reason: Master key initialization failed.
+18 五月 2015 23:13:10,436  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.2/role_command_order.json
+18 五月 2015 23:13:10,458  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.0' doesn't contain an upgrade directory 
+18 五月 2015 23:13:10,469  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.0/role_command_order.json
+18 五月 2015 23:13:10,469  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.0.6' doesn't contain an upgrade directory 
+18 五月 2015 23:13:10,483  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.0.6/role_command_order.json
+18 五月 2015 23:13:10,484  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.1.GlusterFS' doesn't contain an upgrade directory 
+18 五月 2015 23:13:10,500  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.1.GlusterFS/role_command_order.json
+18 五月 2015 23:13:10,517  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.1' doesn't contain an upgrade directory 
+18 五月 2015 23:13:10,531  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.1/role_command_order.json
+18 五月 2015 23:13:10,537  INFO [main] StackDirectory:408 - Stack '/var/lib/ambari-server/resources/stacks/HDP/2.0.6.GlusterFS' doesn't contain an upgrade directory 
+18 五月 2015 23:13:10,549  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.0.6.GlusterFS/role_command_order.json
+18 五月 2015 23:13:10,581  INFO [main] StackDirectory:429 - Role command order info was loaded from file: /var/lib/ambari-server/resources/stacks/HDP/2.2.GlusterFS/role_command_order.json
+18 五月 2015 23:13:10,667  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:10,671  WARN [main] ActionDefinitionManager:117 - Ignoring action definition as a different definition by that name already exists. ActionDefinition: actionName: check_host actionType: SYSTEM inputs:  description: General check for host targetService:  targetComponent:  defaultTimeout: 60 targetType: ANY
+18 五月 2015 23:13:10,672  WARN [main] ActionDefinitionManager:117 - Ignoring action definition as a different definition by that name already exists. ActionDefinition: actionName: validate_configs actionType: SYSTEM inputs:  description: Validate if provided service config can be applied to specified hosts targetService:  targetComponent:  defaultTimeout: 60 targetType: ALL
+18 五月 2015 23:13:10,672  WARN [main] ActionDefinitionManager:117 - Ignoring action definition as a different definition by that name already exists. ActionDefinition: actionName: install_packages actionType: SYSTEM inputs: base_urls, package_list description: Distribute repositories and install packages targetService:  targetComponent:  defaultTimeout: 60 targetType: ALL
+18 五月 2015 23:13:10,672  WARN [main] ActionDefinitionManager:117 - Ignoring action definition as a different definition by that name already exists. ActionDefinition: actionName: ru_execute_tasks actionType: SYSTEM inputs: tasks description: Perform upgrade action targetService:  targetComponent:  defaultTimeout: null targetType: ANY
+18 五月 2015 23:13:10,672  INFO [main] AmbariServer:208 - ********* Meta Info initialized **********
+18 五月 2015 23:13:10,687  INFO [main] ClustersImpl:140 - Initializing the ClustersImpl
+18 五月 2015 23:13:10,798  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://s3.amazonaws.com/dev.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:11,084  INFO [main] AmbariManagementControllerImpl:256 - Initializing the AmbariManagementControllerImpl
+18 五月 2015 23:13:11,195  INFO [main] AmbariServer:577 - Checking DB store version
+18 五月 2015 23:13:11,198  INFO [main] AmbariServer:596 - DB store version is compatible
+18 五月 2015 23:13:11,216  INFO [main] ClassPathXmlApplicationContext:456 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd26290: startup date [Mon May 18 23:13:11 CST 2015]; root of context hierarchy
+18 五月 2015 23:13:11,279  INFO [main] DefaultListableBeanFactory:557 - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4676fcd9: defining beans []; root of factory hierarchy
+18 五月 2015 23:13:11,291  INFO [main] ClassPathXmlApplicationContext:456 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2b9bacb8: startup date [Mon May 18 23:13:11 CST 2015]; parent: org.springframework.context.support.ClassPathXmlApplicationContext@dd26290
+18 五月 2015 23:13:11,293  INFO [main] XmlBeanDefinitionReader:315 - Loading XML bean definitions from class path resource [webapp/WEB-INF/spring-security.xml]
+18 五月 2015 23:13:11,522  INFO [main] SpringSecurityCoreVersion:33 - You are running with Spring Security Core 3.1.2.RELEASE
+18 五月 2015 23:13:11,522  INFO [main] SecurityNamespaceHandler:59 - Spring Security 'config' module version is 3.1.2.RELEASE
+18 五月 2015 23:13:11,580  INFO [main] FilterInvocationSecurityMetadataSourceParser:134 - Creating access control expression attribute 'isAuthenticated()' for /**
+18 五月 2015 23:13:11,598  INFO [main] HttpSecurityBeanDefinitionParser:264 - Checking sorted filter chain: [Root bean: class [org.springframework.security.web.context.SecurityContextPersistenceFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 300, Root bean: class [org.springframework.security.web.authentication.www.BasicAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1200, <ambariAuthorizationFilter>, order = 1201, Root bean: class [org.springframework.security.web.savedrequest.RequestCacheAwareFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1300, Root bean: class [org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1400, Root bean: class [org.springframework.security.web.authentication.AnonymousAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1700, Root bean: class [org.springframework.security.web.session.SessionManagementFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1800, Root bean: class [org.springframework.security.web.access.ExceptionTranslationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1900, <org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0>, order = 2000]
+18 五月 2015 23:13:11,620  INFO [main] DefaultListableBeanFactory:557 - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@511ba9c9: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,ambariEntryPoint]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@4676fcd9
+18 五月 2015 23:13:11,833  INFO [main] DefaultSecurityFilterChain:28 - Creating filter chain: org.springframework.security.web.util.AnyRequestMatcher@1, [org.springframework.security.web.context.SecurityContextPersistenceFilter@672710d5, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@55880c, org.apache.ambari.server.security.authorization.AmbariAuthorizationFilter@17224bad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ac9c3cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4537c9f8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@698e2cba, org.springframework.security.web.session.SessionManagementFilter@6cf47d05, org.springframework.security.web.access.ExceptionTranslationFilter@38f704f4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43f4621b]
+18 五月 2015 23:13:11,875  INFO [main] Configuration:738 - Web App DIR test /usr/lib/ambari-server/web
+18 五月 2015 23:13:11,887  INFO [main] CertificateManager:68 - Initialization of root certificate
+18 五月 2015 23:13:11,888  INFO [main] CertificateManager:70 - Certificate exists:true
+18 五月 2015 23:13:12,181  INFO [main] AmbariServer:451 - ********* Initializing Clusters **********
+18 五月 2015 23:13:12,181  INFO [main] AmbariServer:455 - ********* Current Clusters State *********
+18 五月 2015 23:13:12,182  INFO [main] AmbariServer:456 - Clusters=[  ]
+18 五月 2015 23:13:12,182  INFO [main] AmbariServer:458 - ********* Reconciling Alert Definitions **********
+18 五月 2015 23:13:12,182  INFO [main] AmbariServer:461 - ********* Initializing ActionManager **********
+18 五月 2015 23:13:12,182  INFO [main] AmbariServer:463 - ********* Initializing Controller **********
+18 五月 2015 23:13:12,183  INFO [main] AmbariServer:467 - ********* Initializing Scheduled Request Manager **********
+18 五月 2015 23:13:12,184  INFO [main] Server:266 - jetty-7.6.7.v20120910
+18 五月 2015 23:13:12,279  INFO [main] StandardDescriptorProcessor:268 - NO JSP Support for /views/ADMIN_VIEW/2.0.0/INSTANCE, did not find org.apache.jasper.servlet.JspServlet
+18 五月 2015 23:13:12,330  INFO [main] ContextHandler:744 - started o.e.j.w.WebAppContext{/views/ADMIN_VIEW/2.0.0/INSTANCE,file:/var/lib/ambari-server/resources/views/work/ADMIN_VIEW%7B2.0.0%7D/},/var/lib/ambari-server/resources/views/work/ADMIN_VIEW{2.0.0}
+18 五月 2015 23:13:12,346  INFO [main] ContextHandler:744 - started o.e.j.s.ServletContextHandler{/,file:/usr/lib/ambari-server/web/}
+18 五月 2015 23:13:14,839  INFO [main] AbstractConnector:338 - Started SelectChannelConnector@0.0.0.0:8080
+18 五月 2015 23:13:14,840  INFO [main] Server:266 - jetty-7.6.7.v20120910
+18 五月 2015 23:13:14,841  INFO [main] ContextHandler:744 - started o.e.j.s.ServletContextHandler{/,null}
+18 五月 2015 23:13:15,832  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://s3.amazonaws.com/dev.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:15,851  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://s3.amazonaws.com/dev.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:16,255  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:16,257  INFO [main] SslContextFactory:300 - Enabled Protocols [SSLv2Hello, TLSv1, TLSv1.1, TLSv1.2] of [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2]
+18 五月 2015 23:13:16,264  INFO [main] AbstractConnector:338 - Started SslSelectChannelConnector@0.0.0.0:8440
+18 五月 2015 23:13:16,296  INFO [main] SslContextFactory:300 - Enabled Protocols [SSLv2Hello, TLSv1, TLSv1.1, TLSv1.2] of [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2]
+18 五月 2015 23:13:16,302  INFO [main] AbstractConnector:338 - Started SslSelectChannelConnector@0.0.0.0:8441
+18 五月 2015 23:13:16,303  INFO [main] AmbariServer:483 - ********* Started Server **********
+18 五月 2015 23:13:16,303  INFO [main] ActionManager:75 - Starting scheduler thread
+18 五月 2015 23:13:16,303  INFO [main] ServerActionExecutor:127 - Starting Server Action Executor thread...
+18 五月 2015 23:13:16,307  INFO [main] ServerActionExecutor:154 - Server Action Executor thread started.
+18 五月 2015 23:13:16,307  INFO [main] AmbariServer:486 - ********* Started ActionManager **********
+18 五月 2015 23:13:16,308  INFO [main] ExecutionScheduleManager:201 - Starting scheduler
+18 五月 2015 23:13:16,370  INFO [main] StdSchedulerFactory:1184 - Using default implementation for ThreadExecutor
+18 五月 2015 23:13:16,392  INFO [main] SchedulerSignalerImpl:61 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+18 五月 2015 23:13:16,392  INFO [main] QuartzScheduler:240 - Quartz Scheduler v.2.2.1 created.
+18 五月 2015 23:13:16,393  INFO [main] JobStoreTX:670 - Using thread monitor-based data access locking (synchronization).
+18 五月 2015 23:13:16,394  INFO [main] JobStoreTX:59 - JobStoreTX initialized.
+18 五月 2015 23:13:16,395  INFO [main] QuartzScheduler:305 - Scheduler meta-data: Quartz Scheduler (v2.2.1) 'ExecutionScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 5 threads.
+  Using job-store 'org.quartz.impl.jdbcjobstore.JobStoreTX' - which supports persistence. and is not clustered.
+
+18 五月 2015 23:13:16,395  INFO [main] StdSchedulerFactory:1339 - Quartz scheduler 'ExecutionScheduler' initialized from an externally provided properties instance.
+18 五月 2015 23:13:16,396  INFO [main] StdSchedulerFactory:1343 - Quartz scheduler version: 2.2.1
+18 五月 2015 23:13:16,396  INFO [main] QuartzScheduler:2311 - JobFactory set to: org.apache.ambari.server.state.scheduler.GuiceJobFactory@794c22cd
+18 五月 2015 23:13:16,397  INFO [main] AmbariServer:489 - ********* Started Scheduled Request Manager **********
+18 五月 2015 23:13:16,402  INFO [main] AmbariServer:492 - ********* Started Services **********
+18 五月 2015 23:13:16,545  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:16,836 ERROR [Stack Version Loading Thread] LatestRepoCallable:91 - Could not load the URI http://s3.amazonaws.com/dev.hortonworks.com/HDP/hdp_urlinfo.json (Read timed out)
+18 五月 2015 23:13:16,836  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:13:16,977  INFO [Stack Version Loading Thread] LatestRepoCallable:74 - Loading latest URL info from http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json
+18 五月 2015 23:15:16,418  INFO [Thread-27] AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> vpv24o99sqonptn31kli|7798de95, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> vpv24o99sqonptn31kli|7798de95, idleConnectionTestPeriod -> 50, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://114.80.177.132:3306/ambari, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 120, minPoolSize -> 1, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> select 0, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+18 五月 2015 23:15:16,466  INFO [Thread-27] JobStoreTX:861 - Freed 0 triggers from 'acquired' / 'blocked' state.
+18 五月 2015 23:15:16,470  INFO [Thread-27] JobStoreTX:871 - Recovering 0 jobs that were in-progress at the time of the last shut-down.
+18 五月 2015 23:15:16,470  INFO [Thread-27] JobStoreTX:884 - Recovery complete.
+18 五月 2015 23:15:16,471  INFO [Thread-27] JobStoreTX:891 - Removed 0 'complete' triggers.
+18 五月 2015 23:15:16,473  INFO [Thread-27] JobStoreTX:896 - Removed 0 stale fired job entries.
+18 五月 2015 23:15:16,475  INFO [Thread-27] QuartzScheduler:575 - Scheduler ExecutionScheduler_$_NON_CLUSTERED started.
+18 五月 2015 23:31:44,751  INFO [qtp-client-101] PersistKeyValueService:82 - Looking for keyName CLUSTER_CURRENT_STATUS
+18 五月 2015 23:32:45,258  INFO [qtp-client-104] BootStrapImpl:108 - BootStrapping hosts ubuntu132.thinker.ifeng.com:ubuntu133.thinker.ifeng.com:ubuntu134.thinker.ifeng.com:ubuntu135.thinker.ifeng.com:ubuntu136.thinker.ifeng.com:
+18 五月 2015 23:32:45,263  INFO [Thread-75] BSRunner:198 - Host= ubuntu132.thinker.ifeng.com,ubuntu133.thinker.ifeng.com,ubuntu134.thinker.ifeng.com,ubuntu135.thinker.ifeng.com,ubuntu136.thinker.ifeng.com bs=/usr/lib/python2.6/site-packages/ambari_server/bootstrap.py requestDir=/var/run/ambari-server/bootstrap/1 user=root keyfile=/var/run/ambari-server/bootstrap/1/sshKey passwordFile null server=ubuntu136.thinker.ifeng.com version=2.0.0 serverPort=8080 userRunAs=root
+18 五月 2015 23:32:47,469  INFO [Thread-75] BSRunner:238 - Kicking off the scheduler for polling on logs in /var/run/ambari-server/bootstrap/1
+18 五月 2015 23:32:47,469  INFO [Thread-75] BSRunner:242 - Bootstrap output, log=/var/run/ambari-server/bootstrap/1/bootstrap.err /var/run/ambari-server/bootstrap/1/bootstrap.out
+18 五月 2015 23:32:47,470  INFO [Thread-75] BSRunner:254 - Script log Mesg 
+
+INFO:root:BootStrapping hosts ['ubuntu132.thinker.ifeng.com',
+ 'ubuntu133.thinker.ifeng.com',
+ 'ubuntu134.thinker.ifeng.com',
+ 'ubuntu135.thinker.ifeng.com',
+ 'ubuntu136.thinker.ifeng.com'] using /usr/lib/python2.6/site-packages/ambari_server cluster primary OS: ubuntu14 with user 'root' sshKey File /var/run/ambari-server/bootstrap/1/sshKey password File null using tmp dir /var/run/ambari-server/bootstrap/1 ambari: ubuntu136.thinker.ifeng.com; server_port: 8080; ambari version: 2.0.0; user_run_as: root
+INFO:root:Executing parallel bootstrap
+ERROR:root:ERROR: Bootstrap of host ubuntu134.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu135.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu133.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu132.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu136.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+INFO:root:Finished parallel bootstrap
+
+18 五月 2015 23:32:47,471  INFO [pool-2-thread-1] BSHostStatusCollector:55 - Request directory /var/run/ambari-server/bootstrap/1
+18 五月 2015 23:32:47,471  INFO [pool-2-thread-1] BSHostStatusCollector:62 - HostList for polling on [ubuntu132.thinker.ifeng.com, ubuntu133.thinker.ifeng.com, ubuntu134.thinker.ifeng.com, ubuntu135.thinker.ifeng.com, ubuntu136.thinker.ifeng.com]
+18 五月 2015 23:32:47,473  INFO [pool-2-thread-1] BSHostStatusCollector:55 - Request directory /var/run/ambari-server/bootstrap/1
+18 五月 2015 23:32:47,473  INFO [pool-2-thread-1] BSHostStatusCollector:62 - HostList for polling on [ubuntu132.thinker.ifeng.com, ubuntu133.thinker.ifeng.com, ubuntu134.thinker.ifeng.com, ubuntu135.thinker.ifeng.com, ubuntu136.thinker.ifeng.com]
+18 五月 2015 23:32:48,470  INFO [pool-2-thread-1] BSHostStatusCollector:55 - Request directory /var/run/ambari-server/bootstrap/1
+18 五月 2015 23:32:48,471  INFO [pool-2-thread-1] BSHostStatusCollector:62 - HostList for polling on [ubuntu132.thinker.ifeng.com, ubuntu133.thinker.ifeng.com, ubuntu134.thinker.ifeng.com, ubuntu135.thinker.ifeng.com, ubuntu136.thinker.ifeng.com]
+18 五月 2015 23:32:48,599 ERROR [qtp-client-106] AbstractResourceProvider:280 - Caught AmbariException when creating a resource
+org.apache.ambari.server.HostNotFoundException: Host not found, hostname=
+	at org.apache.ambari.server.state.cluster.ClustersImpl.getHost(ClustersImpl.java:321)
+	at org.apache.ambari.server.state.ConfigHelper.getEffectiveDesiredTags(ConfigHelper.java:104)
+	at org.apache.ambari.server.controller.AmbariActionExecutionHelper.addExecutionCommandsToStage(AmbariActionExecutionHelper.java:342)
+	at org.apache.ambari.server.controller.AmbariManagementControllerImpl.createAction(AmbariManagementControllerImpl.java:2959)
+	at org.apache.ambari.server.controller.internal.RequestResourceProvider$1.invoke(RequestResourceProvider.java:161)
+	at org.apache.ambari.server.controller.internal.RequestResourceProvider$1.invoke(RequestResourceProvider.java:158)
+	at org.apache.ambari.server.controller.internal.AbstractResourceProvider.createResources(AbstractResourceProvider.java:273)
+	at org.apache.ambari.server.controller.internal.RequestResourceProvider.createResources(RequestResourceProvider.java:158)
+	at org.apache.ambari.server.controller.internal.ClusterControllerImpl.createResources(ClusterControllerImpl.java:289)
+	at org.apache.ambari.server.api.services.persistence.PersistenceManagerImpl.create(PersistenceManagerImpl.java:75)
+	at org.apache.ambari.server.api.handlers.CreateHandler.persist(CreateHandler.java:36)
+	at org.apache.ambari.server.api.handlers.BaseManagementHandler.handleRequest(BaseManagementHandler.java:72)
+	at org.apache.ambari.server.api.services.BaseRequest.process(BaseRequest.java:135)
+	at org.apache.ambari.server.api.services.BaseService.handleRequest(BaseService.java:103)
+	at org.apache.ambari.server.api.services.BaseService.handleRequest(BaseService.java:72)
+	at org.apache.ambari.server.api.services.RequestService.createRequests(RequestService.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:708)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:652)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1329)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:118)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:84)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:45)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.apache.ambari.server.security.authorization.AmbariAuthorizationFilter.doFilter(AmbariAuthorizationFilter.java:178)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:150)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:192)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1300)
+	at org.apache.ambari.server.api.MethodOverrideFilter.doFilter(MethodOverrideFilter.java:72)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1300)
+	at org.apache.ambari.server.api.AmbariPersistFilter.doFilter(AmbariPersistFilter.java:47)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1300)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:445)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:559)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:227)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1038)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:374)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:189)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:972)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.apache.ambari.server.controller.FailsafeHandlerList.handleNonFailSafe(FailsafeHandlerList.java:148)
+	at org.apache.ambari.server.controller.AmbariHandlerList.handleNonFailSafe(AmbariHandlerList.java:157)
+	at org.apache.ambari.server.controller.FailsafeHandlerList.handle(FailsafeHandlerList.java:130)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:363)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:483)
+	at org.eclipse.jetty.server.AbstractHttpConnection.content(AbstractHttpConnection.java:931)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.content(AbstractHttpConnection.java:992)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:856)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:240)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:82)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:627)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:51)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Thread.java:745)
+18 五月 2015 23:32:48,604 ERROR [qtp-client-106] BaseManagementHandler:57 - Caught a system exception while attempting to create a resource
+18 五月 2015 23:38:51,235  INFO [qtp-client-120] BootStrapImpl:108 - BootStrapping hosts ubuntu132.thinker.ifeng.com:ubuntu133.thinker.ifeng.com:ubuntu134.thinker.ifeng.com:ubuntu135.thinker.ifeng.com:ubuntu136.thinker.ifeng.com:
+18 五月 2015 23:38:51,238  INFO [Thread-84] BSRunner:198 - Host= ubuntu132.thinker.ifeng.com,ubuntu133.thinker.ifeng.com,ubuntu134.thinker.ifeng.com,ubuntu135.thinker.ifeng.com,ubuntu136.thinker.ifeng.com bs=/usr/lib/python2.6/site-packages/ambari_server/bootstrap.py requestDir=/var/run/ambari-server/bootstrap/2 user=root keyfile=/var/run/ambari-server/bootstrap/2/sshKey passwordFile null server=ubuntu136.thinker.ifeng.com version=2.0.0 serverPort=8080 userRunAs=root
+18 五月 2015 23:38:53,423  INFO [Thread-84] BSRunner:238 - Kicking off the scheduler for polling on logs in /var/run/ambari-server/bootstrap/2
+18 五月 2015 23:38:53,425  INFO [Thread-84] BSRunner:242 - Bootstrap output, log=/var/run/ambari-server/bootstrap/2/bootstrap.err /var/run/ambari-server/bootstrap/2/bootstrap.out
+18 五月 2015 23:38:53,424  INFO [pool-3-thread-1] BSHostStatusCollector:55 - Request directory /var/run/ambari-server/bootstrap/2
+18 五月 2015 23:38:53,425  INFO [pool-3-thread-1] BSHostStatusCollector:62 - HostList for polling on [ubuntu132.thinker.ifeng.com, ubuntu133.thinker.ifeng.com, ubuntu134.thinker.ifeng.com, ubuntu135.thinker.ifeng.com, ubuntu136.thinker.ifeng.com]
+18 五月 2015 23:38:53,425  INFO [Thread-84] BSRunner:254 - Script log Mesg 
+
+INFO:root:BootStrapping hosts ['ubuntu132.thinker.ifeng.com',
+ 'ubuntu133.thinker.ifeng.com',
+ 'ubuntu134.thinker.ifeng.com',
+ 'ubuntu135.thinker.ifeng.com',
+ 'ubuntu136.thinker.ifeng.com'] using /usr/lib/python2.6/site-packages/ambari_server cluster primary OS: ubuntu14 with user 'root' sshKey File /var/run/ambari-server/bootstrap/2/sshKey password File null using tmp dir /var/run/ambari-server/bootstrap/2 ambari: ubuntu136.thinker.ifeng.com; server_port: 8080; ambari version: 2.0.0; user_run_as: root
+INFO:root:Executing parallel bootstrap
+ERROR:root:ERROR: Bootstrap of host ubuntu132.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu134.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu133.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu135.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+ERROR:root:ERROR: Bootstrap of host ubuntu136.thinker.ifeng.com fails because previous action finished with non-zero exit code (255)
+ERROR MESSAGE: Permission denied (publickey,password).
+
+STDOUT: 
+Permission denied (publickey,password).
+
+INFO:root:Finished parallel bootstrap
+
+18 五月 2015 23:38:53,426  INFO [pool-3-thread-1] BSHostStatusCollector:55 - Request directory /var/run/ambari-server/bootstrap/2
+18 五月 2015 23:38:53,427  INFO [pool-3-thread-1] BSHostStatusCollector:62 - HostList for polling on [ubuntu132.thinker.ifeng.com, ubuntu133.thinker.ifeng.com, ubuntu134.thinker.ifeng.com, ubuntu135.thinker.ifeng.com, ubuntu136.thinker.ifeng.com]
+18 五月 2015 23:38:54,499 ERROR [qtp-client-123] AbstractResourceProvider:280 - Caught AmbariException when creating a resource
+org.apache.ambari.server.HostNotFoundException: Host not found, hostname=
+	at org.apache.ambari.server.state.cluster.ClustersImpl.getHost(ClustersImpl.java:321)
+	at org.apache.ambari.server.state.ConfigHelper.getEffectiveDesiredTags(ConfigHelper.java:104)
+	at org.apache.ambari.server.controller.AmbariActionExecutionHelper.addExecutionCommandsToStage(AmbariActionExecutionHelper.java:342)
+	at org.apache.ambari.server.controller.AmbariManagementControllerImpl.createAction(AmbariManagementControllerImpl.java:2959)
+	at org.apache.ambari.server.controller.internal.RequestResourceProvider$1.invoke(RequestResourceProvider.java:161)
+	at org.apache.ambari.server.controller.internal.RequestResourceProvider$1.invoke(RequestResourceProvider.java:158)
+	at org.apache.ambari.server.controller.internal.AbstractResourceProvider.createResources(AbstractResourceProvider.java:273)
+	at org.apache.ambari.server.controller.internal.RequestResourceProvider.createResources(RequestResourceProvider.java:158)
+	at org.apache.ambari.server.controller.internal.ClusterControllerImpl.createResources(ClusterControllerImpl.java:289)
+	at org.apache.ambari.server.api.services.persistence.PersistenceManagerImpl.create(PersistenceManagerImpl.java:75)
+	at org.apache.ambari.server.api.handlers.CreateHandler.persist(CreateHandler.java:36)
+	at org.apache.ambari.server.api.handlers.BaseManagementHandler.handleRequest(BaseManagementHandler.java:72)
+	at org.apache.ambari.server.api.services.BaseRequest.process(BaseRequest.java:135)
+	at org.apache.ambari.server.api.services.BaseService.handleRequest(BaseService.java:103)
+	at org.apache.ambari.server.api.services.BaseService.handleRequest(BaseService.java:72)
+	at org.apache.ambari.server.api.services.RequestService.createRequests(RequestService.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:708)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:652)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1329)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:118)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:84)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:45)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.apache.ambari.server.security.authorization.AmbariAuthorizationFilter.doFilter(AmbariAuthorizationFilter.java:178)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:150)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:192)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1300)
+	at org.apache.ambari.server.api.MethodOverrideFilter.doFilter(MethodOverrideFilter.java:72)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1300)
+	at org.apache.ambari.server.api.AmbariPersistFilter.doFilter(AmbariPersistFilter.java:47)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1300)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:445)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:559)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:227)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1038)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:374)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:189)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:972)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.apache.ambari.server.controller.FailsafeHandlerList.handleNonFailSafe(FailsafeHandlerList.java:148)
+	at org.apache.ambari.server.controller.AmbariHandlerList.handleNonFailSafe(AmbariHandlerList.java:157)
+	at org.apache.ambari.server.controller.FailsafeHandlerList.handle(FailsafeHandlerList.java:130)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:363)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:483)
+	at org.eclipse.jetty.server.AbstractHttpConnection.content(AbstractHttpConnection.java:931)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.content(AbstractHttpConnection.java:992)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:856)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:240)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:82)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:627)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:51)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Thread.java:745)
+18 五月 2015 23:38:54,502 ERROR [qtp-client-123] BaseManagementHandler:57 - Caught a system exception while attempting to create a resource

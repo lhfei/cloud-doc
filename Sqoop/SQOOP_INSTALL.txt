@@ -1,0 +1,33 @@
+--catalina.properties
+/usr/local/hadoop/hadoop-2.6.0/share/hadoop/common/*.jar,/usr/local/hadoop/hadoop-2.6.0/share/hadoop/common/lib/*.jar,/usr/local/hadoop/hadoop-2.6.0/share/hadoop/hdfs/*.jar,/usr/local/hadoop/hadoop-2.6.0/share/hadoop/mapreduce/*.jar,/usr/local/hadoop/hadoop-2.6.0/share/hadoop/yarn/*.jar,/usr/local/hadoop/hadoop-2.6.0/share/hadoop/tools/lib/*.jar
+
+-- copy ${HADOOP_HOME}/share/hadoop/tools/lib/hadoop-auth-2.6.0.jar to $SQOOP_HOME/server/lib
+
+-- vi sqoop.properties 
+# Hadoop configuration directory
+org.apache.sqoop.submission.engine.mapreduce.configuration.directory=/usr/local/hadoop/hadoop-2.6.0/etc/hadoop
+
+
+com.mysql.jdbc.Driver
+jdbc:mysql://114.80.177.146:3306/sqoop2
+sqoop
+Ifeng01
+
+
+HDFS-Link
+hdfs://114.80.177.144:9000
+
+/usr/local/hadoop/hadoop-2.6.0/etc/hadoop
+
+
+
+sqoop export \
+    -Dmapred.reduce.tasks=2
+    -Dpgbulkload.bin="/usr/local/bin/pg_bulkload" \
+    -Dpgbulkload.input.field.delim=$'\t' \
+    -Dpgbulkload.check.constraints="YES" \
+    -Dpgbulkload.parse.errors="INFINITE" \
+    -Dpgbulkload.duplicate.errors="INFINITE" \
+    --connect jdbc:mysql://114.80.177.146:3306/sqoop2 \
+    --connection-manager org.apache.sqoop.manager.PGBulkloadManager \
+    --table test --username sqooptest --export-dir=/test -m 2

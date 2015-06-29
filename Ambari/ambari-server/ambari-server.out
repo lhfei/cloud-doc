@@ -1,0 +1,302 @@
+[EL Warning]: metadata: 2015-05-18 23:13:07.144--ServerSession(943501193)--The reference column name [resource_type_id] mapped on the element [field permissions] does not correspond to a valid id or basic field/column on the mapping reference. Will use referenced column name as provided.
+[EL Info]: 2015-05-18 23:13:09.049--ServerSession(943501193)--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd
+[EL Info]: connection: 2015-05-18 23:13:09.514--ServerSession(943501193)--file:/usr/lib/ambari-server/ambari-server-2.0.0.151.jar_ambari-server_nonJtaDataSource=1287934450_url=jdbc:mysql://114.80.177.132:3306/ambari_user=ambari login successful
+五月 18, 2015 11:13:12 下午 com.sun.jersey.api.core.PackagesResourceConfig init
+信息: Scanning for root resource and provider classes in the packages:
+  org.apache.ambari.server.api.rest
+  org.apache.ambari.server.api.services
+  org.apache.ambari.eventdb.webservice
+  org.apache.ambari.server.api
+五月 18, 2015 11:13:13 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Root resource classes found:
+  class org.apache.ambari.server.api.rest.BootStrapResource
+  class org.apache.ambari.server.api.services.ClusterService
+  class org.apache.ambari.server.api.services.StacksService
+  class org.apache.ambari.server.api.services.GroupService
+  class org.apache.ambari.server.api.services.ValidationService
+  class org.apache.ambari.server.api.rest.HealthCheck
+  class org.apache.ambari.server.api.services.AlertTargetService
+  class org.apache.ambari.eventdb.webservice.WorkflowJsonService
+  class org.apache.ambari.server.api.services.TargetClusterService
+  class org.apache.ambari.server.api.services.RequestService
+  class org.apache.ambari.server.api.services.LdapSyncEventService
+  class org.apache.ambari.server.api.services.RecommendationService
+  class org.apache.ambari.server.api.services.BlueprintService
+  class org.apache.ambari.server.api.services.HostService
+  class org.apache.ambari.server.api.rest.KdcServerReachabilityCheck
+  class org.apache.ambari.server.api.services.LogoutService
+  class org.apache.ambari.server.api.services.UserService
+  class org.apache.ambari.server.api.services.FeedService
+  class org.apache.ambari.server.api.services.PermissionService
+  class org.apache.ambari.server.api.services.ViewService
+  class org.apache.ambari.server.api.services.InstanceService
+  class org.apache.ambari.server.api.services.KeyService
+  class org.apache.ambari.server.api.services.RootServiceService
+  class org.apache.ambari.server.api.services.AmbariPrivilegeService
+  class org.apache.ambari.server.api.services.PersistKeyValueService
+  class org.apache.ambari.server.api.services.ActionService
+五月 18, 2015 11:13:13 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Provider classes found:
+  class org.apache.ambari.server.api.GsonJsonProvider
+  class org.apache.ambari.eventdb.webservice.JAXBContextResolver
+五月 18, 2015 11:13:13 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+信息: Initiating Jersey application, version 'Jersey: 1.11 12/09/2011 10:27 AM'
+五月 18, 2015 11:13:14 下午 com.sun.jersey.spi.inject.Errors processErrorMessages
+警告: The following warnings have been detected with resource and/or provider classes:
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ViewService.getViews(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ViewService.getView(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RequestService.getRequests(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RequestService.getRequest(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.UserService.getUsers(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.UserService.getUser(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.AlertTargetService.getTargets(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.AlertTargetService.getTargets(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.Long), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ActionService.getActionDefinitions(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ActionService.getActionDefinition(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.TargetClusterService.getTargetClusters(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.TargetClusterService.getTargetCluster(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.BlueprintService.getBlueprints(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.BlueprintService.getBlueprint(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.HostService.getHosts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.HostService.getHost(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServices(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getService(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServiceComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServiceComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHosts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHost(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.InstanceService.getInstances(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.InstanceService.getInstance(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.FeedService.getFeeds(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.FeedService.getFeed(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getClusters(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getCluster(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStacks(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackVersions(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServices(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackConfigurations(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackLevelConfigurations(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackVersion(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStack(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponentDependency(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackService(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackLevelConfiguration(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServiceArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServiceArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackConfiguration(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponentDependencies(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.PackagesResourceConfig init
+信息: Scanning for root resource and provider classes in the packages:
+  org.apache.ambari.server.proxy
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Root resource classes found:
+  class org.apache.ambari.server.proxy.ProxyService
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.ScanningResourceConfig init
+信息: No provider classes found.
+五月 18, 2015 11:13:14 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+信息: Initiating Jersey application, version 'Jersey: 1.11 12/09/2011 10:27 AM'
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.PackagesResourceConfig init
+信息: Scanning for root resource and provider classes in the packages:
+  org.apache.ambari.server.resources.api.rest
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Root resource classes found:
+  class org.apache.ambari.server.resources.api.rest.GetResource
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.ScanningResourceConfig init
+信息: No provider classes found.
+五月 18, 2015 11:13:14 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+信息: Initiating Jersey application, version 'Jersey: 1.11 12/09/2011 10:27 AM'
+五月 18, 2015 11:13:14 下午 com.sun.jersey.api.core.PackagesResourceConfig init
+信息: Scanning for root resource and provider classes in the packages:
+  org.apache.ambari.server.agent.rest
+  org.apache.ambari.server.api
+五月 18, 2015 11:13:15 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Root resource classes found:
+  class org.apache.ambari.server.api.rest.BootStrapResource
+  class org.apache.ambari.server.api.services.ClusterService
+  class org.apache.ambari.server.api.services.StacksService
+  class org.apache.ambari.server.api.services.GroupService
+  class org.apache.ambari.server.api.services.ValidationService
+  class org.apache.ambari.server.api.rest.HealthCheck
+  class org.apache.ambari.server.api.services.AlertTargetService
+  class org.apache.ambari.server.api.services.TargetClusterService
+  class org.apache.ambari.server.agent.rest.AgentResource
+  class org.apache.ambari.server.api.services.RequestService
+  class org.apache.ambari.server.api.services.LdapSyncEventService
+  class org.apache.ambari.server.api.services.RecommendationService
+  class org.apache.ambari.server.api.services.BlueprintService
+  class org.apache.ambari.server.api.services.HostService
+  class org.apache.ambari.server.api.rest.KdcServerReachabilityCheck
+  class org.apache.ambari.server.api.services.LogoutService
+  class org.apache.ambari.server.api.services.UserService
+  class org.apache.ambari.server.api.services.FeedService
+  class org.apache.ambari.server.api.services.PermissionService
+  class org.apache.ambari.server.api.services.ViewService
+  class org.apache.ambari.server.api.services.InstanceService
+  class org.apache.ambari.server.api.services.KeyService
+  class org.apache.ambari.server.api.services.RootServiceService
+  class org.apache.ambari.server.api.services.AmbariPrivilegeService
+  class org.apache.ambari.server.api.services.PersistKeyValueService
+  class org.apache.ambari.server.api.services.ActionService
+五月 18, 2015 11:13:15 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Provider classes found:
+  class org.apache.ambari.server.api.GsonJsonProvider
+五月 18, 2015 11:13:15 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+信息: Initiating Jersey application, version 'Jersey: 1.11 12/09/2011 10:27 AM'
+五月 18, 2015 11:13:15 下午 com.sun.jersey.spi.inject.Errors processErrorMessages
+警告: The following warnings have been detected with resource and/or provider classes:
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ViewService.getViews(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ViewService.getView(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RequestService.getRequests(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RequestService.getRequest(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.UserService.getUsers(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.UserService.getUser(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.AlertTargetService.getTargets(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.AlertTargetService.getTargets(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.Long), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ActionService.getActionDefinitions(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ActionService.getActionDefinition(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.TargetClusterService.getTargetClusters(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.TargetClusterService.getTargetCluster(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.BlueprintService.getBlueprints(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.BlueprintService.getBlueprint(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.HostService.getHosts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.HostService.getHost(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServices(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getService(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServiceComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServiceComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHosts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHost(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.InstanceService.getInstances(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.InstanceService.getInstance(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.FeedService.getFeeds(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.FeedService.getFeed(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getClusters(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getCluster(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStacks(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackVersions(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServices(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackConfigurations(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackLevelConfigurations(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackVersion(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStack(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponentDependency(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackService(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackLevelConfiguration(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServiceArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServiceArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackConfiguration(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponentDependencies(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+五月 18, 2015 11:13:15 下午 com.sun.jersey.api.core.PackagesResourceConfig init
+信息: Scanning for root resource and provider classes in the packages:
+  org.apache.ambari.server.security.unsecured.rest
+  org.apache.ambari.server.api
+五月 18, 2015 11:13:15 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Root resource classes found:
+  class org.apache.ambari.server.api.rest.BootStrapResource
+  class org.apache.ambari.server.api.services.ClusterService
+  class org.apache.ambari.server.api.services.StacksService
+  class org.apache.ambari.server.security.unsecured.rest.CertificateDownload
+  class org.apache.ambari.server.api.services.GroupService
+  class org.apache.ambari.server.api.services.ValidationService
+  class org.apache.ambari.server.api.rest.HealthCheck
+  class org.apache.ambari.server.api.services.AlertTargetService
+  class org.apache.ambari.server.api.services.TargetClusterService
+  class org.apache.ambari.server.api.services.RequestService
+  class org.apache.ambari.server.api.services.LdapSyncEventService
+  class org.apache.ambari.server.api.services.RecommendationService
+  class org.apache.ambari.server.api.services.BlueprintService
+  class org.apache.ambari.server.api.services.HostService
+  class org.apache.ambari.server.security.unsecured.rest.ConnectionInfo
+  class org.apache.ambari.server.security.unsecured.rest.CertificateSign
+  class org.apache.ambari.server.api.rest.KdcServerReachabilityCheck
+  class org.apache.ambari.server.api.services.LogoutService
+  class org.apache.ambari.server.api.services.UserService
+  class org.apache.ambari.server.api.services.FeedService
+  class org.apache.ambari.server.api.services.PermissionService
+  class org.apache.ambari.server.api.services.ViewService
+  class org.apache.ambari.server.api.services.InstanceService
+  class org.apache.ambari.server.api.services.KeyService
+  class org.apache.ambari.server.api.services.RootServiceService
+  class org.apache.ambari.server.api.services.AmbariPrivilegeService
+  class org.apache.ambari.server.api.services.PersistKeyValueService
+  class org.apache.ambari.server.api.services.ActionService
+五月 18, 2015 11:13:15 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+信息: Provider classes found:
+  class org.apache.ambari.server.api.GsonJsonProvider
+五月 18, 2015 11:13:15 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+信息: Initiating Jersey application, version 'Jersey: 1.11 12/09/2011 10:27 AM'
+五月 18, 2015 11:13:16 下午 com.sun.jersey.spi.inject.Errors processErrorMessages
+警告: The following warnings have been detected with resource and/or provider classes:
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ViewService.getViews(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ViewService.getView(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RequestService.getRequests(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RequestService.getRequest(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.UserService.getUsers(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.UserService.getUser(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.AlertTargetService.getTargets(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.AlertTargetService.getTargets(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.Long), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ActionService.getActionDefinitions(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ActionService.getActionDefinition(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.TargetClusterService.getTargetClusters(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.TargetClusterService.getTargetCluster(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.BlueprintService.getBlueprints(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.BlueprintService.getBlueprint(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.HostService.getHosts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.HostService.getHost(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServices(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getService(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServiceComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getServiceComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHosts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHostComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.RootServiceService.getRootHost(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.InstanceService.getInstances(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.InstanceService.getInstance(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.FeedService.getFeeds(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.FeedService.getFeed(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getClusters(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getCluster(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.ClusterService.getArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStacks(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackVersions(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServices(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackConfigurations(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackLevelConfigurations(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackVersion(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponents(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStack(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponent(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponentDependency(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackService(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackLevelConfiguration(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServiceArtifacts(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackServiceArtifact(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getStackConfiguration(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+  WARNING: A HTTP GET method, public javax.ws.rs.core.Response org.apache.ambari.server.api.services.StacksService.getServiceComponentDependencies(java.lang.String,javax.ws.rs.core.HttpHeaders,javax.ws.rs.core.UriInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String), should not consume any entity.
+五月 18, 2015 11:13:16 下午 com.google.common.util.concurrent.ServiceManager$ServiceListener startTimer
+信息: Starting AlertNoticeDispatchService [NEW]
+五月 18, 2015 11:13:16 下午 com.google.common.util.concurrent.ServiceManager$ServiceListener finishedStarting
+信息: Started AlertNoticeDispatchService [RUNNING] in 15 ms.

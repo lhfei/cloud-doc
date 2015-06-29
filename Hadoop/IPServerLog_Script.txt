@@ -25,3 +25,4 @@ bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -li
 bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/164.2015-05-26-09 ipserver/output09/164
 bin/hadoop jar ipserver-parser.jar com.ifeng.ipserver.IPServerLogParseDriver -libjars ./ipserver-parser.jar ipserver/165.2015-05-26-09 ipserver/output09/165
 
+bin/hdfs dfs -get ipserver/output09/* /home/cloudland/app_tmp/ipserver/output09

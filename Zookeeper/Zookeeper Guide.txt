@@ -3,20 +3,30 @@
 #Configuration file:
 	#conf/zoo.cfg
 	#server.id=host:port:port
-	tickTime=2000					|
-	dataDir=/var/lib/zookeeper/     |
-	clientPort=2181                 |
-	initLimit=5                     |
-	syncLimit=2                     |
-	server.1=zoo1:2888:3888         |	
-	server.2=zoo2:2888:3888         |
-	server.3=zoo3:2888:3888         |
+	tickTime=2000						|
+	dataDir=/var/lib/zookeeper/     	|
+	clientPort=2181                 	|
+	initLimit=5                     	|
+	syncLimit=2                     	|
+	server.1=ubuntu144:2888:3888        |	
+	server.2=ubuntu145:2888:3888        |
+	server.3=ubuntu146:2888:3888        |
+	server.4=ubuntu147:2888:3888        |
+------------------------------------------------------------------------------------------------------------------
+# setting myid:
+依次在每台机器对应{dataDir} 目录下，创建myid文件， 文件内容为当前机器的{id}， 如ubuntu144 主机下的myid文件为"1"
 ------------------------------------------------------------------------------------------------------------------
 # Start a Zookeeper server:
 	>bin/zkServer.sh start
 	#check zookeeper server status:
 	>echo ruok | nc localhost 2181
 
+------------------------------------------------------------------------------------------------------------------
+# check server status
+>bin/zkServer.sh status
+ +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+ | [Mode: leader|Mode: follower] |
+ +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
 ------------------------------------------------------------------------------------------------------------------
 # Connecting to ZooKeeper
 	>bin/zkCli.sh -server 127.0.0.1:2181
