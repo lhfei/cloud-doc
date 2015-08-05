@@ -71,12 +71,32 @@ Dump of the process-tree for container_1427246602072_0001_01_000097 :
 --------------------------------------------------------------
 
 --------------------------------------------------------------
+Container killed on request. Exit code is 143
 --------------------------------------------------------------
 --------------------------------------------------------------
+# 配置Hadoop集群：java.net.NoRouteToHostException: No route to host问题的解决
+
+  #1 check master nodes can ping to all data nodes
+  >ping datanode1
+  #2 check slave nodes can ping to master nodes
+  >ping masternode
+  
+  #3 disable firewall
+  >sudo /etc/init.d/iptables stop
+  >sudo systemctl disable firewalld
+  >sudo service iptables stop
+  
+  #4 open hdfs port, for example: 9000、8050、 50010,45454,46440
+  >sudo /sbin/iptables -I INPUT -p tcp --dport 50010 -j ACCEPT
 --------------------------------------------------------------
 --------------------------------------------------------------
+# Error: GC overhead limit exceeded
 --------------------------------------------------------------
 --------------------------------------------------------------
+# is running beyond physical memory limits.
+  ~In mapred-site.xml:
+	~mapreduce.map.memory.mb: 4096
+	~mapreduce.reduce.memory.mb: 8192
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------

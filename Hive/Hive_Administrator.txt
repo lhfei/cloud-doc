@@ -5,7 +5,7 @@
 # edit hive-site.xml
 	<property>
 		<name>javax.jdo.option.ConnectionURL</name>
-		<value>jdbc:mysql://ubuntu136.thinker.ifeng.com:3306/hive_db?createDatabaseIfNotExist=true</value>
+		<value>jdbc:mysql://ubuntu145.thinker.ifeng.com:3306/hive_db?createDatabaseIfNotExist=true</value>
 	</property>
 	<property>
 		<name>javax.jdo.option.ConnectionDriverName</name>
@@ -13,11 +13,11 @@
 	</property>
 	<property>
 		<name>javax.jdo.option.ConnectionUserName</name>
-		<value>ifeng</value>
+		<value>hive</value>
 	</property>
 	<property>
 		<name>javax.jdo.option.ConnectionPassword</name>
-		<value>Ifeng@01</value>
+		<value>Ifeng01</value>
 	</property>
 # copy JDBC driver to $HIVE_HOME/lib/
 -------------------------------------------------------------------------------------

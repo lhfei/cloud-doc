@@ -24,11 +24,11 @@ export HBASE_MANAGES_ZK=true
   <property>
     <name>hbase.rootdir</name>
     <!-- <value>file:///home/cloudland/hbase_data</value> -->
-    <value>hdfs://ubuntu144:9000/hbase</value>
+    <value>hdfs://ubuntu144.thinker.cn:9000/hbase</value>
   </property>
   <property>
     <name>hbase.master.info.bindAddress</name>
-    <value>ubuntu144</value>
+    <value>ubuntu144.thinker.cn</value>
   </property>
   <property>
     <name>hbase.zookeeper.property.dataDir</name>
@@ -40,7 +40,7 @@ export HBASE_MANAGES_ZK=true
   </property>
   <property>
     <name>hbase.zookeeper.quorum</name>
-    <value>ubuntu144, ubuntu145, ubuntu146, ubuntu147</value>
+    <value>ubuntu144.thinker.cn, ubuntu145.thinker.cn, ubuntu146.thinker.cn, ubuntu147.thinker.cn</value>
   </property>
   <property>
     <name>dfs.replication</name>
@@ -48,7 +48,7 @@ export HBASE_MANAGES_ZK=true
   </property>
   <property>
     <name>hbase.master</name> 
-    <value>ubuntu144:60000</value>
+    <value>ubuntu144.thinker.cn:60000</value>
   </property>
 </configuration>
 -------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ hbase#bin/hbase-daemon.sh stop zookeeper
 	9727 HMaster			~
 	~~~~~~~~~~~~~~~~~~~~~~~~~
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+create 'ns1:test', {NAME => 'cf', VERSIONS => 1}
 -------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------

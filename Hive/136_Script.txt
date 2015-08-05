@@ -1,0 +1,23 @@
+bin/hdfs dfs -put  /home/cloudland/app_jobs/iparea/ipArea-distinct-*.txt /user/cloudland/iparea/input/
+
+
+bin/hadoop jar /home/cloudland/app_jobs/iparea/iparea-parser.jar com.ifeng.vdn.iparea.parser.IPAreaDriver -libjars /home/cloudland/app_jobs/iparea/iparea-parser.jar /user/cloudland/iparea/input/ipArea-distinct.txt  /user/cloudland/iparea/output/all
+
+bin/hadoop jar /home/cloudland/app_jobs/iparea/iparea-parser.jar com.ifeng.vdn.iparea.parser.IPAreaDriver -libjars /home/cloudland/app_jobs/iparea/iparea-parser.jar /user/cloudland/iparea/input/ipArea-distinct-CN.txt  /user/cloudland/iparea/output/CN
+bin/hadoop jar /home/cloudland/app_jobs/iparea/iparea-parser.jar com.ifeng.vdn.iparea.parser.IPAreaDriver -libjars /home/cloudland/app_jobs/iparea/iparea-parser.jar /user/cloudland/iparea/input/ipArea-distinct-US.txt  /user/cloudland/iparea/output/US
+bin/hadoop jar /home/cloudland/app_jobs/iparea/iparea-parser.jar com.ifeng.vdn.iparea.parser.IPAreaDriver -libjars /home/cloudland/app_jobs/iparea/iparea-parser.jar /user/cloudland/iparea/input/ipArea-distinct-CAN.txt  /user/cloudland/iparea/output/CAN
+
+
+-- CREATE TABLE IFENG IP REPOSITORY.
+CREATE EXTERNAL TABLE VDN_IP_REPO(IP STRING, ISP STRING, COUNTRY STRING, CITY STRING) PARTITIONED BY (DS STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LOCATION 'hdfs://centos136.thinker.cn:8020/user/cloudland/vdn/all'; 
+CREATE EXTERNAL TABLE VDN_IP_REPO_CN(IP STRING, ISP STRING, COUNTRY STRING, CITY STRING) PARTITIONED BY (DS STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LOCATION 'hdfs://centos136.thinker.cn:8020/user/cloudland/vdn/CN'; 
+CREATE EXTERNAL TABLE VDN_IP_REPO_US(IP STRING, ISP STRING, COUNTRY STRING, CITY STRING) PARTITIONED BY (DS STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LOCATION 'hdfs://centos136.thinker.cn:8020/user/cloudland/vdn/US'; 
+CREATE EXTERNAL TABLE VDN_IP_REPO_CAN(IP STRING, ISP STRING, COUNTRY STRING, CITY STRING) PARTITIONED BY (DS STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LOCATION 'hdfs://centos136.thinker.cn:8020/user/cloudland/vdn/CAN'; 
+
+
+
+-- LOAD DATA INTO TABLE VDN_IP_REPO
+#LOAD DATA INPATH 'hdfs://centos136.thinker.cn:8020/user/cloudland/iparea/output/all/part-r-00000' INTO TABLE VDN_IP_REPO PARTITION (ds ='2015-07-28');
+LOAD DATA INPATH 'hdfs://centos136.thinker.cn:8020/user/cloudland/iparea/output/CN/part-r-00000' INTO TABLE VDN_IP_REPO_CN PARTITION (ds ='2015-07-28');
+LOAD DATA INPATH 'hdfs://centos136.thinker.cn:8020/user/cloudland/iparea/output/US/part-r-00000' INTO TABLE VDN_IP_REPO_US PARTITION (ds ='2015-07-28');
+LOAD DATA INPATH 'hdfs://centos136.thinker.cn:8020/user/cloudland/iparea/output/CAN/part-r-00000' INTO TABLE VDN_IP_REPO_CAN PARTITION (ds ='2015-07-28');
