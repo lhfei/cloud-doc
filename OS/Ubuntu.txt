@@ -1,0 +1,43 @@
+-----------------------------------------------------------------------------------
+#Enable super user account password on Ubuntu
+>sudo passwd root
+||Enter new UNIX password:
+|Retype new UNIX password:
+|passwd: password updated successfully
+
+-----------------------------------------------------------------------------------
+#install openssh
+>sudo apt-get install openssh-server openssh-client
+-----------------------------------------------------------------------------------
+#install JDK
+	##Append the following lines to the opened "/etc/bash.bashrc" file
+>sudo gedit|{nano} /etc/profile
+	1)#add the following lines below to the end of your /etc/profile file:
+		JAVA_HOME=/usr/local/java/jdk1.7.0_45
+		PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+		export JAVA_HOME
+		export PATH
+
+	2)#choose default java
+		sudo update-alternatives --config javac
+		sudo update-alternatives --config java
+		sudo update-alternatives --config javaws
+
+	2)#restart source
+		>source /etc/profile
+	
+-----------------------------------------------------------------------------------
+#install Maven
+M2_HOME=/usr/local/apache-maven/apache-maven3.1.1/
+M2=$M2_HOME/bin
+
+PATH=$PATH:$M2:
+
+-----------------------------------------------------------------------------------
+# scp : remote copy file
+
+    scp [-r] $local_file_path $remote_user@$remote_host:$remote_target_file_path
+-----------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------

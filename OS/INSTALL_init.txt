@@ -1,0 +1,49 @@
+#JAVA_HOME
+export JAVA_HOME=/usr/lib/java/jdk1.7.0_45
+
+
+#MAVEN_HOME
+M2_HOME=/usr/lib/maven/apache-maven-3.1.1
+M2=$M2_HOME/bin
+
+#ANT_HOME=/usr/lib/ant/apache-ant-1.9.2
+ANT_HOME=/usr/lib/ant/apache-ant-1.9.2
+
+#REDIS_HOME
+REDIS_HOME=/usr/lib/redis/redis-2.8.3
+
+
+#JENKINS_HOME
+JENKINS_HOME=/usr/var/ci/.jenkins
+
+#NEXUS_HOME
+NEXUS_HOME=/usr/local/nexus/nexus-2.7.2-03
+
+export CLASSPATH=.:$JAVA_HOME/bin
+
+export PATH=$JAVA_HOME/bin:$PATH:$M2:$ANT_HOME/bin:#REDIS_HOME:$NEXUS_HOME
+
+
+
+##PATH
+===================================================================================
+#NEXUS
+	user/passwd:	admin/Lhfei@ci
+
+	NEXUS_HOME=/usr/local/nexus/nexus-2.7.2-03
+-----------------------------------------------------------------------------------
+	
+
+MAVEN_REPOSITORY
+	<localRepository>/usr/var/maven/.m2/repository</localRepository>
+-----------------------------------------------------------------------------------
+===================================================================================
+
+===================================================================================
+===================================================================================
+
+tH*XgvYpY$p
+
+
+
+

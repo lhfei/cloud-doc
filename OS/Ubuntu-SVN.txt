@@ -1,0 +1,51 @@
+-->sudo apt-get install apache2
+
+-->sudo apt-get install subversion libapache2-svn
+
+-->sudo a2enmod dav_svn
+
+-->sudo nano /etc/apache2/mods-enabled/dav_svn.conf	
+    ----------------------------------
+<Location /svn>
+   DAV svn
+   SVNParentPath /home/svn
+
+   SSLRequireSSL
+
+   AuthzSVNAccessFile "/etc/apache2/dav_svn.authz"
+   AuthType Basic 
+   AuthName "Subversion Repository" 
+   AuthUserFile "/etc/apache2/dav_svn.passwd"
+   Require valid-user
+</Location>
+
+    ----------------------------------
+
+
+-->sudo groupadd subversion
+
+#change the group ownership of /usr/local/svn/repos to the new group using the chgrp command:
+>sudo chgrp subversion /usr/local/svn/svn_repository
+
+>sudo chmod g+w /usr/local/svn/svn_repository
+>sudo chmod g+s /usr/local/svn/svn_repository
+
+>sudo chown -R www-data:subversion basic
+>sudo chmod -R g+rws basic
+
+--> sudo svnadmin create /home/svn/myProject
+
+
+-------
+  sudo chown -R www-data:subversion myProject
+  sudo chmod -R g+rws myProject
+
+
+
+
+
+
+arp 218.204.226.73 0019.e8ec.32c7 arpa
+
+
+

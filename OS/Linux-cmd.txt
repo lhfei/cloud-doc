@@ -1,0 +1,308 @@
+-----------------------------------------------------------------------------------------
+# scp : remote copy file
+
+    scp [-r] $local_file_path $remote_user@$remote_host:$remote_target_file_path
+	
+-----------------------------------------------------------------------------------------
+# Show Linux Version
+
+	----------------------------------------------
+	#To print all information, enter:
+	>$ uname -a
+	----------------------------------------------
+	#/proc/version file
+	>cat /proc/version
+	----------------------------------------------
+	#Find Distribution Version
+	>lsb_release -a
+	----------------------------------------------
+-----------------------------------------------------------------------------------------
+# mkdir multi direcotry:
+	
+	----------------------------------------------
+	#mkdir java/jdk8
+	>$ mkdir -p java/jdk8
+	----------------------------------------------
+-----------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+# CeonOS uninstall OpenJDK
+	----------------------------------------------
+	>rpm -qa | grep java
+	 `java-1.4.2-gcj-compat-1.4.2.0-40jpp.115`
+	 `java-1.6.0-openjdk-1.6.0.0-1.7.b09.el5`
+	>rpm -e --nodeps java-1.4.2-gcj-compat-1.4.2.0-40jpp.115
+	>rpm -e --nodeps java-1.6.0-openjdk-1.6.0.0-1.7.b09.el5
+-----------------------------------------------------------------------------------------
+# Ubuntu
+	"xxx的盘片插入驱动器/cdrom 在按回车键" 解决办法
+	注释掉/etc/apt/sources.list下的deb cdrom :.............
+-----------------------------------------------------------------------------------------
+#install JDK
+	##Append the following lines to the opened "/etc/bash.bashrc" file
+>sudo gedit|{nano} /etc/profile
+	1)#add the following lines below to the end of your /etc/profile file:
+		JAVA_HOME=/usr/local/java/jdk1.7.0_45
+		PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+		export JAVA_HOME
+		export PATH
+
+	2)#choose default java
+		sudo update-alternatives --config javac
+		sudo update-alternatives --config java
+		sudo update-alternatives --config javaws
+
+	2)#restart source
+		>source /etc/profile
+-----------------------------------------------------------------------------------------
+# Find Out The Top 10 Memory Consuming Process
+ps -auxf | sort -nr -k 4 | head -10
+-----------------------------------------------------------------------------------------
+# 查看磁盘空间
+>df -hl
+
+# Check folder size
+	>du -ah
+	>du -ch | grep total
+	>df -h
+-----------------------------------------------------------------------------------------
+# Find largest folder top 10
+>du -k /home/ | sort -n | tail -10
+-----------------------------------------------------------------------------------------
+
+#Linux Check Memory Usage
+	----------------------------------------------
+	#/proc/meminfo
+	>egrep --color 'Mem|Cache|Swap' /proc/meminfo		
+	----------------------------------------------
+	#free command
+	>free -m
+	----------------------------------------------
+	#vmstat command
+	>vmstat
+	----------------------------------------------
+	#top command
+	>top
+	----------------------------------------------
+	#atop command
+	>atop
+	----------------------------------------------
+	#htop command
+	>htop
+	----------------------------------------------
+
+-----------------------------------------------------------------------------------------
+# Enable root SSH login 
+>vi /etc/ssh/sshd_config
+	#and commend out the following line
+	PermitRootLogin without-password
+	
+	#Just below it, add the following line
+	PermitRootLogin yes
+	
+	#Then restart SSH
+	service ssh restart
+-----------------------------------------------------------------------------------------
+# Remove SSH Host
+>ssh-keygen -f "/home/cloudland/.ssh/known_hosts" -R ubuntu144
+-----------------------------------------------------------------------------------------
+#copy
+ssh-copy-id -i ~/.ssh/id_dsa.pub cloudland@ubuntu133
+
+ssh-copy-id -i ~/.ssh/id_dsa.pub root@ubuntu133
+-----------------------------------------------------------------------------------------
+# No passwd loging with ssh-copy-id
+> ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+> cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+
+-----------------------------------------------------------------------------------------
+# Rsync (Remote Sync):
+@see: http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
+	
+	#Copy/Sync Files and Directory Locally
+	>rsync -zvh backup.tar /tmp/backups/
+	
+	#Copy/Sync a Directory on Local Computer
+	>rsync -avzh /root/rpmpkgs /tmp/backups/
+	
+	#Copy/Sync Files and Directory to or From a Server
+	>rsync -avz rpmpkgs/ root@192.168.0.101:/home/
+	
+	#Copy/Sync a Remote Directory to a Local Machine
+	>rsync -avzh root@192.168.0.100:/home/tarunika/rpmpkgs /tmp/myrpms
+	
+	#Rsync Over SSH
+	>rsync -avzhe ssh root@192.168.0.100:/root/install.log /tmp/
+	
+	#Copy a File from a Local Server to a Remote Server with SSH
+	>rsync -avzhe ssh backup.tar root@192.168.0.100:/backups/
+	
+	#Show Progress While Transferring Data with rsync
+	>rsync -avzhe ssh --progress /home/rpmpkgs root@192.168.0.100:/root/rpmpkgs
+	
+	#Use of –include and –exclude Options
+	>rsync -avze ssh --include 'R*' --exclude '*' root@192.168.0.101:/var/lib/rpm/ /root/rpm
+	
+-----------------------------------------------------------------------------------------
+#删除 swap 文件
+	>swapoff -a后再ls -al
+-----------------------------------------------------------------------------------------
+# compress
+tar -zcvf a.gz 	/home/{folderName}
+tar -jcvf a.tar /home/{folderName}
+
+# decompress
+tar xfvz file.tar.gz or tar zxfv file.tar.gz
+tar xvzf redis-stable.tar.gz
+
+# uncompress file to target folder:
+	
+	----------------------------------------------
+	#uncompress file to /usr/local/java/jdk8
+	>$ tar xvzf jdk-8u31-linux-x64.gz -C ${locatiobn}
+	----------------------------------------------
+-----------------------------------------------------------------------------------------
+# read some line to a new file.
+	>tail largt.txt -n 100 > small.txt
+-----------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+# Enable ssh root access:
+
+	# edit /etc/ssh/sshd_config, and commend out the following line:
+	
+	PermitRootLogin without-password
+	
+	#Just below it, add the following line:
+	PermitRootLogin yes
+	
+	# restart ssh service
+	sudo service ssh restart
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+#查看 DNS Server
+
+	> vi /etc/resolv.conf
+
+	#Ubuntu
+	>sudo vi /etc/resolvconf/resolv.conf.d/base
+	#append: nameserver 114.114.114.114 
+	>sudo resolvconf -u
+
+-----------------------------------------------------------------------------------------
+查看当前登陆的用户
+$ who
+loongson tty7         2012-04-27 08:58 (:0)
+loongson pts/0        2012-04-27 09:00 (:0.0)
+loongson pts/1        2012-04-27 09:00 (:0.0)
+loongson pts/2        2012-04-27 09:15 (:0.0)
+
+
+$ finger
+Login     Name       Tty      Idle  Login Time   Office     Office Phone
+loongson  loongson   tty7       12  Apr 27 08:58 (:0)
+loongson  loongson   pts/0       4  Apr 27 09:00 (:0.0)
+loongson  loongson   pts/1          Apr 27 09:00 (:0.0)
+
+查看用户的信息
+$ finger loongson
+Login: loongson                   Name: loongson
+Directory: /home/loongson               Shell: /bin/bash
+On since Fri Apr 27 08:58 (CST) on tty7 from :0
+    13 minutes 52 seconds idle
+On since Fri Apr 27 09:00 (CST) on pts/0 from :0.0
+   5 minutes 50 seconds idle
+On since Fri Apr 27 09:00 (CST) on pts/1 from :0.0
+No mail.
+No Plan
+
+查看用户所属组别
+$ groups loongson
+loongson : loongson adm dialout cdrom plugdev lpadmin admin sambashare libvirtd
+
+添加用户到指定组：
+# usermod -a -G testgroup loongson
+-----------------------------------------------------------------------------------------
+# User Account
+-----------------------------------------------------------------------------------------
+	# Create User
+	>useradd lhfei -d /home/lhfei -s /bin/bash
+	
+	# Change or rename user name and UID 
+	>usermod -l login-name old-name
+	
+	# Remove User
+	>userdel lhfei
+	
+	# Find out if user exists in /etc/passwd fil
+	>egrep -i "^{username}" /etc/passwd
+	
+	# Find out if group exists in /etc/group file
+	>egrep -i "^{groupname}" /etc/group
+	
+	# Add user to the sudoers file 
+	>usermod -a -G sudo {username}
+	>usermod -a -G adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare {username}
+	
+	
+-----------------------------------------------------------------------------------------
+# Permission COnfig
+	# Change Owner
+	>chown {owner} {file or folder}
+	
+	# Change user group
+	>chown -R {username}:{groupname} /{file or folder}
+-----------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------
+# Check Firewall status:
+	>sudo ufw status
+
+# Enable or disable firewall:
+	>sudo ufw [enable | disable]
+
+-----------------------------------------------------------------------------------------
+#
+	>netstat -anp | grep 8080
+-----------------------------------------------------------------------------------------
+# rsync
+	>rsync -avz etc/hadoop/core-site.xml ubuntu134:$HADOOP_HOME/etc/hadoop/core-site.xml
+-----------------------------------------------------------------------------------------
+# Problem running eclipse on ubuntu
+	>cd /usr/bin
+	>ln -s $JAVA_HOME/bin/java  java
+-----------------------------------------------------------------------------------------
+# Find All Large Files On A Linux System
+
+	>du -a /var | sort -n -r | head -n 10
+	>find / -type f -size +20M -exec ls -lh {} \; | awk '{ print $NF ": " $5 }'
+	>find / -type f -size +20M -exec ls -lh {} \; 2> /dev/null | awk '{ print $NF ": " $5 }'
+	
+	>find / -type f -size +20M -exec ls -lh {} \; 2> /dev/null | awk '{ print $NF ": " $5 }' | sort -nk 2,2
+	>find / -type f -size +20000k -exec ls -lh {} \; 2> /dev/null | awk '{ print $NF ": " $5 }' | sort -nrk 2,2
+	
+	
+
+-----------------------------------------------------------------------------------------
+# OpenSSL 
+-----------------------------------------------------------------------------------------
+# check version
+>openssl version
+>apt-cache search libssl | grep SSL
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+# vim set file format
+>: set ff=unix
+or
+>: set fileformat=unix
+
+
+-----------------------------------------------------------------------------------------
+sudo iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-----------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+

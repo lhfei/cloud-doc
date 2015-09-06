@@ -1,0 +1,73 @@
+------------------------------------------------------------
+>sudo apt-get install apache2
+------------------------------------------------------------
+>sudo apt-get install subversion libapache2-svn
+------------------------------------------------------------
+>sudo mkdir /usr/local/svn/svn_repository
+>cd /usr/local/svn/svn_repository
+>sudo svnadmin create basic
+------------------------------------------------------------
+>sudo groupadd subversion
+#change the group ownership of /usr/local/svn/repos to 
+#	the new group using the chgrp command:
+>sudo chgrp subversion /usr/local/svn/svn_repository
+------------------------------------------------------------
+#www-data is the Apache default user.
+>sudo chown -R www-data:subversion basic
+>sudo chmod -R g+rws basic
+>sudo a2enmod dav_svn
+------------------------------------------------------------
+>sudo chown -R www-data:subversion basic
+>sudo chmod -R g+rws basic
+------------------------------------------------------------
+	<Location /svn>
+		DAV svn
+		SVNParentPath /usr/local/svn/svn_repository
+		SVNListParentPath On
+		AuthType Basic
+		
+		AuthzSVNAccessFile "/etc/subversion/access.auth"
+		
+		AuthName "Subversion Repository"
+		AuthUserFile /etc/subversion/passwd
+		<LimitExcept GET PROPFIND OPTIONS REPORT>
+			Require valid-user
+		</LimitExcept>
+	</Location>
+------------------------------------------------------------
+>sudo /etc/init.d/apache2 restart
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
+>sudo nano /etc/apache2/mods-enabled/dav_svn.conf	
+    ----------------------------------
+<Location /svn>
+   DAV svn
+   SVNParentPath /usr/local/svn/svn_repository
+   SSLRequireSSL
+   AuthzSVNAccessFile "/etc/apache2/dav_svn.authz"
+   AuthType Basic 
+   AuthName "Subversion Repository" 
+   AuthUserFile "/etc/apache2/dav_svn.passwd"
+   Require valid-user
+</Location>
+
+    ----------------------------------
+
+
+
+
+>sudo chmod g+w /usr/local/svn/svn_repository
+>sudo chmod g+s /usr/local/svn/svn_repository
+
+
+
+-------
+
+
+arp 218.204.226.73 0019.e8ec.32c7 arpa
+
+
+
