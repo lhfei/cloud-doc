@@ -24,7 +24,47 @@
 	>$ mkdir -p java/jdk8
 	----------------------------------------------
 -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+.check thread:
 
+	ps -ef | grep java
+
+.check tomcat console log
+
+	tail -f  ../logs/catalina.out
+
+
+# compress
+tar -zcvf a.gz /home/{folderName}
+
+# decompress
+tar xfvz file.tar.gz or tar zxfv file.tar.gz
+tar xvzf redis-stable.tar.gz
+
+
+//
+ps -ef | java grep
+
+tail -f {path}catalina.out
+
+# set time
+date +%T -s "11:14:00"
+
+java -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false \
+com.example.Main
+
+java -Dcom.sun.management.jmxremote.port=9999 \
+-Dcom.sun.management.jmxremote.authenticate=false \
+-Dcom.sun.management.jmxremote.ssl=false \
+com.example.Main
+
+-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.registry.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=9999
+
+-Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=9999
+
+# Find Out The Top 10 Memory Consuming Process
+ps -auxf | sort -nr -k 4 | head -10
+-----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 # CeonOS uninstall OpenJDK
 	----------------------------------------------

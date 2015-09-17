@@ -39,8 +39,8 @@ Run "hadoop fsck -blocks" command to see how data replication status
 NOTES: You can leave exclude property that you have set previously, but empty the exclude file after decommissioning.
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Free Disk space
->bin/hdfs dfs -rmr vdnlongs/VDN_LOGS/ds=2015-08-02
->bin/hdfs dfs -rmr .Trash
+>bin/hdfs dfs -rm -r vdnlongs/VDN_LOGS/ds=2015-08-02
+>bin/hdfs dfs -rm -r .Trash
 >bin/hdfs dfsadmin -finalizeUpgrade
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
