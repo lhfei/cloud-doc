@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current=$(date +%Y-%m-%d -d -1day)
+current=$(date +%Y-%m-%d -d -2day)
 echo "${current}: jobs starting ... "
 
 cd $HADOOP_HOME
@@ -14,5 +14,5 @@ bin/hadoop jar /home/cloudland/app_jobs/myjobs/log-parser.jar com.ifeng.vdn.pars
 #rm -rf /user/cloudland/vdnlogs/input/*
 
 
-echo 'call hive script on centos137 .....'
-ssh cloudland@centos137 '/home/cloudland/app_jobs/vdn/vdnlog_thinker.sh'
+echo 'call hive script on centos126 .....'
+ssh cloudland@centos126 '/home/cloudland/app_jobs/vdn/vdnlog_thinker.sh'
