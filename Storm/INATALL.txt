@@ -1,0 +1,45 @@
+-----------------------------------------------------------------------------------------------------------
+-- ZeroMQ
+-----------------------------------------------------------------------------------------------------------
+sudo apt-get install libzmq3
+sudo apt-get install libzmq3-dev
+
+------------------------------------------------------------------------
+| "configure: error: no acceptable C compiler found in $PATH"
+|
+| >sudo apt-get install build-essential
+|-----------------------------------------------------------------------
+
+ >sudo apt-get install pkg-config
+
+wget http://download.zeromq.org/zeromq-4.1.3.tar.gz
+
+tar -xzf zeromq-4.1.3.tar.gz
+
+
+>tar -xzf zeromq-4.1.3.tar.gz
+>cd zeromq-4.1.3
+>./configure --without-libsodium
+>make
+
+>sudo make install
+
+
+>wget https://github.com/zeromq/jzmq/archive/v3.1.0.tar.gz
+>tar -xzf v3.1.0.tar.gz
+>cd jzmq-3.1.0
+
+------------------------------------------------------------------------
+| "autogen.sh: error: could not find libtool.  libtool is required to run autogen.sh."
+|
+| >sudo apt-get install libtool
+|-----------------------------------------------------------------------
+| "autogen.sh: error: could not find autoreconf.  autoconf and automake are required to run autogen.sh."
+|
+| >sudo apt-get install autoconf
+|-----------------------------------------------------------------------
+
+>./autogen.sh
+>./configure
+>make
+>sudo make install

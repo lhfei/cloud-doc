@@ -1,0 +1,11 @@
+Automated Installation
+Ideal for trying Cloudera enterprise data hub, the installer will download Cloudera Manager from Cloudera's website and guide you through the setup process.
+Pre-requisites: multiple, Internet-connected Linux machines, with SSH access, and significant free space in /var and /opt.
+    $ wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+    $ chmod u+x cloudera-manager-installer.bin
+
+    $ sudo ./cloudera-manager-installer.bin
+
+Production Installation
+Users setting up Cloudera enterprise data hub for production use are encouraged to follow the installation instructions in our documentation. These instructions suggest explicitly provisioning the databases used by Cloudera Manager and walk through explicitly which packages need installation.
