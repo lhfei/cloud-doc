@@ -32,8 +32,14 @@ Install the KDC Server
 		
 		[realms]
 			EXAMPLE.COM = {
-			kdc = my.kdc.server
-			admin_server = my.kdc.server
+			kdc = centos10-83.letv.cn
+			admin_server = centos10-83.letv.cn
+		}
+		
+		[realms]
+			LETV.COM = {
+			kdc = centos10-83.letv.cn
+			admin_server = centos10-83.letv.cn
 		}
 	4. 
 
@@ -49,8 +55,19 @@ Create the Kerberos Database
 		It is important that you NOT FORGET this password.
 		Enter KDC database master key: Letvcloud@01
 		Re-enter KDC database master key to verify: Letvcloud@01
-	  ---------------------------------------------------------------------------------------	
-
+	  ---------------------------------------------------------------------------------------
+	  
+	  ---------------------------------------------------------------------------------------
+		Loading random data
+		Initializing database '/var/kerberos/krb5kdc/principal' for realm 'LETV.COM',
+		master key name 'K/M@LETV.COM'
+		You will be prompted for the database Master Password.
+		It is important that you NOT FORGET this password.
+		Enter KDC database master key: 
+		Re-enter KDC database master key to verify: 
+		kdb5_util: File exists while creating database '/var/kerberos/krb5kdc/principal'	  
+	  ---------------------------------------------------------------------------------------
+	  
 Start the KDC		
 	1.Start the KDC server and the KDC admin server.
 	>/etc/rc.d/init.d/krb5kdc start
@@ -66,6 +83,18 @@ Create a Kerberos Admin
 		Re-enter password for principal "admin/admin@EXAMPLE.COM": Letvcloud@01
 		Principal "admin/admin@EXAMPLE.COM" created.
 	  ---------------------------------------------------------------------------------------
+
+	  
+#Custom mapred-site
+mapreduce.jobhistory.webapp.spnego-principal HTTP/_HOST@EXAMPLE.COM
+     
+mapreduce.jobhistory.keytab  /etc/security/keytabs/jhs.service.keytab
+     
+mapreduce.jobhistory.principal jhs/_HOST@EXAMPLE.COM
+     
+mapreduce.jobhistory.webapp.spnego-keytab-file /etc/security/keytabs/spnego.service.keytab
+	  
+	  
 	
 	2. Confirm that this admin principal has permissions in the KDC ACL. Using a text editor, open the KDC ACL file:
 	>vi /var/kerberos/krb5kdc/kadm5.acl
@@ -75,8 +104,7 @@ Create a Kerberos Admin
 		administer the KDC for your specific realm. When using a realm that is different than
 		EXAMPLE.COM, be sure there is an entry for the realm you are using. If not present,
 		principal creation will fail. For example, for an admin/admin@HADOOP.COM principal,
-		you should have an entry:
-		*/admin@EXAMPLE.COM     *
+		you should have an entry: */admin@EXAMPLE.COM     *
 	4. After editing and saving the kadm5.acl file, you must restart the kadmin process.
 	>/etc/rc.d/init.d/kadmin restart 
 	

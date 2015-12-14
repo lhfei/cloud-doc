@@ -99,6 +99,12 @@ Container killed on request. Exit code is 143
 	~mapreduce.reduce.memory.mb: 8192
 --------------------------------------------------------------
 --------------------------------------------------------------
+# Loading data from HDFS into Hive tables:
+Loading data to table dwd.dwd_flow_sdk_phone_event_day partition (dt=20151205)
+Failed with exception java.lang.IllegalArgumentException: Unknown codec: com.hadoop.compression.lzo.LzoCodec
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.MoveTask
+
+>yum install lzo lzo-devel hadooplzo hadooplzo-native
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------

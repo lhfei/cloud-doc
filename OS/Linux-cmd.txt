@@ -318,6 +318,12 @@ loongson : loongson adm dialout cdrom plugdev lpadmin admin sambashare libvirtd
 -----------------------------------------------------------------------------------------
 #
 	>netstat -anp | grep 8080
+	
+# Kill running process in special port
+	>fuser -k {port}/tcp
+	
+# Enable assignment port: 3306
+	>/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT	
 -----------------------------------------------------------------------------------------
 # rsync
 	>rsync -avz etc/hadoop/core-site.xml ubuntu134:$HADOOP_HOME/etc/hadoop/core-site.xml
