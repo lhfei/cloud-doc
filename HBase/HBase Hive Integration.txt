@@ -1,0 +1,131 @@
+--#################################
+-- HBase Hive Integration
+--
+-- @author: Hefei Li
+-- @since:  Dev 17, 2015
+--#################################
+---------------------------------------------------------------------------------------------
+--## 
+create database if not exist hive_test;
+use hive_test;
+
+---------------------------------------------------------------------------------------------
+--## 
+CREATE TABLE pokes (foo INT, bar STRING);
+LOAD DATA LOCAL INPATH '/letv/cloudland/app_tmp/data/files/kv1.txt' OVERWRITE INTO TABLE pokes;
+
+---------------------------------------------------------------------------------------------
+--## 
+CREATE TABLE hbase_table_1 (KEY INT, VALUE STRING) 
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = ":key,cf1:val"
+) TBLPROPERTIES ("hbase.table.name" = "xyz") ;
+INSERT OVERWRITE TABLE hbase_table_1 SELECT * FROM pokes WHERE foo=98;
+
+---------------------------------------------------------------------------------------------
+--## 
+CREATE EXTERNAL TABLE hbase_table_2 (KEY INT, VALUE STRING) 
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = "cf1:val"
+) TBLPROPERTIES (
+  "hbase.table.name" = "some_existing_table"
+) ;
+
+---------------------------------------------------------------------------------------------
+--## 
+CREATE TABLE hbase_table_3(key int, value1 string, value2 int, value3 int) 
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = ":key,a:b,a:c,d:e"
+) TBLPROPERTIES (
+    "hbase.table.name" = "hbase_table_3"
+) ;
+INSERT OVERWRITE TABLE hbase_table_3 SELECT foo, bar, foo+1, foo+2 FROM pokes WHERE foo=98 OR foo=100;
+
+---------------------------------------------------------------------------------------------
+--## 
+CREATE TABLE hbase_table_map (VALUE map < STRING, INT >, row_key INT) 
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = "cf:,:key"
+) TBLPROPERTIES (
+    "hbase.table.name" = "hbase_table_map"
+);
+INSERT OVERWRITE TABLE hbase_table_map SELECT map(bar, foo), foo FROM pokes 
+  WHERE foo=98 OR foo=100;
+
+---------------------------------------------------------------------------------------------
+--## Hive MAP to HBase Column Prefix
+CREATE TABLE hbase_table_map_prefix (VALUE map < STRING, INT >, row_key INT) 
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = "cf:col_prefix.*,:key"
+) TBLPROPERTIES (
+    "hbase.table.name" = "hbase_table_map_prefix"
+);
+---------------------------------------------------------------------------------------------
+--## Example with Binary Columns
+CREATE TABLE hbase_table_binary (KEY INT, VALUE STRING, foobar DOUBLE) 
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = ":key,cf:val#s,cf:foo",
+    "hbase.table.default.storage.type" = "binary"
+) TBLPROPERTIES (
+    "hbase.table.name" = "hbase_table_binary"
+);
+---------------------------------------------------------------------------------------------
+--## Simple Composite Row Keys
+
+---------------------------------------------------------------------------------------------
+--## -- Create a table with a composite row key consisting of two string fields, delimited by '~'
+CREATE EXTERNAL TABLE delimited_example (
+  KEY struct < f1 :STRING,
+  f2 :STRING >,
+  VALUE STRING
+) ROW FORMATDELIMITED COLLECTION ITEMS TERMINATED BY '~' STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+  'hbase.columns.mapping' = ':key,f:c1'
+) ;
+
+---------------------------------------------------------------------------------------------
+--## Complex Composite Row Keys and HBaseKeyFactory
+-- Parse a row key with 3 fixed width fields each of width 10
+-- Example taken from: https://svn.apache.org/repos/asf/hive/trunk/hbase-handler/src/test/queries/positive/hbase_custom_key2.q
+CREATE TABLE hbase_ck_4 (
+  KEY struct < col1 :STRING,
+  col2 :STRING,
+  col3 :STRING >,
+  VALUE STRING
+) STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+  "hbase.table.name" = "hbase_custom2",
+  "hbase.columns.mapping" = ":key,cf:string",
+  "hbase.composite.key.factory" = "org.apache.hadoop.hive.hbase.SampleHBaseKeyFactory2"
+) ;
+---------------------------------------------------------------------------------------------
+--## Key Uniqueness
+--One subtle difference between HBase tables and Hive tables is that HBase tables 
+-- have a unique key, whereas Hive tables do not. When multiple rows with the same key 
+-- are inserted into HBase, only one of them is stored (the choice is arbitrary, 
+-- so do not rely on HBase to pick the right one). 
+--This is in contrast to Hive, which is happy to store multiple rows with the same key and 
+-- different values. For example, the pokes table contains rows with duplicate keys. 
+--If it is copied into another Hive table, the duplicates are preserved:
+CREATE TABLE pokes2(foo INT, bar STRING);
+INSERT OVERWRITE TABLE pokes2 SELECT * FROM pokes;
+-- this will return 3
+SELECT COUNT(1) FROM POKES WHERE foo=498;
+-- this will also return 3
+SELECT COUNT(1) FROM pokes2 WHERE foo=498;
+
+---- But in HBase, the duplicates are silently eliminated:
+CREATE TABLE pokes3(foo INT, bar STRING)
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = ":key,cf:bar"
+);
+INSERT OVERWRITE TABLE pokes3 SELECT * FROM pokes;
+-- this will return 1 instead of 3
+SELECT COUNT(1) FROM pokes3 WHERE foo=498;
+
+---------------------------------------------------------------------------------------------
+--##
+---------------------------------------------------------------------------------------------
+--##
+---------------------------------------------------------------------------------------------
+--##
+---------------------------------------------------------------------------------------------
+--##

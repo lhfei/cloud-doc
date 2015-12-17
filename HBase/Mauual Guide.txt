@@ -1,0 +1,13 @@
+
+
+# Data Types and Hierarchy
++-------------------------------------------------------------------------------------------+
+|Type 		Kind 		Description															|
+|-------------------------------------------------------------------------------------------|
+|Get 		Query 		Retrieve previously stored data from a single row.                  |
+|Scan 		Query 		Iterate over all or specific rows and return their data.            |
+|Put 		Mutation 	Create or update one or more columns in a single row.               |
+|Delete 	Mutation 	Remove a specific cell, column, row, etc.                       	|
+|Increment 	Mutation 	Treat a column as a counter and increment its value.                |
+|Append 	Mutation 	Attach the given data to one or more columns in a single row.   	|
++-------------------------------------------------------------------------------------------+

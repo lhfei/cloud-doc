@@ -107,6 +107,8 @@ FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.MoveT
 >yum install lzo lzo-devel hadooplzo hadooplzo-native
 --------------------------------------------------------------
 --------------------------------------------------------------
+# Caused by: java.lang.ClassNotFoundException: org.apache.hadoop.hive.hbase.HiveHBaseTableInputFormat
+>
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
