@@ -119,6 +119,7 @@ FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.MoveT
 >
 --------------------------------------------------------------
 --------------------------------------------------------------
+# java.lang.Exception: java.lang.IllegalArgumentException: SequenceFile doesn't work with GzipCodec without native-hadoop code
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
