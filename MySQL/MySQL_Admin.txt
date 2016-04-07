@@ -49,7 +49,7 @@ oozie	Ifeng0*
 >mysql -u root
 
 	|mysql> use mysql;
-	|mysql> update user set password=PASSWORD("GIVE-NEW-ROOT-PASSWORD") where User='root';
+	|mysql> update user set password=PASSWORD("Lhfei") where User='root';
 	|mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Lhfei' WITH GRANT OPTION;
 	|mysql> flush privileges;
 	|mysql> quit
@@ -174,10 +174,15 @@ Step 7: Updating MySQL with Yum
 -------------------------------------------------------------------------------------
 >/etc/init.d/mysqld stop
 >mysqld_safe --skip-grant-tables &
+>mysql
 >FLUSH PRIVILEGES;
 >SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Lhfei');
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
+
+authentication_string
+
+update user set authentication_string=PASSWORD("Lhfei") where User='root';
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------

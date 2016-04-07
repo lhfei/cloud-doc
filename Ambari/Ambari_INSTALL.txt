@@ -1,3 +1,9 @@
++---------------------------------------------------------------+
++ 		Ambari Env				|		Ambari Conf				|
++---------------------------------------------------------------+
++/var/lib/ambari-{server|agent}	|/etc/ambari-{server|agent}		|
++---------------------------------------------------------------+
+
 -----------------------------------------------------------------------------
 #Step1: Download the Ambari repository on the Ambari Server host
 	
@@ -124,7 +130,11 @@ sudo cp -rf ./public-static/* /usr/lib/ambari-server/web/
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
 
-
+/etc/yum/pluginconf.d/refresh-packagekit.conf
+http://public-repo-1.hortonworks.com/HDP/centos6/2.x/updates/2.4.0.0/HDP-2.4.0.0-centos6-rpm.tar.gz
+http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6/HDPUTILS-1.1.0.20-centos6.tar.gz
+http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6/HDPUTILS-1.1.0.20-centos6.tar.gz
+http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.2.1.0/ambari-2.2.1.0-centos6.tar.gz
 
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
