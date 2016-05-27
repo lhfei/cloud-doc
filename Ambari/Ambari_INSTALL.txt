@@ -421,8 +421,35 @@ updating the soft link /usr/share/java/mysql-connector-java.jar -> mysql-connect
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 -------------------------------------------------------------------
+1 Getting Ready
 -------------------------------------------------------------------
+# Check the Maximum Open File Descriptors
+
+>ulimit -Sn
+>ulimit -Hn
+#run the following command to set it to a suitable default:
+>ulimit -n 10000
 -------------------------------------------------------------------
+# Enable NTP on the Cluster and on the Browser Host
+
+>chkconfig ntpd on
+
+#Configuring iptables
+>/etc/init.d/iptables stop
+
+# Disable SELinux and PackageKit and check the umask Value
+
+>
+>vi /etc/selinux/config
+#To permanently disable SELinux set SELINUX=disableds
+
+>vi /etc/yum/pluginconf.d/refresh-packagekit.conf
+# Make the following change:
+
+enabled=0
+
+# Permanently changing the umask for all interactive users /etc/profile
+>umask 0022
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 -------------------------------------------------------------------

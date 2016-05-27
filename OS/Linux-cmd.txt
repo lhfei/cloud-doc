@@ -16,6 +16,9 @@
 	#Find Distribution Version
 	>lsb_release -a
 	----------------------------------------------
+	#### -bash: lsb_release: command not found
+	>yum install redhat-lsb
+	
 -----------------------------------------------------------------------------------------
 # mkdir multi direcotry:
 	
