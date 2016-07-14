@@ -1,0 +1,9 @@
+
+
+
+Connection error: ('Unable to connect to any servers', {'127.0.0.1': ProtocolError("cql_version '3.4.2' is not supported by remote (w/ native protocol). Supported versions: [u'3.2.0']",)})
+>./bin/cqlsh --cqlversion="3.2.0"
+
+
+
+nodetool enablethrift

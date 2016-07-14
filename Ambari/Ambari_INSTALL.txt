@@ -35,6 +35,7 @@
 	-- Add JDBC Driver to ambari-server classpath
 	-----------------------------------------------------------------------------------------------------
 	ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java-5.1.32.jar
+	ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java-5.1.38-bin.jar
 	-----------------------------------------------------------------------------------------------------
 	
 #Step 3: Deploy Cluster using Ambari Web UI

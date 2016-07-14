@@ -9,16 +9,39 @@
 ====================================================================================
 1. Configuring MySQL for Ranger
 ------------------------------------------------------------------------------------
-	CREATE USER 'rangerdba'@'localhost' IDENTIFIED BY 'rangerdba';
+	CREATE USER 'rangerdba'@'localhost' IDENTIFIED BY 'Rangerdba@01';
 	GRANT ALL PRIVILEGES ON *.* TO 'rangerdba'@'localhost';
-	CREATE USER 'rangerdba'@'%' IDENTIFIED BY 'rangerdba';
+	CREATE USER 'rangerdba'@'%' IDENTIFIED BY 'Rangerdba@01';
 	GRANT ALL PRIVILEGES ON *.* TO 'rangerdba'@'%';
 	GRANT ALL PRIVILEGES ON *.* TO 'rangerdba'@'localhost' WITH GRANT OPTION;
 	GRANT ALL PRIVILEGES ON *.* TO 'rangerdba'@'%' WITH GRANT OPTION;
 	FLUSH PRIVILEGES;
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
++ MySQL 57
 ------------------------------------------------------------------------------------
+# root			Lhfei@01
+------------------------------------------------------------------------------------
+# rangerdba		Rangerdba@01
+# rangeradmin	Rangeradmin@01
+# rangerlogger	Rangerlogger@01
+------------------------------------------------------------------------------------
+ranger.audit.solr.urls http://master1.cloud.com:6083/solr/ranger_audits
+------------------------------------------------------------------------------------
+# http://docs.adaptivecomputing.com/viewpoint/hpc/Content/topics/1-setup/installSetup/settingUpOpenLDAPOnCentos6.htm
+
+#Run the following command:
+yum -y install openldap openldap-clients openldap-servers
+------------------------------------------------------------------------------------
+# Generate a password
+[root@master1 ~]# slappasswd
+New password: Lhfei
+Re-enter new password: Lhfei
+{SSHA}ogUHINR7/jcxBNgtBpPNFiOsCdeQXgH4
+
+# Add the root user and the root user's password hash to the OpenLDAP configuration in the olcDatabase={2}bdb.ldif file.
+[root]# cd /etc/openldap/slapd.d/cn\=config
+[root]# vi olcDatabase\=\{2\}bdb.ldif
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
