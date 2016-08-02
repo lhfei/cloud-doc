@@ -1,0 +1,197 @@
+--------------------------------------------------------------------------------------------------
+status 				Returns various levels of information contained in the ClusterStatus
+					class. See the help to get the simple, summary, and detailed status
+					information.
+version 			Returns the current version, repository revision, and compilation date of
+					your HBase cluster. See ClusterStatus.getHBaseVersion() in Table 5-8.
+table_help 			Prints a help text explaining the usage of table references in the Ruby
+					shell.
+whoami 				Shows the current OS user and group membership known to HBase about
+					the shell user.
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+==================================================================================================
+create_namespace Creates a namespace with the provided name.
+==================================================================================================
+drop_namespace 			Removes the namespace, which must be empty, that is, it
+						must not contain any tables.
+alter_namespace 		Changes the namespace details by altering its configuration
+						properties.
+describe_namespace 		Prints the details of an existing namespace.
+list_namespace 			Lists all known namespaces.
+list_namespace_tables 	Lists all tables contained in the given namespace.
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Command Description
+alter Modifies an existing table schema using modifyTable(). See “Schema
+Operations” (page 391) for details.
+alter_async Same as above, but returns immediately without waiting for the
+changes to take effect.
+alter_status Can be used to query how many regions have the changes applied to
+them. Use this after making asynchronous alterations.
+create Creates a new table. See the createTable() call in “Table Operations”
+(page 378) for details.
+describe Prints the HTableDescriptor. See “Tables” (page 350) for details. A
+shortcut for this command is desc.
+disable Disables a table. See “Table Operations” (page 378) and the disableTa
+ble() method.
+disable_all Uses a regular expression to disable all matching tables in a single
+command.
+drop Drops a table. See the deleteTable() method in “Table Operations”
+(page 378).
+drop_all Drops all matching tables. The parameter is a regular expression.
+enable Enables a table. See the enableTable() call in “Table Operations”
+(page 378) for details.
+enable_all Using a regular expression to enable all matching tables.
+exists Checks if a table exists. It uses the tableExists() call; see “Table
+Operations” (page 378).
+is_disabled Checks if a table is disabled. See the isTableDisabled() method in
+“Table Operations” (page 378).
+is_enabled Checks if a table is enabled. See the isTableEnabled() method in
+“Table Operations” (page 378).
+list Returns a list of all user tables. Uses the listTables() method,
+described in “Table Operations” (page 378).
+show_filters Lists all known filter classes. See “Filter Parser Utility” (page 269) for
+details on how to register custom filters.
+get_table Returns a table reference that can used in scripting. See “Scripting”
+(page 497) for more information.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+put Stores a cell. Uses the Put class, as described in “Put Method”
+(page 122).
+get Retrieves a cell. See the Get class in “Get Method” (page 146).
+delete Deletes a cell. See “Delete Method” (page 168) and the Delete
+class.
+deleteall Similar to delete but does not require a column. Deletes an entire
+family or row. See “Delete Method” (page 168) and the Delete
+class.
+append Allows to append data to cells. See “Append Method” (page 181)
+for details.
+incr Increments a counter. Uses the Increment class; see “Counters”
+(page 273) for details.
+get_counter Retrieves a counter value. Same as the get command but converts
+the raw counter value into a readable number. See the Get class in
+“Get Method” (page 146).
+scan Scans a range of rows. Relies on the Scan class. See “Scans” (page
+193) for details.
+count Counts the rows in a table. Uses a Scan internally, as described in
+“Scans” (page 193).
+truncate Truncates a table, which is the same as executing the disable and
+drop commands, followed by a create, using the same schema.
+See “Table Operations” (page 378) and the truncateTable()
+method for details.
+truncate_pre
+serve
+Same as the previous command, but retains the regions with their
+start and end keys.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+snapshot Creates a snapshot. Use the SKIP_FLUSH => true option to not
+flush the table before the snapshot.
+clone_snapshot Clones an existing snapshot into a new table.
+restore_snapshot Restores a snapshot under the same table name as it was
+created.
+delete_snapshot Deletes a specific snapshot. The given name must match the
+name of a previously created snapshot.
+delete_all_snapshot Deletes all snapshots using a regular expression to match any
+number of names.
+list_snapshots Lists all snapshots that have been created so far.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Command Description
+assign Assigns a region to a server. See “Cluster Operations” (page
+393) and the assign() method.
+balance_switch Toggles the balancer switch. See “Cluster Operations” (page
+393) and the balanceSwitch() method.
+balancer Starts the balancer. See “Cluster Operations” (page 393) and the
+balancer() method.
+close_region Closes a region. Uses the closeRegion() method, as described in
+“Cluster Operations” (page 393).
+compact Starts the asynchronous compaction of a region or table. Uses
+compact(), as described in “Cluster Operations” (page 393).
+compact_rs Compact all regions of a given region server. The optional
+boolean flag decided between major and minor compactions.
+flush Starts the asynchronous flush of a region or table. Uses flush(),
+as described in “Cluster Operations” (page 393).
+major_compact Starts the asynchronous major compaction of a region or table.
+Uses majorCompact(), as described in “Cluster Operations” (page
+393).
+move Moves a region to a different server. See the move() call, and
+“Cluster Operations” (page 393) for details.
+split Splits a region or table. See the split() call, and “Cluster
+Operations” (page 393) for details.
+merge_region Merges two regions, specified as hashed names. The optional
+boolean flag allows merging of non-subsequent regions.
+unassign Unassigns a region. See the unassign() call, and “Cluster
+Operations” (page 393) for details.
+wal_roll Rolls the WAL, which means close the current and open a new
+one.a
+catalogjani
+tor_run
+Runs the system catalog janitor process, which operates in the
+background and cleans out obsolete files etc. See “Server
+Operations” (page 409) for details.
+catalogjani
+tor_switch
+Toggles the system catalog janitor process, either enabling or
+disabling it. See “Server Operations” (page 409) for details.
+catalogjanitor_en
+abled
+Returns the status of the catalog janitor background process.
+See “Server Operations” (page 409) for details.
+zk_dump Dumps the ZooKeeper details pertaining to HBase. This is a
+special function offered by an internal class. The web-based UI of
+the HBase Master exposes the same information.
+trace Starts or stops a trace, using the HTrace framework. See (to
+come) for details.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Command Description
+add_peer Adds a replication peer.
+remove_peer Removes a replication peer.
+enable_peer Enables a replication peer.
+disable_peer Disables a replication peer.
+list_peers List all previously added peers.
+list_replicated_tables Lists all tables and column families that have replication
+enabled on the current cluster.
+set_peer_tableCFs Sets specific column families that should be replicated to
+the given peer.
+append_peer_tableCFs Adds the given column families to the specified peer’s list of
+replicated column families.
+remove_peer_tableCFs Removes the given list of column families from the list of
+replicated families for the given peer.
+show_peer_tableCFs Lists the currently replicated column families for the given
+peer.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+grant Grant the named access rights to the given user.
+revoke Revoke the previously granted rights of a given user.
+user_permission Lists the current permissions of a user. The optional regular
+expression filters the list.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+add_labels Adds a list of visibility labels to the system.
+list_labels Lists all previously defined labels. An optional regular expression can
+be used to filter the list.
+set_auths Assigns the given list of labels to the provided user ID.
+get_auths Returns the list of assigned labels for the given user.
+clear_auths Removes all or only the specified list of labels from the named user.
+set_visibility Adds a visibility expression to one or more cell.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
