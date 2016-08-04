@@ -14,7 +14,12 @@
 https://cloud.r-project.org/bin/linux/ubuntu/trusty/r-base-core_3.3.1-1trusty0_amd64.deb
 ------------------------------------------------------------------------------------
 # build
+#spark 1.x
 > mvn clean install -e -DskipTests -Dspark.version=1.6.2 -Dhadoop.version=2.7.2 -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
+
+
+#spark 2.x 
+> mvn clean install -e -DskipTests -Dspark.version=2.0.0 -Dhadoop.version=2.7.2 -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
 ------------------------------------------------------------------------------------
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
