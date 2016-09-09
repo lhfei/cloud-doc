@@ -1,0 +1,38 @@
+useradd oracle -d /home/oracle -s /bin/bash
+
+>touch /etc/oraInst.loc
+# append it into oraInst.loc 
+inventory_loc=/usr/local/oraInventory
+inst_group=oinstall
+
+
+/usr/sbin/groupadd -g 54321 oinstall
+
+/usr/sbin/groupadd -g 54322 dba
+/usr/sbin/groupadd -g 54323 oper
+/usr/sbin/groupadd -g 54324 backupdba
+/usr/sbin/groupadd -g 54325 dgdba
+/usr/sbin/groupadd -g 54326 kmdba
+/usr/sbin/groupadd -g 54327 asmdba
+/usr/sbin/groupadd -g 54328 asmoper
+/usr/sbin/groupadd -g 54329 asmadmin
+
+
+/usr/sbin/useradd -u 54321 -g oinstall -G dba,asmdba,backupdba,dgdba,kmdba,sudo oracle
+
+# Orcl@Root$01
+passwd oracle
+
+
+
+export DISPLAY=master1.cloud.cn:0
+
+####
+$ORACLE_HOME/bin/sqlplus 
+
+
+sqlldr userid=C##JCLOUD/jcloud control=/home/bank.ldr log=loader.log
+
+
+
+commit WORK;

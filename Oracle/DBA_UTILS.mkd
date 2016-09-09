@@ -1,0 +1,74 @@
+## Display all Oracle schemas
+```
+```
+
+```
+SELECT DISTINCT
+  OWNER
+FROM
+  dba_segments
+WHERE OWNER IN
+  (SELECT
+    username
+  FROM
+    dba_users
+  WHERE default_tablespace NOT IN ('SYSTEM', 'SYSAUX'));
+```
+**or**
+```
+SELECT DISTINCT
+  OWNER
+FROM
+  dba_segments
+WHERE OWNER NOT IN (
+    'SYSTEM',
+    'XDB',
+    'SYS',
+    'TSMSYS',
+    'MDSYS',
+    'EXFSYS',
+    'WMSYS',
+    'ORDSYS',
+    'OUTLN',
+    'DBSNMP'
+  );
+```
+
+```
+```
+
+## [Displaying Schema Objects By Type](https://docs.oracle.com/cd/B28359_01/server.111/b28310/general010.htm)
+
+```
+SELECT OBJECT_NAME, OBJECT_TYPE 
+    FROM USER_OBJECTS;
+```
+
+```
+```
+
+## Show All Tables in
+```
+```
+
+```
+SELECT owner, table_name FROM dba_tables
+```
+
+**or**
+
+```
+SELECT owner, table_name FROM all_tables
+```
+
+**or**
+
+```
+SELECT table_name FROM user_tables
+```
+
+
+
+```
+```
+

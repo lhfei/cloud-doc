@@ -455,13 +455,34 @@ enabled=0
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 -------------------------------------------------------------------
+############################ Upgrade ##############################
+-------------------------------------------------------------------
+wget -nv http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.2.2.0/ambari.repo -O /etc/yum.repos.d/ambari.repo
+
+
+## add Grafana
+curl -u admin:admin -H "X-Requested-By:ambari" -i -X POST http://master1.cloud.com:8080/api/v1/clusters/CLOUD_MASTER/services/AMBARI_METRICS/components/METRICS_GRAFANA
+## remove Grafana
+curl -u admin:admin -H "X-Requested-By: ambari" -X DELETE  http://master1.cloud.com:8080/api/v1/clusters/CLOUD_MASTER/services/AMBARI_METRICS/components/METRICS_GRAFANA
+
+
+curl -u admin:admin -H "X-Requested-By:ambari" -i -X POST -d '{"host_components":[{"HostRoles":{"component_name":"METRICS_GRAFANA"}}]}' http://master1.cloud.com:8080/api/v1/clusters/CLOUD_MASTER/hosts?Hosts/host_name=master1.cloud.com
+-------------------------------------------------------------------
+Jira: https://issues.apache.org/jira/browse/AMBARI-11696
+## Unknown column 'suspended' in 'field list'
+ALTER TABLE `ambari_master`.`upgrade`   
+  ADD COLUMN `suspended` TINYINT(1) NULL AFTER `suspended`;
+-------------------------------------------------------------------
+##
+raise Fail("Configuration parameter '" + self.name + "' was not found in configurations dictionary!")
+resource_management.core.exceptions.Fail: Configuration parameter 'managed_hdfs_resource_property_names' was not found in configurations dictionary!
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 -------------------------------------------------------------------
--------------------------------------------------------------------
--------------------------------------------------------------------
--------------------------------------------------------------------
+VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
+
+sudo git clone https://github.com/hortonworks-gallery/ambari-zeppelin-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/ZEPPELIN
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 -------------------------------------------------------------------
