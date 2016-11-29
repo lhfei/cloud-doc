@@ -96,7 +96,7 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 03, 2016      |     v1.0.0  |
         --executor-memory 2g \
         --executor-cores 1 \
         --queue default \
-        examples/target/spark-examples*.jar \
+        examples/jars/spark-examples*.jar \
         10
     ```
 

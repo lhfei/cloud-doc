@@ -152,7 +152,14 @@ mvn clean package -DskipTests -Pspark-2.0 -Phadoop-2.7 -Pscala-2.10 -Ppyspark -P
 mvn clean -X -rf :zeppelin-spark-dependencies_2.10
 
 ------------------------------------------------------------------------------------
-mvn clean package install -X -Dhadoop.version=2.7.2 -Dspark.version=2.0.0 -Pspark-2.0.0 -Pscala-2.11 -Ppyspark -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
+mvn clean package install -e -Dhadoop.version=2.7.2 -Dspark.version=2.0.0 -Pspark-2.0.0 -Pscala-2.11 -Ppyspark -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
+
+
+
+# with CDH
+
+mvn clean package -Pspark-2.0 -Dhadoop.version=2.6.0-cdh5.7.0 -Phadoop-2.6 -Pvendor-repo -DskipTests -e
+------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 [DEBUG] -- end configuration --
 [INFO] ------------------------------------------------------------------------
@@ -299,7 +306,7 @@ Livy
 ------------------------------------------------------------------------------------
 mvn clean package -Pr -Ppyspark -Psparkr -DskipTests -X
 ------------------------------------------------------------------------------------
-mvn clean package install -X -Dhadoop.version=2.7.2 -Dspark.version=2.0.0 -Pspark-2.0 -Pscala-2.10 -Phadoop-2.7 -Ppyspark -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
+mvn clean package install -e -Dhadoop.version=2.7.2 -Dspark.version=2.0.0 -Pspark-2.0 -Pscala-2.11 -Phadoop-2.7 -Ppyspark -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
 ------------------------------------------------------------------------------------
 
 

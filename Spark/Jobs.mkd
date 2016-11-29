@@ -1,0 +1,68 @@
+#[Spark Jobs](https://github.com/lhfei/spark-in-action.git)
+
+``` 
+```
+Author    |    Email    |    Date     |    Since    |
+----------|-------------|-------------|-------------|
+Hefei Li  |lhfeilaile@gmail.com| Oct. 03, 2016      |     v1.0.0  |
+```
+```
+
+## Jobs
+
+- JavaWordCount
+
+    ```
+    ./bin/spark-submit \
+    --class org.apache.spark.examples.JavaWordCount \
+    --master local[2] \
+    /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar \
+    /spark-data/data.txt
+          
+    ```
+
+- Dataset & Dataframe 
+    ```
+    ./bin/spark-submit \
+    --class cn.lhfei.spark.df.DataframeApp \
+    --master local[1] \
+    /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+    ```
+    
+- Spa
+    ```
+    ./bin/spark-submit --class org.apache.spark.examples.sql.SparkSQLExample --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+    
+./bin/spark-submit --class cn.lhfei.spark.df.DataframePlay --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+
+./bin/spark-submit --class cn.lhfei.spark.streaming.VLongApp --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+
+
+./bin/spark-submit --class cn.lhfei.spark.df.streaming.VLogDriver --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+    
+./bin/spark-submit --class org.apache.spark.examples.streaming.HdfsWordCount --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar /spark-data/data.txt
+
+./bin/spark-submit --class org.apache.spark.examples.ml.LinearRegressionExample  --master local[1] --jars /home/lhfei/spark_jobs/*.jar  --regParam 0.15 --elasticNetParam 1.0 /spark-data/mllib/sample_linear_regression_data.txt 
+    
+    ```
+    
+
+```
+val rdd: RDD[Array[String]] = ???
+    val rows: RDD[Row] = rdd map {
+      case Array(callId, oCallId, callTime, duration, swId) =>
+        Row(callId.toLong, oCallId.toLong, callTime, duration.toLong, swId.toLong)
+    }
+
+    object schema {
+      val callId = StructField("callId", LongType)
+      val oCallId = StructField("oCallId", StringType)
+      val callTime = StructField("callTime", StringType)
+      val duration = StructField("duration", LongType)
+      val swId = StructField("swId", LongType)
+
+      val struct = StructType(Array(callId, oCallId, callTime, duration, swId))
+    }
+
+    sqlContext.createDataFrame(rows, schema.struct)
+```

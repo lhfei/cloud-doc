@@ -5,3 +5,16 @@ git.exe reset --mixed 5d9949647f798a822c4e296222d8c6cc5957cbd4
 
 
 git  reset --hard 11bb436c24305ddb151eb76cd1bb6dd2de41d315
+
+
+## checkout a tag
+git checkout -b {your_branch_name}  tags/{tag}
+
+## undo latest local commit
+git reset HEAD~
+
+## merge remote tag or branch into local
+git merge {tag|branch}
+
+## git create branch from another branch
+git checkout -b new_branch exist_branch
