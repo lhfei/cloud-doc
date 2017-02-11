@@ -177,6 +177,7 @@ Step 7: Updating MySQL with Yum
 >mysql
 >FLUSH PRIVILEGES;
 >SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Lhfei');
+>SET PASSWORD FOR 'root'@'%' = PASSWORD('Lhfei');
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
 

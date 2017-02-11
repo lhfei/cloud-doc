@@ -30,8 +30,8 @@ git checkout HEAD -- {file_local_path}
 >## checkout a tag
 
 ```sh
-git checkout -b {your_branch_name}  tags/{tag}
-git checkout tags/{tag} -b {your_branch_name}}
+git checkout -b [branchname] [tagname]:
+git checkout -b {your_branch_name} {tag}
 ```
 
 >## undo latest local commit

@@ -1,0 +1,18 @@
+
+
+```shell
+>mysqlbinlog --start-datetime="2005-04-20 10:01:00" \
+            --stop-datetime="2005-04-20 9:59:59" mysql_bin.000001 \
+            | mysql -u root -ppassword database_name
+
+# backup database `data_fun` to `data_fun_bak`			
+>mysqldbcopy --source=root:root123@localhost --destination=root:root123@localhost data_fun:data_fun_bak
+
+# revert `data_fun` 
+mysqlbinlog --start-datetime="2016-12-20 10:00:00" \
+            --stop-datetime="2016-12-26 9:59:59" mysql_bin.000001 \
+            | mysql -u root -proot123 data_fun
+			
+# show database size			
+mysql>SELECT table_schema "data_fun", sum( data_length + index_length) / 1024 / 1024 "Data Base Size in MB" FROM information_schema.TABLES GROUP BY table_schema ;
+```

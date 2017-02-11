@@ -23,7 +23,6 @@ Ubuntu自 带的FTP服务器是vsftpd.
 
     3 创建用户以及默认目录：
     useradd -d /export/exp_image/{user_root_path} -g ftp -s /sbin/nologin {user_name}
-    passwd {user_name}
 
 
 

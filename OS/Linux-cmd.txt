@@ -448,6 +448,19 @@ sudo iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
+# Unmanaged network icon - Network manangement disabled
+
+# 1.this happens after a bad shutdown. Just change managed 
+# 	from false to true in /etc/NetworkManager/nm-system-settings.conf
+
+# 2. vi /etc/NetworkManager/NetworkManager.conf
+
+# 3. vi /var/lib/NetworkManager/NetworkManager.state
+
+[main]
+NetworkingEnabled=true
+WirelessEnabled=true
+WWANEnabled=true
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
