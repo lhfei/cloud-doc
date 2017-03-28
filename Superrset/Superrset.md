@@ -46,3 +46,11 @@ superset runserver -p 8088
 yum install mysql-devel
 pip install mysqlclient
 ```
+
+
+> Restart & Stop
+
+```sh
+
+
+```

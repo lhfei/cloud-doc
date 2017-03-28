@@ -38,6 +38,8 @@ mvn -B -f /export/jenkins/workspace/JCLOUD-datafun/datafun-parent/pom.xml -s /ro
 
 --------------------------------------------------------------------------	
 
+# Resolving conflicts using the dependency tree
+mvn dependency:tree -Dverbose -Dincludes=commons-collections
 --------------------------------------------------------------------------
 # git merge
 

@@ -253,7 +253,7 @@ export ZEPPELIN_MEM="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,su
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 cd zeppelin-server
-HADOOP_HOME=/usr/local/cloud/hadoop-2.7.2 JAVA_HOME=/usr/local/cloud/java/jdk1.8.0_92 mvn exec:java -Dexec.mainClass="org.apache.zeppelin.server.ZeppelinServer" -Dexec.args=""
+HADOOP_HOME=/usr/local/cloud/hadoop-2.7.2 JAVA_HOME=/usr/local/cloud/java/jdk1.8.0_92 ZEPPELIN_PORT=8989 mvn exec:java -Dexec.mainClass="org.apache.zeppelin.server.ZeppelinServer" -Dexec.args=""
 ------------------------------------------------------------------------------------
 Downloading Node.js from http://nodejs.org/dist/v0.10.22/node-v0.10.22-linux-x64.tar.gz to /home/lhfei/app_workspaces/Zeppelin-With-R/zeppelin-web/node_tmp/node.tar.gz
 ------------------------------------------------------------------------------------

@@ -44,3 +44,14 @@ firewall-cmd --zone=public --add-port=8888/tcp --permanent
 systemctl restart firewalld.service
 ```
 
+# Bash Script
+
+```sh
+#!/bin/bash
+
+nohup ssserver -c /etc/shadowsocks.json > log&
+
+firewall-cmd --zone=public --add-port=8888/tcp --permanent
+systemctl restart firewalld.service
+```
+

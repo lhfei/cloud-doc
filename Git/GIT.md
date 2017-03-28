@@ -13,6 +13,16 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 27, 2016      |     v1.0.0  |
 ```sh
 git reset --hard {commit_id}
 git push origin {remote_branch_name}
+
+# git push --progress "origin" master:master
+```
+
+
+>## git create a release tag
+
+```sh
+git tag -a 1.0.0 -m "Release of version 1.0.0"
+git push --tags
 ```
 
 >## .gitattributes: file name too long
