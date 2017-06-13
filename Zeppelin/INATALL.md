@@ -121,10 +121,7 @@ mvn clean package -DskipTests [Option]
 ```
 
 ```sh
-mvn clean package -X -DskipTests -Dhadoop.version=2.7.2 -Dspark.version=2.11.8 -Pspark-2.11.8 -Pscala-2.10 -Ppyspark -Pr -Psparkr
-
-mvn clean package -X -DskipTests -Pspark-2.1 -Phadoop-2.7 -Pscala-2.11  -Pyarn -Ppyspark -Psparkr -Pr -Pvendor-repo -Pexamples
-
+$ mvn clean install -e -DskipTests -Dspark.version=2.1.0 -Dhadoop.version=2.7.3 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
 
 mvn clean package install -e -Dhadoop.version=2.7.2 -Dspark.version=2.0.0 -Pspark-2.0.0 -Pscala-2.11 -Ppyspark -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
 ```
@@ -892,7 +889,37 @@ http://[zeppelin-server]:[zeppelin-port]/api/notebook/job/[notebookId]/[paragrap
 	  </execution>
 ```
 
-zeppelin-web: Failed to run task: 'yarn install --no-lockfile' failed. (error code 1)
+
+# <div style="color:red">R Interpreter ............................ FAILURE</div>
+```sh
+-rwxr-xr-x 1 lhfei lhfei 1344 May 26 19:43 install-dev.sh*
+drwxr-xr-x 3 lhfei lhfei 4096 May 26 19:43 rzeppelin/
+lhfei@master1:~/app_workspaces/zeppelin/zeppelin-dev/r/R$ ./install-dev.sh 
++++ dirname ./install-dev.sh
+++ cd .
+++ pwd
++ FWDIR=/home/lhfei/app_workspaces/zeppelin/zeppelin-dev/r/R
++ LIB_DIR=/home/lhfei/app_workspaces/zeppelin/zeppelin-dev/r/R/../../R/lib
++ mkdir -p /home/lhfei/app_workspaces/zeppelin/zeppelin-dev/r/R/../../R/lib
++ pushd /home/lhfei/app_workspaces/zeppelin/zeppelin-dev/r/R
++ R CMD INSTALL --library=/home/lhfei/app_workspaces/zeppelin/zeppelin-dev/r/R/../../R/lib /home/lhfei/app_workspaces/zeppelin/zeppelin-dev/r/R/rzeppelin/
+ERROR: dependency ‘evaluate’ is not available for package ‘rzeppelin’
+* removing ‘/home/lhfei/app_workspaces/zeppelin/zeppelin-dev/R/lib/rzeppelin’
+
+```
+
+```sh
+R -e 'install.packages("evaluate")'
+```
+
+```sh
+java.lang.RuntimeException: Error in library("knitr"): there is no package called 'knitr'
+
+#
+$ R -e 'install.packages("knitr")'
+```
+
+
 
 
 

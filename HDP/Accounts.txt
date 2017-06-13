@@ -21,7 +21,7 @@ HDP Sandbox
 ------------------------------------------------------------------------------------
 FQDN:	sandbox.hortonworks.com
 ------------------------------------------------------------------------------------
-root	
+root/hadoop	
 
 rangeradmin			rangeradmin
 rangerlogger		rangerlogger

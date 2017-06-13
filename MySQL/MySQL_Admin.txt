@@ -14,7 +14,7 @@ oozie	Ifeng0*
 # Enable root access from remote machine:
 -------------------------------------------------------------------------------------
 # Grant privileges
->GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Ifeng@01' WITH GRANT OPTION;
+>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Lhfei' WITH GRANT OPTION;
 
 #Change mysql config
 >sudo vi /etc/mysql/my.cf
@@ -22,6 +22,10 @@ oozie	Ifeng0*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~#bind-address           = 127.0.0.1~
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Ubuntu 16.04
+>sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+
 # Restart MySQL service
 >sudo service mysql restart
 -------------------------------------------------------------------------------------

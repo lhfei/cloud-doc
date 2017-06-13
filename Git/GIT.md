@@ -14,6 +14,8 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 27, 2016      |     v1.0.0  |
 git reset --hard {commit_id}
 git push origin {remote_branch_name}
 
+git push origin -f
+
 # git push --progress "origin" master:master
 ```
 
@@ -72,4 +74,58 @@ git checkout {your_branch_name} -- {file_local_path}
 
 ```sh
 git diff --name-status 
+```
+
+>## push a new local branch to a remote repository
+```sh
+git push -u origin {local_branch_name}
+```
+
+> ##
+```sh
+git pull --progress -v --no-rebase "origin" master
+```
+
+> ##
+```sh
+git log -p --{file_name}
+```
+
+> ## Deleting remote branches in Git
+
+```sh
+git push origin --delete {remote_branch_name}
+```
+
+> ## Show Git reversion graphs
+
+```sh
+git log --graph --oneline --decorate --all
+
+git log --graph --abbrev-commit --decorate --date=relative --all
+```
+
+> ## 
+```sh
+git push --progress "origin" master:master
+```
+
+> ## Creating and Applying Patch Files in Git
+
+```sh
+## generate a patch file
+git format-patch origin -o {patchfile_name}
+
+
+## apply a patch file
+git am --3way --ignore-space-change --keep-cr "E:\0001-0.patch"
+```
+
+# Git delete branch 
+```sh
+# delete remote branch
+$ git push origin --delete <branch_name>
+
+# delete local branch
+$ git branch -d <branch_name>
 ```
