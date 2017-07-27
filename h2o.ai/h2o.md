@@ -36,3 +36,13 @@ pip install pip
 ./gradlew build --stacktrace --debug
 ```
 
+
+
+## FAQs
+
+> #### error: X11 not found but required, configure aborted.
+
+```
+# install requires for `rgl` package 
+sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev libx11-dev
+```
