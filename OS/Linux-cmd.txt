@@ -183,7 +183,7 @@ ps -auxf | sort -nr -k 4 | head -10
 # Enable root SSH login 
 >vi /etc/ssh/sshd_config
 	#comments this line
-	PermitRootLogin prohibit-passwor
+	PermitRootLogin prohibit-password
 
 	#and commend out the following line
 	PermitRootLogin without-password
@@ -487,9 +487,10 @@ WWANEnabled=true
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
-# Ubuntu install .deb file
+# Ubuntu install/uninstall .deb file
 
 >dpkg -i {file_name}.deb
+>dpkg --remove {file_name}.deb
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
