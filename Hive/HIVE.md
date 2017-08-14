@@ -1,5 +1,7 @@
 ```
 schematool -dbType mysql -userName hive -passWord hive -initSchema
+schematool -dbType mysql -initSchema
+ 
 hive --service metastore 
 ```
 

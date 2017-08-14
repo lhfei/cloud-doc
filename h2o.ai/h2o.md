@@ -10,7 +10,6 @@
 
 ```sh
 sudo apt-get install libcurl4-openssl-dev libxml2-dev
-
 ```
 
 ```sh
