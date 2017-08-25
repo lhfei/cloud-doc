@@ -91,10 +91,24 @@ git pull --progress -v --no-rebase "origin" master
 git log -p --{file_name}
 ```
 
-> ## Deleting remote branches in Git
+> ## Deleting remote and local branches in Git
+```sh
+# delete remote branch
+$ git push origin --delete {remote_branch_name}
+
+# delete local branch
+$ git branch -d <branch_name>
+```
+
+> ## Deleting remote and local tag in Git
 
 ```sh
-git push origin --delete {remote_branch_name}
+# delete remote tag
+git push --delete origin {remote_tag_name}
+
+# delete local tag
+
+git tag --delete {local_tag_name}
 ```
 
 > ## Show Git reversion graphs
@@ -121,11 +135,3 @@ git format-patch origin -o {patchfile_name}
 git am --3way --ignore-space-change --keep-cr "E:\0001-0.patch"
 ```
 
-# Git delete branch 
-```sh
-# delete remote branch
-$ git push origin --delete <branch_name>
-
-# delete local branch
-$ git branch -d <branch_name>
-```
