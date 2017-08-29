@@ -1,4 +1,44 @@
-How to Build Binary Package
+## Environment on the dev machine
+
+#### Install Maven
+
+The latest maven can be found at http://maven.apache.org/download.cgi, we create a symbolic so that mvn can be run anywhere.
+
+```sh
+cd ~
+wget http://xenia.sote.hu/ftp/mirrors/www.apache.org/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
+tar -xzvf apache-maven-3.2.5-bin.tar.gz
+ln -s /root/apache-maven-3.2.5/bin/mvn /usr/bin/mvn
+```
+
+#### Install Spark
+
+Manually install spark-1.6.3-bin-hadoop2.6 in a local folder like /usr/local/spark
+
+```sh
+wget -O /tmp/spark-1.6.3-bin-hadoop2.6.tgz http://d3kbcqa49mib13.cloudfront.net/spark-1.6.3-bin-hadoop2.6.tgz
+cd /usr/local
+tar -zxvf /tmp/spark-1.6.3-bin-hadoop2.6.tgz
+ln -s spark-1.6.3-bin-hadoop2.6 spark
+```
+
+Upload the spark-assembly jar to HDFS as /kylin/spark/spark-assembly-1.6.3-hadoop2.6.0.jar (avoid repeatedly uploading the jar to HDFS):
+
+```sh
+hadoop fs -mkdir /kylin/spark/
+hadoop fs -put /usr/local/spark/lib/spark-assembly-1.6.3-hadoop2.6.0.jar /kylin/spark/
+```
+
+Create local temp folder for hbase client (if it doesn¡¯t exist):
+
+```sh
+mkdir -p /hadoop/hbase/local/jars
+chmod 777 /hadoop/hbase/local/jars
+```
+
+
+## How to Build Binary Package
+
 Generate Binary Package
 
 This document talks about how to build binary package from source code.
@@ -43,37 +83,51 @@ build/script/package.sh
 
 First clone the Kylin project to your local:
 
+```sh
 git clone https://github.com/apache/kylin.git
+```
+
 Install Kylin artifacts to the maven repo
 
+```sh
 mvn clean install -DskipTests
-Modify local configuration
+```
+
+#### Modify local configuration
 
 Local configuration must be modified to point to your hadoop sandbox (or CLI) machine.
 
-In examples/test_case_data/sandbox/kylin.properties
-Find sandbox and replace with your hadoop hosts (if you¡¯re using HDP sandbox, this can be skipped)
-Find kylin.job.run.as.remote.cmd and change it to ¡°true¡± (in code repository the default is false, which assume running it on hadoop CLI)
-Find kylin.job.remote.cli.username and kylin.job.remote.cli.password, fill in the user name and password used to login hadoop cluster for hadoop command execution; If you¡¯re using HDP sandbox, the default username is root and password is hadoop.
-In examples/test_case_data/sandbox
-For each configuration xml file, find all occurrences of sandbox and sandbox.hortonworks.com, replace with your hadoop hosts; (if you¡¯re using HDP sandbox, this can be skipped)
++ In examples/test_case_data/sandbox/kylin.properties
+
+    - Find sandbox and replace with your hadoop hosts (if you¡¯re using HDP sandbox, this can be skipped)
+    - Find kylin.job.run.as.remote.cmd and change it to ¡°true¡± (in code repository the default is false, which assume running it on hadoop CLI)
+    - Find kylin.job.remote.cli.username and kylin.job.remote.cli.password, fill in the user name and password used to login hadoop cluster for hadoop command execution; If you¡¯re using HDP sandbox, the default username is root and password is hadoop.
+
++ In examples/test_case_data/sandbox
+    _ For each configuration xml file, find all occurrences of sandbox and sandbox.hortonworks.com, replace with your hadoop hosts; (if you¡¯re using HDP sandbox, this can be skipped)
+
 An alternative to the host replacement is updating your hosts file to resolve sandbox and sandbox.hortonworks.com to the IP of your sandbox machine.
 
-Run unit tests
+#### Run unit tests
 
 Run unit tests to validate basic function of each classes.
 
+```sh
 mvn test -fae -Dhdp.version=<hdp-version> -P sandbox
+```
 Run integration tests
 
 Before actually running integration tests, need to run some end-to-end cube building jobs for test data population, in the meantime validating cubing process. Then comes with the integration tests.
 
 It might take a while (maybe one hour), please keep patient.
 
+```sh
 mvn verify -fae -Dhdp.version=<hdp-version> -P sandbox
+```
+
 To learn more about test, please refer to How to test.
 
-Launch Kylin Web Server locally
+##### Launch Kylin Web Server locally
 
 Copy server/src/main/webapp/WEB-INF to webapp/app/WEB-INF
 
