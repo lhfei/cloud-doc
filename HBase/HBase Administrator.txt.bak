@@ -11,8 +11,6 @@ export JAVA_HOME=/usr/local/java/jdk1.8.0_40
 export HBASE_CLASSPATH=/usr/local/hadoop/hadoop-2.6.0/etc/hadoop #Hadoop configuration directory
 export HBASE_OPTS="-ea -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode"
 export HBASE_MANAGES_ZK=true
-
-export HBASE_PID_DIR=/home/lhfei/app_data/hbase
 -------------------------------------------------------------------------------------
 # Edit conf/hbase-site.xml
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
