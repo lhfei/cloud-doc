@@ -93,6 +93,44 @@ Install Kylin artifacts to the maven repo
 mvn clean install -DskipTests
 ```
 
+Then, the build log as below:
+
+```sh
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] Apache Kylin ....................................... SUCCESS [ 19.460 s]
+[INFO] Apache Kylin - Calcite Overrides ................... SUCCESS [03:49 min]
+[INFO] Apache Kylin - Core Common ......................... SUCCESS [ 16.586 s]
+[INFO] Apache Kylin - Core Metadata ....................... SUCCESS [ 19.114 s]
+[INFO] Apache Kylin - Core Dictionary ..................... SUCCESS [ 13.601 s]
+[INFO] Apache Kylin - Core Cube ........................... SUCCESS [ 16.068 s]
+[INFO] Apache Kylin - Core Job ............................ SUCCESS [ 11.284 s]
+[INFO] Apache Kylin - Core Storage ........................ SUCCESS [ 12.022 s]
+[INFO] Apache Kylin - MapReduce Engine .................... SUCCESS [ 16.338 s]
+[INFO] Apache Kylin - HBase Storage ....................... SUCCESS [ 22.409 s]
+[INFO] Apache Kylin - Spark Engine ........................ SUCCESS [ 17.627 s]
+[INFO] Apache Kylin - Hive Source ......................... SUCCESS [ 14.104 s]
+[INFO] Apache Kylin - Kafka Source ........................ SUCCESS [01:08 min]
+[INFO] Apache Kylin - Query ............................... SUCCESS [ 40.502 s]
+[INFO] Apache Kylin - REST Server Base .................... SUCCESS [ 47.869 s]
+[INFO] Apache Kylin - REST Server ......................... SUCCESS [ 20.877 s]
+[INFO] Apache Kylin - JDBC Driver ......................... SUCCESS [ 13.736 s]
+[INFO] Apache Kylin - Assembly ............................ SUCCESS [ 20.037 s]
+[INFO] Apache Kylin - Tool ................................ SUCCESS [ 20.447 s]
+[INFO] Apache Kylin - Tool Assembly ....................... SUCCESS [ 10.437 s]
+[INFO] Apache Kylin - Integration Test .................... SUCCESS [ 19.562 s]
+[INFO] Apache Kylin - Tomcat Extension .................... SUCCESS [  7.852 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 11:18 min
+[INFO] Finished at: 2017-08-28T20:17:21-07:00
+[INFO] Final Memory: 74M/234M
+[INFO] ------------------------------------------------------------------------
+
+```
+
 #### Modify local configuration
 
 Local configuration must be modified to point to your hadoop sandbox (or CLI) machine.
@@ -131,12 +169,17 @@ To learn more about test, please refer to How to test.
 
 Copy server/src/main/webapp/WEB-INF to webapp/app/WEB-INF
 
+```sh
 cp -r server/src/main/webapp/WEB-INF webapp/app/WEB-INF
+```
 Download JS for Kylin web GUI. npm is part of Node.js, please search about how to install it on your OS.
 
+```sh
 cd webapp
 npm install -g bower
 bower --allow-root install
+```
+
 In IDE, launch org.apache.kylin.rest.DebugTomcat with working directory set to the /server folder. (By default Kylin server will listen on 7070 port; If you want to use another port, please specify it as a parameter when run `DebugTomcat)
 
 Check Kylin Web at http://localhost:7070/kylin (user:ADMIN, password:KYLIN)
