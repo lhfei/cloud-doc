@@ -35,6 +35,13 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.17.1/minik
 
 ```
 
+Verfify Minikube Version:
+
+```sh
+$minikube version
+minikube version: v0.22.1
+```
+
 
 ```sh
 lhfei@master1:~$ minikube start
