@@ -108,6 +108,8 @@ Machine stopped.
 E0407 03:34:56.242444     587 start.go:119] Error starting host:  Error creating host: Error with pre-create check: "This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory"
 ```
 
+<image src="images/VT-X_AMD-v.png" style="width: 1024" />
+
 
 
 #### Install kubectl Binary Via curl
