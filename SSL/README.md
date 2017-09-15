@@ -112,19 +112,19 @@ $ keytool -genkey -alias server-alias -keyalg RSA -keypass changeit -storepass c
 *The command will ask for the following details:*
 ```
 What is your first and last name?
-[Unknown]:  Hefei Li
+  [Unknown]:  Hefei Li
 What is the name of your organizational unit?
-[Unknown]:  JD
+  [Unknown]:  JD
 What is the name of your organization?
-[Unknown]:  JD
+  [Unknown]:  JD
 What is the name of your City or Locality?
-[Unknown]:  BJ
+  [Unknown]:  BJ
 What is the name of your State or Province?
-[Unknown]:  BJ
+  [Unknown]:  BJ
 What is the two-letter country code for this unit?
-[Unknown]:  CN
+  [Unknown]:  CN
 Is CN=Hefei Li, OU=JD, O=JD, L=BJ, ST=BJ, C=CN correct?
-[no]:  YES
+  [no]:  yes
 ```
 
 
