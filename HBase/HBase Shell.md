@@ -233,3 +233,147 @@ row1 column = personal:name, timestamp = 1418193806767, value = raju
 
 1 row(s) in 0.0830 seconds
 ```
+
+
+> ### Listing Table
+
+Listing a Table using HBase Shell
+list is the command that is used to list all the tables in HBase. Given below is the syntax of the list command.
+
+```sh
+hbase(main):001:0 > list
+When you type this command and execute in HBase prompt, it will display the list of all the tables in HBase as shown below.
+```
+
+```sh
+hbase(main):001:0> list
+TABLE
+emp
+```
+
+Here you can observe a table named emp.
+
+
+> ### Read Data
+
+Reading Data using HBase Shell
+The get command and the get() method of HTable class are used to read data from a table in HBase. Using get command, you can get a single row of data at a time. Its syntax is as follows:
+
+```sh
+get ¡¯<table name>¡¯,¡¯row1¡¯
+Example
+```
+
+The following example shows how to use the get command. Let us scan the first row of the emp table.
+
+```sh
+hbase(main):012:0> get 'emp', '1'
+
+   COLUMN                     CELL
+   
+personal : city timestamp = 1417521848375, value = hyderabad
+
+personal : name timestamp = 1417521785385, value = ramu
+
+professional: designation timestamp = 1417521885277, value = manager
+
+professional: salary timestamp = 1417521903862, value = 50000
+
+4 row(s) in 0.0270 seconds
+```
+
+
+#### Reading a Specific Column
+
+Given below is the syntax to read a specific column using the get method.
+
+```sh
+hbase> get 'table name', ¡®rowid¡¯, {COLUMN ? ¡®column family:column name ¡¯}
+```
+
+#### Example
+
+Given below is the example to read a specific column in HBase table.
+
+```sh
+hbase(main):015:0> get 'emp', 'row1', {COLUMN ? 'personal:name'}
+  COLUMN                CELL  
+personal:name timestamp = 1418035791555, value = raju
+1 row(s) in 0.0080 seconds
+```
+
+
+> ### Count & Truncate
+
+#### count
+
+You can count the number of rows of a table using the count command. Its syntax is as follows:
+
+```sh
+count ¡®<table name>¡¯ 
+```
+
+After deleting the first row, emp table will have two rows. Verify it as shown below.
+
+```sh
+hbase(main):023:0> count 'emp'
+2 row(s) in 0.090 seconds
+? 2 
+```
+
+#### truncate
+
+This command disables drops and recreates a table. The syntax of truncate is as follows:
+
+```sh
+hbase> truncate 'table name'
+Example
+```
+
+Given below is the example of truncate command. Here we have truncated the emp table.
+
+```sh
+hbase(main):011:0> truncate 'emp'
+Truncating 'one' table (it may take a while):
+   - Disabling table...
+   - Truncating table...
+   0 row(s) in 1.5950 seconds
+```
+
+After truncating the table, use the scan command to verify. You will get a table with zero rows.
+
+```sh
+hbase(main):017:0> scan ¡®emp¡¯
+ROW                  COLUMN + CELL
+0 row(s) in 0.3110 seconds
+```
+
+> ### Scan
+
+#### Scaning using HBase Shell
+
+The scan command is used to view the data in HTable. Using the scan command, you can get the table data. Its syntax is as follows:
+
+```sh
+scan ¡®<table name>¡¯ 
+```
+
+#### Example
+
+The following example shows how to read data from a table using the scan command. Here we are reading the emp table.
+
+```sh
+hbase(main):010:0> scan 'emp'
+
+ROW                           COLUMN + CELL
+
+1 column = personal data:city, timestamp = 1417521848375, value = hyderabad
+ 
+1 column = personal data:name, timestamp = 1417521785385, value = ramu
+
+1 column = professional data:designation, timestamp = 1417585277,value = manager
+
+1 column = professional data:salary, timestamp = 1417521903862, value = 50000
+
+1 row(s) in 0.0370 seconds
+```

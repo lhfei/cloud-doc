@@ -31,7 +31,7 @@ sudo apt-get install virtualbox
 
 ```sh
 
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.17.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 
 ```
 
@@ -44,7 +44,7 @@ minikube version: v0.22.1
 
 
 ```sh
-lhfei@master1:~$ minikube start
+lhfei@master1:~$ minikube start --v=999
 There is a newer version of minikube available (v0.18.0).  Download it here:
 https://github.com/kubernetes/minikube/releases/tag/v0.18.0
 
