@@ -2,7 +2,7 @@ CAS
 ===
 
 
-## Generate Keystore
+### Generate Keystore
 
 ```sh
 $ ./keytool -genkey -alias thekeystore -keyalg RSA -keypass changeit -storepass changeit -keystore thekeystore.jks
@@ -24,30 +24,45 @@ Is CN=cas.example.org, OU=Example, O=Org, L=BJ, ST=BJ, C=US correct?
   [no]:  yes
 ```
 
-Export 
+### Export keystore
 
 ```sh
 $ keytool -export -alias thekeystore -storepass changeit -file thekeystore.cer -keystore thekeystore.jks
 ```
 
-Copy the `thekeystore.jks` file into ```/etc/cas/```
+### Copy the `thekeystore.jks` file into ```/etc/cas/```
 
 ```sh
 cp thekeystore.jks /etc/cas/thekeystore
 ```
 
-Verify the Kyestore
+### Verify the Kyestore(Optional)
 
 ```
 $ keytool -list -v -keystore thekeystore.jks -storepass changeit
 ```
 
-Import
+### Import
 
 ```
 keytool -import -v -trustcacerts \
 -alias keyAlias                  \
  -file cas.cer                \
--keystore cacerts.jks            \
+-keystore thekeystore.jks            \
  -keypass changeit
 ```
+
+### Enable SSL in TOmcat
+
+```xml
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" maxThreads="150" SSLEnabled="true">
+  <SSLHostConfig>
+    <Certificate certificateKeystoreFile="/export/App/jdk1.8.0_60/bin/thekeystore.jks" 
+        type="RSA" keystorePass="changeit" />
+  </SSLHostConfig>
+</Connector>
+```
+
+>#### Default User
+
+```casuser``` / ```Mellon```
