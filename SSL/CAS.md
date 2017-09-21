@@ -27,7 +27,7 @@ Is CN=cas.example.org, OU=Example, O=Org, L=BJ, ST=BJ, C=US correct?
 ### Export keystore
 
 ```sh
-$ keytool -export -alias thekeystore -storepass changeit -file thekeystore.cer -keystore thekeystore.jks
+$ keytool -export -alias thekeystore -keystore thekeystore.jks -storepass changeit -file thekeystore.cer
 ```
 
 ### Copy the `thekeystore.jks` file into ```/etc/cas/```
@@ -50,6 +50,10 @@ keytool -import -v -trustcacerts \
  -file cas.cer                \
 -keystore thekeystore.jks            \
  -keypass changeit
+```
+
+```
+keytool.exe -import -v -trustcacerts -alias thekeystore -keystore ..\jre\lib\security\cacerts -file thekeystore.cer  -keypass changeit
 ```
 
 ### Enable SSL in TOmcat
