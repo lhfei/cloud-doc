@@ -48,6 +48,6 @@ Import
 keytool -import -v -trustcacerts \
 -alias keyAlias                  \
  -file cas.cer                \
--keystore cacerts.jks            \
+-keystore ../jre/lib/security/cacerts \
  -keypass changeit
 ```

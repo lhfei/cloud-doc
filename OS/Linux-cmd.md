@@ -613,3 +613,12 @@ Listening the network cart by name.
 $ sudo iftop -i eth0
 ```
 
+## Get PID by process name
+
+```
+$ echo `ps axf | grep <process name> | grep -v grep | awk '{print $1}'`
+
+# if you want kill the process by process name
+$ ps axf | grep <process name> | grep -v grep | awk '{print "kill -9 " $1}'
+```
+
