@@ -1,4 +1,4 @@
-## Rempte SCP 
+## Remote SCP 
 
 ```sh
 # scp : remote copy file
