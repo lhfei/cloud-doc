@@ -17,3 +17,5 @@ git checkout master
 ```
 
 ## [Generate Keystore](INSTALL.md)
+
+## [FAQs](FAQs.md)
