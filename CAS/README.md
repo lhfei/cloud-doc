@@ -16,4 +16,4 @@ git checkout master
 ./gradlew build install --parallel -x test -x javadoc -x check
 ```
 
-## [Generate Keystore]("INSTALL.md")
+## [Generate Keystore](INSTALL.md)
