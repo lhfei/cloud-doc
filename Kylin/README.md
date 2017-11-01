@@ -7,6 +7,6 @@
 
 [Build Source Code](BUILD.md)
 
-[Remote debugging](REMOTE-DEBUT.md)
+[Remote debugging](REMOTE-DEBUG.md)
 
 [FAQS](UPGRADE.md)

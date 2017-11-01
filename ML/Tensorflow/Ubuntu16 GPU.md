@@ -190,11 +190,15 @@ Follow us: @GPUComputing on Twitter | NVIDIA on Facebook
 
 ># 3. Package Manager Installation
 
+Download [CUDA ToolKit](https://developer.nvidia.com/cuda-80-ga2-download-archive) from here.
+
 ```
 Installation Instructions:
-`sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb`
-`sudo apt-get update`
-`sudo apt-get install cuda`
+
+sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub
+sudo apt-get update`
+sudo apt-get install cuda
 ```
 
 
@@ -243,6 +247,7 @@ Other actions are recommended to verify the integrity of the installation.
 In order to modify, compile, and run the samples, the samples must be installed with write permissions. A convenience installation script is provided:
 
 ```
+$ cd /usr/local/cuda-{version}/bin
 $ cuda-install-samples-8.0.sh /export/local/cuda-0.8
 ```
 
@@ -519,10 +524,25 @@ https://medium.com/@ikekramer/installing-cuda-8-0-and-cudnn-5-1-on-ubuntu-16-04-
 sudo mv /usr/lib/nvidia-375/libEGL.so.1 /usr/lib/nvidia-375/libEGL.so.1.org
 sudo mv /usr/lib32/nvidia-375/libEGL.so.1 /usr/lib32/nvidia-375/libEGL.so.1.org
 sudo ln -s /usr/lib/nvidia-375/libEGL.so.375.39 /usr/lib/nvidia-375/libEGL.so.1
-sudo ln -s /usr/lib32/nvidia-375/libEGL.so.375.39 /usr/lib32/nvidia-375/libEGL.so.
+sudo ln -s /usr/lib32/nvidia-375/libEGL.so.375.39 /usr/lib32/nvidia-375/libEGL.so.1
 ```
 
+- ImportError: libcublas.so.8.0: cannot open shared object file: No such file or directory
 
+
+- E:
+
+```
+cd /etc/apt/
+
+touch cuda-9-0-local.list
+# append the content to it as below
+  
+  ---------------------------------------
+  deb file:///var/cuda-repo-9-0-local /
+  ---------------------------------------
+
+```
 
 
 

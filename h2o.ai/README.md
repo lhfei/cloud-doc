@@ -32,9 +32,16 @@ pip install pip
 ## Build
 
 ```sh
-./gradlew build --stacktrace --debug
+./gradlew build -x test --stacktrace --debug 
 ```
 
+
+## SmallData
+
+```
+./gradlew syncSmalldata
+./gradlew syncRPackages
+```
 
 
 ## FAQs
