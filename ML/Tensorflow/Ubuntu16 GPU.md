@@ -201,6 +201,73 @@ sudo apt-get update`
 sudo apt-get install cuda
 ```
 
+># 4. Runfile Installation
+
+```
+sudo sh cuda_<version>_linux.run
+
+You may allow your Enterprise employees and Contractors to
+access and use the Licensed Software pursuant to the terms of
+the AGREEMENT solely to perform work on your behalf, provided
+further that with respect to Contractors: (i) you obtain a
+written agreement from each Contractor which contains terms
+Do you accept the previously read EULA?
+accept/decline/quit: accept
+
+Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 384.81?
+(y)es/(n)o/(q)uit: y
+
+Do you want to install the OpenGL libraries?
+(y)es/(n)o/(q)uit [ default is yes ]: y
+
+Do you want to run nvidia-xconfig?
+This will update the system X configuration file so that the NVIDIA X driver
+is used. The pre-existing X configuration file will be backed up.
+This option should not be used on systems that require a custom
+X configuration, such as systems with multiple GPU vendors.
+(y)es/(n)o/(q)uit [ default is no ]: y
+
+Install the CUDA 9.0 Toolkit?
+(y)es/(n)o/(q)uit: y
+
+Enter Toolkit Location
+ [ default is /usr/local/cuda-9.0 ]: 
+
+Do you want to install a symbolic link at /usr/local/cuda?
+(y)es/(n)o/(q)uit: y
+
+Install the CUDA 9.0 Samples?
+(y)es/(n)o/(q)uit: y
+
+Enter CUDA Samples Location
+ [ default is /root ]: /export/cuda-samples
+
+Installing the NVIDIA display driver...
+Installing the CUDA Toolkit in /usr/local/cuda-9.0 ...
+Installing the CUDA Samples in /export/cuda-samples ...
+Copying samples to /export/cuda-samples/NVIDIA_CUDA-9.0_Samples now...
+Finished copying samples.
+
+===========
+= Summary =
+===========
+
+Driver:   Installed
+Toolkit:  Installed in /usr/local/cuda-9.0
+Samples:  Installed in /export/cuda-samples
+
+Please make sure that
+ -   PATH includes /usr/local/cuda-9.0/bin
+ -   LD_LIBRARY_PATH includes /usr/local/cuda-9.0/lib64, or, add /usr/local/cuda-9.0/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run the uninstall script in /usr/local/cuda-9.0/bin
+To uninstall the NVIDIA Driver, run nvidia-uninstall
+
+Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-9.0/doc/pdf for detailed information on setting up CUDA.
+
+Logfile is /tmp/cuda_install_3790.log
+
+```
 
 
 
@@ -529,8 +596,12 @@ sudo ln -s /usr/lib32/nvidia-375/libEGL.so.375.39 /usr/lib32/nvidia-375/libEGL.s
 
 - ImportError: libcublas.so.8.0: cannot open shared object file: No such file or directory
 
+```
+sudo sh -c "echo '/usr/local/cuda-9.0/lib64\n/usr/local/cuda-9.0/lib' >> /etc/ld.so.conf.d/nvidia.conf"
+```
 
-- E:
+
+- cuda E: Unable to locate package cuda
 
 ```
 cd /etc/apt/

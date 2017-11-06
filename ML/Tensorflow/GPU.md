@@ -1,6 +1,12 @@
 
 > CUDA
 
+## Remove CUDA
+```
+sudo apt-get --purge remove cuda
+sudo apt autoremove
+```
+
 ```
 $nvidia-smi
 ```
