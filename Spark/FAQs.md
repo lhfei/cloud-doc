@@ -33,6 +33,7 @@ org.apache.hadoop.hive.ql.metadata.HiveException: java.lang.RuntimeException: Un
 ...
 
 
+
 ```
 Caused by: MetaException(message:Could not connect to meta store using any of the URIs provided. Most recent failure: org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)
         at org.apache.thrift.transport.TSocket.open(TSocket.java:226)

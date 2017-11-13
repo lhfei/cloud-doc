@@ -3,8 +3,12 @@ hello = tf.constant('Hello, TensorFlow!')
 sess = tf.Session()
 print(sess.run(hello))
 
+### Nvidia Drivers
+
+http://www.nvidia.com/Download/index.aspx?lang=en-us
 
 
+### CUDA tool kit
 https://developer.download.nvidia.com/compute/cuda/8.0/Prod/docs/sidebar/md5sum.txt
 
 https://developer.nvidia.com/cuda-toolkit-archive
