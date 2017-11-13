@@ -1,9 +1,4 @@
-PredictionIO Examples
-=====================
-
-## 1. Recommendation Engine Template
-
-
+# Recommendation Engine Template
 
 #### Create a new Engine from an Engine Template
 
