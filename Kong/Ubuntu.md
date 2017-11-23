@@ -1,5 +1,31 @@
 # Ubuntu Installation
 
+### Packages
+
+Start by downloading the corresponding package for your configuration:
+
+- [12.04 Precise](https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.11.1.precise.all.deb)
+
+-  
+
+- [14.04 Trusty](https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.11.1.trusty.all.deb)
+
+-  
+
+- [16.04 Xenial](https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.11.1.xenial.all.deb)
+
+-  
+
+- [17.04 Zesty](https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.11.1.zesty.all.deb)
+
+### APT Repositories
+
+You can also install Kong via APT; follow the instructions on the "Set Me Up" section on the page below, setting *distribution* to the appropriate value (e.g., `precise`) and *components* to `main`.
+
+- [Deb Repository](https://bintray.com/kong/kong-community-edition-deb)
+
+### Installation
+
 1. **Install Kong**
 
    If you are downloading the [package](https://getkong.org/install/ubuntu/?_ga=2.69038098.283227297.1511332409-1638295637.1511332409#packages), execute:

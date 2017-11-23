@@ -1,4 +1,5 @@
 ```
+
 ```
 # Quick Start
 - [Installation](#Installation)
@@ -122,8 +123,6 @@ mvn clean package -DskipTests [Option]
 
 ```sh
 $ mvn clean install -e -DskipTests -Dspark.version=2.1.1 -Dhadoop.version=2.7.3 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
-
-mvn clean package install -e -Dhadoop.version=2.7.3 -Dspark.version=2.1.1  -Pscala-2.11 -Ppyspark -Pr -Psparkr -Pvendor-repo -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
 ```
 
 ```sh
@@ -166,6 +165,47 @@ mvn clean package install -e -Dhadoop.version=2.7.3 -Dspark.version=2.1.1  -Psca
 [INFO] Final Memory: 245M/711M
 [INFO] ------------------------------------------------------------------------
 
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] Zeppelin ........................................... SUCCESS [ 20.393 s]
+[INFO] Zeppelin: Interpreter .............................. SUCCESS [ 29.429 s]
+[INFO] Zeppelin: Zengine .................................. SUCCESS [ 27.048 s]
+[INFO] Zeppelin: Display system apis ...................... SUCCESS [ 37.812 s]
+[INFO] Zeppelin: Spark dependencies ....................... SUCCESS [01:56 min]
+[INFO] Zeppelin: Spark .................................... SUCCESS [ 58.233 s]
+[INFO] Zeppelin: Markdown interpreter ..................... SUCCESS [  2.972 s]
+[INFO] Zeppelin: Angular interpreter ...................... SUCCESS [  2.164 s]
+[INFO] Zeppelin: Shell interpreter ........................ SUCCESS [  2.044 s]
+[INFO] Zeppelin: Livy interpreter ......................... SUCCESS [ 18.513 s]
+[INFO] Zeppelin: HBase interpreter ........................ SUCCESS [ 16.111 s]
+[INFO] Zeppelin: Apache Pig Interpreter ................... SUCCESS [ 16.541 s]
+[INFO] Zeppelin: PostgreSQL interpreter ................... SUCCESS [  2.165 s]
+[INFO] Zeppelin: JDBC interpreter ......................... SUCCESS [  3.365 s]
+[INFO] Zeppelin: File System Interpreters ................. SUCCESS [  5.123 s]
+[INFO] Zeppelin: Flink .................................... SUCCESS [ 22.826 s]
+[INFO] Zeppelin: Apache Ignite interpreter ................ SUCCESS [  3.008 s]
+[INFO] Zeppelin: Kylin interpreter ........................ SUCCESS [  2.349 s]
+[INFO] Zeppelin: Python interpreter ....................... SUCCESS [ 10.614 s]
+[INFO] Zeppelin: Lens interpreter ......................... SUCCESS [ 14.092 s]
+[INFO] Zeppelin: Apache Cassandra interpreter ............. SUCCESS [02:06 min]
+[INFO] Zeppelin: Elasticsearch interpreter ................ SUCCESS [  9.954 s]
+[INFO] Zeppelin: BigQuery interpreter ..................... SUCCESS [  3.227 s]
+[INFO] Zeppelin: Alluxio interpreter ...................... SUCCESS [  8.751 s]
+[INFO] Zeppelin: Scio ..................................... SUCCESS [01:50 min]
+[INFO] Zeppelin: web Application .......................... SUCCESS [07:52 min]
+[INFO] Zeppelin: Server ................................... SUCCESS [ 44.715 s]
+[INFO] Zeppelin: Packaging distribution ................... SUCCESS [ 18.907 s]
+[INFO] Zeppelin: R Interpreter ............................ SUCCESS [01:02 min]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 21:10 min
+[INFO] Finished at: 2017-11-20T17:36:54-08:00
+[INFO] Final Memory: 256M/775M
+[INFO] ------------------------------------------------------------------------
 ```
 
 If you're unsure about the options, use the same commands that creates official binary package.
@@ -322,6 +362,7 @@ mvn clean package -Pscalding -DskipTests
 
 
 ```
+
 ```
 
 ## Build requirements
@@ -445,6 +486,7 @@ mvn verify -P using-packaged-distr
 
 
 ```
+
 ```
 # Contributing to Apache Zeppelin ( Code )
 
@@ -585,6 +627,7 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 ```
+
 ```
 # Build
 ## spark 1.x
@@ -838,6 +881,7 @@ SPARK_HOME=/usr/local/cloud/spark-2.0.0-bin-hadoop2.7 HADOOP_HOME=/usr/local/clo
 ```
 
 ```
+
 ```
 >## REST API
 
