@@ -50,7 +50,7 @@
 ```
 
 ## mkdir multi direcotry:
-	
+
 ```
 # mkdir java/jdk8
 >$ mkdir -p java/jdk8
@@ -186,7 +186,7 @@ for i in G M K; do du -ah | grep [0-9]$i | sort -nr -k 1; done | head -n 11
     ```sh
     >egrep --color 'Mem|Cache|Swap' /proc/meminfo
     ```
-		
+
 - free command
 
     ```sh
@@ -322,7 +322,7 @@ tar xvzf redis-stable.tar.gz
 ```
 
 ## uncompress file to target folder:
-	
+
 ```
 #uncompress file to /usr/local/java/jdk8
 >$ tar xvzf jdk-8u31-linux-x64.gz -C ${locatiobn}
@@ -498,7 +498,7 @@ usermod -a -G testgroup loongson
 ```
 
 ## Problem running eclipse on ubuntu
-	
+
 ```sh	
 >cd /usr/bin
 >ln -s $JAVA_HOME/bin/java  java
@@ -525,7 +525,7 @@ usermod -a -G testgroup loongson
 ```
 ## vim set file format
 
-```sh
+?```sh
 >: set ff=unix
 or
 >: set fileformat=unix
@@ -615,12 +615,20 @@ Listening the network cart by name.
 $ sudo iftop -i eth0
 ```
 
-## Get PID by process name
+### Get PID by process name
 
 ```
 $ echo `ps axf | grep <process name> | grep -v grep | awk '{print $1}'`
 
 # if you want kill the process by process name
 $ ps axf | grep <process name> | grep -v grep | awk '{print "kill -9 " $1}'
+```
+
+### E: Could not get lock /var/lib/apt/lists/lock - open (11: Resource temporarily unavailable)
+
+```
+sudo rm -rf /var/lib/apt/lists/lock
+sudo rm -rf /var/cache/apt/archives/lock
+sudo rm -rf /var/lib/dpkg/lock
 ```
 

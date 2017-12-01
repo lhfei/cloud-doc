@@ -1,15 +1,10 @@
 Socket Server Settings
 ======================
 
-
-
-
-
 >Step 1: Download the code
 
 ```sh
 >tar -xzf kafka_2.10-0.8.2.0.tgz
-
 # add KAFKA_HOME to path:
 ```
 
@@ -23,7 +18,7 @@ Socket Server Settings
 
 ```
 
-Step 3: Create a topic
+> Step 3: Create a topic
 
 ```sh
 >bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
