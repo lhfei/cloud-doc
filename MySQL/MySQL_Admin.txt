@@ -40,6 +40,7 @@ oozie	Ifeng0*
 #Step 1: Login into the Server and download the yum repo rpm package.
 >cd /etc/yum.repos.d/
 >wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
+>wget https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm
 
 #Step 2: Now install the downloaded rpm package.
 >rpm -ivh mysql-community-release-el6-5.noarch.rpm
@@ -207,7 +208,8 @@ update user set authentication_string=PASSWORD("Lhfei") where User='root';
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
