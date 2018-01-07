@@ -1,3 +1,5 @@
+
+
 #### []()(Optional) Install a new MIT KDC
 
 The following gives a very high level description of the KDC installation process. To get more information see specific Operating Systems documentation, such as [RHEL documentation](https://www.google.com/url?q=https%3A%2F%2Faccess.redhat.com%2Fknowledge%2Fdocs%2Fen-US%2FRed_Hat_Enterprise_Linux%2F6%2Fhtml%2FManaging_Smart_Cards%2Finstalling-kerberos.html&sa=D&sntz=1&usg=AFQjCNFw2D_K9FlzrLPGPjnIqDvIfSsZXg), [CentOS documentation](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/s1-kerberos-server.html), or [SLES documentation](https://www.suse.com/documentation/suse91/suselinux-adminguide/html/ch18s04.html).
@@ -240,6 +242,65 @@ Enter password for principal "admin/admin@BDS-TEST-004.JD.LOCAL": hadoop
 Re-enter password for principal "admin/admin@BDS-TEST-004.JD.LOCAL": hadoop
 Principal "admin/admin@BDS-TEST-004.JD.LOCAL" created.
 ```
+
+
+
+Service Principals
+
+| Service             | Component                                | Mandatory Principal Name |
+| ------------------- | ---------------------------------------- | ------------------------ |
+| HDFS                | NameNode                                 | nn/$FQDN                 |
+| HDFS                | NameNode HTTP                            | HTTP/$FQDN               |
+| HDFS                | SecondaryNameNode                        | nn/$FQDN                 |
+| HDFS                | SecondaryNameNode HTTP                   | HTTP/$FQDN               |
+| HDFS                | DataNode                                 | dn/$FQDN                 |
+| MR2                 | History Server                           | jhs/$FQDN                |
+| MR2                 | History Server HTTP                      | HTTP/$FQDN               |
+| YARN                | ResourceManager                          | rm/$FQDN                 |
+| YARN                | NodeManager                              | nm/$FQDN                 |
+| Oozie               | Oozie Server                             | oozie/$FQDN              |
+| Oozie               | Oozie HTTP                               | HTTP/$FQDN               |
+| Hive                | Hive MetastoreHiveServer2                | hive/$FQDN               |
+| Hive                | WebHCat                                  | HTTP/$FQDN               |
+| HBase               | MasterServer                             | hbase/$FQDN              |
+| HBase               | RegionServer                             | hbase/$FQDN              |
+| Storm               | Nimbus serverDRPC daemon                 | nimbus/$FQDN **          |
+| Storm               | Storm UI daemonStorm Logviewer daemonNodes running process controller (such as Supervisor) | storm/$FQDN **           |
+| Kafka               | KafkaServer                              | kafka/$FQDN              |
+| Zeppelin            | Zeppelin Server                          | zeppelin/*$FQDN*         |
+| Hue                 | Hue Interface                            | hue/$FQDN                |
+| ZooKeeper           | ZooKeeper                                | zookeeper/$FQDN          |
+| JournalNode Server* | JournalNode                              | jn/$FQDN                 |
+| Gateway             | Knox                                     | knox/$FQDN               |
+
+
+
+Service Keytab File Names
+
+| Component                 | Principal Name   | Mandatory Keytab File Name      |
+| ------------------------- | ---------------- | ------------------------------- |
+| NameNode                  | nn/$FQDN         | nn.service.keytab               |
+| NameNode HTTP             | HTTP/$FQDN       | spnego.service.keytab           |
+| SecondaryNameNode         | nn/$FQDN         | nn.service.keytab               |
+| SecondaryNameNode HTTP    | HTTP/$FQDN       | spnego.service.keytab           |
+| DataNode                  | dn/$FQDN         | dn.service.keytab               |
+| MR2 History Server        | jhs/$FQDN        | nm.service.keytab               |
+| MR2 History Server HTTP   | HTTP/$FQDN       | spnego.service.keytab           |
+| YARN                      | rm/$FQDN         | rm.service.keytab               |
+| YARN                      | nm/$FQDN         | nm.service.keytab               |
+| Oozie Server              | oozie/$FQDN      | oozie.service.keytab            |
+| Oozie HTTP                | HTTP/$FQDN       | spnego.service.keytab           |
+| Hive MetastoreHiveServer2 | hive/$FQDN       | hive.service.keytab             |
+| WebHCat                   | HTTP/$FQDN       | spnego.service.keytab           |
+| HBase Master Server       | hbase/$FQDN      | hbase.service.keytab            |
+| HBase RegionServer        | hbase/$FQDN      | hbase.service.keytab            |
+| Storm                     | storm/$FQDN      | storm.service.keytab            |
+| Kafka                     | kafka/$FQDN      | kafka.service.keytab            |
+| Zeppelin Server           | zeppelin/*$FQDN* | zeppelin.server.kerberos.keytab |
+| Hue                       | hue/$FQDN        | hue.service.keytab              |
+| ZooKeeper                 | zookeeper/$FQDN  | zk.service.keytab               |
+| Journal Server*           | jn/$FQDN         | jn.service.keytab               |
+| Knox Gateway**            | knox/$FQDN       | knox.service.keytab             |
 
 
 
