@@ -161,6 +161,29 @@ The following gives a very high level description of the KDC installation proces
 
   
 
+```
+klist -ket /etc/security/keytabs/hive.service.keytab 
+
+Keytab name: FILE:/etc/security/keytabs/hive.service.keytab
+KVNO Timestamp           Principal
+---- ------------------- ------------------------------------------------------
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (arcfour-hmac) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (aes128-cts-hmac-sha1-96) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (aes256-cts-hmac-sha1-96) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (des3-cbc-sha1) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (des-cbc-md5) 
+```
+
+
+
+```
+kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
+```
+
+
+
+
+
 ```shell
 [root@a01-r03-i164-154-515w92j krb5kdc]# kadmin -p admin/admin -q "get_principal admin/admin"
 
@@ -392,3 +415,4 @@ Kerberos principals can be created either on the KDC machine itself or through t
    **Ubuntu/Debian**
 
    `service krb5-admin-server restart`
+

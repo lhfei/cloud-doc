@@ -1366,3 +1366,79 @@ stderr:
 
 ```
 
+
+
+## Hive Service Check
+
+
+
+```ini
+stderr: 
+None
+ stdout:
+2018-01-18 16:41:48,798 - MariaDB RedHat Support: false
+2018-01-18 16:41:48,802 - Using hadoop conf dir: /usr/hdp/2.6.3.0-235/hadoop/conf
+2018-01-18 16:41:48,818 - call['ambari-python-wrap /usr/bin/hdp-select status hive-server2'] {'timeout': 20}
+2018-01-18 16:41:48,875 - call returned (0, 'hive-server2 - 2.6.3.0-235')
+2018-01-18 16:41:48,876 - Stack Feature Version Info: Cluster Stack=2.6, Command Stack=None, Command Version=2.6.3.0-235 -> 2.6.3.0-235
+2018-01-18 16:41:48,924 - Running Hive Server checks
+2018-01-18 16:41:48,924 - --------------------------
+
+2018-01-18 16:41:48,926 - Server Address List : [u'a01-r03-i164-157-515w8ey.jd.local'], Port : 10000, SSL KeyStore : None
+2018-01-18 16:41:48,926 - Waiting for the Hive Server to start...
+2018-01-18 16:41:48,926 - Execute['/usr/bin/kinit -kt /etc/security/keytabs/smokeuser.headless.keytab ambari-qa-pss_cloud_dev@POLARIS.JD.COM; '] {'user': 'ambari-qa'}
+2018-01-18 16:41:49,027 - Execute['! beeline -u 'jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/;transportMode=binary;principal=hive/_HOST@POLARIS.JD.COM'  -e '' 2>&1| awk '{print}'|grep -i -e 'Connection refused' -e 'Invalid URL''] {'path': ['/bin/', '/usr/bin/', '/usr/lib/hive/bin/', '/usr/sbin/'], 'timeout_kill_strategy': 2, 'timeout': 30, 'user': 'ambari-qa'}
+2018-01-18 16:41:53,449 - Successfully connected to a01-r03-i164-157-515w8ey.jd.local on port 10000
+2018-01-18 16:41:53,449 - Successfully stayed connected to 'Hive Server' on host: a01-r03-i164-154-515w92j.jd.local and port 10000 after 4.52300786972 seconds
+2018-01-18 16:41:53,449 - Running HCAT checks
+2018-01-18 16:41:53,450 - -------------------
+
+2018-01-18 16:41:53,452 - checked_call['hostid'] {}
+2018-01-18 16:41:53,482 - checked_call returned (0, '13ac9aa4')
+2018-01-18 16:41:53,483 - File['/var/lib/ambari-agent/tmp/hcatSmoke.sh'] {'content': StaticFile('hcatSmoke.sh'), 'mode': 0755}
+2018-01-18 16:41:53,486 - Execute['/usr/bin/kinit -kt /etc/security/keytabs/smokeuser.headless.keytab ambari-qa-pss_cloud_dev@POLARIS.JD.COM; env JAVA_HOME=/export/cloud/jdk1.8.0_151 /var/lib/ambari-agent/tmp/hcatSmoke.sh hcatsmokeid13ac9aa4_date411818 prepare true'] {'logoutput': True, 'path': ['/usr/sbin', '/usr/local/bin', '/bin', '/usr/bin', u'/usr/sbin:/sbin:/usr/lib/ambari-server/*:/usr/sbin:/sbin:/usr/lib/ambari-server/*:/export/cloud/jdk1.8.0_151/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/var/lib/ambari-agent:/var/lib/ambari-agent:/usr/hdp/2.6.3.0-235/hadoop/bin:/usr/hdp/2.6.3.0-235/hive/bin'], 'tries': 3, 'user': 'ambari-qa', 'try_sleep': 5}
+OK
+Time taken: 3.513 seconds
+OK
+Time taken: 1.869 seconds
+OK
+Time taken: 2.701 seconds
+2018-01-18 16:42:12,618 - Execute['/usr/bin/kinit -kt /etc/security/keytabs/hdfs.headless.keytab hdfs-pss_cloud_dev@POLARIS.JD.COM'] {'user': 'hdfs'}
+2018-01-18 16:42:12,742 - ExecuteHadoop['fs -test -e /apps/hive/warehouse/hcatsmokeid13ac9aa4_date411818'] {'logoutput': True, 'bin_dir': '/usr/sbin:/sbin:/usr/lib/ambari-server/*:/usr/sbin:/sbin:/usr/lib/ambari-server/*:/export/cloud/jdk1.8.0_151/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/var/lib/ambari-agent:/var/lib/ambari-agent:/usr/hdp/current/hive-client/bin:/usr/hdp/2.6.3.0-235/hadoop/bin', 'user': 'hdfs', 'conf_dir': '/usr/hdp/2.6.3.0-235/hadoop/conf'}
+2018-01-18 16:42:12,743 - Execute['hadoop --config /usr/hdp/2.6.3.0-235/hadoop/conf fs -test -e /apps/hive/warehouse/hcatsmokeid13ac9aa4_date411818'] {'logoutput': True, 'try_sleep': 0, 'environment': {}, 'tries': 1, 'user': 'hdfs', 'path': [u'/usr/sbin:/sbin:/usr/lib/ambari-server/*:/usr/sbin:/sbin:/usr/lib/ambari-server/*:/export/cloud/jdk1.8.0_151/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/var/lib/ambari-agent:/var/lib/ambari-agent:/usr/hdp/current/hive-client/bin:/usr/hdp/2.6.3.0-235/hadoop/bin']}
+2018-01-18 16:42:15,475 - Execute['/usr/bin/kinit -kt /etc/security/keytabs/smokeuser.headless.keytab ambari-qa-pss_cloud_dev@POLARIS.JD.COM;  /var/lib/ambari-agent/tmp/hcatSmoke.sh hcatsmokeid13ac9aa4_date411818 cleanup true'] {'logoutput': True, 'path': ['/usr/sbin', '/usr/local/bin', '/bin', '/usr/bin', u'/usr/sbin:/sbin:/usr/lib/ambari-server/*:/usr/sbin:/sbin:/usr/lib/ambari-server/*:/export/cloud/jdk1.8.0_151/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/var/lib/ambari-agent:/var/lib/ambari-agent:/usr/hdp/2.6.3.0-235/hadoop/bin:/usr/hdp/2.6.3.0-235/hive/bin'], 'tries': 3, 'user': 'ambari-qa', 'try_sleep': 5}
+OK
+Time taken: 2.717 seconds
+2018-01-18 16:42:22,065 - Running WEBHCAT checks
+2018-01-18 16:42:22,066 - ---------------------
+
+2018-01-18 16:42:22,067 - File['/var/lib/ambari-agent/tmp/templetonSmoke.sh'] {'content': StaticFile('templetonSmoke.sh'), 'mode': 0755}
+2018-01-18 16:42:22,078 - File['/var/lib/ambari-agent/tmp/idtest.ambari-qa.1516264942.07.pig'] {'owner': 'hdfs', 'content': Template('templeton_smoke.pig.j2')}
+2018-01-18 16:42:22,080 - Writing File['/var/lib/ambari-agent/tmp/idtest.ambari-qa.1516264942.07.pig'] because it doesn't exist
+2018-01-18 16:42:22,081 - Changing owner for /var/lib/ambari-agent/tmp/idtest.ambari-qa.1516264942.07.pig from 0 to hdfs
+2018-01-18 16:42:22,082 - HdfsResource['/tmp/idtest.ambari-qa.1516264942.07.pig'] {'security_enabled': True, 'hadoop_bin_dir': '/usr/hdp/2.6.3.0-235/hadoop/bin', 'keytab': '/etc/security/keytabs/hdfs.headless.keytab', 'source': '/var/lib/ambari-agent/tmp/idtest.ambari-qa.1516264942.07.pig', 'dfs_type': '', 'default_fs': 'hdfs://a01-r03-i164-156-515w9ay.jd.local:8020', 'hdfs_resource_ignore_file': '/var/lib/ambari-agent/data/.hdfs_resource_ignore', 'hdfs_site': ..., 'kinit_path_local': '/usr/bin/kinit', 'principal_name': 'hdfs-pss_cloud_dev@POLARIS.JD.COM', 'user': 'hdfs', 'owner': 'ambari-qa', 'hadoop_conf_dir': '/usr/hdp/2.6.3.0-235/hadoop/conf', 'type': 'file', 'action': ['create_on_execute'], 'immutable_paths': [u'/apps/falcon', u'/apps/hive/warehouse', u'/mr-history/done', u'/app-logs', u'/tmp']}
+2018-01-18 16:42:22,085 - Execute['/usr/bin/kinit -kt /etc/security/keytabs/hdfs.headless.keytab hdfs-pss_cloud_dev@POLARIS.JD.COM'] {'user': 'hdfs'}
+2018-01-18 16:42:22,201 - call['ambari-sudo.sh su hdfs -l -s /bin/bash -c 'curl -sS -L -w '"'"'%{http_code}'"'"' -X GET --negotiate -u : '"'"'http://a01-r03-i164-156-515w9ay.jd.local:50070/webhdfs/v1/tmp/idtest.ambari-qa.1516264942.07.pig?op=GETFILESTATUS'"'"' 1>/tmp/tmpO4lnUG 2>/tmp/tmpWPj095''] {'logoutput': None, 'quiet': False}
+2018-01-18 16:42:22,331 - call returned (0, '')
+2018-01-18 16:42:22,333 - Creating new file /tmp/idtest.ambari-qa.1516264942.07.pig in DFS
+2018-01-18 16:42:22,334 - call['ambari-sudo.sh su hdfs -l -s /bin/bash -c 'curl -sS -L -w '"'"'%{http_code}'"'"' -X PUT --data-binary @/var/lib/ambari-agent/tmp/idtest.ambari-qa.1516264942.07.pig -H '"'"'Content-Type: application/octet-stream'"'"' --negotiate -u : '"'"'http://a01-r03-i164-156-515w9ay.jd.local:50070/webhdfs/v1/tmp/idtest.ambari-qa.1516264942.07.pig?op=CREATE&overwrite=True'"'"' 1>/tmp/tmphBVIjy 2>/tmp/tmpB72VX1''] {'logoutput': None, 'quiet': False}
+2018-01-18 16:42:23,011 - call returned (0, '')
+2018-01-18 16:42:23,014 - call['ambari-sudo.sh su hdfs -l -s /bin/bash -c 'curl -sS -L -w '"'"'%{http_code}'"'"' -X PUT --negotiate -u : '"'"'http://a01-r03-i164-156-515w9ay.jd.local:50070/webhdfs/v1/tmp/idtest.ambari-qa.1516264942.07.pig?op=SETOWNER&owner=ambari-qa&group='"'"' 1>/tmp/tmpuDFzJC 2>/tmp/tmpjap_C8''] {'logoutput': None, 'quiet': False}
+2018-01-18 16:42:23,150 - call returned (0, '')
+2018-01-18 16:42:23,152 - HdfsResource['/tmp/idtest.ambari-qa.1516264942.07.in'] {'security_enabled': True, 'hadoop_bin_dir': '/usr/hdp/2.6.3.0-235/hadoop/bin', 'keytab': '/etc/security/keytabs/hdfs.headless.keytab', 'source': '/etc/passwd', 'dfs_type': '', 'default_fs': 'hdfs://a01-r03-i164-156-515w9ay.jd.local:8020', 'hdfs_resource_ignore_file': '/var/lib/ambari-agent/data/.hdfs_resource_ignore', 'hdfs_site': ..., 'kinit_path_local': '/usr/bin/kinit', 'principal_name': 'hdfs-pss_cloud_dev@POLARIS.JD.COM', 'user': 'hdfs', 'owner': 'ambari-qa', 'hadoop_conf_dir': '/usr/hdp/2.6.3.0-235/hadoop/conf', 'type': 'file', 'action': ['create_on_execute'], 'immutable_paths': [u'/apps/falcon', u'/apps/hive/warehouse', u'/mr-history/done', u'/app-logs', u'/tmp']}
+2018-01-18 16:42:23,153 - Execute['/usr/bin/kinit -kt /etc/security/keytabs/hdfs.headless.keytab hdfs-pss_cloud_dev@POLARIS.JD.COM'] {'user': 'hdfs'}
+2018-01-18 16:42:23,259 - call['ambari-sudo.sh su hdfs -l -s /bin/bash -c 'curl -sS -L -w '"'"'%{http_code}'"'"' -X GET --negotiate -u : '"'"'http://a01-r03-i164-156-515w9ay.jd.local:50070/webhdfs/v1/tmp/idtest.ambari-qa.1516264942.07.in?op=GETFILESTATUS'"'"' 1>/tmp/tmpnTfNZc 2>/tmp/tmp2cEwZC''] {'logoutput': None, 'quiet': False}
+2018-01-18 16:42:23,381 - call returned (0, '')
+2018-01-18 16:42:23,383 - Creating new file /tmp/idtest.ambari-qa.1516264942.07.in in DFS
+2018-01-18 16:42:23,384 - call['ambari-sudo.sh su hdfs -l -s /bin/bash -c 'curl -sS -L -w '"'"'%{http_code}'"'"' -X PUT --data-binary @/etc/passwd -H '"'"'Content-Type: application/octet-stream'"'"' --negotiate -u : '"'"'http://a01-r03-i164-156-515w9ay.jd.local:50070/webhdfs/v1/tmp/idtest.ambari-qa.1516264942.07.in?op=CREATE&overwrite=True'"'"' 1>/tmp/tmpYGHOTj 2>/tmp/tmp6jrld0''] {'logoutput': None, 'quiet': False}
+2018-01-18 16:42:23,624 - call returned (0, '')
+2018-01-18 16:42:23,627 - call['ambari-sudo.sh su hdfs -l -s /bin/bash -c 'curl -sS -L -w '"'"'%{http_code}'"'"' -X PUT --negotiate -u : '"'"'http://a01-r03-i164-156-515w9ay.jd.local:50070/webhdfs/v1/tmp/idtest.ambari-qa.1516264942.07.in?op=SETOWNER&owner=ambari-qa&group='"'"' 1>/tmp/tmpNLCG1P 2>/tmp/tmpEaYZLq''] {'logoutput': None, 'quiet': False}
+2018-01-18 16:42:23,773 - call returned (0, '')
+2018-01-18 16:42:23,775 - HdfsResource[None] {'security_enabled': True, 'hadoop_bin_dir': '/usr/hdp/2.6.3.0-235/hadoop/bin', 'keytab': '/etc/security/keytabs/hdfs.headless.keytab', 'dfs_type': '', 'default_fs': 'hdfs://a01-r03-i164-156-515w9ay.jd.local:8020', 'hdfs_resource_ignore_file': '/var/lib/ambari-agent/data/.hdfs_resource_ignore', 'hdfs_site': ..., 'kinit_path_local': '/usr/bin/kinit', 'principal_name': 'hdfs-pss_cloud_dev@POLARIS.JD.COM', 'user': 'hdfs', 'action': ['execute'], 'hadoop_conf_dir': '/usr/hdp/2.6.3.0-235/hadoop/conf', 'immutable_paths': [u'/apps/falcon', u'/apps/hive/warehouse', u'/mr-history/done', u'/app-logs', u'/tmp']}
+2018-01-18 16:42:23,777 - Execute['/var/lib/ambari-agent/tmp/templetonSmoke.sh a01-r03-i164-157-515w8ey.jd.local ambari-qa 50111 idtest.ambari-qa.1516264942.07.pig /etc/security/keytabs/smokeuser.headless.keytab true /usr/bin/kinit ambari-qa-pss_cloud_dev@POLARIS.JD.COM /var/lib/ambari-agent/tmp'] {'logoutput': True, 'path': ['/usr/sbin:/sbin:/usr/local/bin:/bin:/usr/bin'], 'tries': 3, 'try_sleep': 5}
+Templeton Pig Smoke Tests not run in secure mode
+
+Command completed successfully!
+
+```
+
