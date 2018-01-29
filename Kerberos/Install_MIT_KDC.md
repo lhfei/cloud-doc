@@ -49,13 +49,13 @@ The following gives a very high level description of the KDC installation proces
     renew_lifetime = 7d
     forwardable = true
     rdns = false
-    default_realm = POLARIS.JD.COM
+    default_realm = POLARIS.XX.COM
     default_ccache_name = KEYRING:persistent:%{uid}
 
    [realms]
-    POLARIS.JD.COM = {
-     kdc = A01-R03-I164-154-515W92J.JD.LOCAL
-     admin_server = A01-R03-I164-154-515W92J.JD.LOCAL
+    POLARIS.XX.COM = {
+     kdc = A01-R03-I164-154-515W92J.XX.LOCAL
+     admin_server = A01-R03-I164-154-515W92J.XX.LOCAL
     }
    ```
 
@@ -70,11 +70,11 @@ The following gives a very high level description of the KDC installation proces
   **RHEL/CentOS/Oracle Linux**
 
   ```
-  kdb5_util create -s -r POLARIS.JD.COM
+  kdb5_util create -s -r POLARIS.XX.COM
 
   Loading random data
-  Initializing database '/var/kerberos/krb5kdc/principal' for realm 'POLARIS.JD.COM',
-  master key name 'K/M@POLARIS.JD.COM'
+  Initializing database '/var/kerberos/krb5kdc/principal' for realm 'POLARIS.XX.COM',
+  master key name 'K/M@POLARIS.XX.COM'
   You will be prompted for the database Master Password.
   It is important that you NOT FORGET this password.
   Enter KDC database master key: Polaris@Root#01
@@ -86,7 +86,7 @@ The following gives a very high level description of the KDC installation proces
   total 28K
   drwxr-xr-x  2 root root  146 Dec 28 17:15 .
   drwxr-xr-x. 4 root root   31 Dec 28 16:48 ..
-  -rw-------  1 root root   79 Dec 28 17:15 .k5.POLARIS.JD.COM
+  -rw-------  1 root root   79 Dec 28 17:15 .k5.POLARIS.XX.COM
   -rw-------  1 root root   22 Apr 29  2017 kadm5.acl
   -rw-------  1 root root  451 Apr 29  2017 kdc.conf
   -rw-------  1 root root 8.0K Dec 28 17:15 principal
@@ -100,7 +100,7 @@ The following gives a very high level description of the KDC installation proces
   ```shell
   vi /var/kerberos/krb5kdc/kadm5.acl
    
-   */admin@POLARIS.JD.COM  *
+   */admin@POLARIS.XX.COM  *
   ```
 
   ​
@@ -119,11 +119,11 @@ The following gives a very high level description of the KDC installation proces
   ​
 
   ```shell
-  kadmin.local:  addprinc  admin/admin@POLARIS.JD.COM
-  WARNING: no policy specified for admin/admin@POLARIS.JD.COM; defaulting to no policy
-  Enter password for principal "admin/admin@POLARIS.JD.COM": Polaris@Root#01
-  Re-enter password for principal "admin/admin@POLARIS.JD.COM": Polaris@Root#01
-  add_principal: Principal or policy already exists while creating "admin/admin@POLARIS.JD.COM".
+  kadmin.local:  addprinc  admin/admin@POLARIS.XX.COM
+  WARNING: no policy specified for admin/admin@POLARIS.XX.COM; defaulting to no policy
+  Enter password for principal "admin/admin@POLARIS.XX.COM": Polaris@Root#01
+  Re-enter password for principal "admin/admin@POLARIS.XX.COM": Polaris@Root#01
+  add_principal: Principal or policy already exists while creating "admin/admin@POLARIS.XX.COM".
   ```
 
   ​
@@ -149,13 +149,13 @@ The following gives a very high level description of the KDC installation proces
 
   ```shell
   [root@a01-r03-i164-154-515w92j krb5kdc]# kinit 
-  Password for admin/admin@POLARIS.JD.COM: 
+  Password for admin/admin@POLARIS.XX.COM: 
   [root@a01-r03-i164-154-515w92j krb5kdc]# klist 
   Ticket cache: KEYRING:persistent:0:0
-  Default principal: admin/admin@POLARIS.JD.COM
+  Default principal: admin/admin@POLARIS.XX.COM
 
   Valid starting       Expires              Service principal
-  12/28/2017 18:50:14  12/29/2017 18:50:14  krbtgt/POLARIS.JD.COM@POLARIS.JD.COM
+  12/28/2017 18:50:14  12/29/2017 18:50:14  krbtgt/POLARIS.XX.COM@POLARIS.XX.COM
   ```
 
 
@@ -167,20 +167,24 @@ klist -ket /etc/security/keytabs/hive.service.keytab
 Keytab name: FILE:/etc/security/keytabs/hive.service.keytab
 KVNO Timestamp           Principal
 ---- ------------------- ------------------------------------------------------
-   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (arcfour-hmac) 
-   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (aes128-cts-hmac-sha1-96) 
-   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (aes256-cts-hmac-sha1-96) 
-   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (des3-cbc-sha1) 
-   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM (des-cbc-md5) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM (arcfour-hmac) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM (aes128-cts-hmac-sha1-96) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM (aes256-cts-hmac-sha1-96) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM (des3-cbc-sha1) 
+   4 01/19/2018 16:45:51 hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM (des-cbc-md5) 
 ```
 
 
+
+**Very Important**
 
 ```
 kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
+
+$ kinit hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM -k -t /etc/security/keytabs/hive.service.keytab 
 ```
 
-
+*kinit hive/openldap.xx.com@POLARIS.xx.COM -k -t /etc/security/keytabs/hive.service.keytab*
 
 
 
@@ -189,9 +193,9 @@ kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
 
   Authenticating as principal admin/admin with password.
 
-  Password for admin/admin@POLARIS.JD.COM: 
+  Password for admin/admin@POLARIS.xx.COM: 
 
-  Principal: admin/admin@POLARIS.JD.COM
+  Principal: admin/admin@POLARIS.xx.COM
 
   Expiration date: [never]
 
@@ -203,7 +207,7 @@ kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
 
   Maximum renewable life: 0 days 00:00:00
 
-  Last modified: Thu Dec 28 18:25:58 CST 2017 (admin/admin@POLARIS.JD.COM)
+  Last modified: Thu Dec 28 18:25:58 CST 2017 (admin/admin@POLARIS.xx.COM)
 
   Last successful authentication: [never]
 
@@ -259,11 +263,11 @@ kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
 ```shell
 [root@BDS-TEST-004 ~]# kadmin.local 
 Authenticating as principal root/admin@JD.LOCAL with password.
-kadmin.local:  addprinc admin/admin@BDS-TEST-004.JD.LOCAL
-WARNING: no policy specified for admin/admin@BDS-TEST-004.JD.LOCAL; defaulting to no policy
-Enter password for principal "admin/admin@BDS-TEST-004.JD.LOCAL": hadoop
-Re-enter password for principal "admin/admin@BDS-TEST-004.JD.LOCAL": hadoop
-Principal "admin/admin@BDS-TEST-004.JD.LOCAL" created.
+kadmin.local:  addprinc admin/admin@BDS-TEST-004.xx.LOCAL
+WARNING: no policy specified for admin/admin@BDS-TEST-004.xx.LOCAL; defaulting to no policy
+Enter password for principal "admin/admin@BDS-TEST-004.xx.LOCAL": hadoop
+Re-enter password for principal "admin/admin@BDS-TEST-004.xx.LOCAL": hadoop
+Principal "admin/admin@BDS-TEST-004.xx.LOCAL" created.
 ```
 
 
