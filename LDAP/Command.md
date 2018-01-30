@@ -12,8 +12,6 @@ ldapadd -Y EXTERNAL -H ldapi:/// -f olcDatabase\=\{2\}hdb.ldif
 
 
 
-
-
 chdomain.ldif
 
 ```ini
@@ -49,8 +47,6 @@ olcAccess: {2}to * by dn="cn=Manager,dc=jd,dc=com" write by * read
 
 
 
-
-
 ```
 ./configure --enable-wrappers
 ```
@@ -62,10 +58,6 @@ olcAccess: {2}to * by dn="cn=Manager,dc=jd,dc=com" write by * read
 CPPFLAGS="-I/usr/local/include" \
 LDFLAGS="-L/usr/local/lib -Wl,-rpath,/usr/local/lib"
 ```
-
-
-
-
 
 
 
