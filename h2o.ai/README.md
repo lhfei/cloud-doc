@@ -16,7 +16,6 @@ sudo apt-get install libcurl4-openssl-dev libxml2-dev
 ./gradlew syncSmalldata
 ./gradlew syncRPackages
 
-
 pip install colorama --upgrade
 pip install future
 

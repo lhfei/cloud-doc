@@ -24,3 +24,10 @@ The last HDFS checkpoint is older than 12 hours. Make sure that you have taken a
 
 
 
+
+Leave Safe Mode
+
+```
+sudo su hdfs -l -c 'hdfs dfsadmin -safemode leave'
+```
+
