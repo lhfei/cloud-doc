@@ -22,6 +22,12 @@ ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | h
 
 
 
+Start
+
+```
+systemctl start php-fpm
+```
+
 
 
 

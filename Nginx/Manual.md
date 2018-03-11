@@ -79,13 +79,46 @@ server {
 	}
 }
 
+
+
+Example: 
+
+
+```
+http {
+    # Enabled WebSocket support
+    map $http_upgrade $connection_upgrade {
+        default upgrade;
+        '' close;
+    }
+
+    upstream websocket {
+        server 192.168.100.10:8010;
+    }
+    # // WebSocket support
+
+    server {
+        listen 8020;
+        
+        # Zeppelin Application
+        location /zeppelin {
+            proxy_pass http://websocket;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+        }
+    }
+}
 ```
 
 
-> ## Replace
 
-```
+
+
+
+
 # replaced 'domain.com/change/this/that/other ' to 'domain.com/changed/this/that/other '
+
 location ~* ^/change/(.*)$ {rewrite ^/change/(.*)$ http://domain.com/changed/$1 permanent; break;}
 ```
 

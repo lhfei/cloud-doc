@@ -718,6 +718,8 @@ install.packages('wordcloud', repos = 'http://cran.us.r-project.org')
 
 ```
 
+
+
 # Add SparkR to R .libPaths()
 
 ```R
@@ -726,77 +728,6 @@ devtools::install_github('apache/spark@v1.6.2', subdir='R/pkg')
 
 Sys.setenv(SPARK_HOME='/usr/local/cloud/spark-1.6.2')
 .libPaths(c(file.path(Sys.getenv('SPARK_HOME'), 'R', 'lib'), .libPaths()))
-```
-
-
-
-
-
-
-
-```
-./dev/change_scala_version.sh 2.10
-mvn clean package -DskipTests -Pspark-2.0 -Phadoop-2.7 -Pscala-2.10 -Ppyspark -Pr -Psparkr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -X
-
-mvn clean -X -rf :zeppelin-spark-dependencies_2.10
-
-
-mvn clean package install -e -Dhadoop.version=2.7.2 -Dspark.version=2.0.0 -Pspark-2.0.0 -Pscala-2.11 -Ppyspark -Pr -Psparkr -Pvendor-repo -Pexamples -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -DskipTests
-
-
-
-# with CDH
-
-mvn clean package -Pspark-2.0 -Dhadoop.version=2.6.0-cdh5.7.0 -Phadoop-2.6 -Pvendor-repo -DskipTests -e
-
-
-[DEBUG] -- end configuration --
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary:
-[INFO] 
-[INFO] Zeppelin ........................................... SUCCESS [ 14.455 s]
-[INFO] Zeppelin: Interpreter .............................. SUCCESS [ 29.449 s]
-[INFO] Zeppelin: Zengine .................................. SUCCESS [ 23.418 s]
-[INFO] Zeppelin: Display system apis ...................... SUCCESS [ 28.454 s]
-[INFO] Zeppelin: Spark dependencies ....................... SUCCESS [02:11 min]
-[INFO] Zeppelin: Spark .................................... SUCCESS [01:07 min]
-[INFO] Zeppelin: Markdown interpreter ..................... SUCCESS [  4.116 s]
-[INFO] Zeppelin: Angular interpreter ...................... SUCCESS [  3.803 s]
-[INFO] Zeppelin: Shell interpreter ........................ SUCCESS [  3.982 s]
-[INFO] Zeppelin: Livy interpreter ......................... SUCCESS [  4.924 s]
-[INFO] Zeppelin: HBase interpreter ........................ SUCCESS [ 22.240 s]
-[INFO] Zeppelin: PostgreSQL interpreter ................... SUCCESS [  4.459 s]
-[INFO] Zeppelin: JDBC interpreter ......................... SUCCESS [  5.837 s]
-[INFO] Zeppelin: File System Interpreters ................. SUCCESS [  6.444 s]
-[INFO] Zeppelin: Flink .................................... SUCCESS [ 22.919 s]
-[INFO] Zeppelin: Apache Ignite interpreter ................ SUCCESS [  5.219 s]
-[INFO] Zeppelin: Kylin interpreter ........................ SUCCESS [  4.221 s]
-[INFO] Zeppelin: Python interpreter ....................... SUCCESS [  4.019 s]
-[INFO] Zeppelin: Lens interpreter ......................... SUCCESS [ 17.810 s]
-[INFO] Zeppelin: Apache Cassandra interpreter ............. SUCCESS [01:36 min]
-[INFO] Zeppelin: Elasticsearch interpreter ................ SUCCESS [ 14.425 s]
-[INFO] Zeppelin: BigQuery interpreter ..................... SUCCESS [  4.972 s]
-[INFO] Zeppelin: Alluxio interpreter ...................... SUCCESS [ 12.213 s]
-[INFO] Zeppelin: web Application .......................... SUCCESS [02:30 min]
-[INFO] Zeppelin: Server ................................... SUCCESS [ 44.809 s]
-[INFO] Zeppelin: Packaging distribution ................... SUCCESS [ 19.744 s]
-[INFO] Zeppelin: R Interpreter ............................ SUCCESS [ 56.101 s]
-[INFO] Zeppelin: Examples ................................. SUCCESS [  1.936 s]
-[INFO] Zeppelin: Example application - Clock .............. SUCCESS [  3.815 s]
-[INFO] Zeppelin: Example application - Horizontal Bar chart SUCCESS [  4.034 s]
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 13:34 min
-[INFO] Finished at: 2016-08-19T10:33:40-07:00
-[INFO] Final Memory: 206M/702M
-[INFO] ------------------------------------------------------------------------
-
-
-
-
-./bin/install-interpreter.sh --all
-
 ```
 
 
@@ -810,10 +741,11 @@ export SPARK_HOME=${SPARK_HOME:-/usr/local/cloud/spark-2.1.0-bin-hadoop2.7}
 export HADOOP_HOME=${HADOOP_HOME:-/usr/local/cloud/hadoop-2.7.2}
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/usr/local/cloud/hadoop-2.7.2/etc/hadoop}
 
-
 export HBASE_HOME=${HBASE_HOME:-/usr/local/cloud/hbase-1.2.3}
 export HBASE_CONF_DIR=${HADOOP_CONF_DIR:-/usr/local/cloud/hbase-1.2.3/conf}
 ```
+
+
 
 
 # Enable Remote Debug with IDEA 
@@ -953,7 +885,7 @@ ERROR: dependency ‘evaluate’ is not available for package ‘rzeppelin’
 ```
 
 ```sh
-R -e 'install.packages("evaluate")'
+R -e 'install.packages("evaluatep
 ```
 
 ```sh

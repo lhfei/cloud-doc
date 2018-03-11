@@ -362,7 +362,7 @@ loongson : loongson adm dialout cdrom plugdev lpadmin admin sambashare libvirtd
 # User Account
 -----------------------------------------------------------------------------------------
 	# Create User
-	>useradd lhfei -d /home/lhfei -s /bin/bash
+	>useradd lhfei -d /home/lhfei -s /bin/bash -g {groupid}
 	
 	# Change or rename user name and UID 
 	>usermod -l login-name old-name

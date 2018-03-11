@@ -1,3 +1,149 @@
+https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.1/bk_security/content/creating_service_principals_and_keytab_files_for_hdp.html
+
+To create a service principal you will use the kadmin utility. This is a command-line driven utility into which you enter Kerberos commands to manipulate the central database. To start kadmin, enter:
+
+```
+'kadmin $USER/admin@REALM'
+```
+
+To create a service principal, enter the following:
+
+```
+kadmin: addprinc -randkey $principal_name/$service-host-FQDN@$hadoop.realm
+```
+
+You must have a principal with administrative permissions to use this command. The randkey is used to generate the password.
+
+The $principal_name part of the name must match the values in the following table.
+
+In the example each service principal's name has appended to it the fully qualified domain name of the host on which it is running. This is to provide a unique principal name for services that run on multiple hosts, like DataNodes and TaskTrackers. The addition of the hostname serves to distinguish, for example, a request from DataNode A from a request from DataNode B.
+
+This is important for two reasons:
+
+1. If the Kerberos credentials for one DataNode are compromised, it does not automatically lead to all DataNodes being compromised
+2. If multiple DataNodes have exactly the same principal and are simultaneously connecting to the NameNode, and if the Kerberos authenticator being sent happens to have same timestamp, then the authentication would be rejected as a replay request.
+
+Note: The NameNode, Secondary NameNode, and Oozie require two principals each.
+
+If you are configuring High Availability (HA) for a Quorom-based NameNode, you must also generate a principle (jn/$FQDN) and keytab (jn.service.keytab) for each JournalNode. JournalNode also requires the keytab for its HTTP service. If the JournalNode is deployed on the same host as a NameNode, the same keytab file (spnego.service.keytab) can be used for both. In addition, HA requires two NameNodes. Both the active and standby NameNodes require their own principle and keytab files. The service principles of the two NameNodes can share the same name, specified with the dfs.namenode.kerberos.principal property in hdfs-site.xml, but the NameNodes still have different fully qualified domain names.
+
+
+
+
+
+1. \* Only required if you are setting up NameNode HA.
+
+   ** For more information, see [Configure Kerberos Authentication for Storm](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.1/bk_command-line-installation/content/configure_kerberos_for_storm.html).
+
+   ​
+
+   For example: To create the principal for a DataNode service, issue this command:
+
+   ```
+   kadmin: addprinc -randkey dn/$datanode-host@$hadoop.realm
+   ```
+
+2. Extract the related keytab file and place it in the keytab directory of the appropriate respective components. The default directory is `/etc/krb5.keytab`.
+
+   ```
+   kadmin: xst -k $keytab_file_name $principal_name/fully.qualified.domain.name
+   ```
+
+   You must use the mandatory names for the $keytab_file_name variable shown in the following table.
+
+
+1. \* Only required if you are setting up NameNode HA.
+
+   ** Only required if you are using a Knox Gateway.
+
+   For example: To create the keytab files for the NameNode, issue these commands:
+
+   ```
+   kadmin: xst -k nn.service.keytab nn/$namenode-host kadmin: xst -k spnego.service.keytab HTTP/$namenode-host
+   ```
+
+   When you have created the keytab files, copy them to the keytab directory of the respective service hosts.
+
+2. Verify that the correct keytab files and principals are associated with the correct service using the klist command. For example, on the NameNode:
+
+   ```
+   klist –k -t /etc/security/nn.service.keytab
+   ```
+
+   Do this on each respective service in your cluster.
+
+
+
+
+- [x] Step 1 Add Principal
+
+      ```
+      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-156-515w9ay.jd.local@POLARIS.JD.COM
+      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM
+      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-159-515w64k.jd.local@POLARIS.JD.COM
+
+      kadmin: xst -k /etc/security/keytabs/hive.service.keytab lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM
+      ```
+
+      ​
+
+- [x] Step 2 Create System User
+
+      Create a system user name as ```lhfei```. And add it to the **Hive Service Group**. The default hive service group is **hadoop** and gid is **1006**.  
+
+      ```
+      useradd lhfei -d /home/lhfei -s /bin/bash -g 1006
+
+      klist -ket /etc/security/keytabs/hive.service.keytab
+
+      kinit lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM -k -t /etc/security/keytabs/hive.service.keytab 
+      ```
+
+      ​
+
+- [x] Enable Hive server *hive.server2.enable.doAs* feature.
+
+      Edit hive-site.xml to include the following:
+
+      ```xml
+      <property>
+          <name>hive.server2.enable.doAs</name>
+          <value>true</value>
+      </property>
+      ```
+
+      ​
+
+- [x] Verify the  Principal
+
+      ```shell
+      kadmin -p admin/admin -q "getprinc lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM"
+      ```
+
+      ​
+
+- [x] Connect to Hive 
+
+      ```shell
+      beeline -u "jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM;hive.server2.proxy.user=lhfei"
+      ```
+
+      Now, you will see connection is successful message, and  the console output log is as follows:
+
+      ```verilog
+      Connecting to jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM;hive.server2.proxy.user=lhfei
+      Connected to: Apache Hive (version 1.2.1000.2.6.3.0-235)
+      Driver: Hive JDBC (version 1.2.1000.2.6.3.0-235)
+      Transaction isolation: TRANSACTION_REPEATABLE_READ
+      Beeline version 1.2.1000.2.6.3.0-235 by Apache Hive
+      0: jdbc:hive2://a01-r03-i164-157-515w8ey.jd.l> 
+      ```
+
+      ​
+
+
+
+
 ```shell
 curl -i -u admin:Lhfei@Root#01 -H "X-Requested-By: ambari" -X POST -d '{"Credential" : {"principal" : "kdcadmin/kdcadmin", "key" : "master","type" : "temporary"}}' http://a01-r03-i164-154-515w92j.xx.local:8080/api/v1/clusters/PSS_CLOUD_DEV/credentials/kdc.admin.credential
 ```

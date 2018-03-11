@@ -1,5 +1,7 @@
 
 
+
+
 #### []()(Optional) Install a new MIT KDC
 
 The following gives a very high level description of the KDC installation process. To get more information see specific Operating Systems documentation, such as [RHEL documentation](https://www.google.com/url?q=https%3A%2F%2Faccess.redhat.com%2Fknowledge%2Fdocs%2Fen-US%2FRed_Hat_Enterprise_Linux%2F6%2Fhtml%2FManaging_Smart_Cards%2Finstalling-kerberos.html&sa=D&sntz=1&usg=AFQjCNFw2D_K9FlzrLPGPjnIqDvIfSsZXg), [CentOS documentation](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/s1-kerberos-server.html), or [SLES documentation](https://www.suse.com/documentation/suse91/suselinux-adminguide/html/ch18s04.html).
@@ -161,6 +163,8 @@ The following gives a very high level description of the KDC installation proces
 
   
 
+**Very Important**
+
 ```
 klist -ket /etc/security/keytabs/hive.service.keytab 
 
@@ -176,12 +180,10 @@ KVNO Timestamp           Principal
 
 
 
-**Very Important**
-
 ```
 kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
 
-$ kinit hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM -k -t /etc/security/keytabs/hive.service.keytab 
+$ kinit hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM -k -t /etc/security/keytabs/hive.service.keytab 
 ```
 
 *kinit hive/openldap.xx.com@POLARIS.xx.COM -k -t /etc/security/keytabs/hive.service.keytab*
@@ -189,7 +191,7 @@ $ kinit hive/a01-r03-i164-157-515w8ey.xx.local@POLARIS.xx.COM -k -t /etc/securit
 
 
 ```shell
-[root@a01-r03-i164-154-515w92j krb5kdc]# kadmin -p admin/admin -q "get_principal admin/admin"
+[root@a01-r03-i164-154-515w92j krb5kdc]# kadmin -p admin/admin -q "getprinc admin/admin"
 
   Authenticating as principal admin/admin with password.
 
@@ -268,6 +270,12 @@ WARNING: no policy specified for admin/admin@BDS-TEST-004.xx.LOCAL; defaulting t
 Enter password for principal "admin/admin@BDS-TEST-004.xx.LOCAL": hadoop
 Re-enter password for principal "admin/admin@BDS-TEST-004.xx.LOCAL": hadoop
 Principal "admin/admin@BDS-TEST-004.xx.LOCAL" created.
+```
+
+Delete Principal
+
+```
+delprinc lhfei/a01-r03-i164-156-515w9ay.jd.local@POLARIS.JD.COM
 ```
 
 
