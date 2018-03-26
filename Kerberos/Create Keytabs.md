@@ -1,4 +1,6 @@
-https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.1/bk_security/content/creating_service_principals_and_keytab_files_for_hdp.html
+# Creating Service Principals and Keytab Files for HDP
+
+https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_security/content/creating_service_principals_and_keytab_files_for_hdp.html
 
 To create a service principal you will use the kadmin utility. This is a command-line driven utility into which you enter Kerberos commands to manipulate the central database. To start kadmin, enter:
 
