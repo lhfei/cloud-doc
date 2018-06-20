@@ -124,3 +124,22 @@ location ~* ^/change/(.*)$ {rewrite ^/change/(.*)$ http://domain.com/changed/$1 
 
 
 ```
+
+
+
+
+#### remove  X-Frame-Options
+
+```ini
+server {
+    listen       80;
+    
+    ....
+    
+    proxy_hide_header X-Frame-Options;
+    
+    ....
+} 
+
+```
+

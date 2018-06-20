@@ -111,9 +111,9 @@ The following gives a very high level description of the KDC installation proces
   systemctl start krb5kdc.service 
   systemctl start kadmin.service 
   systemctl enable krb5kdc.service 
-  Created symlink from /etc/systemd/system/multi-user.target.wants/krb5kdc.service to /usr/lib/systemd/system/krb5kdc.service.
+    Created symlink from /etc/systemd/system/multi-user.target.wants/krb5kdc.service to /usr/lib/systemd/system/krb5kdc.service.
   systemctl enable kadmin.service 
-  Created symlink from /etc/systemd/system/multi-user.target.wants/kadmin.service to /usr/lib/systemd/system/kadmin.service.
+    Created symlink from /etc/systemd/system/multi-user.target.wants/kadmin.service to /usr/lib/systemd/system/kadmin.service.
   ```
 
   ​	
@@ -150,7 +150,7 @@ The following gives a very high level description of the KDC installation proces
   ​
 
   ```shell
-  [root@a01-r03-i164-154-515w92j krb5kdc]# kinit 
+  [root@a01-r03-i164-154-515w92j krb5kdc]# kinit admin/admin
   Password for admin/admin@POLARIS.XX.COM: 
   [root@a01-r03-i164-154-515w92j krb5kdc]# klist 
   Ticket cache: KEYRING:persistent:0:0

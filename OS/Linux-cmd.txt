@@ -38,6 +38,12 @@
 	#/proc/version file
 	>cat /proc/version
 	----------------------------------------------
+	# /etc/centos-release
+	>cat /etc/centos-release
+	----------------------------------------------
+	# cat /etc/redhat-release
+	>cat cat /etc/redhat-release
+	----------------------------------------------
 	#Find Distribution Version
 	>lsb_release -a
 	----------------------------------------------
@@ -146,6 +152,8 @@ ps -auxf | sort -nr -k 4 | head -10
 # ²é¿´´ÅÅÌ¿Õ¼ä
 >df -hl
 
+>df -m
+
 # Check folder size
 	>du -ah
 	>du -ch | grep total
@@ -156,6 +164,8 @@ ps -auxf | sort -nr -k 4 | head -10
 >du -k -ch /home/ | sort -n | tail -10
 
 >du -Sh /usr | sort -rh | head -5
+
+>du -ah --max-depth=1 /*  | sort -rh | head -10
 -----------------------------------------------------------------------------------------
 
 #Linux Check Memory Usage

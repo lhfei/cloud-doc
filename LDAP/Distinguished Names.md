@@ -16,7 +16,14 @@ An **RDN** is an attribute with an associated value in the form **attribute**=*v
 | **C**      | countryName            |
 | **UID**    | userid                 |
 
- 
+DNs are comprised of zero or more comma-separated components called relative distinguished names, or RDNs. For example, the **DN** "**uid=john.doe,ou=People,dc=example,dc=com**" has four RDNs:
+
+- uid=john.doe
+- ou=People
+- dc=example
+- dc=com 
+
+
 
 The following are examples of distinguished names.
 

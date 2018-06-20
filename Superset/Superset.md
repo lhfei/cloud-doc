@@ -15,6 +15,14 @@ sudo yum install gcc libffi-devel python-devel python-pip python-wheel openssl-d
 pip install --upgrade setuptools pip
 ```
 
+> Install gcc-c++ 
+
+```
+yum install gcc-c++ 
+```
+
+
+
 > Superset installation and initialization
 
 ```sh
@@ -23,6 +31,15 @@ pip install superset
 
 # Create an admin user
 fabmanager create-admin --app superset
+-------------
+Username [admin]: lhfei
+User first name [admin]: Hefei
+User last name [user]: Li
+Email [admin@fab.org]: lhfei@xx.com
+Password: [Lhfei]
+Repeat for confirmation: [Lhfei]
+Recognized Database Authentications.
+Admin User lhfei created.
 
 # Initialize the database
 superset db upgrade
@@ -39,6 +56,12 @@ superset runserver -p 8088
 # To start a development web server, use the -d switch
 # superset runserver -d
 ```
+
+To configure your application, you can edit the *config.py* file in your {**PYTHONPATH**}*/site-packages/superset*.
+
+
+
+
 
 > Database dependencies
 

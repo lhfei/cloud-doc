@@ -14,3 +14,11 @@ ldapsearch -x -b dc=jd,dc=com uid=lhfei
 ldapsearch -x -LLL -b dc=jd,dc=com '(&(objectclass=posixAccount)(|(uSNChanged>=0)(modifyTimestamp>=19700101080000Z))(uid=*))'
 ```
 
+
+
+- search by *gidNumber*
+
+```
+ldapsearch -x -b "ou=People,dc=jd,dc=com" '(&(gidNumber=1000))'
+```
+

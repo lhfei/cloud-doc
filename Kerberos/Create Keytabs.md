@@ -92,28 +92,28 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
 - [x] Step 2 Create System User
 
       Create a system user name as ```lhfei```. And add it to the **Hive Service Group**. The default hive service group is **hadoop** and gid is **1006**.  
-
+    
       ```
       useradd lhfei -d /home/lhfei -s /bin/bash -g 1006
-
+    
       klist -ket /etc/security/keytabs/hive.service.keytab
-
+    
       kinit lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM -k -t /etc/security/keytabs/hive.service.keytab 
       ```
-
+    
       ​
 
 - [x] Enable Hive server *hive.server2.enable.doAs* feature.
 
       Edit hive-site.xml to include the following:
-
+    
       ```xml
       <property>
           <name>hive.server2.enable.doAs</name>
           <value>true</value>
       </property>
       ```
-
+    
       ​
 
 - [x] Verify the  Principal
@@ -121,7 +121,7 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
       ```shell
       kadmin -p admin/admin -q "getprinc lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM"
       ```
-
+    
       ​
 
 - [x] Connect to Hive 
@@ -129,9 +129,9 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
       ```shell
       beeline -u "jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM;hive.server2.proxy.user=lhfei"
       ```
-
+    
       Now, you will see connection is successful message, and  the console output log is as follows:
-
+    
       ```verilog
       Connecting to jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM;hive.server2.proxy.user=lhfei
       Connected to: Apache Hive (version 1.2.1000.2.6.3.0-235)
@@ -140,7 +140,7 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
       Beeline version 1.2.1000.2.6.3.0-235 by Apache Hive
       0: jdbc:hive2://a01-r03-i164-157-515w8ey.jd.l> 
       ```
-
+    
       ​
 
 
