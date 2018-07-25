@@ -2,11 +2,13 @@
 ====
 
 ``` 
+
 ```
 Author    |    Email    |    Date     |    Since    |
 ----------|-------------|-------------|-------------|
 Hefei Li  |lhfeilaile@gmail.com| Oct. 27, 2016      |     v1.0.0  |
 ```
+
 ```
 
 >## Git reset (rollback) to a special commit id
@@ -147,5 +149,11 @@ git am --3way --ignore-space-change --keep-cr "E:\0001-0.patch"
 git branch -m old_branch new_branch         # Rename branch locally    
 git push origin :old_branch                 # Delete the old branch    
 git push --set-upstream origin new_branch   # Push the new branch, set local branch to track the new remote
+```
+
+> fatal: refusing to merge unrelated histories
+
+```
+git pull {origin|branchname} --allow-unrelated-histories
 ```
 

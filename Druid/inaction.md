@@ -9,7 +9,7 @@
             "type": "hadoop",
             "inputSpec": {
                 "type": "static",
-                "paths": "hdfs://172.19.163.120:8020/user/druid/benchmark/data/lineitem.tbl.gz"
+                "paths": "hdfs://172.19.163.120:8020/user/hive/benchmark/data/lineitem.tbl.gz"
             }
         },
         "dataSchema": {
@@ -110,7 +110,7 @@
 
 
 ```sh
-curl -H 'Content-Type:application/json' -X POST -d @task.json http://172.19.163.146/druid/indexer/v1/task
+curl -H 'Content-Type:application/json' -X POST -d @task.json http://172.19.163.145/druid/indexer/v1/task
 
 -----------------------
 {"task":"index_hadoop_tpch_lineitem_small_2018-05-30T08:16:42.784Z"}
@@ -121,7 +121,7 @@ curl -H 'Content-Type:application/json' -X POST -d @task.json http://172.19.163.
 delete Datasource
 
 ```
-curl -X DELETE http://172.19.163.146/druid/coordinator/v1/datasources/{dataSourceName}
+curl -X DELETE http://172.19.163.145/druid/coordinator/v1/datasources/{dataSourceName}
 ```
 
 
