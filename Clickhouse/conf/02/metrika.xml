@@ -10,10 +10,7 @@
           <user>default</user>
           <password>Lhfei</password>
         </replica>
-      </shard>
-      <shard>
-        <internal_replication>false</internal_replication>
-        <replica>
+                <replica>
           <host>host-10-182-57-106</host>
           <port>9000</port>
           <user>default</user>
@@ -23,7 +20,28 @@
       <shard>
         <internal_replication>false</internal_replication>
         <replica>
+          <host>host-10-182-57-106</host>
+          <port>9000</port>
+          <user>default</user>
+          <password>Lhfei</password>
+        </replica>
+                <replica>
           <host>host-10-182-57-111</host>
+          <port>9000</port>
+          <user>default</user>
+          <password>Lhfei</password>
+        </replica>
+      </shard>
+      <shard>
+        <internal_replication>false</internal_replication>
+        <replica>
+          <host>host-10-182-57-111</host>
+          <port>9000</port>
+          <user>default</user>
+          <password>Lhfei</password>
+        </replica>
+                <replica>
+          <host>host-10-182-57-104</host>
           <port>9000</port>
           <user>default</user>
           <password>Lhfei</password>
