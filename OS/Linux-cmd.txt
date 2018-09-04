@@ -210,9 +210,9 @@ ps -auxf | sort -nr -k 4 | head -10
 >ssh-keygen -f "/root/.ssh/known_hosts" -R centos124.thinker.cn
 -----------------------------------------------------------------------------------------
 #copy
-ssh-copy-id -i ~/.ssh/id_dsa.pub cloudland@ubuntu133
+ssh-copy-id -i ~/.ssh/id_rsa.pub cloudland@ubuntu133
 
-ssh-copy-id -i ~/.ssh/id_dsa.pub root@ubuntu133
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@ubuntu133
 -----------------------------------------------------------------------------------------
 # No passwd loging with ssh-copy-id
 > ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa

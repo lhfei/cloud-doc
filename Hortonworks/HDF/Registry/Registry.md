@@ -72,7 +72,6 @@ storageProviderConfiguration:
        dataSource.url: "jdbc:mysql://192.168.149.91/schema_registry"
        dataSource.user:"registry_user"
        dataSource.password: "Lhfei"
-
 ```
 
 - Run bootstrap scripts

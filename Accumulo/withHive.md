@@ -49,7 +49,7 @@ hive>CREATE TABLE storm_fatalities (
   fatality_location STRING,
   event_yearmonth INT)
 ROW FORMAT DELIMITED 
-    DS TERMINATED BY ',' 
+    FIELDS TERMINATED BY ',' 
 STORED AS textfile 
 TBLPROPERTIES('skip.header.line.count'='1'); 
 

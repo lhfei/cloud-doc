@@ -22,3 +22,4 @@ $>bin/kafka-console-producer.sh --broker-list master1.cloud.cn:9092 --topic ai-p
 $>bin/kafka-console-consumer.sh --bootstrap-server master1.cloud.cn:9092 --topic ai-predict --from-beginning
 
 ```
+
