@@ -154,6 +154,10 @@ ps -auxf | sort -nr -k 4 | head -10
 
 >df -m
 
+# Count files in direcotry
+
+	> ls | wc -L
+
 # Check folder size
 	>du -ah
 	>du -ch | grep total

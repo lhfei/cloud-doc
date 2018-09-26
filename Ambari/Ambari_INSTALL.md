@@ -8,7 +8,7 @@
 
   `/etc/ambari-{server|agent}`
 
------------------------------------------------------------------------------
+
 #Step1: Download the Ambari repository on the Ambari Server host
 	
 	cd /etc/apt/sources.list.d
@@ -35,12 +35,12 @@
 	sudo ambari-server setup
 	sudo ambari-server start
 	
-	-----------------------------------------------------------------------------------------------------
+	------------------------
 	-- Add JDBC Driver to ambari-server classpath, and the name must be as mysql-connector-java.jar
-	-----------------------------------------------------------------------------------------------------
+	------------------------
 	ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java-5.1.32.jar
 	ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java.jar
-	-----------------------------------------------------------------------------------------------------
+	------------------------
 
 #Step 3: Deploy Cluster using Ambari Web UI
 	Open up a web browser and go to http://<ambari-server-host>:8080.
@@ -55,9 +55,9 @@
 
 
 	
------------------------------------------------------------------------------
+
 -- CentOS
------------------------------------------------------------------------------
+
 #check status
 >sestatus
 
@@ -71,24 +71,24 @@ enabled=0
 >vi /etc/profile
 # append
 umask 022
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 
 
 
 # Install MySQL Connector
 >yum install mysql-connector-java
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 
 ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java-5.1.35.jar
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 # Changing the Default Ambari Server Port
 /etc/ambari-server/conf/ambari.properties
 
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 #Required Software:
 
 #NodeJS
@@ -103,19 +103,19 @@ ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connecto
 
 #brunch
 >npm install -g brunch@1.7.17
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 ################################################################
 FAQs
 # Loading....
 sudo cp -rf ./public-static/* /usr/lib/ambari-server/web/
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 #Two-way SSL authentication is turned off on the server
 	# Open /etc/ambari-server/conf/ambari.properties file ,
 	# Add the following property
 	security.server.two_way_ssl = true
------------------------------------------------------------------------------
+
 
 
 /etc/yum/pluginconf.d/refresh-packagekit.conf
@@ -124,8 +124,8 @@ http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6/HDPUTILS-1
 http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6/HDPUTILS-1.1.0.20-centos6.tar.gz
 http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.2.1.0/ambari-2.2.1.0-centos6.tar.gz
 
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+
+
 # FQDNs
 127.0.0.1    thinker.ifeng.com
 

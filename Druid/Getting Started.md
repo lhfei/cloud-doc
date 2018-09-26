@@ -58,13 +58,41 @@ bin/init
 
 This will setup up some directories for you. Next, you can start up the Druid processes in different terminal windows. This tutorial runs every Druid process on the same system. In a large distributed production cluster, many of these Druid processes can still be co-located together.
 
-```
+- [x] start `historical`
+
+```sh
 java `cat conf-quickstart/druid/historical/jvm.config | xargs` -cp "conf-quickstart/druid/_common:conf-quickstart/druid/historical:lib/*" io.druid.cli.Main server historical
+```
+
+- [x] start `broker`
+
+```sh
 java `cat conf-quickstart/druid/broker/jvm.config | xargs` -cp "conf-quickstart/druid/_common:conf-quickstart/druid/broker:lib/*" io.druid.cli.Main server broker
+```
+
+- [x] start `coordinator`
+
+```sh
 java `cat conf-quickstart/druid/coordinator/jvm.config | xargs` -cp "conf-quickstart/druid/_common:conf-quickstart/druid/coordinator:lib/*" io.druid.cli.Main server coordinator
+```
+
+- [x] start `overlord`
+
+```sh
 java `cat conf-quickstart/druid/overlord/jvm.config | xargs` -cp "conf-quickstart/druid/_common:conf-quickstart/druid/overlord:lib/*" io.druid.cli.Main server overlord
+```
+
+- [x] start  `middleManager`
+
+```sh
 java `cat conf-quickstart/druid/middleManager/jvm.config | xargs` -cp "conf-quickstart/druid/_common:conf-quickstart/druid/middleManager:lib/*" io.druid.cli.Main server middleManager
 ```
+
+
+
+
+
+
 
 You should see a log message printed out for each service that starts up.
 

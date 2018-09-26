@@ -31,6 +31,12 @@ pip install pip
 ## Build
 
 ```sh
+# build h2o-web
+cd h2o-web
+npm i -g bower
+bower install --allow-root
+
+
 ./gradlew build -x test --stacktrace --debug 
 ```
 
@@ -51,3 +57,4 @@ pip install pip
 # install requires for `rgl` package 
 sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev libx11-dev
 ```
+
