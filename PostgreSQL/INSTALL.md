@@ -8,11 +8,20 @@
 
 - [Ubuntu](https://help.ubuntu.com/lts/serverguide/postgresql.html)
   - [pg_hba.conf](https://www.postgresql.org/docs/9.6/static/auth-pg-hba-conf.html)
-- 
+- [Redhat](https://www.postgresql.org/download/linux/redhat/)
 
 
 
+### Install PostGIS
 
+```shell
+yum install postgis2_96
+yum install postgis2_96-client postgis2_96-utils postgis2_96-devel
+```
+
+
+
+**Ubuntu** [see](http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS24UbuntuPGSQL10Apt)
 
 ### Command Lines
 

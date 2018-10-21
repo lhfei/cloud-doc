@@ -94,7 +94,10 @@ To connect Drill to a remote Hive metastore:
    	"configProps": {
    		"hive.metastore.uris": "thrift://hdfs41:9083",
    		"hive.metastore.sasl.enabled": "false",
-   		"fs.default.name": "hdfs://10.10.10.41/"
+   		"fs.default.name": "hdfs://10.10.10.41/",
+           "hive.metastore.sasl.enabled": "false",
+           "hive.metastore.cache-ttl-seconds": "2",
+           "hive.metastore.cache-expire-after": "access"
    	}
    }
    ```
@@ -102,15 +105,15 @@ To connect Drill to a remote Hive metastore:
 
 
    ```json
-   {
-   	"type": "hive",
-   	"enabled": true,
-   	"configProps": {
-   		"hive.metastore.uris": "thrift://host-10-182-93-187:9083",
-   		"fs.default.name": "hdfs://host-10-182-93-182:8020",
-   		"hive.metastore.sasl.enabled": "false"
-   	}
-   }
+{
+	"type": "hive",
+	"enabled": true,
+	"configProps": {
+		"hive.metastore.uris": "thrift://host-10-182-93-187:9083",
+		"fs.default.name": "hdfs://host-10-182-93-182:8020",
+		"hive.metastore.sasl.enabled": "false"
+	}
+}
    ```
 
 
@@ -258,6 +261,10 @@ To create a Hive table and query it with Drill, complete the following steps:
 Use the `store.hive.parquet.optimize_scan_with_native_reader` option to optimize reads of Parquet-backed external tables from Hive. When set to TRUE, this option uses Drill native readers instead of the Hive Serde interface, resulting in more performant queries of Parquet-backed external tables. (Drill 1.2 and later)
 
 Set the `store.hive.parquet.optimize_scan_with_native_reader` option as described in the section, ["Planning and Execution Options"](http://drill.apache.org/docs/planning-and-execution-options/).
+
+
+
+## In Action
 
 
 

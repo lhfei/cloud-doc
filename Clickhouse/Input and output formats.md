@@ -420,7 +420,7 @@ Differs from `Vertical` format in that the rows are not escaped. This format is 
 
 Examples:
 
-```
+```sql
 :) SHOW CREATE TABLE geonames FORMAT VerticalRaw;
 Row 1:
 ──────
@@ -435,7 +435,7 @@ test: string with 'quotes' and   with some special
 
 Compare with the Vertical format:
 
-```
+```sql
 :) SELECT 'string with \'quotes\' and \t with some special \n characters' AS test FORMAT Vertical;
 Row 1:
 ──────
@@ -446,7 +446,7 @@ test: string with \'quotes\' and \t with some special \n characters
 
 XML format is suitable only for output, not for parsing. Example:
 
-```
+```xml
 <?xml version='1.0' encoding='UTF-8' ?>
 <result>
         <meta>

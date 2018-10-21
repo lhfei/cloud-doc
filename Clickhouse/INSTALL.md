@@ -59,6 +59,8 @@ CLICKHOUSE_CONFIG=$SYSCONFDIR/config.xml
 
 
 
+Configuration files default location in `/etc/clickhouse-server`
+
 - [x] config.xml 
 
 ```xml
@@ -521,7 +523,6 @@ CLICKHOUSE_CONFIG=$SYSCONFDIR/config.xml
 
   In first line will be password and in second - corresponding SHA256.
 
-  
 
 ```xml
 <?xml version="1.0"?>
@@ -649,7 +650,7 @@ chmod 777 /export/var/log/clickhouse-server
 
 check status:
 
-```
+```ini
 lsof -i :8123
 
 COMMAND      PID       USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
@@ -658,15 +659,25 @@ clickhous 280589 clickhouse   10u  IPv4 3930653181      0t0  TCP *:8123 (LISTEN)
 
 
 
-```
+```shell
 /etc/init.d/clickhouse-server stop
 ```
 
 
 
-```
+> Client
+
+```shell
 clickhouse-client -h 127.0.0.1 -d default -m -u default
 ```
+
+or with a port number:
+
+```shell
+clickhouse-client -h 127.0.0.1 -d default -m -u default --port 8123
+```
+
+
 
 
 

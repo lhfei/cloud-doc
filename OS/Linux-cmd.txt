@@ -156,7 +156,13 @@ ps -auxf | sort -nr -k 4 | head -10
 
 # Count files in direcotry
 
-	> ls | wc -L
+	> ls | wc -l
+	
+# Count lines in file
+	> wc -l {file_name}
+	
+# Get a few lines from a gz file
+	>gzip -cd lineitem.tbl.gz | head 
 
 # Check folder size
 	>du -ah
@@ -292,6 +298,10 @@ tar xvzf redis-stable.tar.gz
 	#uncompress file to /usr/local/java/jdk8
 	>$ tar xvzf jdk-8u31-linux-x64.gz -C ${locatiobn}
 	----------------------------------------------
+	
+# gunzip multiple compressed files to another directory without deleting the .gz files
+
+	>cd druid-data; for f in *.gz ; do gunzip -c "$f" > /${destination_dir}/"${f%.*}" ; done
 -----------------------------------------------------------------------------------------
 # read some line to a new file.
 	>tail largt.txt -n 100 > small.txt

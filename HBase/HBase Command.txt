@@ -1,31 +1,28 @@
 --------------------------------------------------------------------------------------------------
 status 				Returns various levels of information contained in the ClusterStatus
-					class. See the help to get the simple, summary, and detailed status
-					information.
+​					class. See the help to get the simple, summary, and detailed status
+​					information.
 version 			Returns the current version, repository revision, and compilation date of
-					your HBase cluster. See ClusterStatus.getHBaseVersion() in Table 5-8.
+​					your HBase cluster. See ClusterStatus.getHBaseVersion() in Table 5-8.
 table_help 			Prints a help text explaining the usage of table references in the Ruby
-					shell.
+​					shell.
 whoami 				Shows the current OS user and group membership known to HBase about
 					the shell user.
 --------------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------
 
-==================================================================================================
+
 create_namespace Creates a namespace with the provided name.
 ==================================================================================================
 drop_namespace 			Removes the namespace, which must be empty, that is, it
-						must not contain any tables.
+​						must not contain any tables.
 alter_namespace 		Changes the namespace details by altering its configuration
-						properties.
+​						properties.
 describe_namespace 		Prints the details of an existing namespace.
 list_namespace 			Lists all known namespaces.
 list_namespace_tables 	Lists all tables contained in the given namespace.
 --------------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------
 Command Description
 alter Modifies an existing table schema using modifyTable(). See “Schema
 Operations” (page 391) for details.

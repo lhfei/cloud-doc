@@ -59,9 +59,9 @@ bin/sqlline –u jdbc:drill:zk=cento23,zk=centos24,zk=centos26:5181
 
 
 ```
-./bin/drill-conf -u jdbc:drill:zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
+./bin/drill-conf jdbc:drill:zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
 
-./bin/sqlline –u jdbc:drill:schema=hiveremote.accumulo;zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
+./bin/sqlline jdbc:drill:schema=hiveremote.accumulo;zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
 ```
 
 

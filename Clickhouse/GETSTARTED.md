@@ -12,3 +12,17 @@ done
 done
 ```
 
+
+
+### Client Connect
+
+```shell
+clickhouse-client -m -u default --password Lhfei -h 10.182.57.104
+```
+
+
+
+```shell
+clickhouse-client -m -u default --password Lhfei -h 10.182.57.106
+```
+

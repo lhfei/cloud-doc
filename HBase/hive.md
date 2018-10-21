@@ -66,7 +66,7 @@ Note:  If the link to [GroupLens datasets](http://grouplens.org/datasets/moviele
 
 Unzip the data files:
 
-```
+```shell
 unzip ml-100k.zip
 ```
 
@@ -79,7 +79,7 @@ OVERWRITE INTO TABLE u_data;
 
 Count the number of rows in table u_data:
 
-```
+```sql
 SELECT COUNT(*) FROM u_data;
 ```
 
@@ -89,7 +89,7 @@ Now we can do some complex data analysis on the table `u_data`:
 
 Create `weekday_mapper.py`:
 
-```
+```python
 import sys
 import datetime
 
@@ -102,7 +102,7 @@ for line in sys.stdin:
 
 Use the mapper script:
 
-```
+```sql
 CREATE TABLE u_data_new (
   userid INT,
   movieid INT,
