@@ -28,10 +28,9 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 03, 2016      |     v1.0.0  |
 
 > Java Job
 
-~~~shell
 - [x] YARN
 
-```shell
+~~~shell
 ./bin/spark-submit  --class "org.apache.spark.examples.JavaWordCount" \
     --master yarn \
     --deploy-mode cluster \
@@ -40,7 +39,6 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 03, 2016      |     v1.0.0  |
     --executor-cores 8 \
     examples/jars/spark-examples_2.11-2.3.1.3.0.0.0-1634.jar \
     /user/druid/benchmark/data/lineitem.tbl.92.gz
-```
 ~~~
 
 
@@ -59,10 +57,8 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 03, 2016      |     v1.0.0  |
 
 
 
-
-
 - Dataset & Dataframe 
-    ```
+    ```shell
     ./bin/spark-submit \
     --class cn.lhfei.spark.df.DataframeApp \
     --master local[1] \
@@ -70,24 +66,23 @@ Hefei Li  |lhfeilaile@gmail.com| Oct. 03, 2016      |     v1.0.0  |
     ```
 
 - Spark
-    ```
+    ```shell
     ./bin/spark-submit --class org.apache.spark.examples.sql.SparkSQLExample --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
     ```
 
 
 
-    ```shell
-    ./bin/spark-submit --class cn.lhfei.spark.df.DataframePlay --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+```shell
+./bin/spark-submit --class cn.lhfei.spark.df.DataframePlay --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+
+./bin/spark-submit --class cn.lhfei.spark.streaming.VLongApp --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
+
+./bin/spark-submit --class cn.lhfei.spark.df.streaming.VLogDriver --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
     
-    ./bin/spark-submit --class cn.lhfei.spark.streaming.VLongApp --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
-    
-    ./bin/spark-submit --class cn.lhfei.spark.df.streaming.VLogDriver --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar
-        
-    ./bin/spark-submit --class org.apache.spark.examples.streaming.HdfsWordCount --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar /spark-data/data.txt
-    
-    ./bin/spark-submit --class org.apache.spark.examples.ml.LinearRegressionExample  --master local[1] --jars /home/lhfei/spark_jobs/*.jar  --regParam 0.15 --elasticNetParam 1.0 /spark-data/mllib/sample_linear_regression_data.txt 
-    
-    ```
+./bin/spark-submit --class org.apache.spark.examples.streaming.HdfsWordCount --master local[1] /home/lhfei/spark_jobs/spark-2.x-1.0.0.jar /spark-data/data.txt
+
+./bin/spark-submit --class org.apache.spark.examples.ml.LinearRegressionExample  --master local[1] --jars /home/lhfei/spark_jobs/*.jar  --regParam 0.15 --elasticNetParam 1.0 /spark-data/mllib/sample_linear_regression_data.txt 
+```
 
 
 ```scala
