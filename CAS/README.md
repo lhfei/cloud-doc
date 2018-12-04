@@ -16,6 +16,13 @@ git checkout master
 ./gradlew build install --parallel -x test -x javadoc -x check
 ```
 
+#### Account
+
+Default login credentials for cas server:
+
+- User: casuser
+- Password: Mellon
+
 ## [Generate Keystore](INSTALL.md)
 
 ## [FAQs](FAQs.md)

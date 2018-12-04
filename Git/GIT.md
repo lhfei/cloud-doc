@@ -150,7 +150,13 @@ git push --set-upstream origin new_branch   # Push the new branch, set local bra
 
 > ### fatal: refusing to merge unrelated histories
 
-```
+```sh
 git pull {origin|branchname} --allow-unrelated-histories
+```
+
+
+
+```sh
+git pull --progress -v --no-rebase --allow-unrelated-histories "origin"
 ```
 
