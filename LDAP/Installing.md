@@ -25,14 +25,14 @@ yum install -y openldap openldap-clients openldap-servers migrationtools
 ### Generate a **LDAP** password from a secret key (here **redhat**):
 
 ```
-slappasswd -s Polaris@Root#01 -n > /etc/openldap/passwd
+slappasswd -s Lhfei@Root01 -n > /etc/openldap/passwd
 ```
 
 
 
 ### Generate a X509 certificate valid for **365** days:
 
-```
+```sh
 openssl req -new -x509 -nodes -out /etc/openldap/certs/polariscert.pem \
 -keyout /etc/openldap/certs/polariskey.pem -days 365
 
@@ -61,7 +61,7 @@ Email Address []:lihefei@jd.com
 
 ### Secure the content of the **/etc/openldap/certs** directory:
 
-```
+```sh
 cd /etc/openldap/certs
 chown ldap:ldap *
 chmod 600 polariskey.pem
@@ -71,13 +71,13 @@ chmod 600 polariskey.pem
 
 ### Prepare the **LDAP** database:
 
-```
+```sh
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 ```
 
 Generate database files (don’t worry about error messages!):
 
-```
+```sh
 slaptest
 config file testing succeeded
 ```
@@ -86,7 +86,7 @@ config file testing succeeded
 
 ### Change **LDAP** database ownership:
 
-```
+```sh
 chown ldap:ldap /var/lib/ldap/*
 ```
 
@@ -94,7 +94,7 @@ chown ldap:ldap /var/lib/ldap/*
 
 ### Activate the **slapd** service at boot:
 
-```
+```sh
 systemctl enable slapd
 ```
 
@@ -102,7 +102,7 @@ systemctl enable slapd
 
 ### Start the **slapd** service:
 
-```
+```sh
 systemctl start slapd
 ```
 
@@ -110,7 +110,7 @@ systemctl start slapd
 
 ### Check the **LDAP** activity:
 
-```
+```sh
 netstat -lt | grep ldap
 tcp        0      0 0.0.0.0:ldap            0.0.0.0:*               LISTEN     
 tcp6       0      0 [::]:ldap               [::]:*                  LISTEN
@@ -136,7 +136,7 @@ adding new entry "cn=nis,cn=schema,cn=config"
 
 
 
-Then, create the **/etc/openldap/changes.ldif** file and paste the following lines (replace **passwd**with the previously created password like **{SSHA}nbRNUqIB6LaqMNzFg18jd00GlGRxICYu **
+Then, create the **/etc/openldap/changes.ldif** file and paste the following lines (replace **passwd**with the previously created password like **{SSHA}C+RUShN7w4flfn0obY0nP0d/y89lv31n **
 
 
 

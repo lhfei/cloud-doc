@@ -125,6 +125,14 @@ mvn clean package -DskipTests [Option]
 $ mvn clean install -e -DskipTests -Dspark.version=2.1.1 -Dhadoop.version=2.7.3 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
 ```
 
+
+
+```sh
+mvn clean install -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.0 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
+```
+
+
+
 ```sh
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
@@ -850,7 +858,7 @@ http://[zeppelin-server]:[zeppelin-port]/api/notebook/job/[notebookId]/[paragrap
 
 ====================================================================================
 
-# <div style="color:red">zeppelin-web error</div>
+# zeppelin-web error
 
 ```xml
 	<!-- add arguments into grunt plugin: -->
@@ -866,7 +874,7 @@ http://[zeppelin-server]:[zeppelin-port]/api/notebook/job/[notebookId]/[paragrap
 ```
 
 
-# <div style="color:red">R Interpreter ............................ FAILURE</div>
+# R Interpreter FAILURE
 ```sh
 -rwxr-xr-x 1 lhfei lhfei 1344 May 26 19:43 install-dev.sh*
 drwxr-xr-x 3 lhfei lhfei 4096 May 26 19:43 rzeppelin/
