@@ -43,7 +43,7 @@ bower install --allow-root
 
 ## SmallData
 
-```
+```sh
 ./gradlew syncSmalldata
 ./gradlew syncRPackages
 ```
@@ -53,7 +53,7 @@ bower install --allow-root
 
 > #### error: X11 not found but required, configure aborted.
 
-```
+```sh
 # install requires for `rgl` package 
 sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev libx11-dev
 ```

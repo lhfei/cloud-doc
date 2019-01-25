@@ -20,7 +20,6 @@ The last HDFS checkpoint is older than 12 hours. Make sure that you have taken a
    sudo su hdfs -l -c 'hdfs dfsadmin -saveNamespace'
    ```
 
-   ​
 
 
 
@@ -28,6 +27,6 @@ The last HDFS checkpoint is older than 12 hours. Make sure that you have taken a
 Leave Safe Mode
 
 ```
-hdfs dfsadmin -safemode leave
+su hdfs -l -c 'hdfs dfsadmin -safemode leave'
 ```
 

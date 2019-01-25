@@ -58,11 +58,18 @@ bin/sqlline –u jdbc:drill:zk=cento23,zk=centos24,zk=centos26:5181
 
 
 
-```
+```sh
 ./bin/drill-conf jdbc:drill:zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
 
-./bin/sqlline jdbc:drill:schema=hiveremote.accumulo;zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
 ```
+
+
+
+```sh
+./bin/drill-conf jdbc:drill:zk=JXQ-23-239-102.h.chinabank.com.cn:2181,JXQ-23-239-126.h.chinabank.com.cn:2181
+```
+
+
 
 
 
