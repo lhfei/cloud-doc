@@ -28,10 +28,10 @@ curl -X POST -H "Content-Type: application/json" --data @connector_users_cos.con
 ## Step 3: Generate Sample Data
 
 ```sh
-./bin/ksql-datagen quickstart=users format=avro topic=users maxInterval=100 schemaRegistryUrl=http://10.182.93.73:8081
+./bin/ksql-datagen quickstart=pageviews format=delimited topic=pageviews maxInterval=100 iterations=10000000 schemaRegistryUrl=http://10.182.93.73:8081
 
 
-./bin/ksql-datagen quickstart=users format=avro topic=users maxInterval=100 schemaRegistryUrl=http://10.182.93.73:8081
+./bin/ksql-datagen quickstart=users format=delimited topic=users maxInterval=1000 iterations=10000000 schemaRegistryUrl=http://10.182.93.73:8081
 ```
 
 
@@ -66,7 +66,7 @@ Important
 
    ```sh
    CREATE STREAM pageviews (viewtime BIGINT, userid VARCHAR, pageid VARCHAR) \
-   WITH (KAFKA_TOPIC='pageviews', VALUE_FORMAT='AVRO');
+   WITH (KAFKA_TOPIC='pageviews', VALUE_FORMAT='DELIMITED');
    ```
 
    
@@ -85,9 +85,8 @@ Important
 3. Create a table (`users`) with several columns from the Kafka topic `users`, with the `value_format` of `AVRO`.
 
    ```sh
-   CREATE TABLE users (registertime BIGINT, gender VARCHAR, regionid VARCHAR, \
-   userid VARCHAR, \interests array<VARCHAR>, contact_info map<VARCHAR, VARCHAR>) \
-   WITH (KAFKA_TOPIC='users', VALUE_FORMAT='AVRO', KEY = 'userid');
+   CREATE TABLE users (registertime BIGINT, userid VARCHAR, regionid VARCHAR, gender VARCHAR) \
+   WITH (KAFKA_TOPIC='users', VALUE_FORMAT='DELIMITED', KEY = 'userid');
    ```
 
    Copy
@@ -145,7 +144,7 @@ These examples write queries using KSQL. The following KSQL commands are run fro
 
 3. Create a persistent query that filters for female users. The results from this query are written to the Kafka `PAGEVIEWS_FEMALE` topic. This query enriches the `pageviews` STREAM by doing a `LEFT JOIN` with the `users` TABLE on the user ID, where a condition (`gender = 'FEMALE'`) is met.
 
-   ```
+   ```sql
    CREATE STREAM pageviews_female AS SELECT users.userid AS userid, pageid, \
    regionid, gender FROM pageviews LEFT JOIN users ON pageviews.userid = users.userid \
    WHERE gender = 'FEMALE';
@@ -155,7 +154,7 @@ These examples write queries using KSQL. The following KSQL commands are run fro
 
    Your output should resemble:
 
-   ```
+   ```ini
     Message
    ----------------------------
     Stream created and running
@@ -166,16 +165,16 @@ These examples write queries using KSQL. The following KSQL commands are run fro
 
 4. Create a persistent query where a condition (`regionid`) is met, using `LIKE`. Results from this query are written to a Kafka topic named `pageviews_enriched_r8_r9`.
 
-   ```
+   ```sql
    CREATE STREAM pageviews_female_like_89 WITH (kafka_topic='pageviews_enriched_r8_r9', \
-   value_format='AVRO') AS SELECT * FROM pageviews_female WHERE regionid LIKE '%_8' OR regionid LIKE '%_9';
+   value_format='DELIMITED') AS SELECT * FROM pageviews_female WHERE regionid LIKE '%_8' OR regionid LIKE '%_9';
    ```
 
    
 
    Your output should resemble:
 
-   ```
+   ```ini
     Message
    ----------------------------
     Stream created and running
@@ -186,7 +185,7 @@ These examples write queries using KSQL. The following KSQL commands are run fro
 
 5. Create a persistent query that counts the pageviews for each region and gender combination in a [tumbling window](https://docs.confluent.io/current/streams/developer-guide/dsl-api.html#windowing-tumbling) of 30 seconds when the count is greater than 1. Because the procedure is grouping and counting, the result is now a table, rather than a stream. Results from this query are written to a Kafka topic called `PAGEVIEWS_REGIONS`.
 
-   ```
+   ```sql
    CREATE TABLE pageviews_regions AS SELECT gender, regionid , \
    COUNT(*) AS numusers FROM pageviews_female WINDOW TUMBLING (size 30 second) \
    GROUP BY gender, regionid HAVING COUNT(*) > 1;
@@ -196,7 +195,7 @@ These examples write queries using KSQL. The following KSQL commands are run fro
 
    Your output should resemble:
 
-   ```
+   ```ini
     Message
    ---------------------------
     Table created and running
@@ -211,7 +210,7 @@ Now that your streams are running you can monitor them.
 
 - View the details for your stream or table with the `DESCRIBE EXTENDED` command. For example, run this command to view the `pageviews_female_like_89`stream:
 
-  ```
+  ```sql
   DESCRIBE EXTENDED pageviews_female_like_89;
   ```
 
@@ -219,7 +218,7 @@ Now that your streams are running you can monitor them.
 
   Your output should look like this:
 
-  ```
+  ```ini
   Type                 : STREAM
   Key field            : PAGEVIEWS.USERID
   Timestamp field      : Not set - using <ROWTIME>
@@ -254,7 +253,7 @@ Now that your streams are running you can monitor them.
 
 - Discover the query execution plan with the `EXPLAIN` command. For example, run this command to view the query execution plan for `CTAS_PAGEVIEWS_REGIONS`:
 
-  ```
+  ```sql
   EXPLAIN CTAS_PAGEVIEWS_REGIONS;
   ```
 
@@ -262,7 +261,7 @@ Now that your streams are running you can monitor them.
 
   Your should look like this:
 
-  ```
+  ```ini
   Type                 : QUERY
   SQL                  : CREATE TABLE pageviews_regions AS SELECT gender, regionid , COUNT(*) AS numusers FROM pageviews_female WINDOW TUMBLING (size 30 second) GROUP BY gender, regionid HAVING COUNT(*) > 1;
   

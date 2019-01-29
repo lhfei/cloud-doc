@@ -35,6 +35,10 @@ Kafka Cluster
 
 
 
+![](images/Cluster.png)
+
+
+
 # Manual Install using ZIP and TAR Archives
 
 This topic provides instructions for installing a production-ready Confluent Platform configuration in a multi-node environment with a replicated ZooKeeper ensemble.
@@ -136,6 +140,8 @@ Navigate to the Kafka properties file (`/etc/kafka/server.properties`) and custo
 
   ```ini
   zookeeper.connect=authserve-a9dedccb:2181,authserve-49d827d8:2181,authserve-a0e40d35:2181
+  
+  delete.topic.enable=true
   ```
 
   
@@ -226,6 +232,48 @@ Navigate to the Kafka properties file (`/etc/kafka/server.properties`) and custo
    bootstrap.servers=authserve-23119819:9092,authserve-519d7886:9092,authserve-d0f49892:9092,authserve-ed0ad87d:9092
    ```
 
+5. Navigate to the ksql server configuration file (`/etc/kafka/ksql-server.properties`) and update it as below:
+
+   ```ini
+   bootstrap.servers=authserve-23119819:9092,authserve-519d7886:9092,authserve-d0f49892:9092,authserve-ed0ad87d:9092
+   listeners=http://0.0.0.0:8088
+   ksql.schema.registry.url=http://10.182.93.73:8081
+   
+   # Set the retries to Integer.MAX_VALUE to ensure that transient failures
+   # will not result in data loss.
+   ksql.streams.producer.retries=2147483647
+   
+   # Set the batch expiry to Long.MAX_VALUE to ensure that queries will not
+   # terminate if the underlying Kafka cluster is unavailable for a period of
+   # time.
+   ksql.streams.producer.confluent.batch.expiry.ms=9223372036854775807
+   
+   # Allows more frequent retries of requests when there are failures,
+   # enabling quicker recovery.
+   ksql.streams.producer.request.timeout.ms=300000
+   
+   # Set the maximum allowable time for the producer to block to
+   # Long.MAX_VALUE. This allows KSQL to pause processing if the underlying
+   # Kafka cluster is unavailable.
+   ksql.streams.producer.max.block.ms=9223372036854775807
+   
+   # Set the replication factor for internal topics, the command topic, and
+   # output topics to be 3 for better fault tolerance and durability. Note:
+   # the value 3 requires at least 3 brokers in your Kafka cluster.
+   ksql.streams.replication.factor=3
+   ksql.sink.replicas=3
+   
+   # Set the storage directory for stateful operations like aggregations and
+   # joins to be at a durable location. By default, they are stored in /tmp.
+   ksql.streams.state.dir=/some/non-temporary-storage-path/
+   
+   # Bump the number of replicas for state storage for stateful operations
+   # like aggregations and joins. By having two replicas (one main and one
+   # standby) recovery from node failures is quicker since the state doesn't
+   # have to be rebuilt from scratch.
+   ksql.streams.num.standby.replicas=1
+   ```
+
    
 
 
@@ -263,7 +311,7 @@ ZooKeeper, Kafka, and Schema Registry must be started in this specific order, an
    > 10.182.93.73:8081
 
    ```sh
-   ${CONFLUENT_HOME}/bin/schema-registry-start ${CONFLUENT_HOME}/etc/schema-registry/schema-registry.properties &
+   ${CONFLUENT_HOME}/bin/schema-registry-start ${CONFLUENT_HOME}/etc/schema-registry/schema-registry.properties > logs/schema-registry.log &
    ```
 
    
@@ -275,7 +323,7 @@ ZooKeeper, Kafka, and Schema Registry must be started in this specific order, an
      - > 10.182.93.74:9021
 
      ```sh
-     ${CONFLUENT_HOME}/bin/control-center-start ${CONFLUENT_HOME}/etc/confluent-control-center/control-center.properties &
+     ${CONFLUENT_HOME}/bin/control-center-start ${CONFLUENT_HOME}/etc/confluent-control-center/control-center.properties > logs/control-center.log &
      ```
 
    
@@ -289,17 +337,17 @@ ZooKeeper, Kafka, and Schema Registry must be started in this specific order, an
      - > 10.182.93.75:8083
 
      ```sh
-     ${CONFLUENT_HOME}/bin/connect-distributed ${CONFLUENT_HOME}/etc/schema-registry/connect-avro-distributed.properties &
+     ${CONFLUENT_HOME}/bin/connect-distributed ${CONFLUENT_HOME}/etc/schema-registry/connect-avro-distributed.properties > logs/connect.log &
      ```
 
      
 
    - Kafka REST Proxy
 
-     - > 10.182.93.76:8082:8082
+     - > 10.182.93.76:8082
 
      ```sh
-     ${CONFLUENT_HOME}/bin/kafka-rest-start ${CONFLUENT_HOME}/etc/kafka-rest/kafka-rest.properties &
+     ${CONFLUENT_HOME}/bin/kafka-rest-start ${CONFLUENT_HOME}/etc/kafka-rest/kafka-rest.properties > logs/kafka-rest.log &
      ```
 
      
@@ -309,7 +357,7 @@ ZooKeeper, Kafka, and Schema Registry must be started in this specific order, an
      - > 10.182.93.77:8088
 
      ```sh
-     ${CONFLUENT_HOME}/bin/ksql-server-start ${CONFLUENT_HOME}/etc/ksql/ksql-server.properties &
+     ${CONFLUENT_HOME}/bin/ksql-server-start ${CONFLUENT_HOME}/etc/ksql/ksql-server.properties > logs/ksql-server.log &
      ```
 
      

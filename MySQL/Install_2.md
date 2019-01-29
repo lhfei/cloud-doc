@@ -107,6 +107,8 @@ update user set authentication_string=password('Lhfeilaile@01') where user='root
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'Lhfeilaile@01' PASSWORD EXPIRE NEVER;
 
+GRANT ALL ON cloud_master.* TO 'root'@'%' IDENTIFIED BY 'Lhfeilaile@01';
+
 flush privileges;
 
 quit;

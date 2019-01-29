@@ -190,7 +190,7 @@ zookeeper.connect=A:2015,B:2015,C:2015
 
 #### 启动Kafka connect服务
 
-1. 进入路径*/software/confluent/etc/schema-registry下找到connect-avro-distributed.properties并做如下修改：
+1. 进入路径`/software/confluent/etc/schema-registry`下找到`connect-avro-distributed.properties`并做如下修改：
 
 ```
 /*
@@ -208,7 +208,7 @@ group.id=connect-cluster
 
 - 启动命令：
 
-```
+```sh
 ./bin/connect-distributed  ./etc/kafka/connect-distributed.properties > connect-distribute.log &
 ```
 
@@ -216,7 +216,7 @@ group.id=connect-cluster
 
 1. 在/etc/kafka-connect-hdfs新建connect 这个是在主节点上新建的C,进入路径/software/confluent/etc/kafka-connect-hdfs下新建quickstart-hdfs.properties，并做如下修改
 
-```
+```ini
 name=hdfs-sink
 connector.class=io.confluent.connect.hdfs.HdfsSinkConnector
 tasks.max=1

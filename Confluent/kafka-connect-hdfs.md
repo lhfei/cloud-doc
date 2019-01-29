@@ -22,7 +22,7 @@ If you do not have Confluent Platform installed and running, you can install the
 
 Navigate to your Confluent Platform installation directory and run this command to install the latest (`latest`) connector version. The connector must be installed on every machine where Connect will be run.
 
-```
+```sh
 confluent-hub install confluentinc/kafka-connect-hdfs:latest
 ```
 
@@ -30,7 +30,7 @@ confluent-hub install confluentinc/kafka-connect-hdfs:latest
 
 You can install a specific version by replacing `latest` with a version number. For example:
 
-```
+```sh
 confluent-hub install confluentinc/kafka-connect-hdfs:5.1.0
 ```
 

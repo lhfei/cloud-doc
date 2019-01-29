@@ -50,8 +50,6 @@ confluent destroy
 
 
 
-
-
 ### Clean Data
 
 > Clean CP Data
