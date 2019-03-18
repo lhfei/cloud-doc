@@ -3,17 +3,18 @@ Zookeeper Administrator
 
 #### Configuration file:
 
-	#conf/zoo.cfg
-	#server.id=host:port:port
-	tickTime=2000						|
-	dataDir=/var/lib/zookeeper/     	|
-	clientPort=2181                 	|
-	initLimit=5                     	|
-	syncLimit=2                     	|
-	server.1=ubuntu144.thinker.cn:2888:3888        |	
-	server.2=ubuntu145.thinker.cn:2888:3888        |
-	server.3=ubuntu146.thinker.cn:2888:3888        |
-	server.4=ubuntu147.thinker.cn:2888:3888        |
+```ini
+clientPort=2181
+initLimit=10
+autopurge.purgeInterval=24
+syncLimit=5
+tickTime=3000
+dataDir=/hadoop/zookeeper
+autopurge.snapRetainCount=30
+server.1=host-10-182-60-239:2888:3888
+server.2=host-10-182-60-250:2888:3888
+server.3=host-10-182-61-102:2888:3888
+```
 
 #### setting myid:
 

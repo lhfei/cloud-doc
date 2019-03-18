@@ -12,23 +12,6 @@
 # append the content of 'AllowRoot=true' into /etc/gdm/custom.conf as bellow:
 >vi /etc/gdm/custom.conf
 -----------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
 # Show Linux Version
 
 	----------------------------------------------
@@ -51,6 +34,9 @@
 	>yum install redhat-lsb
 	
 -----------------------------------------------------------------------------------------
+# Check OS Cores
+	> grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}' 
+	
 # Show disk
 	----------------------------------------------
 	# show filesystem disk
@@ -397,6 +383,52 @@ loongson : loongson adm dialout cdrom plugdev lpadmin admin sambashare libvirtd
 	>usermod -a -G sudo {username}
 	>usermod -a -G adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare {username}
 	
+
+
+# Group Add
+
+```
+groupadd [options] group
+```	
+
+-f, --force
+
+This option causes the command to exit with success status if the specified group already exists. When used with -g, and the specified GID already exists, another (unique) GID is chosen (i.e. -g is turned off).
+
+-g, --gid GID
+
+The numerical value of the group's ID. This value must be unique, unless the -o option is used. The value must be non-negative. The default is to use the smallest ID value greater than or equal to GID_MIN and greater than every other group.
+
+See also the -r option and the GID_MAX description.
+
+-h, --help
+
+Display help message and exit.
+
+-K, --key KEY=VALUE
+
+Overrides /etc/login.defs defaults (GID_MIN, GID_MAX and others). Multiple -K options can be specified.
+
+Example: -K GID_MIN=100 -K GID_MAX=499
+
+-o, --non-unique
+
+This option permits to add a group with a non-unique GID.
+
+-p, --password PASSWORD
+
+The encrypted password, as returned by the crypt() system call. The default is to disable the password.
+
+Note: This option is not recommended because the password (or encrypted password) will be visible by users listing the processes. You should make sure the password respects the system's password policy.
+
+-r, --system
+
+Create a system group. The numeric identifiers of new system groups are chosen in the SYS_GID_MIN-SYS_GID_MAX range, defined in login.defs, instead of GID_MIN-GID_MAX.
+
+-R, --root CHROOT_DIR
+
+Apply changes in the CHROOT_DIR directory and use the configuration files from the CHROOT_DIR directory. See also chroot.
+
 	
 -----------------------------------------------------------------------------------------
 # Permission COnfig

@@ -53,7 +53,7 @@ bin/sqlline –u jdbc:drill:zk=cento23,zk=centos24,zk=centos26:5181
 
 ```
 # connect to JDBC
-./bin/drill-conf -u jdbc:mysql://10.182.17.59/cloud_hive?useSSL=false -n cloud_hive -p Hiveuser_1473
+./bin/sqlline -u jdbc:drill:zk=host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-182-60-149:2181
 ```
 
 

@@ -16,13 +16,13 @@ KSQL gives you the highest level of abstraction for implementing real-time strea
 
 For example, to implement simple fraud-detection logic on a Kafka topic named `payments`, you could write one line of KSQL:
 
-```
+```sql
 CREATE STREAM fraudulent_payments AS
  SELECT fraudProbability(data) FROM payments
  WHERE fraudProbability(data) > 0.8;
 ```
 
-Copy
+
 
 The equivalent Java code on Kafka Streams might resemble:
 

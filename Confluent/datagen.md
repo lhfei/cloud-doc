@@ -28,10 +28,10 @@ curl -X POST -H "Content-Type: application/json" --data @connector_users_cos.con
 ## Step 3: Generate Sample Data
 
 ```sh
-./bin/ksql-datagen quickstart=pageviews format=delimited topic=pageviews maxInterval=100 iterations=10000000 schemaRegistryUrl=http://10.182.93.73:8081
+./bin/ksql-datagen quickstart=pageviews format=AVERO topic=pageviews maxInterval=100 iterations=10000000 schemaRegistryUrl=http://10.182.93.73:8081
 
 
-./bin/ksql-datagen quickstart=users format=delimited topic=users maxInterval=1000 iterations=10000000 schemaRegistryUrl=http://10.182.93.73:8081
+./bin/ksql-datagen quickstart=users format=AVERO topic=users maxInterval=1000 iterations=10000000 schemaRegistryUrl=http://10.182.93.73:8081
 ```
 
 
@@ -66,7 +66,7 @@ Important
 
    ```sh
    CREATE STREAM pageviews (viewtime BIGINT, userid VARCHAR, pageid VARCHAR) \
-   WITH (KAFKA_TOPIC='pageviews', VALUE_FORMAT='DELIMITED');
+   WITH (KAFKA_TOPIC='pageviews', VALUE_FORMAT='AVRO');
    ```
 
    
@@ -85,8 +85,8 @@ Important
 3. Create a table (`users`) with several columns from the Kafka topic `users`, with the `value_format` of `AVRO`.
 
    ```sh
-   CREATE TABLE users (registertime BIGINT, userid VARCHAR, regionid VARCHAR, gender VARCHAR) \
-   WITH (KAFKA_TOPIC='users', VALUE_FORMAT='DELIMITED', KEY = 'userid');
+   CREATE TABLE users (registertime BIGINT, userid VARCHAR, regionid VARCHAR, gender VARCHAR, interests ARRAY<VARCHAR(STRING)>, contact_info MAP<VARCHAR, VARCHAR>) \
+   WITH (KAFKA_TOPIC='users', VALUE_FORMAT='AVRO', KEY = 'userid');
    ```
 
    Copy
@@ -119,6 +119,41 @@ These examples write queries using KSQL. The following KSQL commands are run fro
    ```ini
    Successfully changed local property 'auto.offset.reset' from 'null' to 'earliest'
    ```
+
+   
+
+   Your may check it as below:
+
+   ```ini
+   ksql> show properties;
+   
+    Property                                               | Default override | Effective Value                                                                                 
+   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ksql.extension.dir                                     |                  | ext                                                                                             
+    ksql.functions.substring.legacy.args                   |                  | false                                                                                           
+    ksql.output.topic.name.prefix                          |                  |                                                                                                 
+    ksql.persistent.prefix                                 |                  | query_                                                                                          
+    ksql.schema.registry.url                               | SERVER           | http://10.182.93.73:8081                                                                        
+    ksql.service.id                                        |                  | default_                                                                                        
+    ksql.sink.partitions                                   |                  | 4                                                                                               
+    ksql.sink.replicas                                     |                  | 1                                                                                               
+    ksql.sink.window.change.log.additional.retention       |                  | 1000000                                                                                         
+    ksql.statestore.suffix                                 |                  | _ksql_statestore                                                                                
+    ksql.streams.application.id                            | SERVER           | KSQL_REST_SERVER_DEFAULT_APP_ID                                                                 
+    ksql.streams.auto.offset.reset                         | SESSION          | earliest                                                                                        
+    ksql.streams.bootstrap.servers                         | SERVER           | authserve-23119819:9092,authserve-519d7886:9092,authserve-d0f49892:9092,authserve-ed0ad87d:9092 
+    ksql.streams.cache.max.bytes.buffering                 | SERVER           | 10000000                                                                                        
+    ksql.streams.commit.interval.ms                        | SERVER           | 2000                                                                                            
+    ksql.streams.default.deserialization.exception.handler | SERVER           | io.confluent.ksql.errors.LogMetricAndContinueExceptionHandler                                   
+    ksql.streams.num.stream.threads                        | SERVER           | 4                                                                                               
+    ksql.transient.prefix                                  |                  | transient_                                                                                      
+    ksql.udf.collect.metrics                               |                  | false                                                                                           
+    ksql.udf.enable.security.manager                       |                  | true                                                                                            
+    ksql.udfs.enabled                                      |                  | true                                                                                            
+   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   ```
+
+   
 
    
 
@@ -167,7 +202,7 @@ These examples write queries using KSQL. The following KSQL commands are run fro
 
    ```sql
    CREATE STREAM pageviews_female_like_89 WITH (kafka_topic='pageviews_enriched_r8_r9', \
-   value_format='DELIMITED') AS SELECT * FROM pageviews_female WHERE regionid LIKE '%_8' OR regionid LIKE '%_9';
+   value_format='AVRO') AS SELECT * FROM pageviews_female WHERE regionid LIKE '%_8' OR regionid LIKE '%_9';
    ```
 
    
