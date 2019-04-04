@@ -30,3 +30,9 @@ Leave Safe Mode
 su hdfs -l -c 'hdfs dfsadmin -safemode leave'
 ```
 
+But this command doesn't help very often, mostly it shows that safemode is still ON. So I have to force the safemode exit with:
+
+```sh
+su hdfs -l -c 'hdfs dfsadmin -safemode forceExit'
+```
+

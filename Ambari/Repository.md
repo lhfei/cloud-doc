@@ -6,7 +6,7 @@
 
 ### Nginx Proxy
 
-```
+```ini
 location /repo {
     root /export/.app_repo/www/html;
     index index.html index.htm;
@@ -16,7 +16,7 @@ location /repo {
 
 
 
-```
+```sh
 # dir: /export/.app_repo/www/html
 
 tree -d -L 3
@@ -49,7 +49,7 @@ tree -d -L 3
 
 - ambari.repo
 
-```
+```ini
 #VERSION_NUMBER=2.6.1.5-3
 [ambari-2.6.1.5]
 name=ambari Version - ambari-2.6.1.5
@@ -64,7 +64,7 @@ priority=1
 
 - hdp.repo
 
-```
+```ini
 #VERSION_NUMBER=2.6.4.0-91
 [HDP-2.6.4.0]
 name=HDP Version - HDP-2.6.4.0
@@ -85,7 +85,7 @@ priority=1
 
 - hdp.gpl.repo
 
-```
+```ini
 #VERSION_NUMBER=2.6.4.0-91
 [HDP-GPL-2.6.4.0]
 name=HDP-GPL Version - HDP-GPL-2.6.4.0

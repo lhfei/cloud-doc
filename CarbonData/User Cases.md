@@ -132,3 +132,77 @@ columns[108] as `Div5TailNum`
 SELECT COUNT(*) FROM dfs.`/benchmark/ontime/airline-data/*.csv` WHERE columns[33]='1'; 
 ```
 
+
+
+
+
+### Query Cases
+
+
+
+
+
+> count_by_sub_query	
+
+```sql
+SELECT avg(c1) FROM (SELECT `Year`, `Month`, COUNT(*) as c1 FROM dfs.tmp.`/benchmark/data/parquet/airline-data/` GROUP BY `Year`, `Month`);
+```
+
+
+
+> sum_by_range
+
+```sql
+SELECT `DayOfWeek`, COUNT(*) AS c FROM dfs.`/benchmark/data/parquet/ontime/airline/*` WHERE `Year` >= 2000 AND `Year` <= 2008 GROUP BY `DayOfWeek` ORDER BY c DESC;
+```
+
+
+
+> sum_all
+
+```sql
+SELECT `DayOfWeek`, `DepDelay`, count(*) AS c FROM dfs.`/benchmark/data/parquet/ontime/airline/*` WHERE `Year` >= 2000 AND `Year` <= 2008 GROUP BY `DayOfWeek`, `DepDelay` ORDER BY c DESC;
+```
+
+
+
+> sum_all_year
+
+```sql
+SELECT `Origin`, `DepDelay`, count(*) AS c FROM dfs.`/benchmark/data/parquet/ontime/airline/*` WHERE `Year` >= 2000 AND `Year` <= 2008 GROUP BY `Origin`, `DepDelay` ORDER BY c DESC LIMIT 10;
+```
+
+
+
+> sum_all_filter
+
+```sql
+SELECT `Carrier`, avg(TO_NUMBER(`DepDelay`, '###.##') > 10) * 1000 AS c3 FROM dfs.`/benchmark/data/parquet/ontime/airline/*` WHERE `Year` = 2007 GROUP BY `Carrier` ORDER BY Carrier;
+```
+
+
+
+> mix
+
+```sql
+select
+   min(`Year`), max(`Year`), `Carrier`, count(*) as cnt,
+   sum(`ArrDelayMinutes` >30) as flights_delayed,
+   round(sum(`ArrDelayMinutes`>30)/count(*),2) as rate
+FROM dfs.`/benchmark/data/parquet/ontime/airline/*`
+WHERE
+   `DayOfWeek` not in (6,7) and `OriginState` not in ('AK', 'HI', 'PR', 'VI')
+   and `DestState` not in ('AK', 'HI', 'PR', 'VI')
+   and `FlightDate` < '2010-01-01'
+GROUP by `Carrier`
+HAVING cnt > 100000 and max(`Year`) > 1990
+ORDER by rate DESC
+LIMIT 1000;
+```
+
+
+
+
+
+
+
