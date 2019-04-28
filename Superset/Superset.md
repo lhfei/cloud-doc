@@ -6,7 +6,7 @@
 
 ```sh
 sudo yum upgrade python-setuptools
-sudo yum install gcc libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel
+sudo yum install -y gcc libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel
 ```
 
 > Python's setup tools and pip
@@ -20,6 +20,28 @@ pip install --upgrade setuptools pip
 ```
 yum install gcc-c++ 
 ```
+
+
+
+```shell
+wget https://github.com/apache/incubator-superset/blob/master/requirements.txt
+
+pip install -r requirements.txt
+```
+
+
+
+```shell
+# Fix pandas version compatibility problem
+pip uninstall pandas
+pip install pandas==0.23.4
+
+# Fix sqlalchemy compatibility problem
+pip uninstall sqlalchemy
+pip install sqlalchemy==1.2.18
+```
+
+
 
 
 
@@ -61,6 +83,17 @@ To configure your application, you can edit the *config.py* file in your {**PYTH
 
 
 
+```shell
+# default sqllite file
+sqlite:////root/.superset/superset.db
+
+# check superset install directory
+find / -name config.py | grep superset
+/opt/rh/rh-python36/root/usr/lib/python3.6/site-packages/superset/config.py
+```
+
+
+
 
 
 > Database dependencies
@@ -68,7 +101,21 @@ To configure your application, you can edit the *config.py* file in your {**PYTH
 ```sh
 yum install mysql-devel
 pip install mysqlclient
+
+python3 -m pip install PyMySQL
 ```
+
+
+
+Update `config.py`
+
+```ini
+SQLALCHEMY_DATABASE_URI = 'mysql:pymysql://polaris_superset:Superset_1473@10.182.91.112/cloud_superset'
+```
+
+
+
+
 
 
 > Restart & Stop

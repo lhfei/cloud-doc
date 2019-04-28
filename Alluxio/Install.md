@@ -2,7 +2,7 @@
 
 ### Hosts
 
-```
+```ini
 10.182.99.10     host-10-182-99-10
 10.182.99.100    host-10-182-99-100
 10.182.99.101    host-10-182-99-101
@@ -14,7 +14,7 @@
 
 ### Start | Stop
 
-```
+```shell
 ./bin/alluxio-start.sh local SudoMount
 
 ./bin/alluxio-start.sh worker SudoMount
@@ -24,7 +24,7 @@
 
 ### Mount
 
-```
+```shell
 ./bin/alluxio fs mount --shared alluxio://host-10-182-99-10:19998/user  hdfs://host-10-182-93-182:8020/user/  
 ```
 

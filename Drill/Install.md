@@ -19,8 +19,6 @@ host-10-182-60-8:2181,host-10-182-60-113:2181,host-10-182-60-142:2181,host-10-18
 
 
 
-
-
 ### Connect to Drill Shell
 
 
@@ -75,5 +73,16 @@ bin/sqlline –u jdbc:drill:zk=cento23,zk=centos24,zk=centos26:5181
 
 `Tips`: 
 
-​	Type `.quit` or use `Ctrl`+`D` to exist the sqline terminal.
+​	Type `.quit` or use `Ctrl`+`D` to exist the sqline terminal. 
+
+### Support HDFS NN HA
+
+Copy `hdfs-site.xml` to `DRILL_HOME/conf` on each drillbits node. And then restart the drillbits service on each of those nodes
+
+```sh
+cd $DRILL_HOME
+ln -s $HADOOP_CONF_DIR/hdfs-site.xml hdfs-site.xml
+
+# restart all drillbits nodes
+```
 

@@ -14,10 +14,28 @@ If you are developing on Windows, make sure to use Ubuntu on Windows and follow 
 The entire Metabase application is compiled and assembled into a single .jar file which can run on any modern JVM. There is a script which will execute all steps in the process and output the final artifact for you.
 
 ```
+yarn run build
+ 
 ./bin/build
 ```
 
 After running the build script simply look in `target/uberjar` for the output .jar file and you are ready to go.
+
+
+
+`Required`
+
+```shell
+# install nodejs
+yum -y install nodejs
+
+# install yarn by npm
+npm i -g yarn
+
+yum -y install gettext
+```
+
+
 
 ## Building `Metabase.app`
 

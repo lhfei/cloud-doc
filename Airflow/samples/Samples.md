@@ -60,7 +60,7 @@ CREATE EXTERNAL TABLE `lineitem`(
  OUTPUTFORMAT                                       
    'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat' 
  LOCATION                                           
-   'hdfs://host-10-182-60-239:8020//benchmark/airflow/lineitem' 
+   '/benchmark/airflow/lineitem' 
  TBLPROPERTIES (                                    
    'bucketing_version'='2',                         
    'transient_lastDdlTime'='1535466140') ;

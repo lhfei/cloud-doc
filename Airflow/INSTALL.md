@@ -53,6 +53,57 @@ sql_alchemy_conn = mysql://root:Lhfeilaile@01@10.182.93.66/airflow
 
 
 
+### Install PyMySQL
+
+```shell
+yum install -y mysql-devel
+pip install -y mysqlclient
+
+python3 -m pip install PyMySQL
+```
+
+
+
+
+
+### MySQL
+
+> Set password
+
+```shell
+>mysqladmin password -u root -p
+Enter password: [Lhfeilaile@01]
+New password: [Lhfeilaile@01]
+Confirm new password: 
+Warning: Since password will be sent to server in plain text, use ssl connection to ensure password safety.
+```
+
+
+
+```sql
+mysql>set global max_connections = 100000;
+mysql>set global max_connect_errors = 1844674407370954751;
+```
+
+
+
+> Create DB 
+
+```sql
+CREATE DATABASE cloud_airflow
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
+  
+CREATE USER 'polaris_airflow'@'localhost' IDENTIFIED BY 'Airflow_1473';
+GRANT ALL ON cloud_airflow.* TO 'polaris_superset'@'10.182.2.88' IDENTIFIED BY 'Airflow_1473';
+
+GRANT ALL ON cloud_airflow.* TO 'polaris_airflow'@'%' IDENTIFIED BY 'Airflow_1473';
+
+FLUSH PRIVILEGES;
+```
+
+
+
 
 
 ### Issues
