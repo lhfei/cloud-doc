@@ -34,6 +34,91 @@ yum-config-manager --add-repo http://repo.red-soft.biz/repos/clickhouse/repo/cli
 yum install -y clickhouse-server clickhouse-client clickhouse-server-common clickhouse-compressor
 ```
 
+
+
+```shell
+sudo yum install -y curl
+# in case test package would be installed, add epel-release
+sudo yum install -y epel-release
+
+curl -s https://packagecloud.io/install/repositories/altinity/clickhouse/script.rpm.sh | sudo bash
+```
+
+### Install packages after script
+
+First of all, ensure we have ClickHouse packages available for installation
+
+```
+sudo yum list 'clickhouse*'
+```
+
+ClickHouse packages should be listed as available, something like this:
+
+```
+Available Packages
+clickhouse-client.x86_64                  19.6.2.11-1.el7            Altinity_clickhouse
+clickhouse-common-static.x86_64           19.6.2.11-1.el7            Altinity_clickhouse
+clickhouse-compressor.x86_64              1.1.54336-3.el7            Altinity_clickhouse
+clickhouse-debuginfo.x86_64               19.6.2.11-1.el7            Altinity_clickhouse
+clickhouse-mysql.noarch                   0.0.20180319-1             Altinity_clickhouse
+clickhouse-odbc.x86_64                    20180903-1                 Altinity_clickhouse
+clickhouse-server.x86_64                  19.6.2.11-1.el7            Altinity_clickhouse
+clickhouse-server-common.x86_64           19.6.2.11-1.el7            Altinity_clickhouse
+clickhouse-test.x86_64                    19.6.2.11-1.el7            Altinity_clickhouse
+```
+
+There are multiple packages available (new versions and old tools as well), some of them are deprecated already, so there is no need to install all available RPMs.
+
+Now let's install ClickHouse main parts - server and client applications.
+
+```
+sudo yum install -y clickhouse-server clickhouse-client
+```
+
+and verify it is listed as installed
+
+```
+ sudo yum list installed 'clickhouse*'
+```
+
+ClickHouse packages should be listed as installed, something like this:
+
+```
+Installed Packages
+clickhouse-client.x86_64                 18.1.0-1.el7           @Altinity_clickhouse
+clickhouse-common-static.x86_64          18.1.0-1.el7           @Altinity_clickhouse
+clickhouse-server.x86_64                 18.1.0-1.el7           @Altinity_clickhouse
+clickhouse-server-common.x86_64          18.1.0-1.el7           @Altinity_clickhouse
+```
+
+Ensure ClickHouse server is running
+
+```
+sudo /etc/init.d/clickhouse-server restart
+```
+
+And connect to it with `clickhouse-client`
+
+```
+clickhouse-client
+```
+
+ClickHouse server should respond, something like this:
+
+```
+ClickHouse client version 18.1.0.
+Connecting to localhost:9000 as user default.
+Connected to ClickHouse server version 18.1.54396.
+
+:)
+```
+
+Well, all looks fine and ClickHouse installed from **RPM** packages!
+
+We are all done!
+
+
+
 by manual:
 
 ```sh

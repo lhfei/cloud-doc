@@ -1,6 +1,6 @@
 ## Presentation of LDAP
 
-****LDAP** stands for **L**ightweight **D**irectory **A**ccess **P**rotocol. It’s an open protocol for accessing and maintaining distributed directory information services over an IP network (source [wikipedia](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol)).
+**LDAP** stands for **L**ightweight **D**irectory **A**ccess **P**rotocol. It’s an open protocol for accessing and maintaining distributed directory information services over an IP network (source [wikipedia](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol)).
 
 Here it is used to facilitate user account administration. Instead of storing user accounts locally on each server, the **LDAP** directory stores them globally and makes them available to a group of servers.
 
@@ -118,7 +118,7 @@ tcp6       0      0 [::]:ldap               [::]:*                  LISTEN
 
 
 
-### To start the configuration of the **LDAP** server, add the **cosine** &** nis LDAP** schemas:
+To start the configuration of the **LDAP** server, add the **cosine** & **nis **  **LDAP ** schemas:
 
 ```
 # cd /etc/openldap/schema

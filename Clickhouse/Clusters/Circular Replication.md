@@ -12,7 +12,7 @@ In some cases, there is a need to configure a distributed cluster with replicati
 
 Assume there are 3 servers and 1 table. The goal is to have data distributed in 3 shards and replicated twice. That requires 2 different shards located on every node. 
 
-![](images/concept.png)
+![](../images/concept.png)
 
 
 
@@ -225,7 +225,7 @@ CREATE TABLE testcluster_shard_3.tc_distributed (FlightDate Date,Year UInt16) EN
 
 When query to the distributed table comes, ClickHouse automatically adds corresponding default database for every local tc_shard table.
 
-![](images/distrib.png)
+![](../images/distrib.png)
 
 
 
@@ -233,7 +233,7 @@ It makes sense to have ‘load_balancing’ setting set to ‘in_order’, other
 
 If one of the nodes is down, there is still enough data to run queries:
 
-![](images/failover.png)
+![](../images/failover.png)
 
 
 
@@ -271,17 +271,17 @@ host-10-182-57-111 :) insert into testcluster_shard_3.tc_shard (FlightDate,Year)
 
 - host-10-182-57-104
 
-  ![](images/select104_1-3.png)
+  ![](../images/select104_1-3.png)
 
 - host-10-182-57-106
 
-  ![](images/select106_1-2.png)
+  ![](../images/select106_1-2.png)
 
 
 
 - host-10-182-57-111
 
-  ![](images/select111_2-3.png)
+  ![](../images/select111_2-3.png)
 
 
 

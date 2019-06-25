@@ -4,6 +4,14 @@ Last 2 evenings we spent on setup Nginx + Jupyter configuration where Nginx acts
 
 ## JUPYTER CONFIGURATION
 
+Make a direcotry for `Notebooks` storage.
+
+```shel
+mkdir -p /export/notebooks
+```
+
+
+
 We’re packing Jupyter inside a Docker container to provide each of our users their own isolated environment.  We’re using the following configuration placed inside `/root/.jupyter/jupyter_notebook_config.py`:
 
 ```ini
@@ -63,6 +71,8 @@ As soon as we’ve finished with Jupyter, we can start Nginx configuration. It w
 > Enable **Websocket**  support
 
 ```ini
+client_max_body_size 100M;
+
 # Enabled WebSocket support
 map $http_upgrade $connection_upgrade {
     default upgrade;
@@ -92,6 +102,7 @@ location ~* /ipython.* {
     #proxy_read_timeout 86400;
     proxy_set_header  Referer  http://localhost;
     proxy_set_header Origin "";
+    client_max_body_size 100M;
 }
 ```
 

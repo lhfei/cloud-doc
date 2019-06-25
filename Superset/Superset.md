@@ -58,8 +58,8 @@ Username [admin]: lhfei
 User first name [admin]: Hefei
 User last name [user]: Li
 Email [admin@fab.org]: lhfei@xx.com
-Password: [Lhfei]
-Repeat for confirmation: [Lhfei]
+Password: [Lhfei@01]
+Repeat for confirmation: [Lhfei@01]
 Recognized Database Authentications.
 Admin User lhfei created.
 
@@ -110,7 +110,7 @@ python3 -m pip install PyMySQL
 Update `config.py`
 
 ```ini
-SQLALCHEMY_DATABASE_URI = 'mysql:pymysql://polaris_superset:Superset_1473@10.182.91.112/cloud_superset'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://polaris_superset:Superset_1473@10.182.91.112/cloud_superset'
 ```
 
 

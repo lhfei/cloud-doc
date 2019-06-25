@@ -202,6 +202,12 @@ LIMIT 1000;
 
 
 
+### Spark
+
+```shell
+scala>var ontimes = scala>spark.read.parquet("hdfs://flyedw/benchmark/data/parquet/ontime/airline/2019_1.parquet")
+```
+
 
 
 
