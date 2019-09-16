@@ -141,4 +141,4 @@ socket = /tmp/mysql.sock
 character-set-server = utf8
 ```
 
-Now ,restart MySQL Server.
+Now ,restart MySQL Server.ic

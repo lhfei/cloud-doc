@@ -86,3 +86,29 @@ ln -s $HADOOP_CONF_DIR/hdfs-site.xml hdfs-site.xml
 # restart all drillbits nodes
 ```
 
+
+
+
+
+
+
+> drill-override.conf 
+
+```ini
+drill.exec: {
+  cluster-id: "flyedw-fastengine",
+  zk.connect: "host-192-168-45-209:2181,host-192-168-45-210:2181,host-192-168-45-211:2181"
+}
+```
+
+> drill-env.sh
+
+```ini
+DRILLBIT_MAX_PROC_MEM=25%
+DRILL_HEAP=8G
+DRILL_MAX_DIRECT_MEMORY=10G
+DRILLBIT_CODE_CACHE_SIZE=1024M 
+```
+
+
+

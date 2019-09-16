@@ -230,9 +230,12 @@ Navigate to the Kafka properties file (`/etc/kafka/server.properties`) and custo
 
    ```ini
    bootstrap.servers=authserve-23119819:9092,authserve-519d7886:9092,authserve-d0f49892:9092,authserve-ed0ad87d:9092
+   
+   key.converter.schema.registry.url=http://10.182.93.73:8081
+   value.converter.schema.registry.url=http://10.182.93.73:8081
    ```
 
-5. Navigate to the ksql server configuration file (`/etc/kafka/ksql-server.properties`) and update it as below:
+5. Navigate to the ksql server configuration file (`/etc/ksql/ksql-server.properties`) and update it as below:
 
    ```ini
    bootstrap.servers=authserve-23119819:9092,authserve-519d7886:9092,authserve-d0f49892:9092,authserve-ed0ad87d:9092

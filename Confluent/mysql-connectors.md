@@ -205,8 +205,8 @@ auto.create=true
 Next, navigate to schema-registry-server[10.182.93.73] and start the Avro console producer to import a few records to Kafka:
 
 ```sh
-
-
+./bin/kafka-avro-console-producer --broker-list authserve-23119819:9092,authserve-519d7886:9092,authserve-d0f49892:9092,authserve-ed0ad87d:9092 --topic mysql-employees \
+    --property value.schema='{"type":"record","name":"employeerecord","fields":[{"name":"id","type":"int"}, {"name":"product","type":"string"},{"name":"quantity","type":"int"},{"name":"price","type":"int"}]}'
 ```
 
 

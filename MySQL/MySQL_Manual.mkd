@@ -16,3 +16,4 @@ mysqlbinlog --start-datetime="2016-12-20 10:00:00" \
 # show database size			
 mysql>SELECT table_schema "data_fun", sum( data_length + index_length) / 1024 / 1024 "Data Base Size in MB" FROM information_schema.TABLES GROUP BY table_schema ;
 ```
+

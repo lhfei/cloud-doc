@@ -16,6 +16,10 @@
    hdfs dfs -mkdir -p /user/flink
    
    hdfs dfs -chown -R flink:hadoop /user/flink
+   
+   hdfs dfs -chown -R flink:hadoop /flink/ha
+   hdfs dfs -chown -R flink:hadoop /flink/completed-jobs
+   hdfs dfs -chown -R flink:hadoop /completed-jobs
    ```
 
    

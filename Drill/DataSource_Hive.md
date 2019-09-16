@@ -124,15 +124,12 @@ To connect Drill to a remote Hive metastore:
      "type": "hive",
      "enabled": false,
      "configProps": {
-     .
-     .
-     .
        "hbase.zookeeper.quorum": "zkhost1,zkhost2,zkhost3",
        "hbase.zookeeper.property.clientPort:" "2181" 
      }
    }
    ```
-
+   
 7. Click **Enable**.
 
 

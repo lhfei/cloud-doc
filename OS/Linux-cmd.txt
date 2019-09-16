@@ -263,7 +263,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@ubuntu133
 -----------------------------------------------------------------------------------------
 # compress
 tar -cvf a.tar 	/home/{folderName}
-tar -jcvf a.tar /home/{folderName}
+tar -cvf a.tar /home/{folderName}
 
 # decompress
 tar xfvz file.tar.gz or tar zxfv file.tar.gz

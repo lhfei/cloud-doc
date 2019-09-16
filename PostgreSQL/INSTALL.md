@@ -84,3 +84,9 @@ kong-# \dt
 (20 rows)
 ```
 
+> Drop database
+
+```sql
+DROP DATABASE "{DATABASE_NAME}"
+```
+

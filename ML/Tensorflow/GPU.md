@@ -2,16 +2,16 @@
 > CUDA
 
 ## Remove CUDA
-```
+```shell
 sudo apt-get --purge remove cuda
 sudo apt autoremove
 ```
 
-```
+```shell
 $nvidia-smi
 ```
 
-```
+```ini
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 384.90                 Driver Version: 384.90                    |
 |-------------------------------+----------------------+----------------------+
@@ -40,11 +40,11 @@ $nvidia-smi
 ```
 
 
-```
+```shell
 sudo fuser -v /dev/nvidia*
 ```
 
 
-```
+```shell
 sudo dmesg | grep drm
 ```

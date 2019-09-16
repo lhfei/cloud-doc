@@ -1,169 +1,13 @@
-## Install CK on CentOS
-
-### YUM Repo
-
-https://packagecloud.io/Altinity/clickhouse?page=2
-
-
-
-https://pkgs.org/
-
-### Prepared
-
-```
-yum install binutils-devel
-```
-
-
-
-#### Zookeeper
-
-Install zookeeper, you can see 
-
-
-
-### Install
-
-by public repo:
-
-```sh
-yum install -y yum-utils
-
-yum-config-manager --add-repo http://repo.red-soft.biz/repos/clickhouse/repo/clickhouse-el7.repo
-
-yum install -y clickhouse-server clickhouse-client clickhouse-server-common clickhouse-compressor
-```
-
-
-
-```shell
-sudo yum install -y curl
-# in case test package would be installed, add epel-release
-sudo yum install -y epel-release
-
-curl -s https://packagecloud.io/install/repositories/altinity/clickhouse/script.rpm.sh | sudo bash
-```
-
-### Install packages after script
-
-First of all, ensure we have ClickHouse packages available for installation
-
-```
-sudo yum list 'clickhouse*'
-```
-
-ClickHouse packages should be listed as available, something like this:
-
-```
-Available Packages
-clickhouse-client.x86_64                  19.6.2.11-1.el7            Altinity_clickhouse
-clickhouse-common-static.x86_64           19.6.2.11-1.el7            Altinity_clickhouse
-clickhouse-compressor.x86_64              1.1.54336-3.el7            Altinity_clickhouse
-clickhouse-debuginfo.x86_64               19.6.2.11-1.el7            Altinity_clickhouse
-clickhouse-mysql.noarch                   0.0.20180319-1             Altinity_clickhouse
-clickhouse-odbc.x86_64                    20180903-1                 Altinity_clickhouse
-clickhouse-server.x86_64                  19.6.2.11-1.el7            Altinity_clickhouse
-clickhouse-server-common.x86_64           19.6.2.11-1.el7            Altinity_clickhouse
-clickhouse-test.x86_64                    19.6.2.11-1.el7            Altinity_clickhouse
-```
-
-There are multiple packages available (new versions and old tools as well), some of them are deprecated already, so there is no need to install all available RPMs.
-
-Now let's install ClickHouse main parts - server and client applications.
-
-```
-sudo yum install -y clickhouse-server clickhouse-client
-```
-
-and verify it is listed as installed
-
-```
- sudo yum list installed 'clickhouse*'
-```
-
-ClickHouse packages should be listed as installed, something like this:
-
-```
-Installed Packages
-clickhouse-client.x86_64                 18.1.0-1.el7           @Altinity_clickhouse
-clickhouse-common-static.x86_64          18.1.0-1.el7           @Altinity_clickhouse
-clickhouse-server.x86_64                 18.1.0-1.el7           @Altinity_clickhouse
-clickhouse-server-common.x86_64          18.1.0-1.el7           @Altinity_clickhouse
-```
-
-Ensure ClickHouse server is running
-
-```
-sudo /etc/init.d/clickhouse-server restart
-```
-
-And connect to it with `clickhouse-client`
-
-```
-clickhouse-client
-```
-
-ClickHouse server should respond, something like this:
-
-```
-ClickHouse client version 18.1.0.
-Connecting to localhost:9000 as user default.
-Connected to ClickHouse server version 18.1.54396.
-
-:)
-```
-
-Well, all looks fine and ClickHouse installed from **RPM** packages!
-
-We are all done!
-
-
-
-by manual:
-
-```sh
-rpm -ivh clickhouse-common-static-1.1.54390-1.el6.x86_64.rpm
-rpm -ivh clickhouse-server-common-1.1.54390-1.el6.x86_64.rpm
-rpm -ivh clickhouse-client-1.1.54390-1.el6.x86_64.rpm
-rpm -ivh clickhouse-server-1.1.54390-1.el6.x86_64.rpm
-```
-
-
-
-### Configuration
-
-
-
-- [x] /etc/rc.d/init.d/clickhouse-server 
-
-```ini
-CLICKHOUSE_LOGDIR=/export/var/log/clickhouse-server
-CLICKHOUSE_DATADIR_OLD=/export/opt/clickhouse
-CLICKHOUSE_CONFIG=$SYSCONFDIR/config.xml
-```
-
-
-
-```shell
-mkdir -p /export/var/log/clickhouse-server /export/opt/clickhouse
-
-chown -R clickhouse:clickhouse /export/var/log/clickhouse-server /export/opt/clickhouse
-```
-
-
-
-Configuration files default location in `/etc/clickhouse-server`
-
-- [x] config.xml 
-
-```xml
 <?xml version="1.0"?>
+<!--
+  NOTE: User and query level settings are set up in "users.xml" file.
+-->
 <yandex>
     <logger>
         <!-- Possible levels: https://github.com/pocoproject/poco/blob/develop/Foundation/include/Poco/Logger.h#L105 -->
         <level>trace</level>
-        <log>/export/var/log/clickhouse-server/clickhouse-server.log</log>
-        <errorlog>/export/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
+        <log>/var/log/clickhouse-server/clickhouse-server.log</log>
+        <errorlog>/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
         <size>1000M</size>
         <count>10</count>
         <!-- <console>1</console> --> <!-- Default behavior is autodetection (log to console if not daemon mode and is tty) -->
@@ -219,13 +63,13 @@ Configuration files default location in `/etc/clickhouse-server`
          This setting could be used to switch replication to another network interface.
       -->
     <!--
-    <interserver_http_host>host-10-182-57-104</interserver_http_host>
+    <interserver_http_host>example.yandex.ru</interserver_http_host>
     -->
 
     <!-- Listen specified host. use :: (wildcard IPv6 address), if you want to accept connections both with IPv4 and IPv6 from everywhere. -->
     <!-- <listen_host>::</listen_host> -->
     <!-- Same for hosts with disabled ipv6: -->
-    <listen_host>0.0.0.0</listen_host>
+    <!-- <listen_host>0.0.0.0</listen_host> -->
 
     <!-- Default values - try listen localhost on ipv4 and ipv6: -->
     <!--
@@ -265,10 +109,10 @@ Configuration files default location in `/etc/clickhouse-server`
 
 
     <!-- Path to data directory, with trailing slash. -->
-    <path>/export/data/clickhouse/</path>
+    <path>/var/lib/clickhouse/</path>
 
     <!-- Path to temporary data for processing hard queries. -->
-    <tmp_path>/export/data/tmp/clickhouse/</tmp_path>
+    <tmp_path>/var/lib/clickhouse/tmp/</tmp_path>
 
     <!-- Directory with user provided files that are accessible by 'file' table function. -->
     <user_files_path>/var/lib/clickhouse/user_files/</user_files_path>
@@ -304,6 +148,12 @@ Configuration files default location in `/etc/clickhouse-server`
     -->
     <!-- <umask>022</umask> -->
 
+    <!-- Perform mlockall after startup to lower first queries latency
+          and to prevent clickhouse executable from being paged out under high IO load.
+         Enabling this option is recommended but will lead to increased startup time for up to a few seconds.
+    -->
+    <mlock_executable>false</mlock_executable>
+
     <!-- Configuration of clusters that could be used in Distributed tables.
          https://clickhouse.yandex/docs/en/table_engines/distributed/
       -->
@@ -317,6 +167,20 @@ Configuration files default location in `/etc/clickhouse-server`
                 </replica>
             </shard>
         </test_shard_localhost>
+        <test_cluster_two_shards_localhost>
+             <shard>
+                 <replica>
+                     <host>localhost</host>
+                     <port>9000</port>
+                 </replica>
+             </shard>
+             <shard>
+                 <replica>
+                     <host>localhost</host>
+                     <port>9000</port>
+                 </replica>
+             </shard>
+         </test_cluster_two_shards_localhost>
         <test_shard_localhost_secure>
             <shard>
                 <replica>
@@ -326,6 +190,20 @@ Configuration files default location in `/etc/clickhouse-server`
                 </replica>
             </shard>
         </test_shard_localhost_secure>
+        <test_unavailable_shard>
+            <shard>
+                <replica>
+                    <host>localhost</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+            <shard>
+                <replica>
+                    <host>localhost</host>
+                    <port>1</port>
+                </replica>
+            </shard>
+        </test_unavailable_shard>
     </remote_servers>
 
 
@@ -416,12 +294,20 @@ Configuration files default location in `/etc/clickhouse-server`
         <flush_interval_milliseconds>7500</flush_interval_milliseconds>
     </query_log>
 
+    <!-- Query thread log. Has information about all threads participated in query execution.
+         Used only for queries with setting log_query_threads = 1. -->
+    <query_thread_log>
+        <database>system</database>
+        <table>query_thread_log</table>
+        <partition_by>toYYYYMM(event_date)</partition_by>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+    </query_thread_log>
 
-    <!-- Uncomment if use part_log
+    <!-- Uncomment if use part log.
+         Part log contains information about all actions with parts in MergeTree tables (creation, deletion, merges, downloads).
     <part_log>
         <database>system</database>
         <table>part_log</table>
-
         <flush_interval_milliseconds>7500</flush_interval_milliseconds>
     </part_log>
     -->
@@ -481,10 +367,12 @@ Configuration files default location in `/etc/clickhouse-server`
     <!-- Protection from accidental DROP.
          If size of a MergeTree table is greater than max_table_size_to_drop (in bytes) than table could not be dropped with any DROP query.
          If you want do delete one table and don't want to restart clickhouse-server, you could create special file <clickhouse-path>/flags/force_drop_table and make DROP once.
-         By default max_table_size_to_drop is 50GB, max_table_size_to_drop=0 allows to DROP any tables.
+         By default max_table_size_to_drop is 50GB; max_table_size_to_drop=0 allows to DROP any tables.
+         The same for max_partition_size_to_drop.
          Uncomment to disable protection.
     -->
     <!-- <max_table_size_to_drop>0</max_table_size_to_drop> -->
+    <!-- <max_partition_size_to_drop>0</max_partition_size_to_drop> -->
 
     <!-- Example of parameters for GraphiteMergeTree table engine -->
     <graphite_rollup_example>
@@ -527,323 +415,3 @@ Configuration files default location in `/etc/clickhouse-server`
 
     <include_from>/etc/clickhouse-server/metrika.xml</include_from>
 </yandex>
-```
-
-
-
-- [x] metrika.xml
-
-```xml
-<?xml version="1.0"?>
-<yandex>
-  <clickhouse_remote_servers>
-    <bip_ck_cluster>
-      <shard>
-        <internal_replication>false</internal_replication>
-        <replica>
-          <host>host-10-182-57-104</host>
-          <port>9000</port>
-          <user>default</user>
-          <password></password>
-        </replica>
-      </shard>
-      <shard>
-        <internal_replication>false</internal_replication>
-        <replica>
-          <host>host-10-182-57-106</host>
-          <port>9000</port>
-          <user>default</user>
-          <password></password>
-        </replica>
-      </shard>
-      <shard>
-        <internal_replication>false</internal_replication>
-        <replica>
-          <host>host-10-182-57-111</host>
-          <port>9000</port>
-          <user>default</user>
-          <password></password>
-        </replica>
-      </shard>
-    </bip_ck_cluster>
-  </clickhouse_remote_servers>
-  <macros>
-    <replica>host-10-182-57-104</replica>
-  </macros>
-  <networks>
-    <ip>::/0</ip>
-  </networks>
-  <!-- Zookeeper Cluster -->
-  <zookeeper-servers>
-    <node index="1">
-      <host>10.182.57.104</host>
-      <port>2181</port>
-    </node>
-    <node index="2">
-      <host>10.182.57.106</host>
-      <port>2181</port>
-    </node>
-    <node index="3">
-      <host>10.182.57.111</host>
-      <port>2181</port>
-    </node>
-  </zookeeper-servers>
-  <clickhouse_compression>
-    <case>
-      <min_part_size>10000000000</min_part_size>
-      <min_part_size_ratio>0.01</min_part_size_ratio>
-      <method>lz4</method>
-    </case>
-  </clickhouse_compression>
-</yandex>
-```
-
-
-
-- [x] user.xml
-
-  How to generate decent password, just execute below line in cmd.
-
-  ```sh
-  PASSWORD="Lhfei"
-  echo "$PASSWORD"; echo -n "$PASSWORD" | sha256sum | tr -d '-'
-  
-  ------------------------------------------------------------------
-  Lhfei
-  765fabaa5032162a1fc80edb87439dc2de5fe451e23b66ad5817c7a2668ce61c  
-  ------------------------------------------------------------------
-  ```
-
-  In first line will be password and in second - corresponding SHA256.
-
-
-```xml
-<?xml version="1.0"?>
-<yandex>
-  <!-- Profiles of settings. -->
-  <profiles>
-    <!-- Default settings. -->
-    <default>
-      <!-- Maximum memory usage for processing single query, in bytes. -->
-      <max_memory_usage>10000000000</max_memory_usage>
-      <!-- Use cache of uncompressed blocks of data. Meaningful only for processing many of very short queries. -->
-      <use_uncompressed_cache>0</use_uncompressed_cache>
-      <!-- How to choose between replicas during distributed query processing.
-                 random - choose random replica from set of replicas with minimum number of errors
-                 nearest_hostname - from set of replicas with minimum number of errors, choose replica
-                  with minumum number of different symbols between replica's hostname and local hostname
-                  (Hamming distance).
-                 in_order - first live replica is choosen in specified order.
-            -->
-      <load_balancing>random</load_balancing>
-    </default>
-    <!-- Profile that allows only read queries. -->
-    <readonly>
-      <max_memory_usage>10000000000</max_memory_usage>
-      <use_uncompressed_cache>0</use_uncompressed_cache>
-      <load_balancing>random</load_balancing>
-      <readonly>1</readonly>
-    </readonly>
-  </profiles>
-  <!-- Users and ACL. -->
-  <users>
-    <!-- If user name was not specified, 'default' user is used. -->
-    <default>
-      <!-- Password could be specified in plaintext or in SHA256 (in hex format).
-
-                 If you want to specify password in plaintext (not recommended), place it in 'password' element.
-                 Example: <password>qwerty</password>.
-                 Password could be empty.
-
-                 If you want to specify SHA256, place it in 'password_sha256_hex' element.
-                 Example: <password_sha256_hex>65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5</password_sha256_hex>
-
-                 How to generate decent password:
-                 Execute: PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWORD" | sha256sum | tr -d '-'
-                 In first line will be password and in second - corresponding SHA256.
-            -->
-      <password/>
-      <!-- List of networks with open access.
-
-                 To open access from everywhere, specify:
-                    <ip>::/0</ip>
-
-                 To open access only from localhost, specify:
-                    <ip>::1</ip>
-                    <ip>127.0.0.1</ip>
-
-                 Each element of list has one of the following forms:
-                 <ip> IP-address or network mask. Examples: 213.180.204.3 or 10.0.0.1/8 or 2a02:6b8::3 or 2a02:6b8::3/64.
-                 <host> Hostname. Example: server01.yandex.ru.
-                     To check access, DNS query is performed, and all received addresses compared to peer address.
-                 <host_regexp> Regular expression for host names. Example, ^server\d\d-\d\d-\d\.yandex\.ru$
-                     To check access, DNS PTR query is performed for peer address and then regexp is applied.
-                     Then, for result of PTR query, another DNS query is performed and all received addresses compared to peer address.
-                     Strongly recommended that regexp is ends with $
-                 All results of DNS requests are cached till server restart.
-            -->
-      <networks incl="networks" replace="replace">
-        <ip>::/0</ip>
-      </networks>
-      <!-- Settings profile for user. -->
-      <profile>default</profile>
-      <!-- Quota for user. -->
-      <quota>default</quota>
-    </default>
-    <!-- Example of user with readonly access. -->
-    <readonly>
-      <password/>
-      <networks incl="networks" replace="replace">
-        <ip>::1</ip>
-        <ip>127.0.0.1</ip>
-      </networks>
-      <profile>readonly</profile>
-      <quota>default</quota>
-    </readonly>
-  </users>
-  <!-- Quotas. -->
-  <quotas>
-    <!-- Name of quota. -->
-    <default>
-      <!-- Limits for time interval. You could specify many intervals with different limits. -->
-      <interval>
-        <!-- Length of interval. -->
-        <duration>3600</duration>
-        <!-- No limits. Just calculate resource usage for time interval. -->
-        <queries>0</queries>
-        <errors>0</errors>
-        <result_rows>0</result_rows>
-        <read_rows>0</read_rows>
-        <execution_time>0</execution_time>
-      </interval>
-    </default>
-  </quotas>
-</yandex>
-```
-
-
-
-### Start
-
-```sh
-mkdir -p /export/data/clickhouse
-mkdir -p /export/data/tmp/clickhouse
-mkdir -p /export/var/log/clickhouse-server
-
-chmod 777 /export/var/log/clickhouse-server
-```
-
-
-
-```sh
-/etc/init.d/clickhouse-server start
-```
-
-
-
-check status:
-
-```ini
-lsof -i :8123
-
-COMMAND      PID       USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
-clickhous 280589 clickhouse   10u  IPv4 3930653181      0t0  TCP *:8123 (LISTEN)
-```
-
-
-
-```shell
-/etc/init.d/clickhouse-server stop
-```
-
-
-
-> Client
-
-```shell
-clickhouse-client -h 127.0.0.1 -d default -m -u default
-```
-
-or with a port number:
-
-```shell
-clickhouse-client -h 127.0.0.1 -d default -m -u default --port 8123
-```
-
-
-
-
-
-```sql
-use system;
-
-select * from clusters;
-
-┌─cluster─────────────────────┬─shard_num─┬─shard_weight─┬─replica_num─┬─host_name──────────┬─host_address──┬─port─┬─is_local─┬─user────┬─default_database─┐
-│ bip_ck_cluster              │         1 │            1 │           1 │ host-10-182-57-104 │ 10.182.57.104 │ 9000 │        0 │ default │                  │
-│ bip_ck_cluster              │         2 │            1 │           1 │ host-10-182-57-106 │ 10.182.57.106 │ 9000 │        1 │ default │                  │
-│ bip_ck_cluster              │         3 │            1 │           1 │ host-10-182-57-111 │ 10.182.57.111 │ 9000 │        0 │ default │                  │
-│ test_shard_localhost        │         1 │            1 │           1 │ localhost          │ ::1           │ 9000 │        1 │ default │                  │
-│ test_shard_localhost_secure │         1 │            1 │           1 │ localhost          │ ::1           │ 9440 │        0 │ default │                  │
-└─────────────────────────────┴───────────┴──────────────┴─────────────┴────────────────────┴───────────────┴──────┴──────────┴─────────┴──────────────────┘
-
-```
-
-
-
-### Nginx
-
-```ini
-# application: CK
-location / {
-    proxy_pass http://127.0.0.1:8123;
-    index /;
-    proxy_set_header Host $host;
-}
-```
-
-
-
-### Issues
-
-> libicudata.so.42()(64bit) is needed by clickhouse-common-static-1.1.54390-1.el6.x86_64
-
-```
-yum install libicu
-```
-
-
-
-> libodbc.so.2()(64bit) is needed by clickhouse-common-static-1.1.54390-1.el6.x86_64
-
-```
-yum install unixODBC
-```
-
-
-
-## Getting Started
-
-### DDL
-
-```sql
-CREATE DATABASE  lhfei;
-USE lhfei;
-
-CREATE TABLE ontime_local (FlightDate Date,Year UInt16) ENGINE = MergeTree(FlightDate, (Year, FlightDate), 8192);
-
-CREATE TABLE ontime_all AS ontime_local ENGINE = Distributed(bip_ck_cluster, lhfei, ontime_local, rand());
-
--- for local
-insert into ontime_local (FlightDate,Year) values('2001-10-12',2001);
-insert into ontime_local (FlightDate,Year) values('2002-10-12',2002);
-insert into ontime_local (FlightDate,Year) values('2003-10-12',2003);
-
--- for distributed
-insert into ontime_all   (FlightDate,Year) values('2003-10-12',2008);
-
-select count(*) from system.ontime_all;
-```
-
-
-

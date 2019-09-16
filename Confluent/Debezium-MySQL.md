@@ -36,6 +36,12 @@ where:
 Create user with required permissions for connector:
 
 ```sql
+CREATE DATABASE IF NOT EXISTS kafka_conn;
+
+USE kafka_conn;
+```
+
+```sql
 -- Create user & grant permissions
 CREATE USER 'debezium'@'localhost' IDENTIFIED BY 'Debezium_1473';
 
@@ -63,7 +69,7 @@ CREATE TABLE `orders` (
 Use the [Confluent Hub client](https://docs.confluent.io/current/confluent-hub/client.html) to install this connector with:
 
 ```sh
-confluent-hub install debezium/debezium-connector-mysql:0.8.3
+confluent-hub install debezium/debezium-connector-mysql:0.9.4
 ```
 
 Or download the ZIP file and extract it into one of the directories that is listed on the Connect worker's plugin.path configuration properties. This must be done on each of the installations where Connect will be run. See [here](https://docs.confluent.io/current/connect/userguide.html#installing-plugins) for more detailed instructions.
