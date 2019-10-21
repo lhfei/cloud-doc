@@ -1,0 +1,16 @@
+6/2018 V4 release
+
+=========
+- Icons -
+=========
+
+Added:
+- API Analytics- API Monetization- Apigee API Platform- Apigee Sense- Cloud Armor- Cloud AutoML- Cloud Composer- Cloud Memorystore- Cloud Security Command Center- Cloud Text-to-Speech- Cloud TPU- Developer Portal- Dialogflow Enterprise Edition
+- Premium Network Tier- Standard Network Tier
+- API Platform & Ecosystems (folder)
+- Data Transfer (folder)
+
+Updated:
+- Cloud Security Scanner
+- GPU
+- Partner Interconnect

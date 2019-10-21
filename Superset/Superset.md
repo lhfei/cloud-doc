@@ -121,6 +121,43 @@ SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://polaris_superset:Superset_1473@10.182
 > Restart & Stop
 
 ```sh
-
+superset run -p 8080 --with-threads --reload --debugger
 
 ```
+
+
+
+> start.sh
+
+```shell
+#!/bin/bash
+
+JOB_HOME="."
+SERV_NAME="Superset Server"
+OUT_LOG="superset.log"
+
+function startJob() {
+        echo "prepare to start ..."
+        /opt/rh/rh-python36/root/usr/bin/superset runserver -p 8088 > ${JOB_HOME}/${OUT_LOG} 2>&1 &
+        PID=$!
+        echo $PID > ${JOB_HOME}/pid
+        echo "${SERV_NAME} is started as pid $! ."
+}
+
+if [ -f "${JOB_HOME}/pid" ]
+then
+        PID=`cat ${JOB_HOME}/pid`
+        if ps -p $PID > /dev/null
+        then
+                echo "${SERV_NAME} is running as pid is $PID, stop it first"
+                exit 1
+        else
+                startJob
+                exit 1
+        fi
+else
+        startJob
+        exit 1
+fi
+```
+

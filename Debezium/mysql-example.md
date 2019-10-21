@@ -33,11 +33,24 @@ Create a user for connector:
 ```sql
 CREATE USER 'debezium'@'localhost' IDENTIFIED BY 'Debezium_1473';
 
-GRANT ALL ON kafka_conn.* TO 'debezium'@'10.182.93.72' IDENTIFIED BY 'Debezium_1473';
+-- GRANT ALL ON kafka_conn.* TO 'debezium'@'10.182.93.72' IDENTIFIED BY 'Debezium_1473';
 GRANT ALL ON kafka_conn.* TO 'debezium'@'%' IDENTIFIED BY 'Debezium_1473';
 GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium' IDENTIFIED BY 'Debezium_1473';
 
 FLUSH PRIVILEGES;
+
+-- Create DB
+CREATE DATABASE IF NOT EXISTS kafka_conn;
+
+-- Creat table
+USE kafka_conn;
+CREATE TABLE `orders` (
+  `product` varchar(256) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `id` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 
@@ -83,10 +96,8 @@ Edit file `etc/debezium-connector-mysql/quickstart-mysql.properties `
 
 
 
-
-
 ```sh
-curl -X POST -H "Content-Type: application/json" --data @etc/debezium-connector-mysql/quickstart-mysql.properties http://10.182.93.75:8083/connectors
+curl -X POST  -H "Accept:application/json" -H "Content-Type: application/json" http://10.182.93.75:8083/connectors -d @etc/debezium-connector-mysql/quickstart-mysql.properties 
 ```
 
 

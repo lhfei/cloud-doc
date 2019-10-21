@@ -64,3 +64,10 @@ GRANT ALL ON cloud_superset.* TO 'polaris_superset'@'%' IDENTIFIED BY 'Superset_
 FLUSH PRIVILEGES;
 ```
 
+
+
+
+
+> Install Directory
+
+`/opt/rh/rh-python36/root/lib/python3.6/site-packages/superset`

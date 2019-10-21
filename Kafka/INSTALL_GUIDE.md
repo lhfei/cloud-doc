@@ -12,9 +12,9 @@ Socket Server Settings
 
 ```sh
 #optional: start zookeeper server
->bin/zookeeper-server-start.sh config/zookeeper.properties
+>bin/zookeeper-server-start.sh config/zookeeper.properties &
 
->bin/kafka-server-start.sh config/server.properties
+>bin/kafka-server-start.sh config/server.properties &
 
 ```
 
