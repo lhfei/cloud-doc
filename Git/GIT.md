@@ -20,7 +20,7 @@ git push origin -f
 ```
 
 
->### Git create a release tag
+>### Git create a release git 
 
 ```sh
 git tag -a 1.0.0 -m "Release of version 1.0.0"

@@ -65,18 +65,18 @@ upstream websocket {
     server localhost:8080;
 }
 server {
-	listen	     8091;
-	server_name  localhost;
-	
-	location / {
-	    proxy_buffers 16 4k;
-	    proxy_buffer_size 2k;
-	    proxy_pass http://websocket;
-	
-	    proxy_http_version 1.1;
-	    proxy_set_header Upgrade $http_upgrade;
-	    proxy_set_header Connection $connection_upgrade;
-	}
+  listen         8091;
+  server_name  localhost;
+  
+  location / {
+    proxy_buffers 16 4k;
+    proxy_buffer_size 2k;
+    proxy_pass http://websocket;
+    proxy_set_header Host $host;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+  }
 }
 
 

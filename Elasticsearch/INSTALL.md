@@ -103,7 +103,7 @@ discovery.seed_hosts: ["10.182.93.182","10.182.93.187","10.182.93.191","10.182.9
 # Bootstrap the cluster using an initial set of master-eligible nodes:
 #
 cluster.initial_master_nodes: ["10.182.93.182","10.182.93.187","10.182.93.191"]
-
+#discovery.zen.minimum_master_nodes: 3
 #
 # For more information, consult the discovery and cluster formation module documentation.
 #
@@ -115,10 +115,6 @@ cluster.initial_master_nodes: ["10.182.93.182","10.182.93.187","10.182.93.191"]
 #
 # For more information, consult the gateway module documentation.
 #
-node.master: true
-node.data: true
-transport.host: localhost
-transport.tcp.port: 9300
 # ---------------------------------- Various -----------------------------------
 #
 # Require explicit names when deleting indices:
@@ -173,10 +169,12 @@ chown -R elsearch:elsearch /export/cloud/logstash-7.4.0
 
 > Import Data
 
+> yellow.conf
 ```ini
 input {
   file {
     path => ["/export/app_sdk/yellow_tripdata_2018-03.csv"]
+	sincedb_path  => "NUL"
     start_position => "beginning"
   }
 }
@@ -184,12 +182,70 @@ filter {
   csv {
     separator => ","
     columns => ["VendorID","tpep_pickup_datetime","tpep_dropoff_datetime","passenger_count","trip_distance","RatecodeID","store_and_fwd_flag","PULocationID","DOLocationID","payment_type","fare_amount","extra","mta_tax","tip_amount","tolls_amount","improvement_surcharge","total_amount"]
+    skip_header => true
+    convert => {
+      "VendorID"              => "integer"
+      "tpep_pickup_datetime"  => "date_time"
+      "tpep_dropoff_datetime" => "date_time"
+      "passenger_count"       => "integer"
+      "trip_distance"         => "float"
+      "RatecodeID"            => "integer"
+      "PULocationID"          => "integer"
+      "DOLocationID"          => "integer"
+      "payment_type"          => "integer"
+      "fare_amount"           => "float"
+      "extra"                 => "float"
+      "mta_tax"               => "float"
+      "tip_amount"            => "float"
+      "tolls_amount"          => "float"
+      "improvement_surcharge" => "float"
+      "total_amount"          => "float"
+}
+  
   } 
 }
 output {
   elasticsearch {
-        hosts => ["10.182.93.182:9200","10.182.93.187:9200","10.182.93.191:9200","10.182.93.194:9200","10.182.93.200:9200","10.182.93.201:9200","10.182.93.203:9200"]
-        index => "yellow_tripdata"
+    hosts => ["10.182.93.182:9200","10.182.93.187:9200","10.182.93.191:9200","10.182.93.194:9200","10.182.93.200:9200","10.182.93.201:9200","10.182.93.203:9200"]
+    index => "yellow_tripdata"
   }
 }
+```
+
+```shell
+bin/logstash -f config/yellow.conf
+```
+
+> fhv.conf
+```ini
+input {
+  file {
+    path => ["/export/app_sdk/fhv_tripdata_2018-06.csv"]
+	sincedb_path  => "NUL"
+    start_position => "beginning"
+  }
+}
+filter {
+  csv {
+    separator => ","
+    columns => ["Dispatching_base_num","Pickup_DateTime","DropOff_datetime","PUlocationID","DOlocationID","SR_Flag"]
+    skip_header => true
+    convert => {
+      "Pickup_DateTime"      => "date_time"
+      "DropOff_datetime"     => "date_time"
+      "PUlocationID"         => "integer"
+      "DOlocationID"         => "integer"
+    }
+  } 
+}
+output {
+  elasticsearch {
+    hosts => ["10.182.93.182:9200","10.182.93.187:9200","10.182.93.191:9200","10.182.93.194:9200","10.182.93.200:9200","10.182.93.201:9200","10.182.93.203:9200"]
+    index => "fhv_tripdata"
+  }
+}
+```
+
+```shell
+bin/logstash -f config/fhv.conf
 ```
