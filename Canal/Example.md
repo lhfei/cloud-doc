@@ -116,8 +116,21 @@ mysql> show master status;
 > Tables
 
 ```sql
+-- create user
+CREATE USER 'monitor'@'localhost' IDENTIFIED BY 'NxMonitor_1473';
+
 -- Create Database
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `kafka_conn` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+
+-- GRANT ALL ON canal_manager.* TO 'canal'@'192.168.133.155' IDENTIFIED BY 'NxMonitor_1473';
+GRANT ALL ON kafka_conn.* TO 'monitor'@'%' IDENTIFIED BY 'NxMonitor_1473';
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'monitor' IDENTIFIED BY 'NxMonitor_1473';
+
+FLUSH PRIVILEGES;
+
+
+
+USE `kafka_conn`;
 
 CREATE TABLE `orders` (
   `product` varchar(256) NOT NULL,
@@ -133,7 +146,7 @@ CREATE TABLE `student` (
   `password` varchar(100) NOT NULL,
   `birthday` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 
 insert into orders (product, quantity, price, id) values ('Clothes', 700, 700, 700);
@@ -148,6 +161,55 @@ INSERT INTO student (name, password, birthday) VALUES ('Hefei Li1','123456','198
 INSERT INTO student (name, password, birthday) VALUES ('Hefei Li2','123456','19831012');
 
 
+```
+
+
+
+
+
+```sql
+-- Create Database
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dwh_cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+
+-- GRANT ALL ON canal_manager.* TO 'canal'@'192.168.133.155' IDENTIFIED BY 'NxMonitor_1473';
+GRANT ALL ON `dwh_cms`.* TO 'monitor'@'%' IDENTIFIED BY 'NxMonitor_1473';
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'monitor' IDENTIFIED BY 'NxMonitor_1473';
+
+FLUSH PRIVILEGES;
+
+
+USE `dwh_cms`;
+
+CREATE TABLE `orders` (
+  `product` varchar(256) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `id` varchar(32) NOT NULL,
+  `EXT_flag` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `birthday` date NOT NULL,
+  `EXT_flag` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
+
+insert into orders (product, quantity, price, id,Ext_flag) values ('Clothes', 700, 700, 700, '1');
+insert into orders (product, quantity, price, id,Ext_flag) values ('Clothes', 701, 701, 701, '3');
+insert into orders (product, quantity, price, id,Ext_flag) values ('Clothes', 702, 702, 702, '2');
+insert into orders (product, quantity, price, id,Ext_flag) values ('Clothes', 703, 703, 703, '1');
+insert into orders (product, quantity, price, id,Ext_flag) values ('Clothes', 704, 704, 704, '2');
+insert into orders (product, quantity, price, id,Ext_flag) values ('Clothes', 705, 705, 705, '3');
+
+INSERT INTO student (name, password, birthday,Ext_flag) VALUES ('Hefei Li0','123456','19831010', '1');
+INSERT INTO student (name, password, birthday,Ext_flag) VALUES ('Hefei Li1','123456','19831011', '2');
+INSERT INTO student (name, password, birthday,Ext_flag) VALUES ('Hefei Li2','123456','19831012', '3');
 ```
 
 

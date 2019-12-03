@@ -228,7 +228,7 @@ So here is my plan of action:
    ps –u hdfs (see list of all services below)kill PID
    ```
 
-   ​
+   
 
 2. Run python script on all cluster nodes
 
@@ -236,15 +236,32 @@ So here is my plan of action:
    python /usr/lib/python2.6/site-packages/ambari_agent/HostCleanup.py --silent --skip=users
    ```
 
-   ​
+   
 
 3. Remove Hadoop packages on all nodes
 
    ```
-   yum remove hive\*yum remove oozie\*yum remove pig\*yum remove zookeeper\*yum remove tez\*yum remove hbase\*yum remove ranger\*yum remove knox\*yum remove storm\*yum remove accumulo\*yum remove falcon\*yum remove ambari-metrics-hadoop-sink yum remove smartsense-hstyum remove slider_2_4_2_0_258yum remove ambari-metrics-monitoryum remove spark2_2_5_3_0_37-yarn-shuffleyum remove spark_2_5_3_0_37-yarn-shuffleyum remove ambari-infra-solr-client
+   sudo yum remove -y hive\*
+   sudo yum remove -y oozie\*
+   sudo yum remove -y pig\*
+   sudo yum remove -y zookeeper\*
+   sudo yum remove -y tez\*
+   sudo yum remove -y hbase\*
+   sudo yum remove -y ranger\*
+   sudo yum remove -y knox\*
+   sudo yum remove -y storm\*
+   sudo yum remove -y accumulo\*
+   sudo yum remove -y falcon\*
+   sudo yum remove -y ambari-metrics-hadoop-sink 
+   sudo yum remove -y smartsense-hst
+   sudo yum remove -y slider_2_4_2_0_258
+   sudo yum remove -y ambari-metrics-monitor
+   sudo yum remove -y spark2_2_5_3_0_37-yarn-shuffle
+   sudo yum remove -y spark_2_5_3_0_37-yarn-shuffle
+   sudo yum remove -y ambari-infra-solr-client
    ```
 
-   ​
+   
 
 4. Remove ambari-server (on ambari host) and ambari-agent (on all nodes)
 
@@ -252,7 +269,7 @@ So here is my plan of action:
    ambari-server stopambari-agent stopyum erase ambari-serveryum erase ambari-agent
    ```
 
-   ​
+   
 
 5. Remove repositories on all nodes
 
@@ -260,7 +277,7 @@ So here is my plan of action:
    rm -rf /etc/yum.repos.d/ambari.repo /etc/yum.repos.d/HDP*yum clean all
    ```
 
-   ​
+   
 
 6. Remove log folders on all nodes
 
@@ -284,7 +301,7 @@ So here is my plan of action:
    /usr/bin/rm -rf /var/log/zookeeper
    ```
 
-   ​
+   
 
 
 
@@ -302,7 +319,7 @@ So here is my plan of action:
    /usr/bin/rm -rf /var/hadoop
    ```
 
-   ​
+   
 
 8. Remove config folders on all nodes
 
@@ -335,7 +352,7 @@ So here is my plan of action:
    /usr/bin/rm -rf /etc/zookeeper
    ```
 
-   ​
+   
 
 9. Remove PIDs on all nodes
    ```
@@ -381,7 +398,7 @@ So here is my plan of action:
     /usr/bin/rm -rf /var/lib/storm
     ```
 
-    ​
+    
 
 11. Clean folder /var/tmp/* on all nodes
 
@@ -396,7 +413,7 @@ So here is my plan of action:
     2 * * 0 /usr/hdp/share/hst/bin/hst-scheduled-capture.sh
     ```
 
-    ​
+    
 
 13. Remove databases. I remove the instances of MySQL and Postgres so that Ambari installed and configured fresh databases.
 
@@ -407,7 +424,7 @@ So here is my plan of action:
     /usr/bin/rm -rf /var/lib/mysql
     ```
 
-    ​
+    
 
 
 14. Remove symlinks on all nodes. Especially check folders */usr/sbin* and */usr/lib/python2.6/site-packages*
@@ -467,7 +484,7 @@ So here is my plan of action:
     /usr/bin/rm -rf zookeeper-server-cleanup
     ```
 
-    ​
+    
 
 15. Remove service users on all nodes
 
@@ -495,7 +512,7 @@ So here is my plan of action:
     userdel -r zookeeper
     ```
 
-    ​
+    
 
 16. Run **find / -name \**** on all nodes. You will definitely find several more files/folders. Remove them.
 
@@ -527,7 +544,7 @@ So here is my plan of action:
     find / -name *zookeeper*
     ```
 
-    ​
+    
 
 17. Reboot all nodes
 
@@ -535,5 +552,4 @@ So here is my plan of action:
     reboot
     ```
 
-    ​
 

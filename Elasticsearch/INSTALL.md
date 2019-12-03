@@ -1,20 +1,20 @@
 
 #### Create User
 ```shell
-groupadd elsearch
-useradd elsearch -g elsearch -p elsearch
-chown -R elsearch:elsearch /export/cloud/elasticsearch-7.4.0
+groupadd elastic
+useradd elastic -g elastic -p elastic
+chown -R elastic:elastic /export/cloud/elasticsearch-7.4.2
 ```
 
 #### Make dirs
 ```shell
 mkdir -p /export/app_data/elasticsearch/data
 chmod 775 /export/app_data/elasticsearch/data
-chown -R elsearch:elsearch /export/app_data/elasticsearch/data
+chown -R elastic:elastic /export/app_data/elasticsearch/data
 
 mkdir -p /export/app_logs/es/logs
 chmod 775 /export/app_logs/es/logs
-chown -R elsearch:elsearch /export/app_logs/es/logs
+chown -R elastic:elastic /export/app_logs/es/logs
 ```
 
 #### Start
@@ -126,9 +126,9 @@ cluster.initial_master_nodes: ["10.182.93.182","10.182.93.187","10.182.93.191"]
 #### Install Kibana
 > 205
 ```shell
-groupadd elsearch
-useradd elsearch -g elsearch -p elsearch
-chown -R elsearch:elsearch /export/cloud/kibana-7.4.0-linux-x86_64
+groupadd elastic
+useradd elastic -g elastic -p elastic
+chown -R elastic:elastic /export/cloud/kibana-7.4.2-linux-x86_64
 ```
 
 In kibana.yml:
@@ -150,21 +150,29 @@ elasticsearch.hosts:
 elasticsearch.preserveHost: true
 ```
 
+> Start Inbana
+
+```shell
+./bin/kibana &
+```
+
+
+
 #### Install Logstash
 
 > 210
 
 ```shell
-wget https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz
+wget https://artifacts.elastic.co/downloads/logstash/logstash-7.4.2.tar.gz
 
-tar xvzf logstash-7.4.0.tar.gz -C /export/cloud/
+tar xvzf logstash-7.4.2.tar.gz -C /export/cloud/
 
 ```
 
 ```shell
-groupadd elsearch
-useradd elsearch -g elsearch -p elsearch
-chown -R elsearch:elsearch /export/cloud/logstash-7.4.0
+groupadd elastic
+useradd elastic -g elastic -p elastic
+chown -R elastic:elastic /export/cloud/logstash-7.4.2
 ```
 
 > Import Data
@@ -173,15 +181,15 @@ chown -R elsearch:elsearch /export/cloud/logstash-7.4.0
 ```ini
 input {
   file {
-    path => ["/export/app_sdk/yellow_tripdata_2018-03.csv"]
-	sincedb_path  => "NUL"
+    path => ["/export/app_workspaces/nyc-taxi-data/data/yellow*.csv"]
+    sincedb_path  => "NUL"
     start_position => "beginning"
   }
 }
 filter {
   csv {
     separator => ","
-    columns => ["VendorID","tpep_pickup_datetime","tpep_dropoff_datetime","passenger_count","trip_distance","RatecodeID","store_and_fwd_flag","PULocationID","DOLocationID","payment_type","fare_amount","extra","mta_tax","tip_amount","tolls_amount","improvement_surcharge","total_amount"]
+    columns => ["VendorID","tpep_pickup_datetime","tpep_dropoff_datetime","passenger_count","trip_distance","RatecodeID","store_and_fwd_flag","PULocationID","DOLocationID","payment_type","fare_amount","extra","mta_tax","tip_amount","tolls_amount","improvement_surcharge","total_amount","congestion_surcharge"]
     skip_header => true
     convert => {
       "VendorID"              => "integer"
@@ -200,13 +208,13 @@ filter {
       "tolls_amount"          => "float"
       "improvement_surcharge" => "float"
       "total_amount"          => "float"
-}
-  
+      "congestion_surcharge"  => "float"
+    }
   } 
 }
 output {
   elasticsearch {
-    hosts => ["10.182.93.182:9200","10.182.93.187:9200","10.182.93.191:9200","10.182.93.194:9200","10.182.93.200:9200","10.182.93.201:9200","10.182.93.203:9200"]
+    hosts => ["10.220.48.59:9220","10.220.48.60:9220","10.220.48.62:9220","10.220.48.64:9220","10.220.48.65:9220"]
     index => "yellow_tripdata"
   }
 }
@@ -249,3 +257,54 @@ output {
 ```shell
 bin/logstash -f config/fhv.conf
 ```
+
+
+
+
+
+> green_tripdata.conf
+
+```ini
+input {
+  file {
+    path => ["/export/app_workspaces/nyc-taxi-data/data/green_tripdata*.csv"]
+    sincedb_path  => "NUL"
+    start_position => "beginning"
+  }
+}
+filter {
+  csv {
+    separator => ","
+    columns => ["VendorID","lpep_pickup_datetime","Lpep_dropoff_datetime","Store_and_fwd_flag","RateCodeID","Pickup_longitude","Pickup_latitude","Dropoff_longitude","Dropoff_latitude","Passenger_count","Trip_distance","Fare_amount","Extra","MTA_tax","Tip_amount","Tolls_amount","Ehail_fee","Total_amount","Payment_type","Trip_type"]
+    skip_header => true
+    convert => {
+      "VendorID"               => "integer"
+      "lpep_pickup_datetime"   => "date_time"
+      "Lpep_dropoff_datetime"  => "date_time"
+      "RateCodeID"             => "integer"
+      "Pickup_longitude"       => "float"
+      "Pickup_latitude"        => "float"
+      "Dropoff_longitude"      => "float"
+      "Dropoff_latitude"       => "float"
+      "Passenger_count"        => "integer"
+      "Trip_distance"          => "float"
+      "Fare_amount"            => "float"
+      "Extra"                  => "float"
+      "MTA_tax"                => "float"
+      "Tip_amount"             => "float"
+      "Tolls_amount"           => "float"
+      "Ehail_fee"              => "float"
+      "Total_amount"           => "float"
+      "Payment_type"           => "integer"
+      "Trip_type"              => "integer"
+    }
+  } 
+}
+output {
+  elasticsearch {
+    hosts => ["10.220.48.59:9220","10.220.48.60:9220","10.220.48.62:9220","10.220.48.64:9220","10.220.48.65:9220"]
+    index => "green_tripdata"
+  }
+}
+```
+

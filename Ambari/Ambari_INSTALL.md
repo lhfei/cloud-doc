@@ -54,7 +54,7 @@
 	/var/log/ambari-server/ambari-server.log
 
 
-	
+​	
 
 -- CentOS
 
@@ -87,7 +87,27 @@ ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connecto
 # Changing the Default Ambari Server Port
 /etc/ambari-server/conf/ambari.properties
 
+## 8. Optional: Change the Ambari Server Port
 
+By default Ambari uses port 8080 for access to Ambari Web and the REST API. If you want to change the port number, you need to edit the Ambari properties file.
+
+| ![[Important]](https://ambari.apache.org/1.2.5/installing-hadoop-using-ambari/common/images/admon/important.png) | Important |
+| :----------------------------------------------------------- | --------- |
+| Ambari Server should not be running when you do this: either make the edits before you start Ambari Server the first time or bring the server down to make the edits. |           |
+
+1. On the Ambari Server host, open `/etc/ambari-server/conf/ambari.properties` with a text editor.
+
+2. Add the client API port property and set it to your desired port value:
+
+   ```
+   client.api.port=<port_number>
+   ```
+
+3. Start (or re-start) the Ambari Server. You can now access Ambari Web via the newly configured port:
+
+   ```
+   http://{your.ambari.server}:<port_number>
+   ```
 
 #Required Software:
 

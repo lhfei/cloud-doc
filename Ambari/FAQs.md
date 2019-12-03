@@ -35,3 +35,49 @@ Add this content as below into `security` section:
 force_https_protocol=PROTOCOL_TLSv1_2
 ```
 
+
+
+
+
+- [x] error getting repository data for hdp-3.1 repository not found
+
+```shell
+/usr/bin/yum list available --showduplicates --disablerepo=* --enablerepo=HDP-GPL-3.1.4.0
+
+```
+
+
+
+```ini
+>select * from repo_definition;
+
++----+------------+-----------+--------------------+
+| id | repo_os_id | repo_name | repo_id            |
++----+------------+-----------+--------------------+
+| 25 |          9 | HDP       | HDP-3.1            |
+| 26 |          9 | HDP-GPL   | HDP-3.1-GPL        |
+| 27 |          9 | HDP-UTILS | HDP-UTILS-1.1.0.22 |
++----+------------+-----------+--------------------+
+```
+
+
+
+```sql
+update repo_definition set repo_id = 'HDP-3.1.4.0' where id = 25;
+update repo_definition set repo_id = 'HDP-GPL-3.1.4.0' where id = 26;
+update repo_definition set repo_id = 'HDP-UTILS-1.1.0.22' where id = 27;
+```
+
+
+
+```sql
+[cloud_master]> select * from repo_definition;                                          
++----+------------+-----------+--------------------+
+| id | repo_os_id | repo_name | repo_id            |
++----+------------+-----------+--------------------+
+| 25 |          9 | HDP       | HDP-3.1.4.0        |
+| 26 |          9 | HDP-GPL   | HDP-GPL-3.1.4.0    |
+| 27 |          9 | HDP-UTILS | HDP-UTILS-1.1.0.22 |
++----+------------+-----------+--------------------+
+```
+
