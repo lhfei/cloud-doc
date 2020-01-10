@@ -190,6 +190,8 @@ ps -auxf | sort -nr -k 4 | head -10
 	
 	#Then restart SSH
 	service ssh restart
+	#Centos7 
+	systemctl restart sshd
 -----------------------------------------------------------------------------------------
 # Remove SSH Host
 >ssh-keygen -f "/home/cloudland/.ssh/known_hosts" -R ubuntu144

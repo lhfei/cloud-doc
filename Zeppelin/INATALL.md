@@ -122,14 +122,25 @@ mvn clean package -DskipTests [Option]
 ```
 
 ```sh
-$ mvn clean install -e -DskipTests -Dspark.version=2.1.1 -Dhadoop.version=2.7.3 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
+$ mvn clean install -e -DskipTests -Dspark.version=2.1.1 -Dhadoop.version=2.7.3 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip
 ```
 
 
 
 ```sh
-mvn clean install -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.0 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true
+mvn clean install -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.1 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip
 ```
+
+
+
+
+
+```shell
+mvn clean install -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.1 -Dhbase.hbase.version=2.0.2 -Dhbase.hadoop.version=3.1.1 -Pspark-2.4 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip
+
+```
+
+
 
 
 

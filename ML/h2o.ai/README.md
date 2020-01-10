@@ -37,7 +37,7 @@ npm i -g bower
 bower install --allow-root
 
 
-./gradlew build -x test --stacktrace --debug 
+./gradlew build -x test --stacktrace --info 
 ```
 
 

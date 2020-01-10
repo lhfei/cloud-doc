@@ -6,6 +6,26 @@
 
 
 
+### Install
+
+1. Download and install
+
+   ```shell
+   tar xvzf alluxio-{VERSION}-bin.tar.gz -C $ALLUXIO_HOME
+   ```
+
+   
+
+2. Add **root** user to **hadoop** group
+
+   ```shell
+   sudo usermod -a -G root,hadoop root
+   ```
+
+3. d
+
+
+
 ### Hadoop
 
 1. hadoop-env.sh
@@ -65,9 +85,11 @@
 
    Copy `alluxio-client-{VERSION}.jar` to `SPARK_CLASSPATH`
 
-   ```ini
+   ```shell
    tree jars | grep alluxio
    |-- alluxio-1.8.1-client.jar
+   
+   cp #ALLUXIO_HOME/client/alluxio-1.8.1-client.jar $SPARK_HOME/jars
    ```
 
 3. 
@@ -166,11 +188,9 @@
    ```sh
    hdfs dfs -p ${alluxio.underfs.address}
    
-   hdfs dfs -chown -R hdfs:hdfs ${alluxio.underfs.address}
-   
-   hdfsd dfs -chmod 777 ${alluxio.underfs.address}
+   hdfs dfs -chown -R root:hadoop ${alluxio.underfs.address}
    ```
-
+   
    
 
 6. mkdir -- local

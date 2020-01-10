@@ -58,3 +58,15 @@ GET /_nodes/stats/<metric>/<index_metric>
 GET /_nodes/<node_id>/stats/<metric>/<index_metric>
 ```
 
+
+
+#### SQL
+
+```
+POST /_sql?format=txt
+{
+  "query": """
+  SELECT * FROM "fhv_tripdata"
+  """
+}
+```

@@ -104,6 +104,22 @@ Try the following:
 hive.tez.container.size=2048.
 hive.tez.java.opts=-Xmx1640m (0.8 times hive.tez.container.size)
 tez.runtime.io.sort.mb=820 (0.4 times hive.tez.container.size)
-ttez.runtime.unordered.output.buffer.size-mb=205 (0.1 times hive.tez.container.size)
+tez.runtime.unordered.output.buffer.size-mb=205 (0.1 times hive.tez.container.size)
+```
+
+
+
+
+
+```ini
+# Hive Configuration
+tez.am.resource.memor
+hive.tez.java.opts=-Xmx3280m (0.8 times hive.tez.container.size)
+tez.runtime.io.sort.mb=1640
+hive.tez.container.size=4096
+
+# Tez Configuration
+tez.am.resource.memory.mb=8192
+tez.runtime.io.sort.mb=512
 ```
 

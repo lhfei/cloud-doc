@@ -47,7 +47,7 @@ $ ./bin/hbase shell
 
 - **drop** - Drops a table from HBase.
 
-- **drop_all** - Drops the tables matching the ¡®regex¡¯ given in the command.
+- **drop_all** - Drops the tables matching the Â¡Â®regexÂ¡Â¯ given in the command.
 
 - **Java Admin API** - Prior to all the above commands, Java provides an Admin API to achieve DDL functionalities through programming. Under org.apache.hadoop.hbase.client package, HBaseAdmin and HTableDescriptor are the two important classes in this package that provide DDL functionalities.
 
@@ -56,7 +56,7 @@ $ ./bin/hbase shell
 &emsp;You can create a table using the create command, here you must specify the table name and the Column Family name. The syntax to create a table in HBase shell is shown below.
 
 ```sh
-create ¡®<table name>¡¯,¡¯<column family>¡¯ 
+create Â¡Â®<table name>Â¡Â¯,Â¡Â¯<column family>Â¡Â¯ 
 ```
 *Example*
 
@@ -177,7 +177,7 @@ Done.
 
 **Removing Table Scope Operators**
 
-We can also remove the table scope operators. Given below is the syntax to remove ¡®**MAX_FILESIZE**¡¯ from emp table.
+We can also remove the table scope operators. Given below is the syntax to remove Â¡Â®**MAX_FILESIZE**Â¡Â¯ from emp table.
 
 ```sh
 hbase> alter 't1', METHOD ? 'table_att_unset', NAME ? 'MAX_FILESIZE'
@@ -188,10 +188,10 @@ hbase> alter 't1', METHOD ? 'table_att_unset', NAME ? 'MAX_FILESIZE'
 Using alter, you can also delete a column family. Given below is the syntax to delete a column family using alter.
 
 ```sh
-hbase> alter ¡® table name ¡¯, ¡®delete¡¯ ? ¡® column family ¡¯
+hbase> alter Â¡Â® table name Â¡Â¯, Â¡Â®deleteÂ¡Â¯ ? Â¡Â® column family Â¡Â¯
 ```
 
-Given below is an example to delete a column family from the ¡®emp¡¯ table.
+Given below is an example to delete a column family from the Â¡Â®empÂ¡Â¯ table.
 
 Assume there is a table named employee in HBase. It contains the following data:
 
@@ -222,7 +222,7 @@ Done.
 0 row(s) in 2.2380 seconds 
 ```
 
-Now verify the data in the table after alteration. Observe the column family ¡®professional¡¯ is no more, since we have deleted it.
+Now verify the data in the table after alteration. Observe the column family Â¡Â®professionalÂ¡Â¯ is no more, since we have deleted it.
 
 ```sh
 hbase(main):003:0> scan 'employee'
@@ -260,7 +260,7 @@ Reading Data using HBase Shell
 The get command and the get() method of HTable class are used to read data from a table in HBase. Using get command, you can get a single row of data at a time. Its syntax is as follows:
 
 ```sh
-get ¡¯<table name>¡¯,¡¯row1¡¯
+get Â¡Â¯<table name>Â¡Â¯,Â¡Â¯row1Â¡Â¯
 Example
 ```
 
@@ -288,7 +288,7 @@ professional: salary timestamp = 1417521903862, value = 50000
 Given below is the syntax to read a specific column using the get method.
 
 ```sh
-hbase> get 'table name', ¡®rowid¡¯, {COLUMN ? ¡®column family:column name ¡¯}
+hbase> get 'table name', Â¡Â®rowidÂ¡Â¯, {COLUMN ? Â¡Â®column family:column name Â¡Â¯}
 ```
 
 #### Example
@@ -310,7 +310,7 @@ personal:name timestamp = 1418035791555, value = raju
 You can count the number of rows of a table using the count command. Its syntax is as follows:
 
 ```sh
-count ¡®<table name>¡¯ 
+count Â¡Â®<table name>Â¡Â¯ 
 ```
 
 After deleting the first row, emp table will have two rows. Verify it as shown below.
@@ -343,7 +343,7 @@ Truncating 'one' table (it may take a while):
 After truncating the table, use the scan command to verify. You will get a table with zero rows.
 
 ```sh
-hbase(main):017:0> scan ¡®emp¡¯
+hbase(main):017:0> scan Â¡Â®empÂ¡Â¯
 ROW                  COLUMN + CELL
 0 row(s) in 0.3110 seconds
 ```
@@ -355,7 +355,7 @@ ROW                  COLUMN + CELL
 The scan command is used to view the data in HTable. Using the scan command, you can get the table data. Its syntax is as follows:
 
 ```sh
-scan ¡®<table name>¡¯ 
+scan Â¡Â®<table name>Â¡Â¯ 
 ```
 
 #### Example
@@ -377,3 +377,4 @@ ROW                           COLUMN + CELL
 
 1 row(s) in 0.0370 seconds
 ```
+
