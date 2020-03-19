@@ -3,7 +3,7 @@
 ### Create a Indx
 
 ```shell
-curl -X PUT "http://10.220.48.62:9220/dmbout"
+curl -X PUT "http://10.220.225.138:9220/dmbout"
 ```
 
 
@@ -11,7 +11,7 @@ curl -X PUT "http://10.220.48.62:9220/dmbout"
 ### Update Settings
 
 ```shell
-curl -X PUT "http://10.220.48.62:9220/dmbout/_settings" -H 'Content-Type: application/json' -d'
+curl -X PUT "http://10.220.225.138:9220/dmbout/_settings" -H 'Content-Type: application/json' -d'
 {
   "index": {
 	"refresh_interval": "-1",
@@ -23,12 +23,10 @@ curl -X PUT "http://10.220.48.62:9220/dmbout/_settings" -H 'Content-Type: applic
 
 
 
-
-
 ### Add Mapping
 
 ```shell
-curl -X PUT "http://10.220.48.62:9220/dmbout/_mapping" -H 'Content-Type: application/json' -d'
+curl -X PUT "http://10.220.225.138:9220/dmbout/_mapping" -H 'Content-Type: application/json' -d'
 {
   "properties": {
     "merchant_no": {
@@ -41,13 +39,14 @@ curl -X PUT "http://10.220.48.62:9220/dmbout/_mapping" -H 'Content-Type: applica
       "type": "text"
     },
     "detail_create_date": {
-      "type": "date"
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss.SSSSSS"
     },
     "out_trade_no": {
       "type": "text"
     },
     "account_balance": {
-      "type": "float"
+      "type": "double"
     },
     "in_amount": {
       "type": "text"
@@ -94,7 +93,7 @@ filter {
 
     convert => {
       "detail_create_date" => "date"
-      "account_balance"    => "float"
+      "account_balance"    => "double"
     }
   } 
 
@@ -107,7 +106,7 @@ filter {
 }
 output {
   elasticsearch {
-    hosts => ["10.220.48.59:9220","10.220.48.60:9220","10.220.48.62:9220","10.220.48.64:9220","10.220.48.65:9220"]
+    hosts => ["10.220.225.138:9220", "10.220.225.139:9220", "10.220.225.140:9220", "10.220.225.141:9220", "10.220.225.142:9220"]
     index => "dmbout"
     manage_template => false
   }

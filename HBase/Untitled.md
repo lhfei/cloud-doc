@@ -60,3 +60,21 @@ select
 from hbase.`hbase_lineitem` limit 5
 ```
 
+
+
+
+
+#### Phoenix
+
+```shql
+./bin/sqlline.py 10.220.225.139,10.220.225.138,10.220.225.140:2181:/hbase-unsecure
+```
+
+
+
+> list tables
+
+```sql
+!tables
+```
+

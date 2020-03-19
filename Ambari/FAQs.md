@@ -81,3 +81,20 @@ update repo_definition set repo_id = 'HDP-UTILS-1.1.0.22' where id = 27;
 +----+------------+-----------+--------------------+
 ```
 
+
+
+> Can't create/write to file '/var/tmp/ibnTBNI8' (Errcode: 2)
+
+1. check mysql config : my.cnf
+
+   ```sql
+    cat /etc/my.cnf | grep tmpdir
+   ```
+
+   I can't see anything in my `my.cnf`
+
+2. add `tmpdir=/tmp` to `my.cnf` under `[mysqld]`
+
+3. restart web/app and mysql server
+
+   `/etc/init.d/mysqld restart`

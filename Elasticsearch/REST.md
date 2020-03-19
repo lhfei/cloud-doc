@@ -60,6 +60,26 @@ GET /_nodes/<node_id>/stats/<metric>/<index_metric>
 
 
 
+#### Index
+
+```shell
+PUT /twitter
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 3, 
+            "number_of_replicas" : 2 
+        }
+    }
+}
+```
+
+
+
+
+
+
+
 #### SQL
 
 ```

@@ -49,6 +49,7 @@ GET /_search
       ],
       "filter": [ 
         { "term":  { "status": "published" }},
+        { "range": { "publish_date": { "gte": "2015-01-01" }}},
         { "range": { "publish_date": { "gte": "2015-01-01" }}}
       ]
     }

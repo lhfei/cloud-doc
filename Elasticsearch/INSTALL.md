@@ -120,6 +120,10 @@ cluster.initial_master_nodes: ["10.182.93.182","10.182.93.187","10.182.93.191"]
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
+
+xpack.monitoring.collection.enabled: true
+# enable snapshot repo
+#path.repo: ["/export/app_data/elasticsearch/backups"]
 ```
 
 

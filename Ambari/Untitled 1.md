@@ -195,6 +195,7 @@ sudo rm -rf /var/run/zookeeper
 10. Remove library folders on all nodes
 
 ```
+sudo rm -rf /usr/lib/ambari-*
 sudo rm -rf /usr/lib/ambari-agent
 sudo rm -rf /usr/lib/ambari-infra-solr-client
 sudo rm -rf /usr/lib/ambari-metrics-hadoop-sink
