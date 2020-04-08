@@ -1,5 +1,15 @@
 
 
+Requires: libdb(x86-64) = 5.3.21-20.el7
+
+
+
+```shell
+yum -y downgrade libdb libdb-utils
+```
+
+
+
 
 
 - [x] error: **cannot open Packages database in /var/lib/rpm**

@@ -90,3 +90,58 @@ POST /_sql?format=txt
   """
 }
 ```
+
+
+
+#### Aggregations
+
+```shell
+curl -XPOST "http://10.220.225.137:9220/paybill/_search?size=0" -H 'Content-Type: application/json' -d'
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "term": {
+                        "member_id": "110979645002"
+                    }
+                }
+            ],
+            "must": [
+                {
+                    "range": {
+                        "detail_create_date": {
+                            "gte": "2020-01-01 07:01:08.689888",
+                            "lte": "2020-03-14 07:01:08.689888"
+                        }
+                    }
+                },
+                {
+                    "range": {
+                        "detail_amount": {
+                            "gte": 105,
+                            "lte": 1111110
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "ammount_count": {
+            "sum": {
+                "field": "detail_amount"
+            }
+        }
+    }
+}' | jq
+```
+
+
+
+#### Group by
+
+```shell
+
+```
+
