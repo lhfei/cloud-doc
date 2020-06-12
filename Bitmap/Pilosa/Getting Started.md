@@ -207,3 +207,14 @@ Please note that while user ID 99999 may not be sequential with the other column
 ### What’s Next?
 
 You can jump to [Data Model](https://www.pilosa.com/docs/latest/data-model/) for an in-depth look at Pilosa’s data model, or [Query Language](https://www.pilosa.com/docs/latest/query-language/) for more details about **PQL**, the query language of Pilosa. Check out the [Examples](https://www.pilosa.com/docs/latest/examples/) page for example implementations of real world use cases for Pilosa. Ready to get going in your favorite language? Have a peek at our small but expanding set of official [Client Libraries](https://www.pilosa.com/docs/latest/client-libraries/).
+
+
+
+## The Dataset
+
+The sample dataset contains stargazer and language data for Github projects which were retrieved for the search keyword "Go". See the *Generating the Dataset* section below to create other datasets.
+
+- `language.txt`: Language name to languageID mapping. The line number corresponds to the languageID.
+- `language.csv`: languageID, projectID
+- `stargazer.csv`: stargazerID, projectID, timestamp(starred)
+

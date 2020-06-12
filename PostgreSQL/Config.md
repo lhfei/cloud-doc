@@ -58,6 +58,23 @@
 
 
 
+### Create Database
+
+```sql
+CREATE DATABASE benchmark;
+```
+
+
+
+### Drop database
+
+```shell
+dropdb dbname
+```
+
+
+
+
 
 
 
@@ -72,6 +89,9 @@ CREATE DATABASE kong OWNER kong;
 GRANT ALL PRIVILEGES ON DATABASE kong TO kong ;
 ```
 
+```shell
+createuser lhfei --interactive -s -W
+```
 
 
 ### Reset Password

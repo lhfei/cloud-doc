@@ -1,0 +1,18 @@
+  <configuration  xmlns:xi="http://www.w3.org/2001/XInclude">
+    
+    <property>
+      <name>security.admin.protocol.acl</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>security.client.protocol.acl</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>security.masterregion.protocol.acl</name>
+      <value>*</value>
+    </property>
+    
+  </configuration>

@@ -39,6 +39,7 @@ NetUtil.py:97 - SSLError: Failed to connect. Please check openssl library versio
 ```
 
 Add this content as below into `security` section:
+`/etc/ambari-agent/conf/ambari-agent.ini`
 
 ```
 [security]

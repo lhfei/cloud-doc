@@ -1,0 +1,142 @@
+{
+  "name": "ats-hbase",
+  "version": "1.0.0",
+  "lifetime": "-1",
+  "queue": "default",
+  "artifact": {
+    "id": "/hdp/apps/3.0.0.0-1634/hbase/hbase.tar.gz",
+    "type": "TARBALL"
+  },
+  "configuration": {
+    "env": {
+      "HBASE_IDENT_STRING": "${USER}",
+      "HBASE_LOG_DIR": "<LOG_DIR>",
+      "HBASE_CONF_DIR": "$PWD/conf",
+      "HBASE_PID_DIR": "$PWD/pids",
+      "JAVA_HOME": "/export/cloud/jdk1.8.0_151",
+      "HBASE_ROOT_LOGGER": "INFO,RFA",
+      "SERVER_GC_OPTS": "-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:${HBASE_LOG_DIR}/gc.log-`date +'%Y%m%d%H%M'`",
+      "HBASE_OPTS": "-XX:+UseConcMarkSweepGC -XX:ErrorFile=${HBASE_LOG_DIR}/hs_err_pid%p.log -Djava.io.tmpdir=/tmp",
+      "HADOOP_HOME": "$PWD/lib/hadoop",
+      "HADOOP_YARN_HOME": "$PWD/lib/hadoop",
+      "HBASE_HOME": "$PWD/lib/hbase"
+    },
+    "files": [
+      {
+        "type": "TEMPLATE",
+        "dest_file": "log4j.properties",
+        "src_file": "/user/yarn-ats/3.0.0.0-1634/log4j.properties"
+      },
+      {
+        "type": "TEMPLATE",
+        "dest_file": "hbase-site.xml",
+        "src_file": "/user/yarn-ats/3.0.0.0-1634/hbase-site.xml"
+      },
+      {
+        "type": "TEMPLATE",
+        "dest_file": "hbase-policy.xml",
+        "src_file": "/user/yarn-ats/3.0.0.0-1634/hbase-policy.xml"
+      },
+      {
+        "type": "TEMPLATE",
+        "dest_file": "core-site.xml",
+        "src_file": "/user/yarn-ats/3.0.0.0-1634/core-site.xml"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "master",
+      "number_of_containers": 1,
+      "launch_command": "$HBASE_HOME/bin/hbase master start",
+      "readiness_check": {
+        "type": "HTTP",
+        "properties": {
+          "url": "http://${THIS_HOST}:17010/master-status"
+        }
+      },
+      "resource": {
+        "cpus": 1,
+        "memory": "4096"
+      },
+      "configuration": {
+        "env": {
+          "HBASE_LOG_PREFIX": "hbase-$HBASE_IDENT_STRING-master-$HOSTNAME",
+          "HBASE_LOGFILE": "$HBASE_LOG_PREFIX.log",
+          "HBASE_MASTER_OPTS": "-Xms3276m -Xmx3276m"
+        }
+      },
+      "placement_policy": {
+        "constraints": [
+          {
+            "type": "ANTI_AFFINITY",
+            "scope": "NODE",
+            "target_tags": [
+                  "master"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "regionserver",
+      "number_of_containers": 1,
+      "launch_command": "$HBASE_HOME/bin/hbase regionserver start",
+      "readiness_check": {
+        "type": "HTTP",
+        "properties": {
+          "url": "http://${THIS_HOST}:17030/rs-status"
+        }
+      },
+      "resource": {
+        "cpus": 1,
+        "memory": "4096"
+      },
+      "configuration": {
+        "env": {
+          "HBASE_LOG_PREFIX": "hbase-$HBASE_IDENT_STRING-regionserver-$HOSTNAME",
+          "HBASE_LOGFILE": "$HBASE_LOG_PREFIX.log",
+          "HBASE_REGIONSERVER_OPTS": "-XX:CMSInitiatingOccupancyFraction=70 -XX:ReservedCodeCacheSize=256m -Xms3276m -Xmx3276m"
+        }
+      },
+      "placement_policy": {
+        "constraints": [
+          {
+            "type": "ANTI_AFFINITY",
+            "scope": "NODE",
+            "target_tags": [
+                  "regionserver"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "hbaseclient",
+      "number_of_containers": 1,
+      "launch_command": "sleep 10;export HBASE_CLASSPATH_PREFIX=$HADOOP_HOME/share/hadoop/yarn/timelineservice/*;$HBASE_HOME/bin/hbase org.apache.hadoop.yarn.server.timelineservice.storage.TimelineSchemaCreator -Dhbase.client.retries.number=35 -create -s;sleep infinity",
+      "dependencies": [ "master", "regionserver" ],
+      "resource": {
+        "cpus": 1,
+        "memory": "1536"
+      },
+      "configuration": {
+        "env": {
+          "HBASE_LOG_PREFIX": "hbase-$HBASE_IDENT_STRING-hbaseclient-$HOSTNAME",
+          "HBASE_LOGFILE": "$HBASE_LOG_PREFIX.log"
+        }
+      },
+      "placement_policy": {
+        "constraints": [
+          {
+            "type": "ANTI_AFFINITY",
+            "scope": "NODE",
+            "target_tags": [
+                  "hbaseclient"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+  <configuration  xmlns:xi="http://www.w3.org/2001/XInclude">
+    
+    <property>
+      <name>ssl.client.keystore.location</name>
+      <value></value>
+    </property>
+    
+    <property>
+      <name>ssl.client.keystore.password</name>
+      <value></value>
+    </property>
+    
+    <property>
+      <name>ssl.client.keystore.type</name>
+      <value>jks</value>
+    </property>
+    
+    <property>
+      <name>ssl.client.truststore.location</name>
+      <value></value>
+    </property>
+    
+    <property>
+      <name>ssl.client.truststore.password</name>
+      <value></value>
+    </property>
+    
+    <property>
+      <name>ssl.client.truststore.reload.interval</name>
+      <value>10000</value>
+    </property>
+    
+    <property>
+      <name>ssl.client.truststore.type</name>
+      <value>jks</value>
+    </property>
+    
+  </configuration>

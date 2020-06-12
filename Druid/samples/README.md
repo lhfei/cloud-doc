@@ -2,18 +2,24 @@
 
 ### Cluster
 
-| IP            | Service             | Port |
-| ------------- | ------------------- | ---- |
-| 10.182.60.142 | Druid Coordinator   | 8081 |
-| 10.182.60.250 | Druid Overlord      | 8090 |
-| 10.182.61.115 | Druid MiddleManager | 8091 |
-| 10.182.61.125 | Druid Historical    | 8083 |
-| 10.182.61.127 | Druid Historical    | 8083 |
-| 10.182.61.148 | Druid Historical    | 8083 |
-| 10.182.61.158 | Druid Broker        | 8082 |
-| 10.182.61.159 | Druid Router        | 8088 |
+| Amp    | IP            | Service             | Port |
+| ------ | ------------- | ------------------- | ---- |
+| Master | 10.182.60.142 | Druid Coordinator   | 8081 |
+|        | 10.182.60.250 | Druid Overlord      | 8090 |
+|        |               |                     |      |
+| Data   | 10.182.61.115 | Druid MiddleManager | 8091 |
+|        | 10.182.61.125 | Druid Historical    | 8083 |
+|        | 10.182.61.127 | Druid Historical    | 8083 |
+|        | 10.182.61.148 | Druid Historical    | 8083 |
+|        |               |                     |      |
+| Query  | 10.182.61.158 | Druid Broker        | 8082 |
+|        | 10.182.61.159 | Druid Router        | 8088 |
 
 
+
+This should fetch a JAR file named similar to 'mysql-connector-java-x.x.xx.jar'.
+
+Copy or symlink this file to `extensions/mysql-metadata-storage` under the distribution root directory.
 
 
 
