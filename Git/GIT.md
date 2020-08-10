@@ -129,7 +129,13 @@ git log --graph --abbrev-commit --decorate --date=relative --all
 git push --progress "origin" master:master
 ```
 
->### Creating and Applying Patch Files in Git
+>### Creating and Apgiplying Patch Files in Git
+
+```sh
+git diff 20200708_7004636_retain_1..20200714_7064760_experiment_1 ./xmop-client > ./diff_ab_hsfclient.patch
+
+git apply diff_ab_hsfclient.patch
+```
 
 ```sh
 ## generate a patch file
