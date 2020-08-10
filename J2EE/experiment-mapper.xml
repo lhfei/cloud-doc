@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alidme.xmop.store.dao.experiment.ExperimentMapper">
+
+  <sql id="ALL_EP_COLUMNS">
+    id,
+    <include refid="ALL_EP_COLUMNS_WITHOUT_ID"></include>
+  </sql>
+
+  <sql id="ALL_EP_COLUMNS_WITHOUT_ID">
+		solution_id,
+		original_strategy_id,
+		original_code,
+		strategy_id,
+		code,
+		experiment_name,
+		version,
+		experiment_desc,
+		create_date,
+		start_date,
+		finish_date,
+		flow_group_id,
+		crm_ab_template,
+		status
+	</sql>
+
+  <sql id="ALL_BT_COLUMNS">
+    bucket_id,
+    <include refid="ALL_BT_COLUMNS_WITHOUT_ID"></include>
+  </sql>
+
+  <sql id="ALL_BT_COLUMNS_WITHOUT_ID">
+		bucket_type,
+		bucket_mark,
+		bucket_name,
+		flow_ratio,
+		intervene,
+		goods_id,
+		good_list,
+		experiment_id
+	</sql>
+
+
+  <resultMap id="experimentRuleDTO"
+    type="com.alidme.xmop.client.model.experiment.ExperimentRuleDTO">
+    <id column="id" property="id" />
+    <result column="solution_id" property="solutionId" />
+    <result column="original_strategy_id" property="originalStrategyId" />
+    <result column="original_code" property="originalCode" />
+    <result column="strategy_id" property="strategyId" />
+    <result column="code" property="code" />
+    <result column="experiment_name" property="experimentName" />
+    <result column="version" property="version" />
+    <result column="experiment_desc" property="experimentDesc" />
+    <result column="create_date" property="createDate" />
+    <result column="start_date" property="startDate" />
+    <result column="finish_date" property="finishDate" />
+    <result column="flow_group_id" property="flowGroupId" />
+    <result column="crm_ab_template" property="crm_ab_template" />
+    <result column="status" property="status" />
+    <!-- <association property="experimentBucketDTOList"
+      column="experiment_id" resultMap="experimentBucketDTO" javaType="com.alidme.xmop.client.model.experiment.ExperimentBucketDTO">
+    </association> -->
+  </resultMap>
+
+  <resultMap id="experimentBucketDTO" type="com.alidme.xmop.client.model.experiment.ExperimentBucketDTO">
+    <id column="bucket_id" property="bucketId" />
+    <result column="bucket_type" property="bucketType" />
+    <result column="bucket_mark" property="bucketMark" />
+    <result column="bucket_name" property="bucketName" />
+    <result column="flow_ratio" property="flowRatio" />
+    <result column="intervene" property="intervene" />
+    <result column="goods_id" property="goodsId" />
+    <result column="good_list" property="goodList" />
+    <result column="experiment_id" property="experimentId" />
+  </resultMap>
+
+  <resultMap id="experimentWithBucket"
+    type="com.alidme.xmop.client.model.experiment.ExperimentRuleDTO">
+    <id column="id" property="id" />
+    <result column="solution_id" property="solutionId" />
+    <result column="original_strategy_id" property="originalStrategyId" />
+    <result column="original_code" property="originalCode" />
+    <result column="strategy_id" property="strategyId" />
+    <result column="code" property="code" />
+    <result column="experiment_name" property="experimentName" />
+    <result column="version" property="version" />
+    <result column="experiment_desc" property="experimentDesc" />
+    <result column="create_date" property="createDate" />
+    <result column="start_date" property="startDate" />
+    <result column="finish_date" property="finishDate" />
+    <result column="flow_group_id" property="flowGroupId" />
+    <result column="crm_ab_template" property="crm_ab_template" />
+    <result column="status" property="status" />
+    <collection property="experimentBucketDTOList" ofType="com.alidme.xmop.client.model.experiment.ExperimentBucketDTO">
+      <id column="bucket_id" property="bucketId" />
+      <result column="bucket_type" property="bucketType" />
+      <result column="bucket_mark" property="bucketMark" />
+      <result column="bucket_name" property="bucketName" />
+      <result column="flow_ratio" property="flowRatio" />
+      <result column="intervene" property="intervene" />
+      <result column="goods_id" property="goodsId" />
+      <result column="good_list" property="goodList" />
+      <result column="experiment_id" property="experimentId" />
+    </collection>
+
+  </resultMap>
+
+  <insert id="insertExperiment" parameterType="com.alidme.xmop.client.model.experiment.ExperimentRuleDTO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    INSERT INTO
+    experiment_info (<include refid="ALL_EP_COLUMNS_WITHOUT_ID"></include> )
+    VALUES
+    (
+    #{solutionId}, #{originalStrategyId}, #{originalCode}, #{strategyId}, #{code}, #{experimentName}, #{version}, #{experimentDesc}, #{createDate}, #{startDate}, #{finishDate}, #{flowGroupId}, #{crm_ab_template}, #{status.code}
+    )
+  </insert>
+
+  <select id="selectExperiment" parameterType="com.alidme.xmop.client.param.experiment.ExperimentReq"
+    resultMap="experimentRuleDTO">
+    SELECT
+    <include refid="ALL_EP_COLUMNS"></include>
+    FROM experiment_info
+
+    <trim prefix="WHERE" prefixOverrides="AND |OR">
+      <if test="experimentId != null ">
+        id = #{experimentId}
+      </if>
+      <if test="solutionId != null ">
+        AND solution_id = #{solutionId}
+      </if>
+      <if test="strategyId != null ">
+        AND strategy_id = #{strategyId}
+      </if>
+      <if test="experimentName != null ">
+        <bind name="reg_exp_name" value="'%' + _parameter.getExperimentName() + '%'" />
+        AND experiment_name LIKE #{reg_exp_name}
+      </if>
+      <if test="version != null ">
+        <bind name="reg_version"
+          value="'%' + _parameter.getVersion() + '%'" />
+        AND version LIKE #{reg_version}
+      </if>
+      <if test="crm_ab_template != null ">
+        AND crm_ab_template = #{crm_ab_template}
+      </if>
+      <if test="status != null ">
+        AND status = #{status.code}
+      </if>
+
+    </trim>
+
+    ORDER BY id DESC
+
+    LIMIT #{start}, #{limit}
+  </select>
+
+  <select id="getExperiment" parameterType="com.alidme.xmop.client.param.experiment.ExperimentReq"
+    resultMap="experimentWithBucket">
+    SELECT
+    <include refid="ALL_EP_COLUMNS"></include>,
+
+    <include refid="ALL_BT_COLUMNS"></include>
+    FROM
+    experiment_info e
+    LEFT JOIN experiment_bucket b ON
+    e.id = b.experiment_id
+
+    <trim prefix="WHERE" prefixOverrides="AND |OR">
+      <if test="experimentId != null ">
+        e.id = #{experimentId}
+      </if>
+      <if test="solutionId != null ">
+        AND e.solution_id = #{solutionId}
+      </if>
+      <if test="strategyId != null ">
+        AND e.strategy_id = #{strategyId}
+      </if>
+      <if test="experimentName != null ">
+        <bind name="reg_exp_name"
+          value="'%' + _parameter.getExperimentName() + '%'" />
+        AND e.experiment_name LIKE #{reg_exp_name}
+      </if>
+      <if test="version != null ">
+        <bind name="reg_version"
+          value="'%' + _parameter.getVersion() + '%'" />
+        AND e.version LIKE #{reg_version}
+      </if>
+      <if test="crm_ab_template != null ">
+        AND e.crm_ab_template = #{crm_ab_template}
+      </if>
+      <if test="status != null ">
+        AND status = #{status.code}
+      </if>
+
+    </trim>
+    ORDER BY id DESC
+    LIMIT #{start}, #{limit}
+  </select>
+
+  <select id="countExperiment" parameterType="com.alidme.xmop.client.param.experiment.ExperimentReq"
+    resultType="Long">
+    SELECT
+        COUNT(*)
+    FROM
+    experiment_info e
+
+    <trim prefix="WHERE" prefixOverrides="AND |OR">
+      <if test="experimentId != null ">
+        e.id = #{experimentId}
+      </if>
+      <if test="solutionId != null ">
+        AND e.solution_id = #{solutionId}
+      </if>
+      <if test="strategyId != null ">
+        AND e.strategy_id = #{strategyId}
+      </if>
+      <if test="experimentName != null ">
+        <bind name="reg_exp_name"
+          value="'%' + _parameter.getExperimentName() + '%'" />
+        AND e.experiment_name LIKE #{reg_exp_name}
+      </if>
+      <if test="version != null ">
+        <bind name="reg_version"
+          value="'%' + _parameter.getVersion() + '%'" />
+        AND e.version LIKE #{reg_version}
+      </if>
+      <if test="crm_ab_template != null ">
+        AND e.crm_ab_template = #{crm_ab_template}
+      </if>
+      <if test="status != null ">
+        AND status = #{status.code}
+      </if>
+
+    </trim>
+  </select>
+
+  <select id="getExperimentById" parameterType="Long"
+    resultMap="experimentWithBucket">
+    SELECT
+    <include refid="ALL_EP_COLUMNS"></include>
+    ,
+
+    <include refid="ALL_BT_COLUMNS"></include>
+    FROM
+    experiment_info e
+    LEFT JOIN experiment_bucket b ON
+    e.id = b.experiment_id
+    WHERE
+    e.id = #{id}
+  </select>
+
+  <delete id="deleteExperiments" parameterType="List">
+    <if test="list !=null and list.size() &gt; 0">
+      DELETE
+      FROM
+      experiment_info
+      WHERE
+      id in
+      <foreach collection="list" item="id" open="(" close=")" separator=",">
+        ( #{id} )
+      </foreach>
+    </if>
+  </delete>
+
+  <update id="updateExperiment" parameterType="com.alidme.xmop.client.model.experiment.ExperimentRuleDTO">
+    UPDATE
+        experiment_info
+    <trim prefix="SET" prefixOverrides=",">
+      <if test="solutionId != null">
+        solution_id = #{solutionId}
+      </if>
+      <if test="strategyId != null">
+        , strategy_id = #{strategyId}
+      </if>
+      <if test="code != null">
+        , code = #{code}
+      </if>
+      <if test="originalStrategyId != null">
+        , original_strategy_id = #{originalStrategyId}
+      </if>
+      <if test="originalCode != null">
+        , original_code = #{originalCode}
+      </if>
+      <if test="experimentName != null">
+        , experiment_name = #{experimentName}
+      </if>
+      <if test="version != null">
+        , version = #{version}
+      </if>
+      <if test="experimentDesc != null">
+        , experiment_desc = #{experimentDesc}
+      </if>
+      <if test="startDate != null">
+        , start_date = #{startDate}
+      </if>
+      <if test="finishDate != null">
+        , finish_date = #{finishDate}
+      </if>
+      <if test="flowGroupId != null">
+        , flow_group_id = #{flowGroupId}
+      </if>
+      <if test="crm_ab_template != null">
+        , crm_ab_template = #{crm_ab_template}
+      </if>
+      <if test="status != null">
+        , status = #{status.code}
+      </if>
+      WHERE
+      id = #{id};
+    </trim>
+  </update>
+
+  <update id="updateExperimentStatus" parameterType="com.alidme.xmop.client.model.experiment.ExperimentRuleDTO">
+    UPDATE
+        experiment_info
+    <trim prefix="SET" prefixOverrides=",">
+      <if test="startDate != null">
+        start_date = #{startDate}
+      </if>
+      <if test="finishDate != null">
+        , finish_date = #{finishDate}
+      </if>
+      <if test="status != null">
+        , status = #{status.code}
+      </if>
+
+      WHERE
+        id = #{id};
+    </trim>
+  </update>
+
+  <insert id="insertExperimentBucket" parameterType="List"
+    useGeneratedKeys="true" keyColumn="bucket_id" keyProperty="bucketId">
+    INSERT INTO
+    experiment_bucket (<include refid="ALL_BT_COLUMNS_WITHOUT_ID"></include> )
+    VALUES
+    <!-- (
+      #{bucketMark}, #{flowRatio}, #{intervene}, #{goodsId}, #{experimentId}
+    ) -->
+    <foreach collection="list" item="bucket" separator=",">
+      ( #{bucket.bucketType}, #{bucket.bucketMark}, #{bucket.bucketName}, #{bucket.flowRatio}, #{bucket.intervene}, #{bucket.goodsId}, #{bucket.goodList}, #{bucket.experimentId} )
+    </foreach>
+  </insert>
+
+  <select id="selectExperimentBucket" parameterType="com.alidme.xmop.client.model.experiment.ExperimentBucketDTO"
+    resultMap="experimentBucketDTO">
+    SELECT
+    <include refid="ALL_BT_COLUMNS"></include>
+    FROM experiment_bucket
+
+    <trim prefix="WHERE" prefixOverrides="AND |OR">
+      <if test="experimentId != null ">
+        experiment_id = #{experimentId}
+      </if>
+
+      <if test="bucketId != null ">
+        AND bucket_id = #{bucketId}
+      </if>
+
+      <if test="bucketType != null ">
+        AND bucket_type LIKE #{bucketType}
+      </if>
+
+      <if test="bucketMark != null ">
+        AND bucket_mark LIKE #{bucketMark}
+      </if>
+
+      <if test="bucketName != null ">
+        <bind name="reg_bucket_name" value="'%' + _parameter.getBucketName() + '%'" />
+        AND bucket_name LIKE #{reg_bucket_name}
+      </if>
+    </trim>
+
+    ORDER BY bucket_id DESC
+  </select>
+
+  <delete id="deleteExperimentBuckets" parameterType="List">
+    <if test="list !=null and list.size() &gt; 0">
+      DELETE
+      FROM
+      experiment_bucket
+      WHERE
+      bucket_id in
+      <foreach collection="list" item="id" open="(" close=")" separator=",">
+        ( #{id} )
+      </foreach>
+    </if>
+  </delete>
+
+  <select id="getBuckets" parameterType="List"
+    resultMap="experimentBucketDTO">
+    SELECT
+    <include refid="ALL_BT_COLUMNS"></include>
+    FROM experiment_bucket
+
+    <if test="list !=null and list.size() &gt; 0">
+        WHERE bucket_id in
+      <foreach collection="list" item="id" open="(" close=")" separator=",">
+        ( #{id} )
+      </foreach>
+    </if>
+    ORDER BY bucket_id DESC
+  </select>
+
+  <update id="updateExperimentBucket" parameterType="com.alidme.xmop.client.model.experiment.ExperimentBucketDTO">
+		UPDATE
+			experiment_bucket
+		SET
+			bucket_type = #{bucketType},
+			bucket_mark = #{bucketMark},
+			bucket_name = #{bucketName},
+			flow_ratio = #{flowRatio},
+			intervene = #{intervene},
+			goods_id = #{goodsId},
+			good_list = #{goodList},
+			experiment_id = #{experimentId}
+		WHERE
+			bucket_id = #{bucketId};
+	</update>
+
+</mapper>
