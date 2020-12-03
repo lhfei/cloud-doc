@@ -295,3 +295,18 @@ Metabase will run on Java version 8, 9, or 10. Java 11 support is still a work i
 
 ##### Need a different version of the docs? See the [available versions](https://www.metabase.com/docs/all).
 
+
+
+```sql
+CREATE DATABASE cloud_metabase
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
+  
+CREATE USER 'cloud_metabase'@'localhost' IDENTIFIED BY 'Metabase_1473';
+
+GRANT ALL ON cloud_metabase.* TO 'cloud_metabase'@'10.182.25.41' IDENTIFIED BY 'Metabase_1473';
+GRANT ALL ON cloud_metabase.* TO 'cloud_metabase'@'%' IDENTIFIED BY 'Metabase_1473';
+
+FLUSH PRIVILEGES;
+```
+
