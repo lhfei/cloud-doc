@@ -71,3 +71,22 @@ FLUSH PRIVILEGES;
 > Install Directory
 
 `/opt/rh/rh-python36/root/lib/python3.6/site-packages/superset`
+
+or
+
+` /usr/local/lib/python3.6/site-packages/superset/`
+
+
+
+### Issues
+
+> command 'gcc' failed with exit status 1
+
+```shell
+# check the name of python.devel
+> sudo yum search python3 | grep devel
+
+# install the python36.devel
+> sudo yum install python36-devel
+```
+

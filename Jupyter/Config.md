@@ -116,3 +116,19 @@ add_header Content-Security-Policy "frame-ancestors 'self' http://localhost:4200
 
 
 
+```ini
+# 不允许被嵌入，包括<frame>, <iframe>, <object>, <embed> 和 <applet>
+Content-Security-Policy: frame-ancestors 'none'
+# 只允许被同源的页面嵌入
+Content-Security-Policy: frame-ancestors 'self'
+# 只允许被白名单内的页面嵌入
+Content-Security-Policy: frame-ancestors www.example.com
+
+# 不允许被嵌入，包括<frame>, <iframe>, <embed> 和 <object>
+X-Frame-Options: deny
+# 只允许被同源的页面嵌入
+X-Frame-Options: sameorigin
+# （已废弃）只允许被白名单内的页面嵌入
+X-Frame-Options: allow-from www.example.com
+```
+

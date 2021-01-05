@@ -77,7 +77,7 @@
     
     <property>
       <name>mapreduce.jobhistory.address</name>
-      <value>100.83.200.115:10020</value>
+      <value>host-11-80-14-115:10020</value>
     </property>
     
     <property>
@@ -122,7 +122,7 @@
     
     <property>
       <name>mapreduce.jobhistory.webapp.address</name>
-      <value>100.83.200.115:19888</value>
+      <value>host-11-80-14-115:19888</value>
     </property>
     
     <property>

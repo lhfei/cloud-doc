@@ -52,7 +52,6 @@ pip install sqlalchemy==1.2.18
 pip install superset
 
 # Create an admin user
-fabmanager create-admin --app superset
 -------------
 Username [admin]: lhfei
 User first name [admin]: Hefei

@@ -31,7 +31,7 @@ We interact with the postgres database software through an interface called `psq
 
 For now, log into the postgres user like this:
 
-```
+```shell
 su - postgres
 ```
 

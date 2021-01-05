@@ -10,7 +10,7 @@
           <user>default</user>
           <password>Lhfei</password>
         </replica>
-                <replica>
+        <replica>
           <host>host-10-182-57-106</host>
           <port>9000</port>
           <user>default</user>
@@ -40,7 +40,7 @@
           <user>default</user>
           <password>Lhfei</password>
         </replica>
-                <replica>
+        <replica>
           <host>host-10-182-57-104</host>
           <port>9000</port>
           <user>default</user>

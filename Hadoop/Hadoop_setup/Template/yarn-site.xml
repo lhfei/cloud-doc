@@ -524,7 +524,7 @@
     
     <property>
       <name>yarn.resourcemanager.zk-address</name>
-      <value>100.83.214.94:2181,host-11-80-14-115:2181,host-11-80-14-116:2181</value>
+      <value>host-11-80-14-114:2181,host-11-80-14-115:2181,host-11-80-14-116:2181</value>
     </property>
     
     <property>

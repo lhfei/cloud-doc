@@ -221,7 +221,7 @@
     
     <property>
       <name>dfs.namenode.secondary.http-address</name>
-      <value>100.83.200.115:50090</value>
+      <value>host-11-80-14-115:50090</value>
     </property>
     
     <property>
