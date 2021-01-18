@@ -11,6 +11,16 @@ To use GUI packages with Linux, you will need to install the following extended 
 | OpenSuse/SLES | `zypper install libXcomposite1 libXi6 libXext6 libXau6 libX11-6 libXrandr2 libXrender1 libXss1 libXtst6 libXdamage1 libXcursor1 libxcb1 libasound2 libX11-xcb1 Mesa-libGL1 Mesa-libEGL1` |
 | Gentoo        | `emerge x11-libs/libXau x11-libs/libxcb x11-libs/libX11 x11-libs/libXext x11-libs/libXfixes x11-libs/libXrender x11-libs/libXi x11-libs/libXcomposite x11-libs/libXrandr x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXScrnSaver x11-libs/libXtst media-libs/alsa-lib media-libs/mesa` |
 
+
+
+### Uninstalling Anaconda or Miniconda
+
+```shell
+rm -rf ~/.condarc ~/.conda ~/.continuum
+```
+
+
+
 ## Installation
 
 For x86 systems.
