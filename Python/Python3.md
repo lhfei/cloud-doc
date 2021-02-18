@@ -241,3 +241,65 @@ Run the below command to check installed python3 version.
 # python3.6 --version
 Python 3.6.5
 ```
+
+
+
+
+
+
+
+### Python 3.7
+
+#### Step 1 – Requirements
+
+This Python installation required the GCC compiler on your system. Login to your server using ssh or shell access. Now, use the following command to install prerequisites for Python before installing it.
+
+- Read: [How to Use SSH to Connect Remote Linux Server](https://tecadmin.net/use-ssh-connect-remote-linux-server/)
+
+```shell
+yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel 
+readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+```
+
+#### Step 2 – Download Python 3.7
+
+Download Python using the following command from the Python official site. You can also download the latest version in place of specified below.
+
+```shell
+cd /usr/src
+wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
+```
+
+Now extract the downloaded package.
+
+```shell
+tar xzf Python-3.7.9.tgz
+```
+
+#### Step 3 – Install Python 3.7
+
+Use below set of commands to compile Python source code on your system using altinstall.
+
+```shell
+cd Python-3.7.9
+./configure --enable-optimizations
+make altinstall
+```
+
+**make altinstall** is used to prevent replacing the default python binary file **/usr/bin/python**.
+
+Now remove downloaded source archive file from your system
+
+```shell
+rm /usr/src/Python-3.7.9.tgz
+```
+
+#### Step 4 – Check Python Version
+
+Check the latest version installed of python. Use command python3.7 instead of just python.
+
+```shell
+python3.7 -V
+
+Python 3.7.9
+```

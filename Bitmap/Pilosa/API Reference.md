@@ -2,7 +2,7 @@
 
 ### List all index schemas
 
-```
+```shell
 GET /index
 ```
 
@@ -16,7 +16,7 @@ GET /index/<index-name>
 
 Returns the schema of the specified index in JSON.
 
-```request
+```shell
 curl -XGET localhost:10101/index/user
 {
     "fields": [
@@ -39,7 +39,7 @@ curl -XGET localhost:10101/index/user
 
 ### Create index
 
-```
+```shell
 POST /index/<index-name>
 ```
 
@@ -50,33 +50,33 @@ The request payload is in JSON, and may contain the `options` field. The `option
 - `keys` (bool): Enables using column keys instead of column IDs.
 - `trackExistence` (bool): Enables or disables existence tracking on the index. Required for [Not](https://www.pilosa.com/docs/latest/query-language/#not) queries. It is `true` by default.
 
-```request
+```requestshell
 curl -XPOST localhost:10101/index/user -d '{"options":{"keys":true}}'
 {"success":true}
 ```
 
 ### Remove index
 
-```
+```shell
 DELETE /index/index-name
 ```
 
 Removes the given index.
 
-```request
+```shell
 curl -XDELETE localhost:10101/index/user
 {"success":true}
 ```
 
 ### Query index
 
-```
+```shell
 POST /index/<index-name>/query
 ```
 
 Sends a [query](https://www.pilosa.com/docs/latest/query-language/) to the Pilosa server with the given index. The request body is UTF-8 encoded text and response body is in JSON by default.
 
-```request
+```shell
 curl localhost:10101/index/user/query \
      -X POST \
      -d 'Row(language=5)'
@@ -98,7 +98,7 @@ The response doesn’t include column attributes by default. To return them, set
 
 The query is executed for all [shards](https://www.pilosa.com/docs/latest/data-model/#shard) by default. To use specified shards only, set the `shards` query argument to a comma-separated list of slice indices.
 
-```request
+```shell
 curl "localhost:10101/index/user/query?columnAttrs=true&shards=0,1" \
      -X POST \
      -d 'Row(language=5)'
@@ -126,7 +126,7 @@ By default, all bits and attributes (*for `Row` queries only*) are returned. In 
 
 ### Import Data
 
-```
+```shell
 POST /index/<index-name>/field/<field-name>/import
 ```
 
@@ -206,7 +206,7 @@ curl localhost:10101/index/user/field/quantity \
 
 Integer fields are stored as n-bit range-encoded values. Pilosa supports 63-bit, signed integers with values between `min` and `max`.
 
-```request
+```shell
 curl localhost:10101/index/user/field/language -X POST
 {"success":true}
 curl localhost:10101/index/repository/field/stats \
@@ -217,26 +217,26 @@ curl localhost:10101/index/repository/field/stats \
 
 ### Remove field
 
-```
+```shell
 DELETE /index/<index-name>/field/<field-name>
 ```
 
 Removes the given field.
 
-```request
+```shell
 curl -XDELETE localhost:10101/index/user/field/language
 {"success":true}
 ```
 
 ### List all index schemas
 
-```
+```shell
 GET /schema
 ```
 
 Returns the schema of all indexes in JSON.
 
-```request
+```shell
 curl -XGET localhost:10101/schema
 {
     "indexes": [
@@ -272,13 +272,13 @@ curl -XGET localhost:10101/schema
 
 ### Duplicate schema into empty Pilosa cluster
 
-```
+```shell
 POST /schema
 ```
 
 To duplicate one Pilosa cluster’s schema to another, it’s possible to pass the output of `GET /schema` as the request body of `POST /schema` and all the indexes and fields in the schema will be created in Pilosa. As of this writing, the behavior of POSTing a schema to a non-empty Pilosa cluster is undefined. These semantics will likely be ironed out in a future version.
 
-```request
+```shell
 # after (e.g.) curl -XGET localhost:10101/schema > schema.json
 curl -XPOST localhost:10101/schema --data-binary @schema.json
 ```
@@ -306,7 +306,7 @@ GET /status
 
 Returns the status of the cluster.
 
-```request
+```shell
 curl -XGET localhost:10101/status
 {
     "localID": "d3369125-29d8-4305-a351-b4474d14a542",
@@ -333,7 +333,7 @@ POST /recalculate-caches
 
 Recalculates the caches on demand. The cache is recalculated every 10 seconds by default. This endpoint can be used to recalculate the cache before the 10 second interval. This should probably only be used in integration tests and not in a typical production workflow. Note that in a multi-node cluster, the cache is only recalculated on the node that receives the request.
 
-```request
+```shell
 curl -XPOST localhost:10101/recalculate-caches
 ```
 

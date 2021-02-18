@@ -135,7 +135,7 @@ Alternatively for Node.js 10:
 curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
 ```
 
-
+cd 	
 
 ```shell
 curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash -
