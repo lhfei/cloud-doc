@@ -1,5 +1,13 @@
 
 
+### Build
+
+```shell
+mvn clean package -e -DskipTests -Drat.skip=true
+```
+
+
+
 ### Hive
 
 ```shell

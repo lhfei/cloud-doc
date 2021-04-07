@@ -40,9 +40,51 @@ Socket Server Settings
 
 
 
+### Cluster setting
 
 
 
+#### Cluster Nodes
+
+```ini
+11.10.1.1	node1
+11.10.1.2	node2
+11.10.1.3	node3
+```
+
+
+
+### Kafka Configuration
+
+> node1
+
+```ini
+broker.id=0
+log.dirs=/tmp/kafka-logs-1
+port=9093
+advertised.host.name = localhost
+zookeeper.connect=node1:2181,node2:2182,node3:2183
+```
+
+> node2
+
+```ini
+broker.id=1
+log.dirs=/tmp/kafka-logs-1
+port=9093
+advertised.host.name = localhost
+zookeeper.connect=node1:2181,node2:2182,node3:2183
+```
+
+> node3
+
+```ini
+broker.id=2
+log.dirs=/tmp/kafka-logs-1
+port=9093
+advertised.host.name = localhost
+zookeeper.connect=node1:2181,node2:2182,node3:2183
+```
 
 
 
