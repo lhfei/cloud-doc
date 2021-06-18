@@ -55,8 +55,9 @@
 
 #### create the following configuration:
 
-## For websocket
+### For websocket
 
+```ini
 map $http_upgrade $connection_upgrade {
     default upgrade;
     '' close;
@@ -67,7 +68,7 @@ upstream websocket {
 server {
   listen         8091;
   server_name  localhost;
-  
+
   location / {
     proxy_buffers 16 4k;
     proxy_buffer_size 2k;
@@ -78,6 +79,9 @@ server {
     proxy_set_header Connection $connection_upgrade;
   }
 }
+```
+
+
 
 
 

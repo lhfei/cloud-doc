@@ -101,7 +101,7 @@ git log -p --{file_name}
 $ git push origin --delete {remote_branch_name}
 
 # delete local branch
-$ git branch -d <branch_name>
+$ git branch -D <branch_name>
 ```
 
 >### Deleting remote and local tag in Git
