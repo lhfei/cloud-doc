@@ -64,27 +64,27 @@ Description : This is the main package for rh-python35 Software Collection.
 Run the below command to install latest available python 3 package from scl.
 
 ```
-# yum install rh-python35
+# yum install rh-python38
 ```
 
 Run the below special scl command to enable the installed package version at the shell.
 
 ```
-# scl enable rh-python35 bash
+# scl enable rh-python38 bash
 ```
 
 Run the below command to check installed python3 version.
 
 ```
 # python --version
-Python 3.5.1
+Python 3.8.1
 ```
 
 Run the following command to get a list of SCL packages have been installed on system.
 
 ```
 # scl -l
-rh-python35
+rh-python38
 ```
 
 #### Method-2 : Using EPEL Repository (Extra Packages for Enterprise Linux)

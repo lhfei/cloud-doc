@@ -43,6 +43,26 @@ airflow scheduler
 
 
 
+### Create User
+
+```shell
+airflow users create \
+    --username admin \
+    --firstname Hefei \
+    --lastname Li \
+    --role Admin \
+    --email lhfeilaile@gmail.com
+    
+[2021-08-20 16:56:18,369] {manager.py:788} WARNING - No user yet created, use flask fab command to do it.
+Password:
+Repeat for confirmation:
+Admin user admin created
+```
+
+
+
+
+
 ## Init DB
 
 Edit `${AIRFLOW_HOME}/airflow.cfg`,
@@ -57,7 +77,7 @@ sql_alchemy_conn = mysql://root:Lhfeilaile@01@10.182.93.66/airflow
 
 ```shell
 yum install -y mysql-devel
-pip install -y mysqlclient
+pip install mysqlclient
 
 python3 -m pip install PyMySQL
 ```

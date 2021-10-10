@@ -419,7 +419,7 @@ The following information summarizes the columns that the jstat command outputs 
     Type: Compilation type of the most recently compiled method.
     
     Method: Class name and method name identifying the most recently compiled method. Class name uses slash (/) instead of dot (.) as a name space separator. Method name is the method within the specified class. The format for these two fields is consistent with the HotSpot -XX:+PrintCompilation option.
-    
+
 #### Examples
 
 This section presents some examples of monitoring a local JVM with an lvmid of 21891.

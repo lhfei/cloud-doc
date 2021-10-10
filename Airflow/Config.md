@@ -8,3 +8,13 @@
 |             |      |               |
 |             |      |               |
 
+
+
+
+
+#### Install Path
+
+```ini
+/usr/local/lib/python{version}/site-packages/airflow/www/templates/airflow
+```
+

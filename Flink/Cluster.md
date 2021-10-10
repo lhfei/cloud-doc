@@ -153,6 +153,20 @@ Choose a master node (JobManager) and set the jobmanager.rpc.address in conf/fli
 2. Add this line: jobmanager.rpc.address: 192.168.1.3
 ```
 
+
+
+Reset default **PID** file location:
+
+`$FLINK_HOME/bin/config.sh`
+
+```sh
+DEFAULT_ENV_PID_DIR="${FLINK_HOME}/tmp"               # Directory to store *.pid files to
+```
+
+
+
+
+
 ###### iii. Add the entry of all the Slaves
 
 Add the IPs or hostnames (one per line) of all worker nodes (TaskManager) to the slaves files in conf/slaves. To configure file use the following command.

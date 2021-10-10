@@ -265,8 +265,6 @@ bin/logstash -f config/fhv.conf
 
 
 
-
-
 > green_tripdata.conf
 
 ```ini
