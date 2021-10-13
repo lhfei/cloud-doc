@@ -45,7 +45,7 @@ mvn clean package -DskipTests -Dscala-2.12 -Dhadoop.version=3.1.1 -Dcheckstyle.s
 ### 2. Build Source
 
 ```shell
-mvn clean install -DskipTests=true -Dfast -T5 -Dmaven.compile.fork=true  -Dscala-2.12 -Dhadoop.version=3.1.1 -Dcheckstyle.skip=true  -Dcheckstyle.skip=true -Dhive.version=3.1.0 -Dflink.version=1.12.2
+mvn clean install -DskipTests=true -Dfast -T5 -Dmaven.compile.fork=true  -Dscala-2.12 -Dhadoop.version=3.1.1 -Dcheckstyle.skip=true -Dhive.version=3.1.0 -Dflink.version=1.12.2
 ```
 
 
