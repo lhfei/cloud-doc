@@ -136,8 +136,26 @@ mvn clean install -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.1 -P
 
 
 ```shell
-mvn clean install -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.1 -Dhbase.hbase.version=2.0.2 -Dhbase.hadoop.version=3.1.1 -Pspark-2.4 -Pscala-2.11 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip
 
+export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=2048m" 
+
+mvn clean package -e -DskipTests -Dspark.version=2.4.0 -Dhadoop.version=3.1.1 -Dhbase.hbase.version=2.0.2 -Dhbase.hadoop.version=3.1.1 -Pspark-2.4 -Pscala-2.12 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip -T2
+
+```
+
+```shell
+mvn clean package -e -DskipTests -Dhadoop.version=3.1.1 -Dhbase.hbase.version=2.0.2 -Dhbase.hadoop.version=3.1.1 -Pspark-2.4 -Pscala-2.12 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip -T2
+```
+
+
+
+
+
+
+
+```shell
+export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=2048m" 
+mvn clean package -e -DskipTests -Pscala-2.11 -Pspark-2.4 -Pspark-scala-2.12 -Phadoop3 -Dhadoop.version=3.1.1 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip -T2
 ```
 
 
@@ -913,7 +931,6 @@ java.lang.RuntimeException: Error in library("knitr"): there is no package calle
 #
 $ R -e 'install.packages("knitr")'
 ```
-
 
 
 

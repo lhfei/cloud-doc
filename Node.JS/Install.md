@@ -143,6 +143,12 @@ curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash -
 
 
 
+```shell
+curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash -
+```
+
+
+
 
 
 Then install:

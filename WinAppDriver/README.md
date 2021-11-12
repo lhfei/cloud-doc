@@ -38,7 +38,7 @@
 
 ​      \4)   启动：
 
-​         使用的时候，在命令行运行WinAppDriver.exe就行，根据实际情况可以选择以下几种方式：
+​         使用的时候，在命令行运行`C:\Program Files\Windows Application Driver\WinAppDriver.exe`就行，根据实际情况可以选择以下几种方式：
 
 ```
 1 WinAppDriver.exe 4727

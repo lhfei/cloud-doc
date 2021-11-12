@@ -59,13 +59,33 @@ You must complete these steps for each node in your cluster.
 
    - Confluent Platform
 
-     ZIP`curl -O http://packages.confluent.io/archive/5.1/confluent-5.1.0-2.11.zip `CopyTAR`curl -O http://packages.confluent.io/archive/5.1/confluent-5.1.0-2.11.tar.gz `Copy
+     ZIP
+
+     ```shell
+     curl -O http://packages.confluent.io/archive/5.1/confluent-5.1.0-2.11.zip 
+     ```
+
+     TAR
+
+     ```shell
+     curl -O http://packages.confluent.io/archive/5.1/confluent-5.1.0-2.11.tar.gz
+     ```
 
    - Confluent Platform using only Confluent Community components
 
-     ZIP`curl -O http://packages.confluent.io/archive/5.1/confluent-community-5.1.0-2.11.zip `CopyTAR`curl -O http://packages.confluent.io/archive/5.1/confluent-community-5.1.0-2.11.tar.gz `Copy
-
-   Tip
+     ZIP
+     
+     ```shell
+     curl -O http://packages.confluent.io/archive/5.1/confluent-community-5.1.0-2.11.zip
+     ```
+     
+     TAR
+     
+     ```shell
+     curl -O http://packages.confluent.io/archive/5.1/confluent-community-5.1.0-2.11.tar.gz
+     ```
+     
+     
 
    The package name contains the Confluent Platform version followed by the Scala version. For example, `5.1.0-2.11.zip` denotes Confluent Platform version 5.1.0 and Scala version 2.11.
 

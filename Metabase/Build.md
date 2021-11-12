@@ -6,6 +6,7 @@ These are the set of tools which are required in order to complete any build of 
 2. [Node.js (http://nodejs.org/)](http://nodejs.org/)
 3. [Yarn package manager for Node.js](https://yarnpkg.com/)
 4. [Leiningen (http://leiningen.org/)](http://leiningen.org/)
+5. [Install Clojure](https://www.clojure.org/guides/getting_started)
 
 If you are developing on Windows, make sure to use Ubuntu on Windows and follow instructions for Ubuntu/Linux instead of installing ordinary Windows versions.
 
@@ -13,9 +14,11 @@ If you are developing on Windows, make sure to use Ubuntu on Windows and follow 
 
 The entire Metabase application is compiled and assembled into a single .jar file which can run on any modern JVM. There is a script which will execute all steps in the process and output the final artifact for you.
 
-```
+```shell
 yarn run build
- 
+
+npx browserslist@latest --update-db
+
 ./bin/build
 ```
 
@@ -125,7 +128,7 @@ Integration tests use an enforced file naming convention `<test-suite-name>.inte
 
 Useful commands:
 
-```
+```shell
 lein run refresh-integration-test-db-metadata # Scan the sample dataset and re-run sync/classification/field values caching
 yarn run test-integrated-watch # Watches for file changes and runs the tests that have changed
 yarn run test-integrated-watch TestFileName # Watches the files in paths that match the given (regex) string

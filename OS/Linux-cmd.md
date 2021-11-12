@@ -406,6 +406,48 @@ sudo service ssh restart
 sudo vi /etc/sysconfig/network
 ```
 
+首先查看当前的主机名hostname，方法有两种：
+
+1、打开一个终端，在命令提示符中可以看到主机名，主机名通常位于“@”符号后；
+
+2、在终端输入hostname指令:
+
+**hostname**
+
+![zhujiming](https://yqfile.alicdn.com/6db3660515c612b64107e61d293e3917b0623dcf.png)
+
+其次，更改主机名需要root权限，这里切到root账户（用sudo也可以），如果已经是root用户就不用切换了。
+
+**su – root**
+
+这里我们将主机名（hostname）从appmoney改成appjzw，输入以下命令即可：
+
+```shell
+hostnamectl set-hostname data-thinker
+```
+
+
+
+这样再次查看主机名就变成appjzw，无需重启只需新开会话便可变为新的主机名。
+
+注意，主机名一般不包括“.”,"等特殊符合，如果我将上面换成www.appjzw.com都默认为data-thinker，“.”前后的省略，但实际的主机名还是你设置的那个。
+
+此外，除了以上方法之外，还可以通过修改hosts文件来完成，具体过程如下：
+
+1、修改/etc/hosts，将/etc/hosts内出现的appmoney都改成appjzw，如下图：
+
+![zhujimin](https://yqfile.alicdn.com/4af061c42fe7e837804c877b8ec2aed0b0e2be1c.png)
+
+2、修改/etc/sysconfig/network，将hostname改为appjzw, 如下：
+
+![zhujimi](https://yqfile.alicdn.com/0a8acd1a140ce00c027d3aad38dbd0b346475675.png)
+
+3、由于上面的改动必须重启系统才能生效。
+
+**reboot**
+
+4、设置好之后，只要重新登入，命令提示字符就会变为[root@appjzw ~] # 即表示hostname修改成功。
+
 
 
 ### Ubuntu

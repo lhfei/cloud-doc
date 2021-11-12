@@ -10,9 +10,19 @@
 
 ```sh
 sudo apt-get install libcurl4-openssl-dev libxml2-dev
+
+# For Centos 7
+sudo yum -y install libcurl libcurl-devel
+
+sudo yum -y install openssl-devel
 ```
 
 ```sh
+yum install python-requests
+
+yum install -y krb5-devel
+yum install python36-gssapi
+
 ./gradlew syncSmalldata
 ./gradlew syncRPackages
 
@@ -22,8 +32,11 @@ pip install future
 pip install requests --upgrade
 
 pip install tabulate
+pip install requests
 
 pip install setuptools
+
+pip3 install wheel
 
 pip install pip
 ```
