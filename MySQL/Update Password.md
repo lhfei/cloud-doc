@@ -16,7 +16,7 @@ Warning: Since password will be sent to server in plain text, use ssl connection
 
 ```sql
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'Lhfei@01';
-
+Databankuser_1473
 FLUSH PRIVILEGES;
 ```
 

@@ -48,6 +48,9 @@
 
    ```shell
    systemctl restart postgresql
+   
+   # for 11+
+   systemctl restart postgresql-11.service
    ```
 
 4. Adjusting FIrewall

@@ -77,7 +77,7 @@ Here are a few commands that can help you get an idea of your current environmen
 
 We can create tables in postgres by using the following syntax:
 
-```
+```sql
 CREATE TABLE new_table_name (
     table_column_title TYPE_OF_DATA column_constraints,
     next_column_title TYPE_OF_DATA column_constraints,
@@ -88,7 +88,7 @@ CREATE TABLE new_table_name (
 
 We will make a table called "popsicles" to store our popsicle varieties and some information about them.
 
-```
+```sql
 CREATE TABLE popsicles (
     pop_id serial PRIMARY KEY,
     flavor varchar (50) NOT NULL,
@@ -110,7 +110,7 @@ Now we can use the `\dt` command to see the table:
 
 To see the columns and data structure we just defined, we can type this command:
 
-```
+```sql
 \d popsicles
                                   Table "public.popsicles"
  Column |         Type          |                         Modifiers  
@@ -135,7 +135,7 @@ We type `INSERT INTO` followed by the table name. Then, we type a comma-separate
 
 Let's try it now. We will insert some grape popsicles into our table:
 
-```
+```sql
 INSERT INTO popsicles (flavor, amount, size) VALUES ('grape', 10, 'normal');
 INSERT 0 1
 ```
@@ -146,7 +146,7 @@ Another thing to notice is that we didn't set the `pop_id` column. That is becau
 
 Let's fill in some more data so that we have a more useful table:
 
-```
+```sql
 INSERT INTO popsicles (flavor, amount, size) VALUES ('orange', 8, 'small');
 INSERT INTO popsicles (flavor, amount, size) VALUES ('fudge', 20, 'large');
 INSERT INTO popsicles (flavor, amount, size) VALUES ('eclair', 14, 'normal');
@@ -155,7 +155,7 @@ INSERT INTO popsicles (flavor, amount, size) VALUES ('rainbow', 4, 'small');
 
 If you recall, when we created the table, we defined the acceptable values for the "size" column. Postgres checks that the value is either "small", "normal", or "large". What happens if we try to provide a different value?:
 
-```
+```sql
 INSERT INTO popsicles (flavor, amount, size) VALUES ('lime', 6, 'huge');
 ERROR:  new row for relation "popsicles" violates check constraint "popsicles_size_check"
 DETAIL:  Failing row contains (6, lime, 6, huge).

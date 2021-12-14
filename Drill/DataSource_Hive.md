@@ -34,7 +34,7 @@ When you set Hive properties at the session level, follow these guidelines:
 
 You must connect Drill to the Hive metastore before you can run queries on a Hive data source. When you configure Hive as a consumable data source for Drill, you update the Hive storage plugin by selecting the **Storage tab** in the [Drill Web UI](http://drill.apache.org/docs/plugin-configuration-basics/#using-the-drill-web-console). From the list of disabled storage plugins in the Drill Web UI, click **Update** next to `hive`. The default Hive storage plugin configuration appears as follows:
 
-```text
+```json
     {
       "type": "hive",
       "enabled": false,
