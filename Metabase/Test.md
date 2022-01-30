@@ -1,0 +1,1 @@
+https://techidaily.com/tutorials/wodax-umi/zh/guide/metabase/00-started.html#%E7%AC%AC1%E8%AE%B2-%E5%87%86%E5%A4%87

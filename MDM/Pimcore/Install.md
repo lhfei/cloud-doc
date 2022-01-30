@@ -36,9 +36,15 @@ ALTER TABLE tablename CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_c
 
 
 ```shell
+CREATE DATABASE mdm_master
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_unicode_ci;
+  
 create user 'mdmadmin'@"localhost" IDENTIFIED BY 'Mdmuser_1473';
 
 grant all on mdm_master.* to "mdmadmin"@"localhost" with grant option;
 grant all on mdm_master.* to "mdmadmin"@"%" with grant option;
+
+FLUSH PRIVILEGES;
 ```
 

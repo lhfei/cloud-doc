@@ -65,6 +65,15 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
+
+
+```shell
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+
+
 **Optional**: install build tools
 
 To compile and install native addons from npm you may also need to install build tools:
@@ -147,6 +156,12 @@ curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash -
 
 ```shell
 curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash -
+```
+
+
+
+```shell
+curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
 ```
 
 

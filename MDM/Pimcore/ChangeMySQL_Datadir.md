@@ -27,25 +27,31 @@ For this process to run successfully, you require the following:
 
 The first thing when relocating your MySQL’s root data directory is to ascertain its current location. We’ll use the admin credentials to start MySQL’s interactive session: First, run the command below to access your MySQL prompt.
 
-$ mysql -u root -p
+```shell
+mysql -u root -p
+```
+
+
 
 Enter your root password for MySQL and click **ENTER**. Once you access MySQL prompt, choose the root data directory of interest:
 
-msql>
-
+```sql
 select @@datadir;
+```
+
+
 
 This will give you an output similar to the one below:
 
+```ini
 +-----------------+
-
 | @@datadir       |
-
 +-----------------+
-
 | /var/lib/mysql/ |
-
 +-----------------+
+```
+
+
 
 1 row **in** set (0.00 sec)
 
@@ -83,15 +89,15 @@ We can now focus on the configuration.
 
 MySQL database server can override the configuration rules via a number of ways. By default, MySQL’s datadir is found in the file **/etc/mysql/mysql.conf.d/mysqld.cnf** which is a component of the **/var/lib/mysql** directory. First, run the command below to open the file:
 
-$ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```shell
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
 
 Once the file opens, pinpoint the line with the value **datadir=**. Edit the path that follows this line to reflect /mnt/volume-can3-01/mysql, that is:
 
-. . .
-
+```ini
 datadir=/mnt/volume-can3-*01*/mysql
-
-. . .
+```
 
 You are almost done with the configuration, but there is one more aspect to be configured. You will need to set up **AppArmor** to allow MySQL database server to write to your newly created directory. We’ll create an alias between our  new location and the old directory.
 
@@ -101,25 +107,17 @@ First, run the command below to open the AppArmor’s alias file:
 sudo vi /etc/apparmor.d/tunables/alias
 ```
 
-
-
 Next, add the alias rule below to the bottom of this file:
-
-
 
 ```ini
 alias /var/lib/mysql/ -> /mnt/volume-can3-*01*/mysql/,
 ```
-
-
 
 Now, restart AppArmor to implement these changes:
 
 ```shell
 sudo systemctl restart apparmor
 ```
-
-
 
 **Remember:** If the AppArmor is not correctly configured you will get the error below:
 

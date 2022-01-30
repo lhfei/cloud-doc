@@ -1,5 +1,5 @@
 
-```
+```shell
 sudo apt-get install g++ libkrb5-dev libffi-dev libmysqlclient-dev libssl-dev libsasl2-dev libsasl2-modules-gssapi-mit libsqlite3-dev libtidy-0.99-0 libxml2-dev libxslt-dev  libldap2-dev python-dev python-setuptools libgmp3-dev
 
 $ git clone https://github.com/cloudera/hue.git
@@ -15,7 +15,7 @@ $ build/env/bin/hue runserver
 # The configuration in development mode is desktop/conf/pseudo-distributed.ini.
 ```
 
-```
+```ini
 >./build/env/bin/hue help
 	[auth]
 		changepassword
@@ -191,11 +191,15 @@ $ build/env/bin/hue runserver
 
 2. Synchronize Hue with the external database to create the schema and load the data.
 
+	```shell
 	cd /usr/lib/hue
 	source build/env/bin/activate
 	hue syncdb --noinput
 	Hue migrate
 	deactivate
+	```
+	
+	
 
 
 
@@ -207,7 +211,7 @@ $ build/env/bin/hue runserver
   yum install libffi-devel
   ```
 
-  ​
+  
 
 
 - [x] libxml/xmlversion.h: No such file or directory
@@ -229,10 +233,10 @@ $ build/env/bin/hue runserver
 - [x] Could not find suitable distribution for Requirement.parse('logilab-astng>=0.24.3')
 
   ```
-pip install logilab-astng
+  pip install logilab-astng
   ```
 
-  ​
+  
 
 
 

@@ -530,6 +530,9 @@ usermod -a -G testgroup loongson
 # Find out if group exists in /etc/group file
 >egrep -i "^{groupname}" /etc/group
 
+# Add user to groups
+sudo usermod -aG {GROUPS1,GROUPS2...GROUPSn} {USERNAME}
+
 # Add user to the sudoers file 
 >usermod -a -G sudo {username}
 >usermod -a -G adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare {username}

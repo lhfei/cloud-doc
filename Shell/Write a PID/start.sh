@@ -21,9 +21,9 @@ then
     exit 1
   else
     startJob
-    exit 1
+    exit 0
   fi
 else
   startJob
-  exit 1
+  exit 0
 fi

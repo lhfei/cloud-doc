@@ -193,10 +193,6 @@ autorestart=true
 startsecs=5
 ```
 
-Shell
-
-Copy
-
 ## 清理错误的dag和task信息
 
 dag_stats表中的是首页显示的数量

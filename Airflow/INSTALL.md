@@ -2,10 +2,35 @@
 
 ## Getting Airflow
 
+### Create User
+
+```shell
+# create user airflow
+sudo useradd airflow
+
+# add to hadoop groups
+sudo usermod -aG hadoop,hdfs airflow
+```
+
+Edit `/etc/sudoers` file, and append this a new line as below:
+
+```shell
+vi /etc/sudoers
+ 
+## Allow root to run any commands anywhere
+rootALL=(ALL) ALL
+airflow    ALL=(ALL)                NOPASSWD: ALL
+```
+
+
+
 The easiest way to install the latest stable version of Airflow is with `pip`:
 
 ```sh
 pip install apache-airflow
+
+# for pip3
+pip3 install apache-airflow
 ```
 
 You can also install Airflow with support for extra features like `s3` or `postgres`:
@@ -54,7 +79,7 @@ airflow users create \
     --email lhfeilaile@gmail.com
     
 [2021-08-20 16:56:18,369] {manager.py:788} WARNING - No user yet created, use flask fab command to do it.
-Password:
+Password:[Lhfei@01]
 Repeat for confirmation:
 Admin user admin created
 ```
@@ -69,7 +94,27 @@ Edit `${AIRFLOW_HOME}/airflow.cfg`,
 
 ```sh
 sql_alchemy_conn = mysql://root:Lhfeilaile@01@10.182.93.66/airflow
+
+
+# Python3 
+sql_alchemy_conn = mysql+pymysql://root:Lhfeilaile@01@10.182.93.66/airflow
 ```
+
+
+
+```shell
+airflow db init
+```
+
+
+
+```shell
+airflow webserver --port 8080
+
+airflow scheduler
+```
+
+
 
 
 
@@ -167,7 +212,11 @@ yum -y install python36u-devel
 On Red Hat, try the following:
 
 ```
-yum install mysql-community-devel
+yum install mysql-community-devel 
+yum install MySQL-python
+
+# Python3 
+pip3 install PyMySQL
 ```
 
 or:
@@ -183,6 +232,9 @@ sudo easy_install mysql-python
 
 ```sh
 yum install libffi-devel libgsasl-devel libmemcached-devel
+
+# For Python3.6
+sudo yum install python36-devel
 ```
 
 
