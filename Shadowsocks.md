@@ -46,7 +46,7 @@ systemctl restart firewalld.service
 
 # Bash Script
 
-```sh
+```shell
 #!/bin/bash
 
 nohup ssserver -c /etc/shadowsocks.json > log&
