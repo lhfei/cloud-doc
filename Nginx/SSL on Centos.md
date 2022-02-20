@@ -85,6 +85,39 @@ http {
 }
 ```
 
+
+
+```ini
+server {
+    listen 443;
+    ssl on;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_certificate /etc/nginx/ssl/bundle.crt;
+    ssl_certificate_key /etc/nginx/ssl/private.key;
+
+    server_name www.example.com;
+    access_log /path/to/nginx/accces/log/file;
+    error_log /path/to/nginx/error/log/file;
+
+    location / {
+        proxy_buffers 16 4k;
+        proxy_buffer_size 2k;
+        proxy_pass http://websocket;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_redirect http://websocket https://websocket;
+    }
+}
+```
+
+
+
 ### 4- Configure firewall
 
 we should open port 80 and 443 in firewall to enable successful connection to server:
@@ -102,3 +135,40 @@ Now we start Nginx service and refer to https://192.168.147.128 to see if config
 ```
 # systemctl start nginx
 ```
+
+
+
+#### WebSocket
+
+> nginx.conf
+
+```ini
+    map $http_upgrade $connection_upgrade {
+        default upgrade;
+        '' close;
+    }
+    upstream websocket {
+        server 127.0.0.1:8080;
+    }
+
+http {
+
+    ...
+
+    server {
+      listen 443 ssl;
+      server_name _;
+
+      ssl_certificate /etc/nginx/cert/certificate.crt;
+      ssl_certificate_key /etc/nginx/cert/private.key;
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers HIGH:!aNULL:!MD5;
+
+      include /etc/nginx/lhfei.d/*.conf;
+    }
+ 
+    ...
+ 
+}
+```
+

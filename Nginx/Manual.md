@@ -70,14 +70,36 @@ server {
   server_name  localhost;
 
   location / {
-    proxy_buffers 16 4k;
-    proxy_buffer_size 2k;
+    proxy_buffer_size 64k;
+    proxy_buffers   32 32k;
+    proxy_busy_buffers_size 128k;
     proxy_pass http://websocket;
     proxy_set_header Host $host;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
   }
+}
+```
+
+
+
+```ini
+server {
+    listen 443;
+    ssl on;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_certificate /etc/nginx/ssl/bundle.crt;
+    ssl_certificate_key /etc/nginx/ssl/private.key;
+
+    server_name www.example.com;
+    access_log /path/to/nginx/accces/log/file;
+    error_log /path/to/nginx/error/log/file;
+
+    location / {
+        root  /var/www/html/yoursite/;
+        index  index.html;
+    }
 }
 ```
 

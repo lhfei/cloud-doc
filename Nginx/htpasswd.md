@@ -17,8 +17,6 @@ $ sudo apt-get install apache2-utils
 
 
 
-
-
 ### HTPasswd Generator
 
 ```shell
@@ -37,4 +35,19 @@ admin:$apr1$wmED6tdd$BkAT3nHwRVtyegwJcSpmF/
 ```
 
 
+
+#### Nginx
+
+```ini
+server {
+    .
+    .
+    location / {
+        .
+        .
+        auth_basic "DLink";
+        auth_basic_user_file /etc/nginx/passwd.db;
+    }
+}
+```
 
