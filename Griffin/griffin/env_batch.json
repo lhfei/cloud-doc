@@ -1,0 +1,34 @@
+{
+  "spark": {
+    "log.level": "WARN"
+  },
+  "sinks": [
+    {
+      "name": "console",
+      "type": "CONSOLE",
+      "config": {
+        "max.log.lines": 10
+      }
+    },
+    {
+      "name": "hdfs",
+      "type": "HDFS",
+      "config": {
+        "path": "hdfs://data-thinker-6:8020/user/griffin/persist",
+        "max.persist.lines": 10000,
+        "max.lines.per.file": 10000
+      }
+    },
+    {
+      "name": "elasticsearch",
+      "type": "ELASTICSEARCH",
+      "config": {
+        "method": "post",
+        "api": "http://10.0.0.17:9200/griffin/accuracy",
+        "connection.timeout": "1m",
+        "retry": 10
+      }
+    }
+  ],
+  "griffin.checkpoint": []
+}

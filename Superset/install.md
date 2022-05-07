@@ -4,7 +4,24 @@
 
 ```shel
 yum install -y gcc-c++ 
+
+yum install -y python3-devel
+
+
 ```
+
+
+
+> Pip
+
+```shell
+ pip install sqlalchemy==1.3.24 
+ pip install dataclasses
+```
+
+
+
+
 
 
 

@@ -4,12 +4,14 @@ max file descriptors [4096] for elasticsearch process is too low, increase to at
 
 ```shell
 # make sure have root privileges
-sudo vim /etc/security/limits.conf
+sudo vi /etc/security/limits.conf
 
 # then append a new line as below
 * hard nofile 65536
 * soft nofile 65536
 ```
+
+Then exit current session and relogin.
 
 
 

@@ -14,7 +14,7 @@ mkdir -p /etc/nginx/cert/
 then issue the following command to generate certificate:
 
 ```shell
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/cert/private.key -out /etc/nginx/cert/certificate.crt
+sudo openssl req -x509 -nodes -days 365 -newKey rsa:2048 -keyout /etc/nginx/cert/private.key -out /etc/nginx/cert/certificate.crt
 ```
 
 the output would be:
@@ -68,7 +68,7 @@ to send several requests via one connection.
 to avoid SSL handshakes for parallel and subsequent connections.
 So we implement below configuration as our final Nginx configuration:
 
-```
+```ini
 worker_processes auto;
 http {
   ssl_session_cache shared:SSL:10m;
@@ -89,15 +89,29 @@ http {
 
 ```ini
 server {
-    listen 443;
-    ssl on;
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-    ssl_certificate /etc/nginx/ssl/bundle.crt;
-    ssl_certificate_key /etc/nginx/ssl/private.key;
+    listen       443 ssl http2;
+    listen       [::]:443 ssl http2;
+    server_name  _;
+    root         /usr/share/nginx/html;
 
-    server_name www.example.com;
-    access_log /path/to/nginx/accces/log/file;
-    error_log /path/to/nginx/error/log/file;
+    ssl_certificate "/etc/nginx/cert/certificate.crt";
+    ssl_certificate_key "/etc/nginx/cert/private.key";
+    ssl_session_cache shared:SSL:1m;
+    ssl_session_timeout  10m;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+
+    # Load configuration files for the default server block.
+    include /etc/nginx/default.d/*.conf;
+    include /etc/nginx/lhfei.d/*.conf;
+
+    error_page 404 /404.html;
+    location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+    }
 
     location / {
         proxy_buffers 16 4k;

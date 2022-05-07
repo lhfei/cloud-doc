@@ -1,0 +1,10 @@
+
+
+
+
+
+
+```shell
+yum install libatomic
+```
+

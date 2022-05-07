@@ -11,32 +11,53 @@ You need to prepare the environment for Apache Griffin measure module, including
 
 1. Create System User for Griffin
 
+   Create default user `hdfs` for `Griffin`, If it not exist, then create it as below:
+
    ```shell
-   useradd griffin -g hadoop -p griffin
+   useradd hdfs -g hadoop
    ```
+   
+   Create **Griffin** database in **MySQL**:
+
+   ```shell
+   CREATE DATABASE griffin_master
+     DEFAULT CHARACTER SET utf8
+     DEFAULT COLLATE utf8_general_ci;
+   
+   CREATE USER 'griffin_admin'@'localhost' IDENTIFIED BY 'Griffinuser_1473';
+   
+   GRANT ALL ON griffin_master.* TO 'griffin_admin'@'%' IDENTIFIED BY 'Griffinuser_1473';
+   
+   FLUSH PRIVILEGES;
+   ```
+
+
+2. Download Apache Griffin source package [here](https://www.apache.org/dist/griffin/0.4.0/).
+
+3. Unzip the source package.
+
+   ```shell
+   unzip griffin-0.6.0-source-release.zip
+   cd griffin-0.6.0-source-release
+   ```
+
+4. Griffin Configuration
+
+   The **Griffin** configuration information of `service` module is in the `service/src/main/resources` directory by default. The configuration files that need to be modified incluse:  
+
+   ```ini
+   {griffin_home}/service/
+     ├── application.properties
+     ├── quartz.properties
+     ├── sparkProperties.json
+     ├── env/env_batch.json
+   ```
+
+   The modification example is as follows:
 
    
 
-2. 
-
-3. 
-
-4. 
-
-5. 
-
-
-
-1. Download Apache Griffin source package [here](https://www.apache.org/dist/griffin/0.4.0/).
-
-2. Unzip the source package.
-
-   ```shell
-   unzip griffin-0.4.0-source-release.zip
-   cd griffin-0.4.0-source-release
-   ```
-
-3. Build Apache Griffin jars.
+5. Build Apache Griffin jars.
 
    ```shell
    mvn clean install -e -DskipTests -T2
@@ -57,30 +78,113 @@ You need to prepare the environment for Apache Griffin measure module, including
    [INFO] Finished at: 2022-03-28T11:50:34+08:00
    [INFO] ------------------------------------------------------------------------
    ```
+
    
-   
-   
-   Move the built apache griffin measure jar to your work path.
-   
+
+   Move the built apache griffin measure jar to your work path.  My work directory like this:
+
+   ```ini
+   griffin-0.6.0
+   ├── build
+   ├── griffin-doc
+   ├── measure
+   ├── service
+   ├── target
+   └── ui
    ```
+
+   ```ini
+   drwxr-x---. 5 hdfs hadoop  102 Mar 28 11:50 measure
+   -rwxr-x---. 1 hdfs hadoop  18K Nov  8  2020 merge_pr.py
+   -rw-r-----. 1 hdfs hadoop 8.9K Nov  8  2020 pom.xml
+   drwxr-x---. 4 hdfs hadoop   97 Mar 28 11:49 service
+   drwxr-xr-x. 3 root root    103 Mar 28 11:49 target
+   drwxr-x---. 5 hdfs hadoop   82 Mar 28 11:49 ui
+   ```
+
+   
+
+   Then put the Griffin runtime lib to `HDFS`.
+
+   ```shell
    mv measure/target/measure-0.6.0.jar <work path>/griffin-measure.jar
-   ```
    
-4. Create Griffin DB in MySQL
-
-   ```sql
-   CREATE DATABASE griffin_master
-     DEFAULT CHARACTER SET utf8
-     DEFAULT COLLATE utf8_general_ci;
+   # make destination directory for Griffin
+   su hdfs
+   hdfs dfs -mkdir -p /user/griffin/persist
+   hdfs dfs -mkdir -p /griffin/accuracy
    
-   CREATE USER 'griffin_admin'@'localhost' IDENTIFIED BY 'Griffinuser_1473';
+   hdfs dfs -chown -R livy:hdfs /user/griffin/persist
    
-   GRANT ALL ON griffin_master.* TO 'griffin_admin'@'%' IDENTIFIED BY 'Griffinuser_1473';
+   # then put it to HDFS
+   hdfs dfs -put <work path>/griffin-measure.jar /user/griffin/
+   hdfs dfs -put service/target/service-0.6.0.jar /user/griffin
    
-   FLUSH PRIVILEGES;
    ```
 
+6. Start Griffin 
+
+   After the Griffin source code is compiled successfully, After Griffin is successfully compiled, the generated directory structure is as follows:
+
+   ```ini
+   griffin-0.6.0
+   ├── build
+   ├── griffin-doc
+   ├── measure
+   ├── service
+   ├── target
+   └── ui
+   ```
+
    
+
+   ```shell
+   # set GRIFFIN_HOME=/export/cloud/griffin-0.6.0
+   mkdir -p /export/cloud/griffin-0.6.0
+   chown-R hdfs:hadoop /export/cloud/griffin-0.6.0
+   
+   # copy service module to it
+   cp target/service-0.6.0.tar.gz
+   
+   # swith to GRIFFIN_HOME
+   tar xvzf service-0.6.0.tar.gz
+   ```
+
+   The directory like thie:
+
+   ```ini
+   ./service-0.6.0
+   ├── bin
+   │   ├── griffin.sh
+   │   ├── setenv.sh
+   │   ├── start.sh
+   │   └── stop.sh
+   ├── config
+   ├── config
+   └── lib
+   ```
+
+   The default data source of Griffin Service is `PostgreSQL`. If you use `MySQL`, be sure to add the `MySQL JDBC Driver` to the `lib` directory.
+
+   ```shell
+   cp mysql-connector-java-{VERSION}.jar {GRIFFIN_HOME}/lib
+   ```
+
+   
+
+   Then,you can start the service as follows：
+
+   ```shell
+   ./bin/griffin.sh start
+   ```
+
+   
+
+   
+
+7. ...
+
+8. ...
 
 
 
@@ -91,6 +195,9 @@ For our quick start, We will generate two hive tables demo_src and demo_tgt.
 ```sql
 --create hive tables here. hql script
 --Note: replace hdfs location with your own path
+CREATE DATABASE IF NOT EXIST datalink_measure;
+use datalink_measure;
+
 CREATE EXTERNAL TABLE `demo_src`(
   `id` bigint,
   `age` int,
@@ -153,14 +260,14 @@ The environment config file: env.json
     {
       "type": "hdfs",
       "config": {
-        "path": "hdfs:///griffin/persist"
+        "path": "hdfs://data-thinker-6:8020/user/griffin/persist"
       }
     },
     {
       "type": "elasticsearch",
       "config": {
         "method": "post",
-        "api": "http://es:9200/griffin/accuracy"
+        "api": "http://10.0.0.17:9200/griffin/accuracy"
       }
     }
   ]
@@ -257,3 +364,35 @@ Depends on your business, you might need to refine your data quality measure fur
 ## More Details
 
 For more details about apache griffin measures, you can visit our documents in [github](https://github.com/apache/griffin/tree/master/griffin-doc).
+
+```json
+PUT  griffin?include_type_name=true
+{
+    "aliases": {},
+    "mappings": {
+        "accuracy": {
+            "properties": {
+                "name": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "text"
+                },
+                "tmst": {
+                    "type": "date"
+                }
+            }
+        }
+    },
+    "settings": {
+        "index": {
+            "number_of_replicas": "2",
+            "number_of_shards": "5"
+        }
+    }
+}
+```
+
