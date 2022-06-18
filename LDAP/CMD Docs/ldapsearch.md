@@ -6,6 +6,8 @@ ldapsearch -x -b "uid=user,ou=people,dc=tuleap,dc=local" -s sub "objectclass=*"
 
 ```
 ldapsearch -x -b dc=jd,dc=com uid=lhfei
+
+ldapsearch -x -b dc=datalink,dc=cn uid=lhfei -h 127.0.0.1 -p 389   
 ```
 
 

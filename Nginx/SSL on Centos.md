@@ -14,7 +14,7 @@ mkdir -p /etc/nginx/cert/
 then issue the following command to generate certificate:
 
 ```shell
-sudo openssl req -x509 -nodes -days 365 -newKey rsa:2048 -keyout /etc/nginx/cert/private.key -out /etc/nginx/cert/certificate.crt
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/cert/private.key -out /etc/nginx/cert/certificate.crt
 ```
 
 the output would be:

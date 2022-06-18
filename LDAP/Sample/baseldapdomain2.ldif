@@ -1,0 +1,9 @@
+dn: ou=People,dc=datalink,dc=cn
+ou: People
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=group,dc=datalink,dc=cn
+ou: Group
+objectClass: top
+objectClass: organizationalUnit

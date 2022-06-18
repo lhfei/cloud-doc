@@ -32,6 +32,6 @@ hive.metastore.schema.verification false
 
 
 ```ini
-# Add MySQL JDBC Driver to ${SPARK_HOME}/jarss
+# Add MySQL JDBC Driver to ${SPARK_HOME}/jars
 ```
 

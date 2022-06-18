@@ -7,7 +7,7 @@ bzip2 -v -d ldap-account-manager-6.7.tar.bz2
 
 tar -xvf ldap-account-manager-6.7.tar
 
-cd ldap-account-manager-6.7.tar
+cd ldap-account-manager-6.7
 
 chmod 777 sess templates tmp
 

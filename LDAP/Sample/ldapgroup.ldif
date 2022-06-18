@@ -1,0 +1,4 @@
+dn: cn=dlink,ou=DataArchitecture,dc=datalink,dc=cn
+objectClass: top
+objectClass: posixGroup
+gidNumber: 1005

@@ -88,3 +88,6 @@ mvn -U clean install package -Prelease -Dmaven.test.skip=true -e
 [INFO] ------------------------------------------------------------------------
 ```
 
+
+
+Then check it in `./dolphinscheduler-dist/targer`

@@ -1,0 +1,16 @@
+dn: uid=lhfei,ou=DataArchitecture,dc=datalink,dc=cn
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: lhfei
+uid: lhfei
+uidNumber: 1005
+gidNumber: 1005
+homeDirectory: /home/lhfei
+userPassword: {SSHA}TcI/c4xyagxhTJ0DKVLysSiXiJRS/Ryv
+loginShell: /bin/bash
+gecos: lhfei
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0

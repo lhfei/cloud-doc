@@ -12,6 +12,9 @@ mkdir -p /export/app_data/elasticsearch/data
 chmod 775 /export/app_data/elasticsearch/data
 chown -R elastic:elastic /export/app_data/elasticsearch/data
 
+mkdir -p /export/app_data/elasticsearch/logs
+chown -R elastic:elastic /export/app_data/elasticsearch/logs
+
 mkdir -p /export/app_logs/es/logs
 chmod 775 /export/app_logs/es/logs
 chown -R elastic:elastic /export/app_logs/es/logs

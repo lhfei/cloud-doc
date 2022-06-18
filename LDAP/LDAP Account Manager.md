@@ -1,4 +1,4 @@
-# LAM
+# [LAM - LDAP Account Manager](https://community.nethserver.org/t/lam-ldap-account-manager/5971)
 
 LAM (LDAP Account Manager) is an LDAP management user interface, similar to phpLDAPadmin. I configured it to manage my local Samba4 AD accounts provider.
 

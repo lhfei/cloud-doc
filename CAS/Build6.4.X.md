@@ -71,7 +71,7 @@ ls -a
 
 Copy the `cas.jks` file into ```/etc/cas/```
 
-```sh
+```shell
 cp cas.jks /etc/cas/
 ```
 
@@ -129,7 +129,7 @@ KeyIdentifier [
 ```
 ./bin/keytool -importkeystore -v -trustcacerts \
 -alias keyAlias                  \
- -file cas.cer                \
+-file cas.cer                \
 -keystore ./lib/security/cacerts \
  -keypass DataLink
 ```

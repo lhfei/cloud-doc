@@ -19,7 +19,7 @@ This build process is relatively complicated (and also consists of two parts).
 - [Java 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot).
 - [Apache Maven](https://maven.apache.org/download.cgi)
 - [Node.js](https://nodejs.org/en/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable) 
 - [NPM](https://www.npmjs.com/get-npm) + [Lerna](https://www.npmjs.com/package/lerna)
 
 
@@ -60,6 +60,7 @@ If lerna is not installed along with Node.js you can do it manually:
 
 ```
 npm install -g lerna
+npm install -g yarn
 ```
 
 
@@ -87,4 +88,17 @@ By default, the server listens to port `8978` (you can change it in conf/cloudbe
 
 *Note: you must be in the server root directory to run it.*
 If you need to run it from some other directory, then you can set the environment variable `CLOUDBEAVER_HOME` to the server root directory.
+
+
+
+### Nginx
+
+```ini
+location / {
+  proxy_pass       http://localhost:8978;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header Host $http_host;
+}
+```
 

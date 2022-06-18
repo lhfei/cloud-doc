@@ -4,17 +4,17 @@ The LDAP API references an LDAP object by its distinguished name (**DN**). A **D
 
 An **RDN** is an attribute with an associated value in the form **attribute**=*value*; normally expressed in a UTF-8 string format. The following table lists typical RDN attribute types.
 
-| String     | Attribute type         |
-| ---------- | ---------------------- |
-| **DC**     | domainComponent        |
-| **CN**     | commonName             |
-| **OU**     | organizationalUnitName |
-| **O**      | organizationName       |
-| **STREET** | streetAddress          |
-| **L**      | localityName           |
-| **ST**     | stateOrProvinceName    |
-| **C**      | countryName            |
-| **UID**    | userid                 |
+| String     | Attribute type           |
+| ---------- | ------------------------ |
+| **DC**     | Domain Component         |
+| **CN**     | Common Name              |
+| **OU**     | Organizational Unit Name |
+| **O**      | Organization Name        |
+| **STREET** | StreetAddress            |
+| **L**      | Locality Name            |
+| **ST**     | State Or Province Name   |
+| **C**      | CountryName              |
+| **UID**    | Userid                   |
 
 DNs are comprised of zero or more comma-separated components called relative distinguished names, or RDNs. For example, the **DN** "**uid=john.doe,ou=People,dc=example,dc=com**" has four RDNs:
 

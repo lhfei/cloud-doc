@@ -69,14 +69,14 @@ Sections below are relevant for both MySQL 8.0 and MySQL 5.7.
 Once the installation is completed, start the MySQL service and enable it to automatically start on boot with:
 
 ```
-sudo systemctl enable mysqldsudo 
-systemctl start mysqld
+sudo systemctl enable mysqld  
+sudo systemctl start mysqld
 ```
 
 We can check the MySQL service status by typing:
 
 ```
-sudo systemctl status mysqldCopy
+sudo systemctl status mysqld
 ● mysqld.service - MySQL Server
    Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)
    Active: active (running) since Wed 2018-05-23 11:02:43 UTC; 14min ago
@@ -87,7 +87,6 @@ sudo systemctl status mysqldCopy
    Status: "SERVER_OPERATING"
    CGroup: /system.slice/mysqld.service
            └─4310 /usr/sbin/mysqld
-Copy
 ```
 
 ## Securing MySQL
@@ -95,7 +94,7 @@ Copy
 When the MySQL server is started for the first time, a temporary password is generated for the MySQL root user. You can find the password by running the following command:
 
 ```
-sudo grep 'temporary password' /var/log/mysqld.logCopy
+sudo grep 'temporary password' /var/log/mysqld.log 
 ```
 
 The output should look something like this:
@@ -137,7 +136,7 @@ To interact with MySQL through the terminal we will use the MySQL client which i
 To log in to the MySQL server as the root user type:
 
 ```
-mysql -u root -pCopy
+mysql -u root -p
 ```
 
 You will be prompted to enter the root password you have previously set when the `mysql_secure_installation` script was run.
@@ -168,7 +167,7 @@ Once you are connected to the MySQL shell, you can create a new database by typi
 ```
 CREATE DATABASE new_database;Copy
 Query OK, 1 row affected (0.00 sec)
-Copy
+
 ```
 
 ## Create Tables

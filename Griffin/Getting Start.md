@@ -195,7 +195,7 @@ For our quick start, We will generate two hive tables demo_src and demo_tgt.
 ```sql
 --create hive tables here. hql script
 --Note: replace hdfs location with your own path
-CREATE DATABASE IF NOT EXIST datalink_measure;
+CREATE DATABASE IF NOT EXISTS datalink_measure;
 use datalink_measure;
 
 CREATE EXTERNAL TABLE `demo_src`(

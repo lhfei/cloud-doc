@@ -1,0 +1,33 @@
+dn: dc=datalink,dc=cn
+objectClass: top
+objectClass: dcObject
+objectclass: organization
+o: datalink cn
+dc: datalink
+
+dn: cn=dlink,dc=datalink,dc=cn
+objectClass: organizationalRole
+cn: Manager
+description: Service Account
+
+dn: ou=Account,dc=datalink,dc=cn
+objectClass: organizationalUnit
+ou: Account
+
+dn: ou=BusinessIntelligence,dc=datalink,dc=cn
+objectClass: organizationalUnit
+ou: BusinessIntelligence
+
+dn: ou=DataArchitecture,dc=datalink,dc=cn
+objectClass: organizationalUnit
+ou: DataArchitecture
+
+dn: ou=People,dc=datalink,dc=cn
+ou: People
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=group,dc=datalink,dc=cn
+ou: Group
+objectClass: top
+objectClass: organizationalUnit
