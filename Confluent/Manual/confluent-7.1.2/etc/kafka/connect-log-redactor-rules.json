@@ -1,0 +1,11 @@
+{
+  "version": "1",
+  "rules": [
+    {
+      "description": "Redaction rule for heap byte buffers in Jetty debug logs",
+      "trigger": "HeapByteBuffer",
+      "search": "HeapByteBuffer.*",
+      "replace": "HeapByteBuffer=[BUFFER CONTENTS REDACTED]"
+    }
+  ]
+}

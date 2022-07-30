@@ -1,0 +1,17 @@
+{
+  "version": "1",
+  "rules": [
+    {
+      "description": "Redaction rule for HTTP basic auth header",
+      "caseSensitive": false,
+      "search": "Authorization: Basic [a-zA-Z0-9\\+\\-\\=]+",
+      "replace": "Authorization: Basic XXXXXXX"
+    },
+    {
+      "description": "Redaction rule for HTTP bearer auth header",
+      "caseSensitive": false,
+      "search": "Authorization: Bearer [a-zA-Z0-9\\+\\-\\=]+",
+      "replace": "Authorization: Bearer XXXXXXX"
+    }
+  ]
+}

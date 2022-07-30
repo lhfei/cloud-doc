@@ -372,7 +372,7 @@ gidNumber: 1005
 Then add the above group definition using `ldapadd -x -W -D "cn=dlink,dc=datalink,dc=cn" -f ldapgroup.ldif` command as shown below.
 
 ```shell
-[root@localhost ~]# ldapadd -x -W -D "cn=dlink,dc=datalink,dc=cn" -f ldapgroup.ldif
+[root@localhost ~]# ldapadd -x -W -D "cn=dlink,dc=datalink,dc=cn" -f ldapgroup.ldif -h 127.0.0.1 -p 389
 Enter LDAP Password: 
 adding new entry "cn=dlink,ou=DataArchitecture,dc=datalink,dc=cn"
 ```
@@ -406,7 +406,7 @@ shadowWarning: 0
 Now Add the entry by using `ldapadd -x -D cn=dlink,dc=datalink,dc=cn -W -f ldapuser.ldif` command as shown below.
 
 ```shell
-[root@localhost ~]# ldapadd -x -D cn=dlink,dc=datalink,dc=cn -W -f ldapuser.ldif
+[root@localhost ~]# ldapadd -x -D cn=dlink,dc=datalink,dc=cn -W -f ldapuser.ldif -h 127.0.0.1 -p 389
 Enter LDAP Password:
 adding new entry "uid=lhfei,ou=DataArchitecture,dc=datalink,dc=cn"
 ```

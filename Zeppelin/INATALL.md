@@ -160,6 +160,13 @@ mvn clean package -e -DskipTests -Pscala-2.11 -Pspark-2.4 -Pspark-scala-2.12 -Ph
 
 
 
+```shell
+export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=2048m" 
+mvn clean package -e -DskipTests -Pscala-2.11 -Pspark-2.3.0 -Pspark-scala-2.11 -Phadoop3 -Dhadoop.version=3.1.1 -Pr -Psparkr -Pvendor-repo  -Drat.skip=true -Dcheckstyle.skip=true -Dcobertura.skip=true -Denforcer.skip -T2
+```
+
+
+
 
 
 ```sh
@@ -279,11 +286,13 @@ Set spark major version
 Available profiles are
 
 ```ini
+-Pspark-3.0
+-Pspark-2.4
+-Pspark-2.3
+-Pspark-2.2
 -Pspark-2.1
 -Pspark-2.0
 -Pspark-1.6
--Pspark-1.5
--Pspark-1.4
 -Pcassandra-spark-1.5
 -Pcassandra-spark-1.4
 -Pcassandra-spark-1.3
@@ -300,13 +309,8 @@ set hadoop major version
 Available profiles are
 
 ```ini
--Phadoop-0.23
--Phadoop-1
--Phadoop-2.2
--Phadoop-2.3
--Phadoop-2.4
--Phadoop-2.6
--Phadoop-2.7
+-Phadoop2
+-Phadoop3
 ```
 
 minor version can be adjusted by -Dhadoop.version=x.x.x
@@ -316,8 +320,9 @@ minor version can be adjusted by -Dhadoop.version=x.x.x
 set scala version (default 2.10) Available profiles are
 
 ```ini
--Pscala-2.10
--Pscala-2.11
+-Pspark-scala-2.10
+-Pspark-scala-2.11
+-Pspark-scala-2.12
 -Pyarn (optional)
 ```
 
