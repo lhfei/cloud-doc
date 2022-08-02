@@ -19,13 +19,13 @@ At the time of writing this article, the latest version of MySQL is version 8.0.
 1. Enable the MySQL 8.0 repository with the following command:
 
    ```
-   sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpmCopy
+   sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
    ```
 
 2. Install MySQL 8.0 package with yum:
 
    ```
-   sudo yum install mysql-community-serverCopy
+   sudo yum install mysql-community-server
    ```
 
    During the installation yum may prompt you to import the MySQL GPG key. Type `y` and hit `Enter`.
@@ -101,7 +101,7 @@ The output should look something like this:
 
 ```output
 2018-05-23T10:59:51.251159Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: q&0)V!?fjksL
-Copy
+
 ```
 
 Make note of the password, because the next command will ask you to enter the temporary root password.
@@ -124,7 +124,7 @@ The existing password for the user account root has expired. Please set a new pa
 New password:
 
 Re-enter new password:
-Copy
+
 ```
 
 The script will also ask you to remove the anonymous user, restrict root user access to the local machine and remove the test database. You should answer “Y” (yes) to all questions.
@@ -150,14 +150,14 @@ Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 11
 Server version: 8.0.11 MySQL Community Server - GPL
 
-Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+right (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-Copy
+
 ```
 
 ## Create a Database
@@ -165,9 +165,8 @@ Copy
 Once you are connected to the MySQL shell, you can create a new database by typing the following command:
 
 ```
-CREATE DATABASE new_database;Copy
+CREATE DATABASE new_database;
 Query OK, 1 row affected (0.00 sec)
-
 ```
 
 ## Create Tables
@@ -177,7 +176,7 @@ Now that we created a database we can create a table to store some data.
 Before running the SQL statements for creating a table we need to connect to the database:
 
 ```
-use new_database;Copy
+use new_database;
 ```
 
 In this example we will create a simple table named `contacts` with three fields, `id`, `name` and `email`:
@@ -190,7 +189,7 @@ CREATE TABLE contacts (
 );
 ```
 
-Copy
+
 
 ```output
 Query OK, 1 row affected (0.00 sec)
