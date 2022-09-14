@@ -1,4 +1,8 @@
-## 从软件库安装稳定版
+## [Centos 7 Install ODBC]](https://zhuanlan.zhihu.com/p/100188084)
+
+
+
+### 从软件库安装稳定版
 
 ```shell
 yum install unixODBC unixODBC-devel libtool-ltdl libtool-ltdl-devel

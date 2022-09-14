@@ -55,6 +55,29 @@ isql doris_mysql8 doris_admin Dorisuser_1473
 
 
 
+Add FE
+
+```sql
+# ALTER SYSTEM ADD FOLLOWER "host:port"; port= {edit_log_port}
+ALTER SYSTEM ADD FOLLOWER "dlink-hadoop-18:9010";
+
+ALTER SYSTEM ADD OBSERVER "dlink-hadoop-18:9010";
+```
+
+
+
+> Drop FE
+
+```sql
+ALTER SYSTEM DECOMMISSION FOLLOWER "localhost:9010";
+
+ALTER SYSTEM DROP FOLLOWER "127.0.0.1:9010"
+
+ALTER SYSTEM DROP FOLLOWER "dlink-hadoop-18:9010";
+```
+
+
+
 
 
 Add BE
@@ -65,6 +88,18 @@ ALTER SYSTEM ADD BACKEND "dlink-hadoop-19:9050";
 ALTER SYSTEM ADD BACKEND "dlink-hadoop-20:9050";
 
 ALTER SYSTEM ADD BACKEND "dlink-hadoop-21:9050";
+```
+
+
+
+> remove 
+
+```sql
+ALTER SYSTEM DECOMMISSION BACKEND "dlink-hadoop-19:9050";
+
+ALTER SYSTEM DECOMMISSION BACKEND "dlink-hadoop-20:9050";
+
+ALTER SYSTEM DECOMMISSION BACKEND "dlink-hadoop-21:9050";
 ```
 
 
