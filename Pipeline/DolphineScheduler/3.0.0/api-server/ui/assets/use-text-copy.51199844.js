@@ -1,0 +1,1 @@
+import{u as c,br as t}from"./index.c5429249.js";import{u}from"./use-message.f235e8f1.js";function n(){const{t:s}=c(),o=u();return{copy:e=>{t.copy(e)&&o.success(s("project.dag.copy_success"))}}}export{n as u};
