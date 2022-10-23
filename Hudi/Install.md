@@ -3,7 +3,7 @@
 
 
 ```shell
-mvn clean package -DskipTests -Dspark3.2 -Dscala-2.12
+mvn clean package -DskipTests -Dspark3.2 -Dscala-2.12 
 ```
 
 

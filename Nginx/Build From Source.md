@@ -48,7 +48,7 @@
           # // WebSocket support
       
           server {
-              listen 8020;
+              listen 8020;k
               
               # Zeppelin Application
               location /zeppelin {
