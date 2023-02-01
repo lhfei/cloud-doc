@@ -1,5 +1,9 @@
 2.查看npm源地址设置：（默认官方镜像地址）
+
+```shell
 npm config get registry
+```
+
 https://registry.npmjs.org/
 3.配置阿里巴巴镜像地址：（推荐，速度够快，同步频率快，稳定）
 阿里云官方镜像站：https://developer.aliyun.com/mirror/

@@ -130,7 +130,7 @@ http {
         location /zeppelin {
             proxy_pass http://websocket;
             proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Uphgrade $http_upgrade;
             proxy_set_header Connection $connection_upgrade;
         }
     }
