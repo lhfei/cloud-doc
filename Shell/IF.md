@@ -22,7 +22,7 @@ else {
 
 if 语句语法格式：
 
-```
+```shell
 if condition
 then
     command1 
@@ -34,7 +34,7 @@ fi
 
 写成一行（适用于终端命令提示符）：
 
-```
+```shell
 if [ $(ps -ef | grep -c "ssh") -gt 1 ]; then echo "true"; fi
 ```
 
@@ -44,7 +44,7 @@ if [ $(ps -ef | grep -c "ssh") -gt 1 ]; then echo "true"; fi
 
 if else 语法格式：
 
-```
+```shell
 if condition
 then
     command1 
@@ -60,7 +60,7 @@ fi
 
 if else-if else 语法格式：
 
-```
+```shell
 if condition1
 then
     command1

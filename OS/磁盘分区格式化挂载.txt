@@ -1,0 +1,52 @@
+1) fdisk -l 查看分区表
+
+2） 分区：
+1. fdisk /dev/vdb
+2. 输入n回车 ( add a new partition)
+3. 选择分区类型P（选择主分区，ps:一块磁盘可以有最多四个主分区）
+4. 输入分区号，此处直接回车，按默认处理
+5. 提示输入起块，直接回车
+6. 提示输入止块，直接回车
+7. w 保存
+
+3） 格式化
+#mkfs.xfs  /dev/vdb1
+mkfs.ext4 /dev/vdb1
+
+4) 挂载
+1. 创建挂载目录：
+mkdir -p /export
+2. 挂载：
+mount /dev/vdb1 /export
+
+5) df(display filesystem) 验证
+df:  Show information about the file system on which each FILE resides, or all file systems by default.
+#######一次性命令#######
+fdisk /dev/vdb
+n 
+p
+
+
+
+w
+
+mkfs.ext4 /dev/vdb1
+mkdir -p /export
+mount /dev/vdb1 /export
+
+6）开机自动挂载
+#/etc/fstab是用来存放文件系统的静态信息的文件。当系统启动的时候，系统会自动地从这个文件读取信息，并且会自动将此文件中指定的文件系统挂载到指定的目录。
+vi /etc/fstab
+#在最后增加一行
+#echo /dev/vdb1 /export xfs defaults 0 0  >> /etc/fstab
+
+echo /dev/vdb1 /export ext4 defaults 0 0 >> /etc/fstab
+
+#/etc/fstab文件主要包括6段，依次是：
+<file system>　　<dir>　　<type>　　<options>　　<dump>　　<pass>
+<file system> 要挂载的分区或存储设备
+<dir>  挂载的目录位置
+<type> 挂载分区的文件系统类型，比如：ext3、ext4、xfs、swap
+<options> 挂载使用的参数有哪些。
+<dump>  dump 工具通过它决定何时作备份. dump 会检查其内容，并用数字来决定是否对这个文件系统进行备份。 允许的数字是 0 和 1 。0 表示忽略， 1 则进行备份。大部分的用户是没有安装 dump 的 ，对他们而言 <dump> 应设为 0。
+<pass> fsck 读取 <pass> 的数值来决定需要检查的文件系统的检查顺序。允许的数字是0, 1, 和2。 根目录应当获得最高的优先权 1, 其它所有需要被检查的设备设置为 2. 0 表示设备不会被 fsck 所检查。
