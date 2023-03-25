@@ -194,3 +194,13 @@ CREATE TABLE contacts (
 ```output
 Query OK, 1 row affected (0.00 sec)
 ```
+
+
+
+Enable Root Remote Login
+
+```sql
+GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'Lhfei@GT4$Root#01';
+FLUSH PRIVILEGES;
+```
+

@@ -9,9 +9,9 @@ datadir=/export/var/lib/mysql
 skip_ssl
 
 # characer set
-character-set-server = utf8
+character-set-server = utf8mb4
 
 [client]
-default-character-set = utf8
+default-character-set = utf8mb4
 ```
 
