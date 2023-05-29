@@ -46,7 +46,7 @@ Edit `/export/app_workspaces/hue/desktop/conf/pseudo-distributed.ini`
 ```shell
 {HUE_HOME}/build/env/bin/hue createsuperuser --username lhfei
 
-Email address: lihefei@jd.com
+Email address: lihefei@test.com
 Password: 
 Password (again): [*****@****01]
 Superuser created successfully.

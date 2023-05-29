@@ -89,7 +89,7 @@
     
     <property>
       <name>dfs.datanode.kerberos.principal</name>
-      <value>dn/_HOST@POLARIS.JD.COM</value>
+      <value>dn/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -199,23 +199,23 @@
     
     <property>
       <name>dfs.namenode.http-address</name>
-      <value>a01-r03-i164-156-515w9ay.jd.local:50070</value>
+      <value>a01-r03-i164-156-515w9ay.test.local:50070</value>
       <final>true</final>
     </property>
     
     <property>
       <name>dfs.namenode.https-address</name>
-      <value>a01-r03-i164-156-515w9ay.jd.local:50470</value>
+      <value>a01-r03-i164-156-515w9ay.test.local:50470</value>
     </property>
     
     <property>
       <name>dfs.namenode.kerberos.internal.spnego.principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
       <name>dfs.namenode.kerberos.principal</name>
-      <value>nn/_HOST@POLARIS.JD.COM</value>
+      <value>nn/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -236,7 +236,7 @@
     
     <property>
       <name>dfs.namenode.rpc-address</name>
-      <value>a01-r03-i164-156-515w9ay.jd.local:8020</value>
+      <value>a01-r03-i164-156-515w9ay.test.local:8020</value>
     </property>
     
     <property>
@@ -246,7 +246,7 @@
     
     <property>
       <name>dfs.namenode.secondary.http-address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:50090</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:50090</value>
     </property>
     
     <property>
@@ -286,12 +286,12 @@
     
     <property>
       <name>dfs.secondary.namenode.kerberos.internal.spnego.principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
       <name>dfs.secondary.namenode.kerberos.principal</name>
-      <value>nn/_HOST@POLARIS.JD.COM</value>
+      <value>nn/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -312,7 +312,7 @@
     
     <property>
       <name>dfs.web.authentication.kerberos.principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>

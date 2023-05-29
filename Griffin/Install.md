@@ -61,8 +61,8 @@ external.env.location=
 login.strategy=default
 # ldap
 ldap.url=ldap://10.182.99.88:389
-ldap.email=@jd.com
-ldap.searchBase=DC=jd,DC=com
+ldap.email=@test.com
+ldap.searchBase=DC=fly,DC=com
 ldap.searchPattern=(sAMAccountName={0})
 # hdfs default name
 fs.defaultFS=hdfs://host-10-182-25-192:8020

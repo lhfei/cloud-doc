@@ -80,11 +80,11 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
 - [x] Step 1 Add Principal
 
       ```
-      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-156-515w9ay.jd.local@POLARIS.JD.COM
-      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM
-      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-159-515w64k.jd.local@POLARIS.JD.COM
+      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-156-515w9ay.test.local@POLARIS.TESTD.COM
+      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM
+      kadmin.local: addprinc -randkey lhfei/a01-r03-i164-159-515w64k.test.local@POLARIS.TESTD.COM
 
-      kadmin: xst -k /etc/security/keytabs/hive.service.keytab lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM
+      kadmin: xst -k /etc/security/keytabs/hive.service.keytab lhfei/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM
       ```
 
       ​
@@ -98,7 +98,7 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
     
       klist -ket /etc/security/keytabs/hive.service.keytab
     
-      kinit lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM -k -t /etc/security/keytabs/hive.service.keytab 
+      kinit lhfei/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM -k -t /etc/security/keytabs/hive.service.keytab 
       ```
     
       ​
@@ -119,7 +119,7 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
 - [x] Verify the  Principal
 
       ```shell
-      kadmin -p admin/admin -q "getprinc lhfei/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM"
+      kadmin -p admin/admin -q "getprinc lhfei/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM"
       ```
     
       ​
@@ -127,18 +127,18 @@ If you are configuring High Availability (HA) for a Quorom-based NameNode, you m
 - [x] Connect to Hive 
 
       ```shell
-      beeline -u "jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM;hive.server2.proxy.user=lhfei"
+      beeline -u "jdbc:hive2://a01-r03-i164-157-515w8ey.test.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM;hive.server2.proxy.user=lhfei"
       ```
     
       Now, you will see connection is successful message, and  the console output log is as follows:
     
       ```verilog
-      Connecting to jdbc:hive2://a01-r03-i164-157-515w8ey.jd.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM;hive.server2.proxy.user=lhfei
+      Connecting to jdbc:hive2://a01-r03-i164-157-515w8ey.test.local:10000/default;principal=hive/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM;hive.server2.proxy.user=lhfei
       Connected to: Apache Hive (version 1.2.1000.2.6.3.0-235)
       Driver: Hive JDBC (version 1.2.1000.2.6.3.0-235)
       Transaction isolation: TRANSACTION_REPEATABLE_READ
       Beeline version 1.2.1000.2.6.3.0-235 by Apache Hive
-      0: jdbc:hive2://a01-r03-i164-157-515w8ey.jd.l> 
+      0: jdbc:hive2://a01-r03-i164-157-515w8ey.fly.l> 
       ```
     
       ​

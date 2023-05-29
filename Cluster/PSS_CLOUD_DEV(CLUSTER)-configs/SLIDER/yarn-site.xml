@@ -27,7 +27,7 @@
     
     <property>
       <name>hadoop.registry.zk.quorum</name>
-      <value>a01-r03-i164-159-515w64k.jd.local:2181,a01-r03-i164-157-515w8ey.jd.local:2181,a01-r03-i164-156-515w9ay.jd.local:2181</value>
+      <value>a01-r03-i164-159-515w64k.test.local:2181,a01-r03-i164-157-515w8ey.test.local:2181,a01-r03-i164-156-515w9ay.test.local:2181</value>
     </property>
     
     <property>
@@ -97,12 +97,12 @@
     
     <property>
       <name>yarn.log.server.url</name>
-      <value>http://a01-r03-i164-157-515w8ey.jd.local:19888/jobhistory/logs</value>
+      <value>http://a01-r03-i164-157-515w8ey.test.local:19888/jobhistory/logs</value>
     </property>
     
     <property>
       <name>yarn.log.server.web-service.url</name>
-      <value>http://a01-r03-i164-157-515w8ey.jd.local:8188/ws/v1/applicationhistory</value>
+      <value>http://a01-r03-i164-157-515w8ey.test.local:8188/ws/v1/applicationhistory</value>
     </property>
     
     <property>
@@ -272,7 +272,7 @@
     
     <property>
       <name>yarn.nodemanager.principal</name>
-      <value>nm/_HOST@POLARIS.JD.COM</value>
+      <value>nm/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -327,17 +327,17 @@
     
     <property>
       <name>yarn.nodemanager.webapp.spnego-principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
       <name>yarn.resourcemanager.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8050</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8050</value>
     </property>
     
     <property>
       <name>yarn.resourcemanager.admin.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8141</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8141</value>
     </property>
     
     <property>
@@ -377,7 +377,7 @@
     
     <property>
       <name>yarn.resourcemanager.hostname</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local</value>
+      <value>a01-r03-i164-157-515w8ey.test.local</value>
     </property>
     
     <property>
@@ -402,7 +402,7 @@
     
     <property>
       <name>yarn.resourcemanager.principal</name>
-      <value>rm/_HOST@POLARIS.JD.COM</value>
+      <value>rm/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -432,12 +432,12 @@
     
     <property>
       <name>yarn.resourcemanager.resource-tracker.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8025</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8025</value>
     </property>
     
     <property>
       <name>yarn.resourcemanager.scheduler.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8030</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8030</value>
     </property>
     
     <property>
@@ -472,7 +472,7 @@
     
     <property>
       <name>yarn.resourcemanager.webapp.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8088</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8088</value>
     </property>
     
     <property>
@@ -482,7 +482,7 @@
     
     <property>
       <name>yarn.resourcemanager.webapp.https.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8090</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8090</value>
     </property>
     
     <property>
@@ -492,7 +492,7 @@
     
     <property>
       <name>yarn.resourcemanager.webapp.spnego-principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -512,7 +512,7 @@
     
     <property>
       <name>yarn.resourcemanager.zk-address</name>
-      <value>a01-r03-i164-159-515w64k.jd.local:2181,a01-r03-i164-157-515w8ey.jd.local:2181,a01-r03-i164-156-515w9ay.jd.local:2181</value>
+      <value>a01-r03-i164-159-515w64k.test.local:2181,a01-r03-i164-157-515w8ey.test.local:2181,a01-r03-i164-156-515w9ay.test.local:2181</value>
     </property>
     
     <property>
@@ -562,7 +562,7 @@
     
     <property>
       <name>yarn.timeline-service.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:10200</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:10200</value>
     </property>
     
     <property>
@@ -662,7 +662,7 @@
     
     <property>
       <name>yarn.timeline-service.http-authentication.kerberos.principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -687,7 +687,7 @@
     
     <property>
       <name>yarn.timeline-service.http-authentication.proxyuser.ambari-server-pss_cloud_dev.hosts</name>
-      <value>a01-r03-i164-154-515w92j.jd.local</value>
+      <value>a01-r03-i164-154-515w92j.test.local</value>
     </property>
     
     <property>
@@ -762,7 +762,7 @@
     
     <property>
       <name>yarn.timeline-service.principal</name>
-      <value>yarn/_HOST@POLARIS.JD.COM</value>
+      <value>yarn/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -797,12 +797,12 @@
     
     <property>
       <name>yarn.timeline-service.webapp.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8188</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8188</value>
     </property>
     
     <property>
       <name>yarn.timeline-service.webapp.https.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:8190</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:8190</value>
     </property>
     
   </configuration>

@@ -8,7 +8,7 @@ This tutorial doesn’t explain how to set up the **Automounter **and the** NFS 
 
 During this tutorial, try to follow the instructions very precisely because **LDAP** syntax is sometimes cumbersome (case sensitive, space, etc) and prone to errors (dn/dc/cn).
 
-Let’s assume that we use the **jd.com** domain and the **openldap.jd.com** hostname (this hostname should be resolved either by the **/etc/hosts** file or by **DNS**).
+Let’s assume that we use the **test.com** domain and the **openldap.test.com** hostname (this hostname should be resolved either by the **/etc/hosts** file or by **DNS**).
 
 
 
@@ -52,9 +52,9 @@ Country Name (2 letter code) [XX]:cn
 State or Province Name (full name) []:Beijing
 Locality Name (eg, city) [Default City]:Beijing
 Organization Name (eg, company) [Default Company Ltd]:Jingdong
-Organizational Unit Name (eg, section) []:jd
-Common Name (eg, your name or your server's hostname) []:pcb-openldap.jd.com
-Email Address []:lihefei@jd.com
+Organizational Unit Name (eg, section) []:fly
+Common Name (eg, your name or your server's hostname) []:pcb-openldap.test.com
+Email Address []:lihefei@test.com
 ```
 
 
@@ -147,12 +147,12 @@ Then, create the **/etc/openldap/changes.ldif** file and paste the following lin
 dn: olcDatabase={2}bdb,cn=config
 changetype: modify
 replace: olcSuffix
-olcSuffix: dc=jd,dc=com
+olcSuffix: dc=fly,dc=com
 
 dn: olcDatabase={2}bdb,cn=config
 changetype: modify
 replace: olcRootDN
-olcRootDN: cn=Manager,dc=jd,dc=com
+olcRootDN: cn=Manager,dc=fly,dc=com
 
 dn: olcDatabase={2}bdb,cn=config
 changetype: modify
@@ -177,7 +177,7 @@ olcLogLevel: -1
 dn: olcDatabase={1}monitor,cn=config
 changetype: modify
 replace: olcAccess
-olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read by dn.base="cn=Manager,dc=jd,dc=com" read by * none
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read by dn.base="cn=Manager,dc=fly,dc=com" read by * none
 
 ```
 
@@ -210,17 +210,17 @@ modifying entry "olcDatabase={1}monitor,cn=config"
 Create the **/etc/openldap/base.ldif** file and paste the following lines:
 
 ```ini
-dn: dc=jd,dc=com
-dc: jd
+dn: dc=fly,dc=com
+dc: fly
 objectClass: top
 objectClass: domain
 
-dn: ou=People,dc=jd,dc=com
+dn: ou=People,dc=fly,dc=com
 ou: People
 objectClass: top
 objectClass: organizationalUnit
 
-dn: ou=Group,dc=jd,dc=com
+dn: ou=Group,dc=fly,dc=com
 ou: Group
 objectClass: top
 objectClass: organizationalUnit
@@ -230,13 +230,13 @@ objectClass: organizationalUnit
 Build the structure of the directory service:
 
 ```shell
-ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=jd,dc=com -f /etc/openldap/base.ldif
+ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=fly,dc=com -f /etc/openldap/base.ldif
 
-adding new entry "dc=jd,dc=com"
+adding new entry "dc=fly,dc=com"
 
-adding new entry "ou=People,dc=jd,dc=com"
+adding new entry "ou=People,dc=fly,dc=com"
 
-adding new entry "ou=Group,dc=jd,dc=com"
+adding new entry "ou=Group,dc=fly,dc=com"
 
 ```
 
@@ -281,8 +281,8 @@ cd /usr/share/migrationtools
 Edit the **migrate_common.ph** file and replace in the following lines:
 
 ```
-$DEFAULT_MAIL_DOMAIN = "jd.com";
-$DEFAULT_BASE = "dc=jd,dc=com";
+$DEFAULT_MAIL_DOMAIN = "test.com";
+$DEFAULT_BASE = "dc=fly,dc=com";
 
 ```
 
@@ -293,126 +293,126 @@ Create the current users in the directory service:
 ```
 # grep ":10[0-9][0-9]" /etc/passwd > passwd
 # ./migrate_passwd.pl passwd users.ldif
-# ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=jd,dc=com -f users.ldif
-adding new entry "uid=lhfei,ou=People,dc=jd,dc=com"
-adding new entry "uid=ldapuser01,ou=People,dc=jd,dc=com"
-adding new entry "uid=ldapuser02,ou=People,dc=jd,dc=com"
+# ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=fly,dc=com -f users.ldif
+adding new entry "uid=lhfei,ou=People,dc=fly,dc=com"
+adding new entry "uid=ldapuser01,ou=People,dc=fly,dc=com"
+adding new entry "uid=ldapuser02,ou=People,dc=fly,dc=com"
 # grep ":10[0-9][0-9]" /etc/group > group
 # ./migrate_group.pl group groups.ldif
-# ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=jd,dc=com -f groups.ldif
-adding new entry "cn=lhfei,ou=Group,dc=jd,dc=com"
+# ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=fly,dc=com -f groups.ldif
+adding new entry "cn=lhfei,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=ldapuser01,ou=Group,dc=jd,dc=com"
+adding new entry "cn=ldapuser01,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=ldapuser02,ou=Group,dc=jd,dc=com"
+adding new entry "cn=ldapuser02,ou=Group,dc=fly,dc=com"
 
 ```
 
 ```verilog
-adding new entry "uid=adsop,ou=People,dc=jd,dc=com"
+adding new entry "uid=adsop,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ads-serving,ou=People,dc=jd,dc=com"
+adding new entry "uid=ads-serving,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=hive,ou=People,dc=jd,dc=com"
+adding new entry "uid=hive,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=infra-solr,ou=People,dc=jd,dc=com"
+adding new entry "uid=infra-solr,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=superset,ou=People,dc=jd,dc=com"
+adding new entry "uid=superset,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=atlas,ou=People,dc=jd,dc=com"
+adding new entry "uid=atlas,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ams,ou=People,dc=jd,dc=com"
+adding new entry "uid=ams,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=falcon,ou=People,dc=jd,dc=com"
+adding new entry "uid=falcon,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=accumulo,ou=People,dc=jd,dc=com"
+adding new entry "uid=accumulo,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=spark,ou=People,dc=jd,dc=com"
+adding new entry "uid=spark,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=flume,ou=People,dc=jd,dc=com"
+adding new entry "uid=flume,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=hbase,ou=People,dc=jd,dc=com"
+adding new entry "uid=hbase,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=hcat,ou=People,dc=jd,dc=com"
+adding new entry "uid=hcat,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=storm,ou=People,dc=jd,dc=com"
+adding new entry "uid=storm,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=zookeeper,ou=People,dc=jd,dc=com"
+adding new entry "uid=zookeeper,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=oozie,ou=People,dc=jd,dc=com"
+adding new entry "uid=oozie,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=tez,ou=People,dc=jd,dc=com"
+adding new entry "uid=tez,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=zeppelin,ou=People,dc=jd,dc=com"
+adding new entry "uid=zeppelin,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=logsearch,ou=People,dc=jd,dc=com"
+adding new entry "uid=logsearch,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=livy,ou=People,dc=jd,dc=com"
+adding new entry "uid=livy,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=mahout,ou=People,dc=jd,dc=com"
+adding new entry "uid=mahout,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=druid,ou=People,dc=jd,dc=com"
+adding new entry "uid=druid,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ambari-qa,ou=People,dc=jd,dc=com"
+adding new entry "uid=ambari-qa,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=kafka,ou=People,dc=jd,dc=com"
+adding new entry "uid=kafka,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=hdfs,ou=People,dc=jd,dc=com"
+adding new entry "uid=hdfs,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=sqoop,ou=People,dc=jd,dc=com"
+adding new entry "uid=sqoop,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=yarn,ou=People,dc=jd,dc=com"
+adding new entry "uid=yarn,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=mapred,ou=People,dc=jd,dc=com"
+adding new entry "uid=mapred,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=knox,ou=People,dc=jd,dc=com"
+adding new entry "uid=knox,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=activity_analyzer,ou=People,dc=jd,dc=com"
+adding new entry "uid=activity_analyzer,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=slider,ou=People,dc=jd,dc=com"
+adding new entry "uid=slider,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ranger,ou=People,dc=jd,dc=com"
+adding new entry "uid=ranger,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=dongzhe,ou=People,dc=jd,dc=com"
+adding new entry "uid=dongzhe,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=dz_test,ou=People,dc=jd,dc=com"
+adding new entry "uid=dz_test,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ldapuser01,ou=People,dc=jd,dc=com"
+adding new entry "uid=ldapuser01,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ldapuser02,ou=People,dc=jd,dc=com"
+adding new entry "uid=ldapuser02,ou=People,dc=fly,dc=com"
 
-adding new entry "uid=ldapuser03,ou=People,dc=jd,dc=com"
-
-```
+adding new entry "uid=ldapuser03,ou=People,dc=fly,dc=com"
 
 ```
-adding new entry "cn=adsop,ou=Group,dc=jd,dc=com"
 
-adding new entry "cn=ads-serving,ou=Group,dc=jd,dc=com"
+```
+adding new entry "cn=adsop,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=livy,ou=Group,dc=jd,dc=com"
+adding new entry "cn=ads-serving,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=spark,ou=Group,dc=jd,dc=com"
+adding new entry "cn=livy,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=hdfs,ou=Group,dc=jd,dc=com"
+adding new entry "cn=spark,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=zeppelin,ou=Group,dc=jd,dc=com"
+adding new entry "cn=hdfs,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=hadoop,ou=Group,dc=jd,dc=com"
+adding new entry "cn=zeppelin,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=knox,ou=Group,dc=jd,dc=com"
+adding new entry "cn=hadoop,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=ranger,ou=Group,dc=jd,dc=com"
+adding new entry "cn=knox,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=dongzhe,ou=Group,dc=jd,dc=com"
+adding new entry "cn=ranger,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=dz_test,ou=Group,dc=jd,dc=com"
+adding new entry "cn=dongzhe,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=ldapuser01,ou=Group,dc=jd,dc=com"
+adding new entry "cn=dz_test,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=ldapuser02,ou=Group,dc=jd,dc=com"
+adding new entry "cn=ldapuser01,ou=Group,dc=fly,dc=com"
 
-adding new entry "cn=ldapuser03,ou=Group,dc=jd,dc=com"
+adding new entry "cn=ldapuser02,ou=Group,dc=fly,dc=com"
+
+adding new entry "cn=ldapuser03,ou=Group,dc=fly,dc=com"
 
 ```
 
@@ -421,18 +421,18 @@ adding new entry "cn=ldapuser03,ou=Group,dc=jd,dc=com"
 Test the configuration with the user called **ldapuser01**:
 
 ```
-ldapsearch -x cn=ldapuser01 -b dc=jd,dc=com
+ldapsearch -x cn=ldapuser01 -b dc=fly,dc=com
 
 # extended LDIF
 #
 # LDAPv3
-# base <dc=jd,dc=com> with scope subtree
+# base <dc=fly,dc=com> with scope subtree
 # filter: cn=ldapuser01
 # requesting: ALL
 #
 
-# ldapuser01, People, jd.com
-dn: uid=ldapuser01,ou=People,dc=jd,dc=com
+# ldapuser01, People, test.com
+dn: uid=ldapuser01,ou=People,dc=fly,dc=com
 uid: ldapuser01
 cn: ldapuser01
 objectClass: account
@@ -450,8 +450,8 @@ uidNumber: 1001
 gidNumber: 1001
 homeDirectory: /home/guests/ldapuser01
 
-# ldapuser01, Group, jd.com
-dn: cn=ldapuser01,ou=Group,dc=jd,dc=com
+# ldapuser01, Group, test.com
+dn: cn=ldapuser01,ou=Group,dc=fly,dc=com
 objectClass: posixGroup
 objectClass: top
 cn: ldapuser01
@@ -470,7 +470,7 @@ result: 0 Success
 
 
 ```
-ldapsearch -x -LLL -b dc=jd,dc=com '(&(objectclass=posixAccount)(|(uSNChanged>=0)(modifyTimestamp>=19700101080000Z))(uid=*))'
+ldapsearch -x -LLL -b dc=fly,dc=com '(&(objectclass=posixAccount)(|(uSNChanged>=0)(modifyTimestamp>=19700101080000Z))(uid=*))'
 
 ```
 

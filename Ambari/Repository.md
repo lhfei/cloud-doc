@@ -89,9 +89,9 @@ priority=1
 #VERSION_NUMBER=2.6.4.0-91
 [HDP-GPL-2.6.4.0]
 name=HDP-GPL Version - HDP-GPL-2.6.4.0
-baseurl=http://a01-r03-i163-116-515w9ct.jd.local/repo/HDP-GPL/centos7/2.6.4.0-91
+baseurl=http://a01-r03-i163-116-515w9ct.test.local/repo/HDP-GPL/centos7/2.6.4.0-91
 gpgcheck=1
-gpgkey=http://a01-r03-i163-116-515w9ct.jd.local/repo/HDP-GPL/centos7/2.6.4.0-91/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+gpgkey=http://a01-r03-i163-116-515w9ct.test.local/repo/HDP-GPL/centos7/2.6.4.0-91/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 enabled=1
 priority=1
 ```

@@ -98,7 +98,7 @@ CREATE EXTERNAL TABLE `lineitem`(
 #### Load Data
 
 ```
-LOAD DATA INPATH 'hdfs://a01-r03-i164-101-515w96w.jd.local:8020/benchmark/data/*.gz' OVERWRITE INTO TABLE benchmark.lineitem; 
+LOAD DATA INPATH 'hdfs://a01-r03-i164-101-515w96w.test.local:8020/benchmark/data/*.gz' OVERWRITE INTO TABLE benchmark.lineitem; 
 ```
 
 

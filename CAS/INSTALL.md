@@ -4,7 +4,7 @@
 $ keytool.exe -genkey -alias ysas -keyalg RSA -keypass changeit -storepass changeit -keystore ysas.jks
 
 您的名字与姓氏是什么?
-  [Unknown]:  sas.jd.com
+  [Unknown]:  sas.test.com
 您的组织单位名称是什么?
   [Unknown]:  SAS
 您的组织名称是什么?
@@ -15,7 +15,7 @@ $ keytool.exe -genkey -alias ysas -keyalg RSA -keypass changeit -storepass chang
   [Unknown]:  BJ
 该单位的双字母国家/地区代码是什么?
   [Unknown]:  CN
-CN=sas.jd.com, OU=SAS, O=Com, L=BJ, ST=BJ, C=CN是否正确?
+CN=sas.test.com, OU=SAS, O=Com, L=BJ, ST=BJ, C=CN是否正确?
   [否]:  是
 ```
 
@@ -35,8 +35,8 @@ keytool.exe -list -v -keystore ..\jre\lib\security\cacerts -alias ysas
 创建日期: 2017-9-21
 条目类型: trustedCertEntry
 
-所有者: CN=sas.jd.com, OU=SAS, O=Com, L=BJ, ST=BJ, C=CN
-发布者: CN=sas.jd.com, OU=SAS, O=Com, L=BJ, ST=BJ, C=CN
+所有者: CN=sas.test.com, OU=SAS, O=Com, L=BJ, ST=BJ, C=CN
+发布者: CN=sas.test.com, OU=SAS, O=Com, L=BJ, ST=BJ, C=CN
 序列号: 4742ae04
 有效期开始日期: Thu Sep 21 08:57:40 CST 2017, 截止日期: Wed Dec 20 08:57:40 CST 2017
 证书指纹:

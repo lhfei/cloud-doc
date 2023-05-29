@@ -80,7 +80,7 @@ ORDER BY sum(population) DESC;
 
 
 ```shell
-/usr/hdp/3.0.1.0-187/phoenix/bin/psql.py a01-r03-i164-107-515wbkc.jd.local,a01-r03-i164-101-515w96w.jd.local,a01-r03-i164-108-515wble.jd.local:2181:/hbase-unsecure us_population.csv
+/usr/hdp/3.0.1.0-187/phoenix/bin/psql.py a01-r03-i164-107-515wbkc.test.local,a01-r03-i164-101-515w96w.test.local,a01-r03-i164-108-515wble.test.local:2181:/hbase-unsecure us_population.csv
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/usr/hdp/3.0.1.0-187/phoenix/phoenix-5.0.0.3.0.1.0-187-client.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: Found binding in [jar:file:/usr/hdp/3.0.1.0-187/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
@@ -95,7 +95,7 @@ Time: 0.365 sec(s)
 
 
 ```sql
-/usr/hdp/3.0.1.0-187/phoenix/bin/psql.py a01-r03-i164-107-515wbkc.jd.local,a01-r03-i164-101-515w96w.jd.local,a01-r03-i164-108-515wble.jd.local:2181:/hbase-unsecure us_population_queries.sql 
+/usr/hdp/3.0.1.0-187/phoenix/bin/psql.py a01-r03-i164-107-515wbkc.test.local,a01-r03-i164-101-515w96w.test.local,a01-r03-i164-108-515wble.test.local:2181:/hbase-unsecure us_population_queries.sql 
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/usr/hdp/3.0.1.0-187/phoenix/phoenix-5.0.0.3.0.1.0-187-client.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: Found binding in [jar:file:/usr/hdp/3.0.1.0-187/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]

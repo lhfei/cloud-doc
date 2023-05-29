@@ -62,7 +62,7 @@
     
     <property>
       <name>mapreduce.jobhistory.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:10020</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:10020</value>
     </property>
     
     <property>
@@ -92,7 +92,7 @@
     
     <property>
       <name>mapreduce.jobhistory.principal</name>
-      <value>jhs/_HOST@POLARIS.JD.COM</value>
+      <value>jhs/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -112,7 +112,7 @@
     
     <property>
       <name>mapreduce.jobhistory.webapp.address</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local:19888</value>
+      <value>a01-r03-i164-157-515w8ey.test.local:19888</value>
     </property>
     
     <property>
@@ -122,7 +122,7 @@
     
     <property>
       <name>mapreduce.jobhistory.webapp.spnego-principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>

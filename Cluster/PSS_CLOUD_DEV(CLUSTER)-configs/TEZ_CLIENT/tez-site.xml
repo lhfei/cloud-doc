@@ -252,7 +252,7 @@
     
     <property>
       <name>tez.tez-ui.history-url.base</name>
-      <value>http://a01-r03-i164-154-515w92j.jd.local:8080/#/main/view/TEZ/tez_cluster_instance</value>
+      <value>http://a01-r03-i164-154-515w92j.test.local:8080/#/main/view/TEZ/tez_cluster_instance</value>
     </property>
     
     <property>

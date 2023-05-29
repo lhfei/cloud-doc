@@ -220,6 +220,6 @@ Example:
 
 
 ```
-ldapdelete -x -D "cn=Manager,dc=jd,dc=com" -w Polaris@Root#01 "uid=lhfei,ou=People,dc=jd,dc=com"
+ldapdelete -x -D "cn=Manager,dc=fly,dc=com" -w Polaris@Root#01 "uid=lhfei,ou=People,dc=fly,dc=com"
 ```
 

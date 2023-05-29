@@ -72,7 +72,7 @@
     
     <property>
       <name>hive.cluster.delegation.token.store.zookeeper.connectString</name>
-      <value>a01-r03-i164-159-515w64k.jd.local:2181,a01-r03-i164-157-515w8ey.jd.local:2181,a01-r03-i164-156-515w9ay.jd.local:2181</value>
+      <value>a01-r03-i164-159-515w64k.test.local:2181,a01-r03-i164-157-515w8ey.test.local:2181,a01-r03-i164-156-515w9ay.test.local:2181</value>
     </property>
     
     <property>
@@ -407,7 +407,7 @@
     
     <property>
       <name>hive.metastore.kerberos.principal</name>
-      <value>hive/_HOST@POLARIS.JD.COM</value>
+      <value>hive/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -432,7 +432,7 @@
     
     <property>
       <name>hive.metastore.uris</name>
-      <value>thrift://a01-r03-i164-157-515w8ey.jd.local:9083</value>
+      <value>thrift://a01-r03-i164-157-515w8ey.test.local:9083</value>
     </property>
     
     <property>
@@ -567,7 +567,7 @@
     
     <property>
       <name>hive.server2.authentication.kerberos.principal</name>
-      <value>hive/_HOST@POLARIS.JD.COM</value>
+      <value>hive/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -577,7 +577,7 @@
     
     <property>
       <name>hive.server2.authentication.spnego.principal</name>
-      <value>HTTP/_HOST@POLARIS.JD.COM</value>
+      <value>HTTP/_HOST@POLARIS.TESTD.COM</value>
     </property>
     
     <property>
@@ -822,7 +822,7 @@
     
     <property>
       <name>hive.zookeeper.quorum</name>
-      <value>a01-r03-i164-159-515w64k.jd.local:2181,a01-r03-i164-157-515w8ey.jd.local:2181,a01-r03-i164-156-515w9ay.jd.local:2181</value>
+      <value>a01-r03-i164-159-515w64k.test.local:2181,a01-r03-i164-157-515w8ey.test.local:2181,a01-r03-i164-156-515w9ay.test.local:2181</value>
     </property>
     
     <property>
@@ -832,7 +832,7 @@
     
     <property>
       <name>javax.jdo.option.ConnectionURL</name>
-      <value>jdbc:mysql://a01-r03-i164-154-515w92j.jd.local/polaris_cloud_hive?useSSL=false</value>
+      <value>jdbc:mysql://a01-r03-i164-154-515w92j.test.local/polaris_cloud_hive?useSSL=false</value>
     </property>
     
     <property>

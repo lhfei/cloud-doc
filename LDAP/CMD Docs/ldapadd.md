@@ -266,6 +266,6 @@ OpenLDAP 2.0.0-Release          20 August 2000                   LDAPMODIFY(1)
 Example
 
 ```
-ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=jd,dc=com -f lhfei.ldif
+ldapadd -x -w Polaris@Root#01 -D cn=Manager,dc=fly,dc=com -f lhfei.ldif
 ```
 

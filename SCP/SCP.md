@@ -39,10 +39,10 @@ http://master1.cloud.cn:9898/api/notebook/2CEXXQ885/paragraph/20170426-234825_13
 
 
 ```API
-GET     /api/ (com.jd.scp.portal.rest.resources.DashboardResource)
-GET     /api/version (com.jd.scp.portal.rest.resources.VersionResource)
-GET     /api/notebook/ (com.jd.scp.portal.rest.resources.NotebookResource)
-GET     /api/notebook/{noteId}/paragraph/{paragraphId} (com.jd.scp.portal.rest.resources.NotebookResource)
+GET     /api/ (com.fly.scp.portal.rest.resources.DashboardResource)
+GET     /api/version (com.fly.scp.portal.rest.resources.VersionResource)
+GET     /api/notebook/ (com.fly.scp.portal.rest.resources.NotebookResource)
+GET     /api/notebook/{noteId}/paragraph/{paragraphId} (com.fly.scp.portal.rest.resources.NotebookResource)
 
 ```
 

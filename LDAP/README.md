@@ -60,12 +60,12 @@ Please create a **.ldif** file and add the below entries.
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcSuffix
-olcSuffix: dc=jd,dc=com
+olcSuffix: dc=fly,dc=com
 
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootDN
-olcRootDN: cn=ldapadm,dc=jd,dc=com
+olcRootDN: cn=ldapadm,dc=fly,dc=com
 
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
@@ -87,7 +87,7 @@ Make a changes to **/etc/openldap/slapd.d/cn=config/olcDatabase={1}monitor.ldif 
 dn: olcDatabase={1}monitor,cn=config
 changetype: modify
 replace: olcAccess
-olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external, cn=auth" read by dn.base="cn=ldapadm,dc=jd,dc=com" read by * none
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external, cn=auth" read by dn.base="cn=ldapadm,dc=fly,dc=com" read by * none
 ```
 
 Once you have updated the file, send the configuration to the LDAP server.
@@ -119,9 +119,9 @@ Country Name (2 letter code) [AU]:CN
 State or Province Name (full name) [Some-State]:Beijing
 Locality Name (eg, city) []:Beijing
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:Jingdong
-Organizational Unit Name (eg, section) []:jd
+Organizational Unit Name (eg, section) []:fly
 Common Name (e.g. server FQDN or YOUR name) []:BDS-TEST-002
-Email Address []:lihefei@jd.com
+Email Address []:lihefei@test.com
 [root@BDS-TEST-002 cn=config]# 
 ```
 
@@ -195,21 +195,21 @@ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 Generate ``/etc/openldap/schema/``**base.ldif** file for your domain.
 
 ```
-dn: dc=jd,dc=com
-dc: jd
+dn: dc=fly,dc=com
+dc: fly
 objectClass: top
 objectClass: domain
 
-dn: cn=ldapadm ,dc=jd,dc=com
+dn: cn=ldapadm ,dc=fly,dc=com
 objectClass: organizationalRole
 cn: ldapadm
 description: LDAP Manager
 
-dn: ou=People,dc=jd,dc=com
+dn: ou=People,dc=fly,dc=com
 objectClass: organizationalUnit
 ou: People
 
-dn: ou=Group,dc=jd,dc=com
+dn: ou=Group,dc=fly,dc=com
 objectClass: organizationalUnit
 ou: Group
 ```
@@ -217,7 +217,7 @@ ou: Group
 Build the directory structure.
 
 ```
-ldapadd -x -W -D "cn=ldapadm,dc=jd,dc=com" -f base.ldif
+ldapadd -x -W -D "cn=ldapadm,dc=fly,dc=com" -f base.ldif
 ```
 
 ldapadd command will prompt you for the password of ldapadm (LDAP root user).
@@ -226,13 +226,13 @@ ldapadd command will prompt you for the password of ldapadm (LDAP root user).
 
 ```
 Enter LDAP Password: Polaris@Root#01
-adding new entry "dc=jd,dc=com"
+adding new entry "dc=fly,dc=com"
 
-adding new entry "cn=Manager,dc=jd,dc=com"
+adding new entry "cn=Manager,dc=fly,dc=com"
 
-adding new entry "ou=People,dc=jd,dc=com"
+adding new entry "ou=People,dc=fly,dc=com"
 
-adding new entry "ou=Group,dc=jd,dc=com"
+adding new entry "ou=Group,dc=fly,dc=com"
 ```
 
 

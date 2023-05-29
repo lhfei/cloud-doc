@@ -222,7 +222,7 @@ DESCRIBE TABLE ck_zh_customer_all_deal_user_cycle_repurchase
 ### DDL
 
 ```sql
-CREATE TABLE bc_online.ck_zh_customer_all_deal_user_cycle_repurchase ( repurchaseNum Int64,  brandId String,  dateTime String,  userLogAcct String,  thirdIndId String,  repurchaseCycle String) ENGINE = ReplicatedMergeTree(\'/ppzhck.jd.local/tables/bc_online/ck_zh_customer_all_deal_user_cycle_repurchase/{shard}\', \'{replica}\') PARTITION BY dateTime ORDER BY (dateTime, thirdIndId, brandId, repurchaseCycle) SETTINGS index_granularity = 8192
+CREATE TABLE bc_online.ck_zh_customer_all_deal_user_cycle_repurchase ( repurchaseNum Int64,  brandId String,  dateTime String,  userLogAcct String,  thirdIndId String,  repurchaseCycle String) ENGINE = ReplicatedMergeTree(\'/ppzhck.test.local/tables/bc_online/ck_zh_customer_all_deal_user_cycle_repurchase/{shard}\', \'{replica}\') PARTITION BY dateTime ORDER BY (dateTime, thirdIndId, brandId, repurchaseCycle) SETTINGS index_granularity = 8192
 ```
 
 

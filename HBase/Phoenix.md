@@ -19,7 +19,7 @@ Where `localhost` is your ZooKeeper node.
 **Example**
 
 ```shell
-./bin/sqlline.py a01-r03-i164-107-515wbkc.jd.local,a01-r03-i164-101-515w96w.jd.local,a01-r03-i164-108-515wble.jd.local:2181:/hbase-unsecure
+./bin/sqlline.py a01-r03-i164-107-515wbkc.test.local,a01-r03-i164-101-515w96w.test.local,a01-r03-i164-108-515wble.test.local:2181:/hbase-unsecure
 ```
 
 

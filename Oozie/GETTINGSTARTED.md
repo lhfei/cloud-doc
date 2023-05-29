@@ -68,7 +68,7 @@
   #!/bin/sh
   
   ${OOZIE_HOME}/oozie job -run  -config ./job.properties \
-    -oozie http://a01-r03-i163-160-515w664.jd.local:11000/oozie
+    -oozie http://a01-r03-i163-160-515w664.test.local:11000/oozie
   ```
 
 

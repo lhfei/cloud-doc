@@ -221,7 +221,7 @@ Locality Name (eg, city) []:Beijing
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:DLink
 Organizational Unit Name (eg, section) []:DLink
 Common Name (e.g. server FQDN or YOUR name) []:dlink.cn
-Email Address []:lihefei@jd.com
+Email Address []:lihefei@test.com
 ```
 
 then we change owner:

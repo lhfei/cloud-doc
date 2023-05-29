@@ -2,7 +2,7 @@
     
     <property>
       <name>fs.defaultFS</name>
-      <value>hdfs://a01-r03-i164-156-515w9ay.jd.local:8020</value>
+      <value>hdfs://a01-r03-i164-156-515w9ay.test.local:8020</value>
       <final>true</final>
     </property>
     
@@ -38,7 +38,7 @@
     
     <property>
       <name>hadoop.proxyuser.ambari-server-pss_cloud_dev.hosts</name>
-      <value>a01-r03-i164-154-515w92j.jd.local</value>
+      <value>a01-r03-i164-154-515w92j.test.local</value>
     </property>
     
     <property>
@@ -63,7 +63,7 @@
     
     <property>
       <name>hadoop.proxyuser.hcat.hosts</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local</value>
+      <value>a01-r03-i164-157-515w8ey.test.local</value>
     </property>
     
     <property>
@@ -83,7 +83,7 @@
     
     <property>
       <name>hadoop.proxyuser.hive.hosts</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local</value>
+      <value>a01-r03-i164-157-515w8ey.test.local</value>
     </property>
     
     <property>
@@ -93,7 +93,7 @@
     
     <property>
       <name>hadoop.proxyuser.HTTP.hosts</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local,a01-r03-i164-159-515w64k.jd.local</value>
+      <value>a01-r03-i164-157-515w8ey.test.local,a01-r03-i164-159-515w64k.test.local</value>
     </property>
     
     <property>
@@ -103,7 +103,7 @@
     
     <property>
       <name>hadoop.proxyuser.knox.hosts</name>
-      <value>a01-r03-i164-156-515w9ay.jd.local</value>
+      <value>a01-r03-i164-156-515w9ay.test.local</value>
     </property>
     
     <property>
@@ -123,33 +123,33 @@
     
     <property>
       <name>hadoop.proxyuser.yarn.hosts</name>
-      <value>a01-r03-i164-157-515w8ey.jd.local</value>
+      <value>a01-r03-i164-157-515w8ey.test.local</value>
     </property>
     
     <property>
       <name>hadoop.security.auth_to_local</name>
-      <value>RULE:[1:$1@$0](ambari-qa-pss_cloud_dev@POLARIS.JD.COM)s/.*/ambari-qa/
-RULE:[1:$1@$0](hbase-pss_cloud_dev@POLARIS.JD.COM)s/.*/hbase/
-RULE:[1:$1@$0](hdfs-pss_cloud_dev@POLARIS.JD.COM)s/.*/hdfs/
-RULE:[1:$1@$0](spark-pss_cloud_dev@POLARIS.JD.COM)s/.*/spark/
-RULE:[1:$1@$0](.*@POLARIS.JD.COM)s/@.*//
-RULE:[2:$1@$0](activity_analyzer@POLARIS.JD.COM)s/.*/activity_analyzer/
-RULE:[2:$1@$0](activity_explorer@POLARIS.JD.COM)s/.*/activity_explorer/
-RULE:[2:$1@$0](amshbase@POLARIS.JD.COM)s/.*/ams/
-RULE:[2:$1@$0](amszk@POLARIS.JD.COM)s/.*/ams/
-RULE:[2:$1@$0](beacon@POLARIS.JD.COM)s/.*/beacon/
-RULE:[2:$1@$0](dn@POLARIS.JD.COM)s/.*/hdfs/
-RULE:[2:$1@$0](hbase@POLARIS.JD.COM)s/.*/hbase/
-RULE:[2:$1@$0](hive@POLARIS.JD.COM)s/.*/hive/
-RULE:[2:$1@$0](jhs@POLARIS.JD.COM)s/.*/mapred/
-RULE:[2:$1@$0](knox@POLARIS.JD.COM)s/.*/knox/
-RULE:[2:$1@$0](nm@POLARIS.JD.COM)s/.*/yarn/
-RULE:[2:$1@$0](nn@POLARIS.JD.COM)s/.*/hdfs/
-RULE:[2:$1@$0](rangeradmin@POLARIS.JD.COM)s/.*/ranger/
-RULE:[2:$1@$0](rangertagsync@POLARIS.JD.COM)s/.*/rangertagsync/
-RULE:[2:$1@$0](rangerusersync@POLARIS.JD.COM)s/.*/rangerusersync/
-RULE:[2:$1@$0](rm@POLARIS.JD.COM)s/.*/yarn/
-RULE:[2:$1@$0](yarn@POLARIS.JD.COM)s/.*/yarn/
+      <value>RULE:[1:$1@$0](ambari-qa-pss_cloud_dev@POLARIS.TESTD.COM)s/.*/ambari-qa/
+RULE:[1:$1@$0](hbase-pss_cloud_dev@POLARIS.TESTD.COM)s/.*/hbase/
+RULE:[1:$1@$0](hdfs-pss_cloud_dev@POLARIS.TESTD.COM)s/.*/hdfs/
+RULE:[1:$1@$0](spark-pss_cloud_dev@POLARIS.TESTD.COM)s/.*/spark/
+RULE:[1:$1@$0](.*@POLARIS.TESTD.COM)s/@.*//
+RULE:[2:$1@$0](activity_analyzer@POLARIS.TESTD.COM)s/.*/activity_analyzer/
+RULE:[2:$1@$0](activity_explorer@POLARIS.TESTD.COM)s/.*/activity_explorer/
+RULE:[2:$1@$0](amshbase@POLARIS.TESTD.COM)s/.*/ams/
+RULE:[2:$1@$0](amszk@POLARIS.TESTD.COM)s/.*/ams/
+RULE:[2:$1@$0](beacon@POLARIS.TESTD.COM)s/.*/beacon/
+RULE:[2:$1@$0](dn@POLARIS.TESTD.COM)s/.*/hdfs/
+RULE:[2:$1@$0](hbase@POLARIS.TESTD.COM)s/.*/hbase/
+RULE:[2:$1@$0](hive@POLARIS.TESTD.COM)s/.*/hive/
+RULE:[2:$1@$0](jhs@POLARIS.TESTD.COM)s/.*/mapred/
+RULE:[2:$1@$0](knox@POLARIS.TESTD.COM)s/.*/knox/
+RULE:[2:$1@$0](nm@POLARIS.TESTD.COM)s/.*/yarn/
+RULE:[2:$1@$0](nn@POLARIS.TESTD.COM)s/.*/hdfs/
+RULE:[2:$1@$0](rangeradmin@POLARIS.TESTD.COM)s/.*/ranger/
+RULE:[2:$1@$0](rangertagsync@POLARIS.TESTD.COM)s/.*/rangertagsync/
+RULE:[2:$1@$0](rangerusersync@POLARIS.TESTD.COM)s/.*/rangerusersync/
+RULE:[2:$1@$0](rm@POLARIS.TESTD.COM)s/.*/yarn/
+RULE:[2:$1@$0](yarn@POLARIS.TESTD.COM)s/.*/yarn/
 DEFAULT</value>
     </property>
     

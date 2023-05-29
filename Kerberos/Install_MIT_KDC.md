@@ -183,7 +183,7 @@ KVNO Timestamp           Principal
 ```
 kinit username@ADS.IU.EDU -k -t /etc/security/keytabs/{user-server.keytab}
 
-$ kinit hive/a01-r03-i164-157-515w8ey.jd.local@POLARIS.JD.COM -k -t /etc/security/keytabs/hive.service.keytab 
+$ kinit hive/a01-r03-i164-157-515w8ey.test.local@POLARIS.TESTD.COM -k -t /etc/security/keytabs/hive.service.keytab 
 ```
 
 *kinit hive/openldap.xx.com@POLARIS.xx.COM -k -t /etc/security/keytabs/hive.service.keytab*
@@ -275,7 +275,7 @@ Principal "admin/admin@BDS-TEST-004.xx.LOCAL" created.
 Delete Principal
 
 ```
-delprinc lhfei/a01-r03-i164-156-515w9ay.jd.local@POLARIS.JD.COM
+delprinc lhfei/a01-r03-i164-156-515w9ay.test.local@POLARIS.TESTD.COM
 ```
 
 

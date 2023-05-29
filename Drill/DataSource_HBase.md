@@ -8,7 +8,7 @@ To view or change the HBase storage plugin configuration, use the [Drill Web Con
 {
 	"type": "hbase",
 	"config": {
-		"hbase.zookeeper.quorum": "a01-r03-i164-107-515wbkc.jd.local,a01-r03-i164-101-515w96w.jd.local,a01-r03-i164-108-515wble.jd.local",
+		"hbase.zookeeper.quorum": "a01-r03-i164-107-515wbkc.test.local,a01-r03-i164-101-515w96w.test.local,a01-r03-i164-108-515wble.test.local",
 		"hbase.zookeeper.property.clientPort": "2181",
         "zookeeper.znode.parent": "/hbase-unsecure"
 	},
