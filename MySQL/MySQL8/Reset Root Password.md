@@ -39,8 +39,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
 
 然后运行以下命令：
 
-```javascript
-# mysqld --user=mysql --init-file=/home/user/init-file.txt --console
+```shell
+mysqld --user=mysql --init-file=/home/user/init-file.txt --console
 ```
 
 这将启动MySQL服务，在此过程中它将执行您创建的init文件，从而更新root用户的密码。 重置密码后，请务必删除该文件。

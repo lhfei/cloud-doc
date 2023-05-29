@@ -69,7 +69,7 @@ Sections below are relevant for both MySQL 8.0 and MySQL 5.7.
 Once the installation is completed, start the MySQL service and enable it to automatically start on boot with:
 
 ```
-sudo systemctl enable mysqld  
+sudo systemctl enable mysqld
 sudo systemctl start mysqld
 ```
 

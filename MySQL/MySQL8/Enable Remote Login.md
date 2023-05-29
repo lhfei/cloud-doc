@@ -26,7 +26,7 @@ FLUSH PRIVILEGES;
 5，再执行授权语句：
 
 ```sql
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 ```
 
 然后外部就可以通过账户密码访问了。
@@ -86,7 +86,7 @@ select host,user,plugin from user;
 2，使用命令将他修改成mysql_native_password加密模式：
 
 ```sql
-update user set plugin='mysql_native_password' where user='root';
+update user set plugin='mysql_native_password' where user='root' and host = '%';
 ```
 
 再次连接的时候，就成功了。

@@ -1,13 +1,13 @@
 1) fdisk -l 查看分区表
 
 2） 分区：
-1. fdisk /dev/vdb
-2. 输入n回车 ( add a new partition)
-3. 选择分区类型P（选择主分区，ps:一块磁盘可以有最多四个主分区）
+1. `fdisk /dev/vdb`
+2. 输入`n`回车 ( add a new partition)
+3. 选择分区类型`P`（选择主分区，ps:一块磁盘可以有最多四个主分区）
 4. 输入分区号，此处直接回车，按默认处理
 5. 提示输入起块，直接回车
 6. 提示输入止块，直接回车
-7. w 保存
+7. `w` 保存
 
 3） 格式化
 #mkfs.xfs  /dev/vdb1
@@ -19,20 +19,25 @@ mkdir -p /export
 2. 挂载：
 mount /dev/vdb1 /export
 
-5) df(display filesystem) 验证
-df:  Show information about the file system on which each FILE resides, or all file systems by default.
-#######一次性命令#######
-fdisk /dev/vdb
-n 
-p
+5. df(display filesystem) 验证
+  df:  Show information about the file system on which each FILE resides, or all file systems by default.
+  #######一次性命令#######
 
+  ```shell
+  fdisk /dev/vdb
+  n 
+  p
+  
+  
+  
+  w
+  
+  mkfs.ext4 /dev/vdb1
+  mkdir -p /export
+  mount /dev/vdb1 /export
+  ```
 
-
-w
-
-mkfs.ext4 /dev/vdb1
-mkdir -p /export
-mount /dev/vdb1 /export
+  
 
 6）开机自动挂载
 #/etc/fstab是用来存放文件系统的静态信息的文件。当系统启动的时候，系统会自动地从这个文件读取信息，并且会自动将此文件中指定的文件系统挂载到指定的目录。
@@ -40,7 +45,9 @@ vi /etc/fstab
 #在最后增加一行
 #echo /dev/vdb1 /export xfs defaults 0 0  >> /etc/fstab
 
+```shell
 echo /dev/vdb1 /export ext4 defaults 0 0 >> /etc/fstab
+```
 
 #/etc/fstab文件主要包括6段，依次是：
 <file system>　　<dir>　　<type>　　<options>　　<dump>　　<pass>
