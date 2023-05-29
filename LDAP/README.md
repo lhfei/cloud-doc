@@ -118,7 +118,7 @@ If you enter '.', the field will be left blank.
 Country Name (2 letter code) [AU]:CN
 State or Province Name (full name) [Some-State]:Beijing
 Locality Name (eg, city) []:Beijing
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:Jingdong
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:MouXi
 Organizational Unit Name (eg, section) []:fly
 Common Name (e.g. server FQDN or YOUR name) []:BDS-TEST-002
 Email Address []:lihefei@test.com

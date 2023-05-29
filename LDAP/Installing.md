@@ -51,7 +51,7 @@ If you enter '.', the field will be left blank.
 Country Name (2 letter code) [XX]:cn
 State or Province Name (full name) []:Beijing
 Locality Name (eg, city) [Default City]:Beijing
-Organization Name (eg, company) [Default Company Ltd]:Jingdong
+Organization Name (eg, company) [Default Company Ltd]:MouXi
 Organizational Unit Name (eg, section) []:fly
 Common Name (eg, your name or your server's hostname) []:openldap.test.com
 Email Address []:lihefei@test.com
