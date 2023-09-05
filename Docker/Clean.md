@@ -1,0 +1,6 @@
+
+
+```shell
+docker system prune
+```
+

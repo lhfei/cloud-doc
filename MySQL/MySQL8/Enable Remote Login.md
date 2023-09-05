@@ -7,7 +7,7 @@
 2，输入以下语句，进入mysql库：
 
 ```sql
-use mysql
+use mysql;
 ```
 
 
@@ -65,7 +65,7 @@ Navicat 12以下客户端支持的是**mysql_native_password** 这种加密方�
 1，用如下语句查看MySQL当前加密方式
 
 ```sql
-select host,user,plugin from user;
+select host,user,plugin from mysql.user;
 ```
 
 查询结果
@@ -86,7 +86,7 @@ select host,user,plugin from user;
 2，使用命令将他修改成mysql_native_password加密模式：
 
 ```sql
-update user set plugin='mysql_native_password' where user='root' and host = '%';
+update mysql.user set plugin='mysql_native_password' where user='root' and host = '%';
 ```
 
 再次连接的时候，就成功了。

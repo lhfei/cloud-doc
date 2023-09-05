@@ -91,7 +91,7 @@ hazelcast-client:
 For a cluster with TLS encryption, copy the `client.keystore` and `client.truststore` files downloaded on the 
 previous step into `trade-queries/src/main/resources` and `webapp/src/main/resources` folders, or use absolute path 
 to downloaded files in your client configuration. After that you should use the following configuration:
-```
+```yaml
 hazelcast-client:
   cluster-name: <CLUSTER_GROUP_NAME>
   instance-name: query-client

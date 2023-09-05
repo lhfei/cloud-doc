@@ -11,8 +11,14 @@ mysqldump -uroot -proot --all-databases >/tmp/all.sql
 2.导出db1、db2两个数据库的所有数据
 
 ```shell
-mysqldump -uroot -proot --databases db1 db2 >/tmp/user.sql
+mysqldump -uroot -p --databases db1 db2 >/tmp/user.sql
 ```
+
+```shell
+mysqldump -uroot -p --socket=/tmp/mysql.sock  --databases dave_lianshan dave_lianshan2 dave_lianshan_test ilad_lianshan_test > ./dlink-daas-02.sql 
+```
+
+
 
 ![img](https://images2015.cnblogs.com/blog/135426/201604/135426-20160405201048937-1763862983.png)
 
