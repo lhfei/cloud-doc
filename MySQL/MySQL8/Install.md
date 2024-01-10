@@ -106,7 +106,7 @@ sudo systemctl enable  --now mysqld.service
 
 Confirm that service status return as **running:**
 
-```
+```shell
 $ systemctl status mysqld
 ● mysqld.service - MySQL Server
    Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)

@@ -6,7 +6,11 @@ Ubuntu采用`apt`作为软件安装工具，其镜像源列表记录在`/etc/apt
 
 修改完成后保存`source.list`文件，执行：
 
+## 1. 备份
 
+```
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 
+```
 
 ```
 sudo apt update

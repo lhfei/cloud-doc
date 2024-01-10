@@ -1,0 +1,16 @@
+fields:
+
+  - field: two_chinese_name
+    from: name.cnreal.v1.yaml
+    use: two
+    postfix: "\t"
+
+  - field: three_chinese_name
+    from: name.cnreal.v1.yaml
+    use: three
+    postfix: "\t"
+
+  - field: four_chinese_name
+    from: name.cnreal.v1.yaml
+    use: four
+    postfix: "\t"

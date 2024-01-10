@@ -12,8 +12,22 @@ pip config set global.index-url http://mirrors.aliyun.com/pypi/simple/
 
 
 
+### 清华源
+
+```shell
+python -m pip install --upgrade pip
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+
+
+### 阿里源
+
 ```shell
 pip config set global.index-url http://mirrors.aliyun.com/pypi/simple/
 pip config set install.trusted-host mirrors.aliyun.com
 ```
 
+
+
+### 

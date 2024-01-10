@@ -41,3 +41,20 @@ pip install opencv-python-headless
 pip install accelerate
 ```
 
+
+
+> error: metadata-generation-failed
+
+```shell
+pip install --use-pep517 -r requirements.txt
+```
+
+
+
+> AttributeError: 'BaichuanTokenizer' object has no attribute 'sp_model'
+
+```shell
+pip uninstall transformers
+pip install transformers==4.33.1
+```
+

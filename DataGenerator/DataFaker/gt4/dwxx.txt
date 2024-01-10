@@ -1,0 +1,3 @@
+dwmc||varchar(64)||就业单位名称[:company]
+dw_zzjgdm||varchar(64)||单位组织机构代码[:isbn10]
+dwxz||varchar(20)||单位性质[:enum(file://dwxz.txt)]

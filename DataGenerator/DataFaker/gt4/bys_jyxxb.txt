@@ -1,0 +1,3 @@
+sfzhm||varchar(20)||身份证号码[:ssn]
+dwmc||varchar(64)||就业单位名称[:company]
+dw_zzjgdm||varchar(64)||单位组织机构代码[:isbn10]

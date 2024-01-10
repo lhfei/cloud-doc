@@ -1,48 +1,92 @@
 ## CPU Details
 
-Details that do not depend upon whether running on CPU for Linux, Windows, or MAC.
+Details that do not depend upon whether you are running on CPU for Linux, Windows, or macOS.
 
 ### LLaMa.cpp 
 
-* Download from [TheBloke](https://huggingface.co/TheBloke).  For example, [13B WizardLM Quantized](https://huggingface.co/TheBloke/wizardLM-13B-1.0-GGML) or [7B WizardLM Quantized](https://huggingface.co/TheBloke/WizardLM-7B-uncensored-GGML).  TheBloke has a variety of model types, quantization bit depths, and memory consumption.  Choose what is best for your system's specs.  For 7B case, download [WizardLM-7B-uncensored.ggmlv3.q8_0.bin](https://huggingface.co/TheBloke/WizardLM-7B-uncensored-GGML/resolve/main/WizardLM-7B-uncensored.ggmlv3.q8_0.bin) into local path:
-   ```bash
-    wget https://huggingface.co/TheBloke/WizardLM-7B-uncensored-GGML/resolve/main/WizardLM-7B-uncensored.ggmlv3.q8_0.bin
-   ```
-* Change `.env_gpt4all` model name if desired.
-   ```.env_gpt4all
-   model_path_llama=WizardLM-7B-uncensored.ggmlv3.q8_0.bin
-   ```
-    Then one sets `model_path_llama` in `.env_gpt4all`, which is currently the default.
+Default llama.cpp model is LLaMa2 GPTQ model from TheBloke:
 
-* When using `llama.cpp` based CPU models, for computers with low system RAM or slow CPUs, we recommend adding to `.env_gpt4all`:
-   ```.env_gpt4all
-   use_mlock=False
-   n_ctx=1024
-   ```
-    where `use_mlock=True` is default to avoid slowness and `n_ctx=2048` is default for large context handling.  For computers with plenty of system RAM, we recommend adding to `.env_gpt4all`:
-   ```.env_gpt4all
-   n_batch=1024
-   ```
-    for faster handling.  On some systems this has no strong effect, but on others may increase speed quite a bit.
-
-* Run LLaMa.cpp model:
+* Run LLaMa.cpp LLaMa2 model:
 
     With documents in `user_path` folder, run:
    ```bash
-   python generate.py --base_model='llama' --prompt_type=wizard2 --score_model=None --langchain_mode='UserData' --user_path=user_path
+   # if don't have wget, download to repo folder using below link
+   wget https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q6_K.gguf
+   python generate.py --base_model='llama' --prompt_type=llama2 --score_model=None --langchain_mode='UserData' --user_path=user_path
    ```
+
+For another llama.cpp model:
+
+* Choose from [TheBloke](https://huggingface.co/TheBloke), then with documents in `user_path` folder, run:
+  ```bash
+   python generate.py --base_model=llama --model_path_llama=https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q6_K.gguf --score_model=None --langchain_mode='UserData' --user_path=user_path
+  ```
+  For `llama.cpp` based models on CPU, for computers with low system RAM or slow CPUs, we recommend running:
+  ```bash
+   python generate.py --base_model=llama --model_path_llama=https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q6_K.gguf --llamacpp_dict="{'use_mlock':False,'n_batch':256}" --max_seq_len=512 --score_model=None --langchain_mode='UserData' --user_path=user_path
+  ```
 
 ### GPT4ALL
 
 * Choose Model from GPT4All Model explorer [GPT4All-J compatible model](https://gpt4all.io/index.html). One does not need to download manually, the GPT4ALL package will download at runtime and put it into `.cache` like Hugging Face would.
-  
-* Change `.env_gpt4all` model name if chose different model from GPT4All Model Explorer.
-    ```.env_gpt4all
-    model_path_gptj=ggml-gpt4all-j-v1.3-groovy.bin
-    model_name_gpt4all_llama=ggml-wizardLM-7B.q4_2.bin
-    ```
-    However, `gpjt` model often gives [no output](FAQ.md#gpt4all-not-producing-output), even outside h2oGPT.  See [GPT4All](https://github.com/nomic-ai/gpt4all) for details on installation instructions if any issues encountered.
+
+* With documents in `user_path` folder, run:
+  ```bash
+   python generate.py --base_model=gptj --model_path_gptj=ggml-gpt4all-j-v1.3-groovy.bin --score_model=None --langchain_mode='UserData' --user_path=user_path
+  ```
+  or
+  ```bash
+   python generate.py --base_model=gpt4all_llama --model_name_gpt4all_llama=ggml-wizardLM-7B.q4_2.bin --score_model=None --langchain_mode='UserData' --user_path=user_path
+  ```
+   However, `gpjt` model often gives [no output](FAQ.md#gpt4all-not-producing-output), even outside h2oGPT.  See [GPT4All](https://github.com/nomic-ai/gpt4all) for details on installation instructions if you encounter any issues.
 
 ### Low-memory
 
-See [Low Memory](FAQ.md#low-memory-mode) for more information about low-memory recommendations.
+For more information about low-memory recommendations, see [Low Memory](FAQ.md#low-memory-mode).
+
+
+
+
+### Start
+
+```shell
+python generate.py --base_model='/export/app_workspaces/LLaMa/chinese-alpaca-2-7b' --prompt_type=llama2
+```
+
+
+
+```shell
+python generate.py --base_model='/export/app_workspaces/LLaMa/chinese-llama-2-7b' --prompt_type=llama2
+```
+
+
+
+```shell
+python generate.py --base_model='/export/app_workspaces/MODELS/Baichuan2-7B-Chat' --prompt_type=llama2
+```
+
+
+
+```shell
+python generate.py --base_model='/export/app_workspaces/LLaMa/Llama2-Chinese-7b-Chat' --prompt_type=llama2
+
+python generate.py --base_model='llama' --prompt_type=llama2 --model_path_llama='/export/app_workspaces/LLaMa/Llama2-Chinese-7b-Chat' --max_seq_len=4096
+
+```
+
+
+
+
+
+```shell
+python generate.py --base_model='/export/app_workspaces/MODELS/Llama2-Chinese-13b-Chat-4bit' --prompt_type=llama2
+
+python generate.py --base_model=llama --prompt_type=llama2 --model_path_llama=/export/app_workspaces/MODELS/Llama2-Chinese-13b-Chat-4bit/gptq_model-4bit-128g.bin
+
+python generate.py --base_model=/export/app_workspaces/MODELS/Llama2-Chinese-13b-Chat-4bit --prompt_type=llama2 --max_seq_len=4096
+
+python generate.py --base_model=llama --prompt_type=llama2 --model_path_llama=/export/app_workspaces/MODELS/Baichuan2-7B-Chat
+
+
+```
+

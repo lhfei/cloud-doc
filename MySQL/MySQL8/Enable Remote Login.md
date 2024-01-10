@@ -14,7 +14,8 @@ use mysql;
 3，更新域属性，'%'表示允许外部访问：
 
 ```sql
-update user set host='%' where user ='root';
+-- update user set host='%' where user ='root';
+CREATE USER 'root'@'%' IDENTIFIED BY 'Lhfei@GPT$Root#01';
 ```
 
 4，执行以上语句之后再执行：

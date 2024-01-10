@@ -1,0 +1,5 @@
+xm||varchar(20)||毕业生姓名[:name]
+sfzhm||varchar(20)||身份证号码[:ssn]
+byyx||varchar(20)||毕业院校[:enum(file://unvi.txt)]
+xl||varchar(20)||学历[:enum(本科, 硕士, 博士)]
+bysj||varchar(64)||毕业时间[:year]
