@@ -14,7 +14,7 @@ pip install PyMySQL
 > kb_config.py
 
 ```python
-SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://idatauser:IDatauser_1473@dlink-app-08/idata_gpt"
+SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://idatauser:IDatauser_1473@dlink-app-08/gpt_idata"
 ```
 
 

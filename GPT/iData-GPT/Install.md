@@ -1,3 +1,8 @@
+```shell
+conda create -n twsk-gpt python=3.11
+conda activate twsk-gpt
+```
+
 
 
 
@@ -32,5 +37,15 @@ LOCAL_DB_PORT=3306
 
 #MODEL_PATH = os.path.join(ROOT_PATH, "models")
 MODEL_PATH = "/root/autodl-tmp/app_workspaces/MODELS/"
+```
+
+
+
+
+
+#### QWen
+
+```shell
+pip install transformers_stream_generator einops
 ```
 

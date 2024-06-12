@@ -2,6 +2,26 @@
 
 Details that do not depend upon whether you are running on CPU for Linux, Windows, or macOS.
 
+
+
+#### Required
+
+##### 1 GCC
+
+```shell
+sudo yum install -y centos-release-scl
+sudo yum install -y devtoolset-11-gcc*
+scl enable devtoolset-11 bash
+```
+
+##### 2 Llama cpp
+
+```shell
+pip install llama-cpp-python
+```
+
+
+
 ### LLaMa.cpp 
 
 Default llama.cpp model is LLaMa2 GPTQ model from TheBloke:
@@ -89,4 +109,74 @@ python generate.py --base_model=llama --prompt_type=llama2 --model_path_llama=/e
 
 
 ```
+
+
+
+
+
+
+
+```shell
+python generate.py --base_model='/export/MODELS/Chinese-Llama-2-7b' --prompt_type=llama2
+```
+
+```shell
+python generate.py --base_model=llama --model_path_llama="/export/MODELS/llama-2-7b-chat.Q6_K.gguf" --score_model=None --langchain_mode='UserData' --user_path=user_path
+```
+
+
+
+
+
+```shell
+python generate.py --base_model=TheBloke/Mistral-7B-Instruct-v0.2-GGUF --prompt_type=mistral --max_seq_len=4096
+
+python generate.py --base_model='/export/MODELS/Chinese-Mistral-7B-Instruct-v0.1' --prompt_type=mistral --max_seq_len=4096
+```
+
+
+
+#### Offline
+
+> LLama3
+
+```shell
+TRANSFORMERS_OFFLINE=1 python generate.py --base_model=llama --model_path_llama="/export/MODELS/Llama3-Chinese-8B-Instruct" --hf_embedding_model="/export/MODELS/bge-large-zh-v1.5" --prompt_type=llama2 --gradio_offline_level=2 --share=False --add_disk_models_to_ui=False
+```
+
+```shell
+TRANSFORMERS_OFFLINE=1 python generate.py --base_model=llama --model_path_llama="/export/MODELS/Llama3-Chinese-8B-Instruct" --tokenizer_base_model="/export/MODELS/Llama3-Chinese-8B-Instruct"t --max_seq_len=8192 --gradio_offline_level=2 --share=False --add_disk_models_to_ui=False
+```
+
+
+
+
+
+```shell
+TRANSFORMERS_OFFLINE=1 python generate.py --base_model=llama --model_path_llama="/export/MODELS/zephyr-7b-beta.Q5_K_M.gguf" --prompt_type=zephyr --hf_embedding_model="/export/MODELS/all-MiniLM-L6-v2" --gradio_offline_level=2 --share=False --add_disk_models_to_ui=False
+```
+
+
+
+> OK
+
+```shell
+TRANSFORMERS_OFFLINE=1 python generate.py --base_model=llama --model_path_llama="/export/MODELS/llama-2-7b-chat.Q6_K.gguf" --hf_embedding_model="/export/MODELS/bge-large-zh-v1.5" --prompt_type=llama2 --gradio_offline_level=2 --share=False --add_disk_models_to_ui=False
+```
+
+
+
+```shell
+TRANSFORMERS_OFFLINE=1 python generate.py --base_model='/export/MODELS/Chinese-Mistral-7B-Instruct-v0.1' --prompt_type=mistral --max_seq_len=4096 --hf_embedding_model="/export/MODELS/bge-large-zh-v1.5"  --gradio_offline_level=2 --share=False --add_disk_models_to_ui=False
+```
+
+
+
+> OK
+
+```shell
+TRANSFORMERS_OFFLINE=1 python generate.py --base_model='/export/MODELS/Chinese-Llama-2-7b' --prompt_type=llama2 --max_seq_len=4096 --hf_embedding_model="/export/MODELS/bge-large-zh-v1.5"  --gradio_offline_level=2 --share=False --add_disk_models_to_ui=False
+```
+
+
 

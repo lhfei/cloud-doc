@@ -108,5 +108,24 @@
 
    
 
-5. ...
+5. ##### 运行
+
+   ```shell
+   xjar.exe java --add-opens java.base/jdk.internal.loader=ALL-UNNAMED -jar ecar-core-1.4.0.xjar
+   
+   
+   xjar.exe java --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED -jar ecar-core-1.4.0.xjar
+   
+   .\xjar.exe java --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED -jar ecar-core-1.4.0.xjar
+   ```
+
+
+
+​		
+
+
+
+
+
+1. 
 

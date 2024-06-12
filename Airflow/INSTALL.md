@@ -18,7 +18,7 @@ Edit `/etc/sudoers` file, and append this a new line as below:
 vi /etc/sudoers
  
 ## Allow root to run any commands anywhere
-rootALL=(ALL) ALL
+root	   ALL=(ALL) ALL
 airflow    ALL=(ALL)                NOPASSWD: ALL
 ```
 
@@ -55,7 +55,7 @@ export AIRFLOW_HOME=~/airflow
 pip install apache-airflow
 
 # initialize the database
-airflow initdb
+airflow db init
 
 # start the web server, default port is 8080
 airflow webserver -p 8080
@@ -68,23 +68,11 @@ airflow scheduler
 
 
 
-### Create User
+### Install PyMySQL
 
 ```shell
-airflow users create \
-    --username admin \
-    --firstname Hefei \
-    --lastname Li \
-    --role Admin \
-    --email lhfeilaile@gmail.com
-    
-[2021-08-20 16:56:18,369] {manager.py:788} WARNING - No user yet created, use flask fab command to do it.
-Password:[Lhfei@01]
-Repeat for confirmation:
-Admin user admin created
+python3 -m pip install PyMySQL
 ```
-
-
 
 
 
@@ -116,18 +104,21 @@ airflow scheduler
 
 
 
-
-
-### Install PyMySQL
+### Create User
 
 ```shell
-yum install -y mysql-devel
-pip install mysqlclient
-
-python3 -m pip install PyMySQL
+airflow users create \
+    --username admin \
+    --firstname Hefei \
+    --lastname Li \
+    --role Admin \
+    --email lhfeilaile@gmail.com
+    
+[2021-08-20 16:56:18,369] {manager.py:788} WARNING - No user yet created, use flask fab command to do it.
+Password:[Lhfei@01]
+Repeat for confirmation:
+Admin user admin created
 ```
-
-
 
 
 

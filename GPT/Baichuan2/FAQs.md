@@ -12,6 +12,14 @@
 
 
 
+> AttributeError: 'list' object has no attribute 'as_dict'
+
+```shell
+pip install bitsandbytes==0.41.1
+```
+
+
+
 
 
 > ValueError: [Tokenizer](https://so.csdn.net/so/search?q=Tokenizer&spm=1001.2101.3001.7020) class XXXTokenizer does not exist or is not

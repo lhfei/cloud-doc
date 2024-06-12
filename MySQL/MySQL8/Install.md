@@ -26,6 +26,12 @@ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-7.
 sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-9.noarch.rpm
 ```
 
+```shell
+sudo rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-10.noarch.rpm
+```
+
+
+
 
 
 Press **y** key to proceed with the installation:
@@ -54,6 +60,10 @@ Is this ok [y/d/N]: y
 ## Install MySQL 8.0 on CentOS 7 / RHEL 7
 
 Now that repo is added, you can install MysQL 8 without editing repository content since repo for 8 is enabled by default.
+
+```shell
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
+```
 
 ```
 sudo yum --enablerepo=mysql80-community install mysql-community-server
@@ -137,6 +147,9 @@ Installation of MySQL 8.0 on CentOS 7 / RHEL 7 generates a temporary password fo
 
 ```
 grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1
+
+#
+sudo grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
 ```
 
 It will look like below:
@@ -215,7 +228,7 @@ With iptables:
 
 ```
 sudo iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
-sudo service iptables restartt
+sudo service iptables restart
 ```
 
 Firewalld:

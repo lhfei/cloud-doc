@@ -28,6 +28,9 @@ FLUSH PRIVILEGES;
 
 ```sql
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
 ```
 
 然后外部就可以通过账户密码访问了。
@@ -88,7 +91,20 @@ select host,user,plugin from mysql.user;
 
 ```sql
 update mysql.user set plugin='mysql_native_password' where user='root' and host = '%';
+
+FLUSH PRIVILEGES;
 ```
+
+
+
+```sql
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Lhfei@GPT$Root#01' WITH GRANT OPTION; 
+```
+
+
+
+
 
 再次连接的时候，就成功了。
 
@@ -108,7 +124,9 @@ a.以阿里云为例，找到实例，设置安全组，开放端口号即可。
 
 ```sql
 GRANT ALL ON *.* TO 'root'@'%';
-GRANT ALL ON 表示所有权限，% 表示通配所有 host，可以访问远程。
+
+GRANT ALL ON *.* TO 'root'@'%';
+-- GRANT ALL ON 表示所有权限，% 表示通配所有 host，可以访问远程。
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '你自己的密码';
 ```
 
