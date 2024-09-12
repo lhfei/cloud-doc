@@ -95,3 +95,11 @@ pip install autoawq==0.1.3
 pip3 install  --use-pep517 fschat
 ```
 
+
+
+> RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+
+```shell
+pip install cryptography
+```
+

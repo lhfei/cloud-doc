@@ -11,3 +11,9 @@ Bootstrap Config File: /export/cloud/nifi-1.14.0/conf/bootstrap.conf
 Login Identity Providers Processed [/export/cloud/nifi-1.14.0/./conf/login-identity-providers.xml]
 ```
 
+
+
+```shell
+./bin/nifi.sh set-single-user-credentials lhfei Twsk@Root#01
+```
+

@@ -1,3 +1,40 @@
+### Install
+
+
+
+```shell
+# bin/hugegraph deploy -v {hugegraph-version} -p {install-path} [-u {download-path-prefix}]
+
+bin/hugegraph deploy -v 1.3.0 -p /export/cloud 
+```
+
+
+
+> hugegraph.properties
+
+`{hugegraph_home}/conf/graphs/hugegraph.properties`
+
+```ini
+backend=mysql
+serializer=mysql
+
+store=hugegraph
+
+# mysql backend config
+jdbc.driver=com.mysql.cj.jdbc.Driver
+#jdbc.url=jdbc:mysql://daas-01:3306
+jdbc.url=jdbc:mysql://dataos-01:3306/hugegraph?allowPublicKeyRetrieval=true&useSSL=false
+jdbc.username=hug_admin
+jdbc.password=HugDBuser_1473
+jdbc.reconnect_max_times=3
+jdbc.reconnect_interval=3
+jdbc.sslmode=false
+```
+
+
+
+
+
 
 
 > Load command
