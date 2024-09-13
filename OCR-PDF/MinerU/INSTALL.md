@@ -9,6 +9,6 @@ pip install opencv-python
 
 pip install PyYAML
 
-pip install torch
+pip install torch torchtext
 ```
 
