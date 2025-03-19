@@ -58,3 +58,30 @@ go env -w GOPROXY=https://goproxy.cn,direct
 
 
 
+### 七牛云
+
+```shell
+go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GOSUMDB=goproxy.cn/sumdb/sum.golang.org
+```
+
+### 阿里云
+
+```shell
+go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
+# GOSUMDB 不支持
+```
+
+### GoCenter
+
+```shell
+go env -w GOPROXY=https://gocenter.io,direct
+# 不支持 GOSUMDB
+```
+
+### 百度
+
+```shell
+go env -w GOPROXY=https://goproxy.bj.bcebos.com/,direct
+# 不支持 GOSUMDB
+```

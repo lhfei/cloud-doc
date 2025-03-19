@@ -39,7 +39,7 @@ python -m pip install -e detectron2
 
 
 ```shell
-magic-pdf -p "600017_20061016_2.pdf" -o ./tmp -m auto
+magic-pdf pdf-command --pdf "600017_20061016_2.pdf" -o ./tmp -m auto
 ```
 
 
@@ -48,6 +48,9 @@ magic-pdf -p "600017_20061016_2.pdf" -o ./tmp -m auto
 
 ```shell
 magic-pdf pdf-command --pdf "data/pdf/600519_20240403_W0YD.pdf" --inside_model true  --output ./tmp
+
+magic-pdf pdf-command --pdf "data/2024080910020059419.pdf" --inside_model true  --output ./tmp
+
 ```
 
 

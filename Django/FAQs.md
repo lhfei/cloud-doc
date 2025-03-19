@@ -15,3 +15,19 @@ sudo yum install mysql-devel gcc gcc-devel python-devel
 {% load static %}
 ```
 
+
+
+
+
+> Error: Package: 1:mariadb-devel-5.5.68-1.el7.x86_64 (base)
+
+```shell
+yum install -y mariadb-server
+```
+
+
+
+```shell
+yum install -y maridb-devel
+```
+

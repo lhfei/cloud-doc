@@ -11,7 +11,7 @@
 
 3） 格式化
 #mkfs.xfs  /dev/vdb1
-mkfs.ext4 /dev/vdb1
+mkfs -t ext4 /dev/vdb1
 
 4) 挂载
 1. 创建挂载目录：
@@ -32,8 +32,9 @@ mount /dev/vdb1 /export
   
   w
   
-  mkfs.ext4 /dev/vdb1
-  mkdir -p /export
+  #mkfs.ext4 /dev/vdb1
+  mkfs -t ext4 /dev/vdb1
+  mkdir -p /export 
   mount /dev/vdb1 /export
   ```
 

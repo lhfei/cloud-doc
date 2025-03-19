@@ -29,8 +29,14 @@ CREATE DATABASE mjob_manager
   DEFAULT COLLATE utf8_general_ci;
 
 CREATE USER 'mjob_admin'@'localhost' IDENTIFIED BY 'Jobuser_1473';
+CREATE USER 'mjob_admin'@'%' IDENTIFIED BY 'Jobuser_1473';
 
+-- for MySQL 8 before
 GRANT ALL ON mjob_manager.* TO 'mjob_admin'@'%' IDENTIFIED BY 'Jobuser_1473';
+
+-- for MySQL 8 and higer
+GRANT ALL ON mjob_manager.* TO "mjob_admin"@"localhost" WITH GRANT OPTION;
+GRANT ALL ON mjob_manager.* TO "mjob_admin"@"%"  WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 ```

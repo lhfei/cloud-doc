@@ -1,6 +1,45 @@
 Zookeeper Administrator
 =======================
 
+
+
+#### Prepared
+
+```shell
+sudo groupadd hadoop
+ 
+sudo useradd -G hadoop hdfs
+   
+   
+data_dir="/export/hadoop/zookeeper"
+mkdir -p ${data_dir}
+chown -R hdfs:hadoop ${data_dir}
+
+
+data_dir="/var/run/zookeeper"
+mkdir -p ${data_dir}
+chown -R hdfs:hadoop ${data_dir}
+
+
+data_dir="/export/var/log/zookeeper"
+mkdir -p ${data_dir}
+chown -R hdfs:hadoop ${data_dir}
+
+data_dir="/export/hadoop/zookeeper"
+mkdir -p ${data_dir}
+chown -R hdfs:hadoop ${data_dir}
+
+
+chmod ugo+xr /export/hadoop/
+
+chmod ugo+xr /export/cloud/apache-zookeeper-3.8.3-bin
+chown -R hdfs:hadoop /export/cloud/apache-zookeeper-3.8.3-bin
+```
+
+
+
+
+
 #### Configuration file:
 
 ```ini
@@ -9,7 +48,7 @@ initLimit=10
 autopurge.purgeInterval=24
 syncLimit=5
 tickTime=3000
-dataDir=/hadoop/zookeeper
+dataDir=/export/var/log/zookeeper
 autopurge.snapRetainCount=30
 server.1=host-10-182-60-239:2888:3888
 server.2=host-10-182-60-250:2888:3888

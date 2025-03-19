@@ -27,6 +27,12 @@ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-9.
 ```
 
 ```shell
+sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
+```
+
+
+
+```shell
 sudo rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-10.noarch.rpm
 ```
 
